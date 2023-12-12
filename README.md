@@ -2,9 +2,9 @@
 Eğitim ve kişisel gelişim odaklı bir platform olan Tobeto'nun mobil uygulama prototipidir.
 
 ## Collaborators
-@ozcann159
-@mustafatmaca
-@oguzhancotur
+[@ozcann159](https://www.github.com/ozcann159)
+[@mustafatmaca](https://www.github.com/mustafatmaca)
+[@oguzhancotur](https://www.github.com/oguzhancotur)
 
 ## Kullanılan Teknolojiler
 -Flutter
