@@ -1,18 +1,13 @@
-# tobeto_app
+# Tobeto Mobile App
+Eğitim ve kişisel gelişim odaklı bir platform olan Tobeto'nun mobil uygulama prototipidir.
 
-A new Flutter project.
+## Collaborators
+@ozcann159
+@mustafatmaca
+@oguzhancotur
 
-## Getting Started
+## Kullanılan Teknolojiler
+-Flutter
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-print("Merhaba");
+### Login Screen
+![login-screen](https://github.com/mustafatmaca/tobeto_app/assets/58891564/ea60820e-1290-4c3a-903d-103cd689f0a8)
