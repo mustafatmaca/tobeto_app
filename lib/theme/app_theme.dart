@@ -18,7 +18,7 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: AppColor.colorScheme,
       primaryColor: AppColor.colorScheme.primary,
-      scaffoldBackgroundColor: AppColor.colorScheme.background,
+      scaffoldBackgroundColor: AppColor.backgroundDark,
       textTheme: GoogleFonts.ralewayTextTheme(),
     );
   }
