@@ -10,4 +10,4 @@ Eğitim ve kişisel gelişim odaklı bir platform olan Tobeto'nun mobil uygulama
 -Flutter
 
 ### Login Screen
-![login-screen](https://github.com/mustafatmaca/tobeto_app/assets/58891564/ea60820e-1290-4c3a-903d-103cd689f0a8)
+![login-screen](https://github.com/mustafatmaca/tobeto_app/assets/58891564/9b8ecff2-573d-4ae9-aa68-f0abca1dbf19)
