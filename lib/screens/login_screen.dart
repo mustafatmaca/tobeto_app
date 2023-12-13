@@ -8,6 +8,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const Spacer(),
                     TextField(
+                      controller: _usernameController,
+                      keyboardType: TextInputType.name,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.person_outline),
                         label: const Text("Kullanıcı Adı"),
@@ -52,9 +58,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const Spacer(),
                     TextField(
+                      controller: _passwordController,
+                      obscureText: !_isPasswordVisible,
                       decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.lock_outline),
-                          suffixIcon: const Icon(Icons.remove_red_eye_outlined),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _isPasswordVisible = !_isPasswordVisible;
+                              });
+                            },
+                            child: Icon(
+                              _isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          ),
                           label: const Text("Parola"),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
