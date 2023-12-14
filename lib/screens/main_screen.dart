@@ -24,9 +24,33 @@ class _MainScreenState extends State<MainScreen> {
         drawer: Drawer(
           child: ListView(
             children: [
-              DrawerHeader(child: Text("Tobeto")),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(
+                      "assets/tobeto-logo.png",
+                      width: 120,
+                      height: 60,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.close),
+                    ),
+                  ],
+                ),
+              ),
               ListTile(
-                title: Text("Anasayfa"),
+                title: Text(
+                  "Anasayfa",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
                 onTap: () {
                   if (currentPage == 0) {
                     Navigator.pop(context);
@@ -40,7 +64,13 @@ class _MainScreenState extends State<MainScreen> {
                 },
               ),
               ListTile(
-                title: Text("Katalog"),
+                title: Text(
+                  "Katalog",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
                 onTap: () {
                   if (currentPage == 1) {
                     Navigator.pop(context);
@@ -53,7 +83,13 @@ class _MainScreenState extends State<MainScreen> {
                 },
               ),
               ListTile(
-                title: Text("Takvim"),
+                title: Text(
+                  "Takvim",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
                 onTap: () {
                   if (currentPage == 2) {
                     Navigator.pop(context);
@@ -65,6 +101,20 @@ class _MainScreenState extends State<MainScreen> {
                   }
                 },
               ),
+              Divider(),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.black45, width: 1),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  title: Text("Kullanıcı Adı "),
+                  trailing: CircleAvatar(
+                    child: Icon(Icons.person_pin),
+                  ),
+                ),
+              )
             ],
           ),
         ),
