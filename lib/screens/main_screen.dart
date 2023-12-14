@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:tobeto_app/screens/calendar_screen.dart';
 import 'package:tobeto_app/screens/catalog_screen.dart';
 import 'package:tobeto_app/screens/home_screen.dart';
+import 'package:tobeto_app/screens/profile_screen.dart';
+import 'package:tobeto_app/screens/reviews_screen.dart';
 
-List<Widget> pages = [HomeScreen(), CatalogScreen(), CalendarScreen()];
+List<Widget> pages = [
+  HomeScreen(),
+  ReviewsScreen(),
+  ProfileScreen(),
+  CatalogScreen(),
+  CalendarScreen()
+];
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -72,11 +80,11 @@ class _MainScreenState extends State<MainScreen> {
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
-                  if (currentPage == 0) {
+                  if (currentPage == 1) {
                     Navigator.pop(context);
                   } else {
                     setState(() {
-                      currentPage = 0;
+                      currentPage = 1;
                     });
 
                     Navigator.pop(context);
@@ -92,11 +100,11 @@ class _MainScreenState extends State<MainScreen> {
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
-                  if (currentPage == 1) {
+                  if (currentPage == 2) {
                     Navigator.pop(context);
                   } else {
                     setState(() {
-                      currentPage = 1;
+                      currentPage = 2;
                     });
                     Navigator.pop(context);
                   }
@@ -111,11 +119,11 @@ class _MainScreenState extends State<MainScreen> {
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
-                  if (currentPage == 1) {
+                  if (currentPage == 3) {
                     Navigator.pop(context);
                   } else {
                     setState(() {
-                      currentPage = 1;
+                      currentPage = 3;
                     });
                     Navigator.pop(context);
                   }
@@ -130,11 +138,11 @@ class _MainScreenState extends State<MainScreen> {
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
-                  if (currentPage == 2) {
+                  if (currentPage == 4) {
                     Navigator.pop(context);
                   } else {
                     setState(() {
-                      currentPage = 2;
+                      currentPage = 4;
                     });
                     Navigator.pop(context);
                   }
@@ -164,9 +172,13 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
-              Padding(padding: EdgeInsets.all(10),
-              child: Text("© 2022 Tobeto"),)
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Text("© 2022 Tobeto"),
+              )
             ],
           ),
         ),
