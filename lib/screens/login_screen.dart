@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/screens/main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -63,7 +64,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const Spacer(),
                     ElevatedButton(
-                        onPressed: () {}, child: const Text("Giriş Yap")),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MainScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text("Giriş Yap")),
                     const Spacer(),
                     const Divider(height: 0.1),
                     const Spacer(),
