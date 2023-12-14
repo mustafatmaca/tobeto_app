@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:tobeto_app/screens/calendar_screen.dart';
 import 'package:tobeto_app/screens/catalog_screen.dart';
 import 'package:tobeto_app/screens/home_screen.dart';
+import 'package:tobeto_app/screens/login_screen.dart';
 import 'package:tobeto_app/screens/profile_screen.dart';
 import 'package:tobeto_app/screens/reviews_screen.dart';
 
 List<Widget> pages = [
-  HomeScreen(),
-  ReviewsScreen(),
-  ProfileScreen(),
-  CatalogScreen(),
-  CalendarScreen()
+  const HomeScreen(),
+  const ReviewsScreen(),
+  const ProfileScreen(),
+  const CatalogScreen(),
+  const CalendarScreen()
 ];
 
 class MainScreen extends StatefulWidget {
@@ -46,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.close),
+                      icon: const Icon(Icons.close),
                     ),
                   ],
                 ),
@@ -148,7 +149,7 @@ class _MainScreenState extends State<MainScreen> {
                   }
                 },
               ),
-              Divider(),
+              const Divider(),
               const ListTile(
                 title: Row(
                   children: [
@@ -158,27 +159,42 @@ class _MainScreenState extends State<MainScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: ListTile(
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.black45, width: 1),
+                    side: const BorderSide(color: Colors.black45, width: 1),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  title: Text("Kullanıcı Adı "),
-                  trailing: CircleAvatar(
+                  title: const Text("Kullanıcı Adı "),
+                  trailing: const CircleAvatar(
                     child: Icon(Icons.person_pin),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(10),
                 child: Text("© 2022 Tobeto"),
-              )
+              ),
+              ListTile(
+                title: Text(
+                  "Çıkış Yap",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+                trailing: Icon(Icons.logout_outlined),
+                onTap: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ));
+                },
+              ),
             ],
           ),
         ),
