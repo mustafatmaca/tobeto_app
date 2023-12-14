@@ -65,6 +65,45 @@ class _MainScreenState extends State<MainScreen> {
               ),
               ListTile(
                 title: Text(
+                  "Değerlendirmeler",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  if (currentPage == 0) {
+                    Navigator.pop(context);
+                  } else {
+                    setState(() {
+                      currentPage = 0;
+                    });
+
+                    Navigator.pop(context);
+                  }
+                },
+              ),
+              ListTile(
+                title: Text(
+                  "Profilim",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  if (currentPage == 1) {
+                    Navigator.pop(context);
+                  } else {
+                    setState(() {
+                      currentPage = 1;
+                    });
+                    Navigator.pop(context);
+                  }
+                },
+              ),
+              ListTile(
+                title: Text(
                   "Katalog",
                   style: Theme.of(context)
                       .textTheme
@@ -102,6 +141,16 @@ class _MainScreenState extends State<MainScreen> {
                 },
               ),
               Divider(),
+              const ListTile(
+                title: Row(
+                  children: [
+                    Text("Tobeto"),
+                    SizedBox(width: 9),
+                    Icon(Icons.home),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: ListTile(
@@ -114,7 +163,10 @@ class _MainScreenState extends State<MainScreen> {
                     child: Icon(Icons.person_pin),
                   ),
                 ),
-              )
+              ),
+              SizedBox(height: 20,),
+              Padding(padding: EdgeInsets.all(10),
+              child: Text("© 2022 Tobeto"),)
             ],
           ),
         ),
