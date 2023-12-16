@@ -150,12 +150,21 @@ class _MainScreenState extends State<MainScreen> {
                 },
               ),
               const Divider(),
-              const ListTile(
+              ListTile(
                 title: Row(
                   children: [
-                    Text("Tobeto"),
-                    SizedBox(width: 9),
-                    Icon(Icons.home),
+                    Text(
+                      "Tobeto",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 9),
+                    Icon(
+                      Icons.home,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
                   ],
                 ),
               ),
@@ -164,10 +173,13 @@ class _MainScreenState extends State<MainScreen> {
                 padding: const EdgeInsets.all(15.0),
                 child: ListTile(
                   shape: RoundedRectangleBorder(
-                    side: const BorderSide(color: Colors.black45, width: 1),
+                    side: const BorderSide(width: 1),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  title: const Text("Kullanıcı Adı "),
+                  title: Text(
+                    "Kullanıcı Adı",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                   trailing: const CircleAvatar(
                     child: Icon(Icons.person_pin),
                   ),
@@ -175,10 +187,6 @@ class _MainScreenState extends State<MainScreen> {
               ),
               const SizedBox(
                 height: 20,
-              ),
-              const Padding(
-                padding: EdgeInsets.all(10),
-                child: Text("© 2022 Tobeto"),
               ),
               ListTile(
                 title: Text(
@@ -188,12 +196,19 @@ class _MainScreenState extends State<MainScreen> {
                       .bodyLarge!
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
-                trailing: Icon(Icons.logout_outlined),
+                trailing: Icon(
+                  Icons.logout_outlined,
+                  color: Theme.of(context).iconTheme.color,
+                ),
                 onTap: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const LoginScreen(),
                   ));
                 },
+              ),
+              const Padding(
+                padding: EdgeInsets.all(10),
+                child: Text("© 2022 Tobeto"),
               ),
             ],
           ),
