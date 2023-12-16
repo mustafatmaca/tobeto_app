@@ -11,3 +11,6 @@ Eğitim ve kişisel gelişim odaklı bir platform olan Tobeto'nun mobil uygulama
 
 ### Login Screen
 ![login-screen](https://github.com/mustafatmaca/tobeto_app/assets/58891564/4f5fd47c-613f-4ec1-a0b7-504491b928ac)
+
+### Drawer
+![drawer_light](https://github.com/mustafatmaca/tobeto_app/assets/58891564/8861fdd1-cad5-4763-a976-a019b4db12d8)
