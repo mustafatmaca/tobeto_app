@@ -26,6 +26,11 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
+
+    String imagePath =
+        isDarkMode ? "assets/dark.png" : "assets/tobeto-logo.png";
     return Scaffold(
         appBar: AppBar(
           title: const Text("Tobeto"),
@@ -39,7 +44,7 @@ class _MainScreenState extends State<MainScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Image.asset(
-                      "assets/tobeto-logo.png",
+                      imagePath,
                       width: 120,
                       height: 60,
                     ),

@@ -15,6 +15,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
+    String imagePath =
+        isDarkMode ? "assets/dark.png" : "assets/tobeto-logo.png";
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: Stack(
@@ -40,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     Image.asset(
-                      "assets/tobeto-logo.png",
+                      imagePath,
                       width: 150,
                       height: 75,
                     ),
