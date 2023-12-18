@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
     String imagePath =
         isDarkMode ? "assets/dark.png" : "assets/tobeto-logo.png";
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Stack(
         children: [
           Container(
@@ -28,8 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
             height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/highResCover.png"),
-                  fit: BoxFit.fill),
+                  image: AssetImage("assets/background.png"), fit: BoxFit.fill),
             ),
           ),
           Center(
