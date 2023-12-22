@@ -34,6 +34,16 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Tobeto"),
+          bottom: PreferredSize(
+              preferredSize: Size.fromHeight(1.0),
+              child: Divider(
+                color: Colors.black26,
+                height: 1.0,
+              )),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.messenger),
         ),
         drawer: Drawer(
           child: ListView(
