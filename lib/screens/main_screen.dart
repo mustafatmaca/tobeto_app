@@ -56,6 +56,7 @@ class _MainScreenState extends State<MainScreen> {
               )),
         ),
         floatingActionButton: FloatingActionButton(
+          elevation: 15,
           backgroundColor: Theme.of(context).primaryColor,
           foregroundColor: Theme.of(context).colorScheme.background,
           onPressed: () {},

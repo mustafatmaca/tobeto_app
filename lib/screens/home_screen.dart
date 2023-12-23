@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:tobeto_app/widgets/gradient_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -71,6 +73,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration:
+                            BoxDecoration(color: Colors.white, boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            spreadRadius: 2,
+                            blurRadius: 7,
+                            offset: Offset(0, 3),
+                          )
+                        ]),
                         child: Column(
                           children: [
                             Image.asset(
@@ -138,16 +150,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        width: MediaQuery.of(context).size.width,
-                        decoration:
-                            BoxDecoration(color: Colors.white, boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            spreadRadius: 2,
-                            blurRadius: 7,
-                            offset: Offset(0, 3),
-                          )
-                        ]),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
@@ -170,6 +172,27 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
+                ),
+                GradientCard(
+                    headLine: "Profilini Oluştur",
+                    color1: Color(0xFF6610f2),
+                    color2: Color(0xFF7a29cc)),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                GradientCard(
+                    headLine: "Kendini Değerlendir",
+                    color1: Color(0xFF6610f2),
+                    color2: Color(0xFF7a29cc)),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                GradientCard(
+                    headLine: "Öğrenmeye Başla",
+                    color1: Color(0xFF6610f2),
+                    color2: Color(0xFF7a29cc)),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 Expanded(
                   child: Align(
@@ -195,10 +218,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   onPressed: () {},
                                   child: Text(
                                     "Bize Ulaşın",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(fontWeight: FontWeight.bold),
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Theme.of(context)

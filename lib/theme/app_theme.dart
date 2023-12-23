@@ -9,7 +9,7 @@ class AppTheme {
       colorScheme: AppColor.colorScheme,
       primaryColor: AppColor.colorScheme.primary,
       scaffoldBackgroundColor: AppColor.colorScheme.background,
-      textTheme: GoogleFonts.ralewayTextTheme().apply(
+      textTheme: GoogleFonts.poppinsTextTheme().apply(
         bodyColor: AppColor.textColor,
       ),
       appBarTheme: AppBarTheme(
