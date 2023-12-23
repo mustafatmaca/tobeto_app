@@ -29,6 +29,11 @@ class AppTheme {
           color: AppColor.textColor,
         ),
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: AppColor.colorScheme.primary,
+            foregroundColor: AppColor.colorScheme.background),
+      ),
     );
   }
 
@@ -57,6 +62,11 @@ class AppTheme {
         labelStyle: TextStyle(
           color: AppColor.textColorDark,
         ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: AppColor.colorScheme.primary,
+            foregroundColor: AppColor.colorScheme.background),
       ),
     );
   }

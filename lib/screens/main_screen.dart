@@ -33,7 +33,21 @@ class _MainScreenState extends State<MainScreen> {
         isDarkMode ? "assets/dark.png" : "assets/tobeto-logo.png";
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Tobeto"),
+          automaticallyImplyLeading: false,
+          actions: [
+            Builder(builder: (context) {
+              return IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: Icon(Icons.menu));
+            })
+          ],
+          title: Image.asset(
+            imagePath,
+            width: 120,
+            height: 60,
+          ),
           bottom: PreferredSize(
               preferredSize: Size.fromHeight(1.0),
               child: Divider(
