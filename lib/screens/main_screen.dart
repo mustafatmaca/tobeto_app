@@ -56,6 +56,8 @@ class _MainScreenState extends State<MainScreen> {
               )),
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Theme.of(context).primaryColor,
+          foregroundColor: Theme.of(context).colorScheme.background,
           onPressed: () {},
           child: const Icon(Icons.messenger),
         ),
