@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tobeto_app/widgets/education_card.dart';
 import 'package:tobeto_app/widgets/exam_card.dart';
 import 'package:tobeto_app/widgets/gradient_card.dart';
 
@@ -200,6 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                             Container(
+                              padding: EdgeInsets.all(16),
                               child: buildContent(currentTab),
                             )
                           ],
@@ -395,11 +397,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Text('Menü 2 İçeriği'),
         );
       case 2:
-        return Container(
-          color: Colors.orange,
-          padding: EdgeInsets.all(16.0),
-          child: Text('Menü 3 İçeriği'),
-        );
+        return EducationCard(context: context);
       case 3:
         return Container(
           color: Colors.purple,
