@@ -187,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Image.asset(
-                                  imagePath,
+                                  "assets/beyazlogo.png",
                                   width: 120,
                                   height: 60,
                                 ),
