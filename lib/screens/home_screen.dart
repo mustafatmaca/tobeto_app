@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tobeto_app/widgets/exam_card.dart';
 import 'package:tobeto_app/widgets/gradient_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -74,15 +75,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        decoration:
-                            BoxDecoration(color: Colors.white, boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            spreadRadius: 2,
-                            blurRadius: 7,
-                            offset: Offset(0, 3),
-                          )
-                        ]),
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 7,
+                                offset: Offset(0, 3),
+                              )
+                            ]),
                         child: Column(
                           children: [
                             Image.asset(
@@ -155,17 +157,78 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       Container(
-                        child: Text("Container 2"),
+                        padding: EdgeInsets.all(8),
                         width: MediaQuery.of(context).size.width,
-                        decoration:
-                            BoxDecoration(color: Colors.white, boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            spreadRadius: 2,
-                            blurRadius: 7,
-                            offset: Offset(0, 3),
-                          )
-                        ]),
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 7,
+                                offset: Offset(0, 3),
+                              )
+                            ]),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "Sınavlarım",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.01,
+                            ),
+                            SingleChildScrollView(
+                              padding: EdgeInsets.all(8),
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  const ExamCard(
+                                      examName:
+                                          "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                                      examClass: "Herkes İçin Kodlama 1A",
+                                      examTime: "45 Dakika"),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.04,
+                                  ),
+                                  const ExamCard(
+                                      examName:
+                                          "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                                      examClass: "Herkes İçin Kodlama 1A",
+                                      examTime: "45 Dakika"),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.04,
+                                  ),
+                                  const ExamCard(
+                                      examName:
+                                          "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                                      examClass: "Herkes İçin Kodlama 1A",
+                                      examTime: "45 Dakika"),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.04,
+                                  ),
+                                  const ExamCard(
+                                      examName:
+                                          "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                                      examClass: "Herkes İçin Kodlama 1A",
+                                      examTime: "45 Dakika"),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
