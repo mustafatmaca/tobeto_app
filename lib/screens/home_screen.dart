@@ -11,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  var currentTab = 0;
   @override
   Widget build(BuildContext context) {
     bool isDarkMode =
@@ -27,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
                   child: Column(
                     children: [
                       SizedBox(
@@ -150,6 +151,57 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                             ),
+                            Wrap(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      currentTab = 0;
+                                    });
+                                  },
+                                  child: Text("Başvurularım"),
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      currentTab = 1;
+                                    });
+                                  },
+                                  child: Text("Eğitimlerim"),
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      currentTab = 2;
+                                    });
+                                  },
+                                  child: Text("Duyuru ve Haberlerim"),
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      currentTab = 3;
+                                    });
+                                  },
+                                  child: Text("Anketlerim"),
+                                )
+                              ],
+                            ),
+                            Container(
+                              child: buildContent(currentTab),
+                            )
                           ],
                         ),
                       ),
@@ -171,8 +223,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             ]),
                         child: Column(
                           children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
                             Row(
                               children: [
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.02,
+                                ),
                                 Text(
                                   "Sınavlarım",
                                   style: Theme.of(context)
@@ -226,34 +285,37 @@ class _HomeScreenState extends State<HomeScreen> {
                                       examTime: "45 Dakika"),
                                 ],
                               ),
-                            )
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
                           ],
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.03,
+                        height: MediaQuery.of(context).size.height * 0.01,
                       ),
                     ],
                   ),
                 ),
                 GradientCard(
                     headLine: "Profilini Oluştur",
-                    color1: Color(0xFF6610f2),
-                    color2: Color(0xFF7a29cc)),
+                    color1: Color(0xFF1D0B8C),
+                    color2: Color(0xFFB49DF8)),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 GradientCard(
                     headLine: "Kendini Değerlendir",
-                    color1: Color(0xFF6610f2),
-                    color2: Color(0xFF7a29cc)),
+                    color1: Color(0xFF0E0B93),
+                    color2: Color(0xFF59ACC7)),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 GradientCard(
                     headLine: "Öğrenmeye Başla",
-                    color1: Color(0xFF6610f2),
-                    color2: Color(0xFF7a29cc)),
+                    color1: Color(0xFF3C0B8C),
+                    color2: Color(0xFFDA9DF8)),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
@@ -316,5 +378,36 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     });
+  }
+
+  Widget buildContent(int currentTab) {
+    switch (currentTab) {
+      case 0:
+        return Container(
+          color: Colors.green,
+          padding: EdgeInsets.all(16.0),
+          child: Text('Menü 1 İçeriği'),
+        );
+      case 1:
+        return Container(
+          color: Colors.blue,
+          padding: EdgeInsets.all(16.0),
+          child: Text('Menü 2 İçeriği'),
+        );
+      case 2:
+        return Container(
+          color: Colors.orange,
+          padding: EdgeInsets.all(16.0),
+          child: Text('Menü 3 İçeriği'),
+        );
+      case 3:
+        return Container(
+          color: Colors.purple,
+          padding: EdgeInsets.all(16.0),
+          child: Text('Menü 4 İçeriği'),
+        );
+      default:
+        return Container(); // Varsayılan durumda boş bir container döndürüyoruz.
+    }
   }
 }

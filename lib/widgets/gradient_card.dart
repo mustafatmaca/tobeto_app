@@ -23,7 +23,7 @@ class GradientCard extends StatelessWidget {
               bottomLeft: Radius.circular(18)),
           gradient: LinearGradient(
               colors: [color1, color2],
-              begin: Alignment.topRight,
+              begin: Alignment.topCenter,
               end: Alignment.bottomLeft)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

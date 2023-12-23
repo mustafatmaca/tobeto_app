@@ -33,6 +33,7 @@ class _MainScreenState extends State<MainScreen> {
         isDarkMode ? "assets/dark.png" : "assets/tobeto-logo.png";
     return Scaffold(
         appBar: AppBar(
+          scrolledUnderElevation: 0.0,
           automaticallyImplyLeading: false,
           actions: [
             Builder(builder: (context) {
