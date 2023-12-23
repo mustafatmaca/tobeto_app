@@ -49,8 +49,69 @@ class _HomeScreenState extends State<HomeScreen> {
               height: MediaQuery.of(context).size.height * 0.03,
             ),
             Container(
-              child: Text("Tobeto"),
-              height: MediaQuery.of(context).size.height * 0.2,
+              child: Column(
+                children: [
+                  Image.asset(
+                    "assets/istnblkodluyor.png",
+                    width: 200,
+                    height: 80,
+                  ),
+                  Text(
+                    "Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al",
+                    textAlign: TextAlign.center,
+                  ),
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      text: "Aradığın ",
+                      style:
+                          Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: "${'"'}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
+                        ),
+                        TextSpan(
+                          text: "İş",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                        TextSpan(
+                          text: "${'"'}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
+                        ),
+                        TextSpan(
+                          text: " Burada! ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(color: Colors.white, boxShadow: [
                 BoxShadow(
@@ -58,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   spreadRadius: 2, // Gölgenin yayılma miktarı
                   blurRadius: 7, // Gölge bulanıklık miktarı
                   offset: Offset(0, 3), // Gölgenin konumu (x, y)
-                )
+                ),
               ]),
             ),
             SizedBox(

@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       keyboardType: TextInputType.name,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.person_outline),
-                        label: const Text("Kullanıcı Adı"),
+                        label: const Text("Kullanıcı Ad"),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
