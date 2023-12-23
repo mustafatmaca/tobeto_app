@@ -94,9 +94,27 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: 200,
                               height: 80,
                             ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
                             Text(
-                              "Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al",
+                              "Ücretsiz eğitimlerle, geleceğin ",
                               textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "mesleklerinde sen de yerini al.",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.03,
                             ),
                             RichText(
                               textAlign: TextAlign.center,
@@ -151,6 +169,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ],
                               ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
                             ),
                             Wrap(
                               children: [
@@ -391,13 +412,13 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Text('Menü 1 İçeriği'),
         );
       case 1:
+        return EducationCard(context: context);
+      case 2:
         return Container(
           color: Colors.blue,
           padding: EdgeInsets.all(16.0),
           child: Text('Menü 2 İçeriği'),
         );
-      case 2:
-        return EducationCard(context: context);
       case 3:
         return Container(
           color: Colors.purple,
