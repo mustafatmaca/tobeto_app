@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tobeto_app/widgets/applications_card.dart';
 import 'package:tobeto_app/widgets/education_card.dart';
 import 'package:tobeto_app/widgets/exam_card.dart';
 import 'package:tobeto_app/widgets/gradient_card.dart';
@@ -15,11 +16,6 @@ class _HomeScreenState extends State<HomeScreen> {
   var currentTab = 0;
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
-
-    String imagePath =
-        isDarkMode ? "assets/dark.png" : "assets/tobeto-logo.png";
     return LayoutBuilder(builder: (context, constraints) {
       return SingleChildScrollView(
         child: ConstrainedBox(
@@ -406,13 +402,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildContent(int currentTab) {
     switch (currentTab) {
       case 0:
-        return Container(
-          color: Colors.green,
-          padding: EdgeInsets.all(16.0),
-          child: Text('Menü 1 İçeriği'),
+        return ApplicationsCard(
+          title: "İstanbul Kodluyor Bilgilendirme",
+          subtitle: "İstanbul Kodluyor Başvuru Formu onaylandı",
+          subtitle2: "İstanbul Kodluyor Belge  Yükleme Formu Onaylandı ",
         );
       case 1:
-        return EducationCard(context: context);
+        return EducationCard(
+          context: context,
+          title: "Dr. Ecmel Ayral'dan Hoşgeldin Mesajı",
+          date: DateTime.now(),
+          image: "assets/ecmelayral.jpeg",
+        );
       case 2:
         return Container(
           color: Colors.blue,

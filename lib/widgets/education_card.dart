@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class EducationCard extends StatelessWidget {
+  final String title;
+  final DateTime date;
+  final String image;
+
   const EducationCard({
+    required this.title,
+    required this.date,
+    required this.image,
     super.key,
     required this.context,
   });
@@ -31,7 +38,7 @@ class EducationCard extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               child: Image.asset(
-                'assets/ecmelayral.jpeg',
+                image,
                 fit: BoxFit.fitWidth,
               ),
             ),
@@ -40,12 +47,14 @@ class EducationCard extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
-          const Text("Dr. Ecmel Ayral'dan Hoşgeldin Mesajı",
+          Text(title,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
-          Text(DateTime.parse("2023-09-21 15:20").toString()),
+          Text(date.day.toString() +
+              date.month.toString() +
+              date.year.toString()),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
