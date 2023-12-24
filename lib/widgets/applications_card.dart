@@ -16,7 +16,7 @@ class ApplicationsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.78,
+      width: MediaQuery.of(context).size.width * 0.88,
       decoration: BoxDecoration(
         border: const Border(
             left: BorderSide(

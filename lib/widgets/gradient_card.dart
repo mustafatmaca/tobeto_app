@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class GradientCard extends StatelessWidget {
-  String headLine;
-  Color color1;
-  Color color2;
-  GradientCard(
+  final String headLine;
+  final Color color1;
+  final Color color2;
+  const GradientCard(
       {required this.headLine,
       required this.color1,
       required this.color2,

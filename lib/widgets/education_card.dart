@@ -31,7 +31,7 @@ class EducationCard extends StatelessWidget {
           ]),
       padding: EdgeInsets.all(5.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AspectRatio(
             child: ClipRRect(
@@ -48,19 +48,20 @@ class EducationCard extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.01,
           ),
           Text(title,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
-          Text(date.day.toString() +
-              date.month.toString() +
-              date.year.toString()),
+          Text("${date.day}/${date.month}/${date.year}"),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text('Eğitime Git'),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text('Eğitime Git'),
+            ),
           ),
         ],
       ),
