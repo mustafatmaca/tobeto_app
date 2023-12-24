@@ -70,6 +70,8 @@ flutter:
     - assets/converted.png
     - assets/ecmelayral.jpeg
     - assets/notFound.png
+    - assets/istkod.png
+    - assets/tbt.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

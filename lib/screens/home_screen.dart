@@ -179,9 +179,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                       decoration: BoxDecoration(
                                           border: Border(
                                               bottom: BorderSide(width: 2.0))),
-                                      child: Text("Başvurularım"),
+                                      child: Text(
+                                        "  Başvurularım  ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold),
+                                      ),
                                     )
-                                  : Text("Başvurularım"),
+                                  : Text(
+                                      "  Başvurularım  ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold),
+                                    ),
                             ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.03,
@@ -197,9 +211,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                       decoration: BoxDecoration(
                                           border: Border(
                                               bottom: BorderSide(width: 2.0))),
-                                      child: Text("Eğitimlerim"),
+                                      child: Text(
+                                        "  Eğitimlerim  ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold),
+                                      ),
                                     )
-                                  : Text("Eğitimlerim"),
+                                  : Text(
+                                      "  Eğitimlerim  ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold),
+                                    ),
                             ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.03,
@@ -215,9 +243,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                       decoration: BoxDecoration(
                                           border: Border(
                                               bottom: BorderSide(width: 2.0))),
-                                      child: Text("Duyuru ve Haberlerim"),
+                                      child: Text(
+                                        "  Duyuru ve Haberlerim  ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold),
+                                      ),
                                     )
-                                  : Text("Duyuru ve Haberlerim"),
+                                  : Text(
+                                      "  Duyuru ve Haberlerim  ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold),
+                                    ),
                             ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.03,
@@ -233,9 +275,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                       decoration: BoxDecoration(
                                           border: Border(
                                               bottom: BorderSide(width: 2.0))),
-                                      child: Text("Anketlerim"),
+                                      child: Text(
+                                        "  Anketlerim  ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold),
+                                      ),
                                     )
-                                  : Text("Anketlerim"),
+                                  : Text(
+                                      "  Anketlerim  ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold),
+                                    ),
                             )
                           ],
                         ),
@@ -420,11 +476,42 @@ class _HomeScreenState extends State<HomeScreen> {
           subtitle2: "İstanbul Kodluyor Belge  Yükleme Formu Onaylandı ",
         );
       case 1:
-        return EducationCard(
-          context: context,
-          title: "Dr. Ecmel Ayral'dan Hoşgeldin Mesajı",
-          date: DateTime.now(),
-          image: "assets/ecmelayral.jpeg",
+        return Column(
+          children: [
+            EducationCard(
+              context: context,
+              title: "Dr. Ecmel Ayral'dan Hoşgeldin Mesajı",
+              date: DateTime.now(),
+              image: "assets/ecmelayral.jpeg",
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
+            EducationCard(
+              context: context,
+              title: "Eğitimlere Nasıl Katılırım?",
+              date: DateTime.now(),
+              image: "assets/istkod.png",
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
+            EducationCard(
+              context: context,
+              title: "Herkes İçin Kodlama",
+              date: DateTime.now(),
+              image: "assets/tbt.jpeg",
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
+            EducationCard(
+              context: context,
+              title: "İstanbul Kodluyor Proje Aşamaları",
+              date: DateTime.now(),
+              image: "assets/istkod.png",
+            ),
+          ],
         );
       case 2:
         return AnnouncementCard(
