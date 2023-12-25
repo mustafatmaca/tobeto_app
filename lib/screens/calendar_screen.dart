@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/widgets/footer.dart';
 
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({Key? key}) : super(key: key);
@@ -10,8 +11,13 @@ class CalendarScreen extends StatefulWidget {
 class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Calendar"),
+    return Stack(
+      children: [
+        Center(
+          child: Text("Calender"),
+        ),
+        Footer(),
+      ],
     );
   }
 }

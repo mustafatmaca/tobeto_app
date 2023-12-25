@@ -23,7 +23,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   var currentPage = 0;
-
   @override
   Widget build(BuildContext context) {
     bool isDarkMode =

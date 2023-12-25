@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/widgets/footer.dart';
 
 class CatalogScreen extends StatefulWidget {
   const CatalogScreen({Key? key}) : super(key: key);
@@ -10,8 +11,13 @@ class CatalogScreen extends StatefulWidget {
 class _CatalogScreenState extends State<CatalogScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Catalog"),
+    return Stack(
+      children: [
+        Center(
+          child: Text("Catalog"),
+        ),
+        Footer(),
+      ],
     );
   }
 }
