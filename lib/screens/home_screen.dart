@@ -90,21 +90,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.02,
                         ),
-                        Text(
-                          "Ücretsiz eğitimlerle, geleceğin ",
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          "mesleklerinde sen de yerini al.",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
+                          child: Text(
+                            "Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al. ",
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03,
@@ -298,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Container(
                           padding: EdgeInsets.all(16),
                           child: buildContent(currentTab),
-                        )
+                        ),
                       ],
                     ),
                   ),

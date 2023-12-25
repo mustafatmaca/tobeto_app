@@ -59,6 +59,10 @@ class EducationCard extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  fixedSize: Size.fromWidth(
+                MediaQuery.of(context).size.width * 0.85,
+              )),
               onPressed: () {},
               child: Text('Eğitime Git'),
             ),
