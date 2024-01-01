@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tobeto_app/widgets/announcement_card.dart';
-import 'package:tobeto_app/widgets/applications_card.dart';
-import 'package:tobeto_app/widgets/education_card.dart';
-import 'package:tobeto_app/widgets/empty_card.dart';
-import 'package:tobeto_app/widgets/exam_card.dart';
-import 'package:tobeto_app/widgets/footer.dart';
-import 'package:tobeto_app/widgets/gradient_card.dart';
+import 'package:tobeto_app/widgets/home_widgets/announcement_card.dart';
+import 'package:tobeto_app/widgets/home_widgets/applications_card.dart';
+import 'package:tobeto_app/widgets/home_widgets/education_card.dart';
+import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
+import 'package:tobeto_app/widgets/home_widgets/exam_card.dart';
+import 'package:tobeto_app/widgets/custom_widgets/footer.dart';
+import 'package:tobeto_app/widgets/home_widgets/gradient_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
