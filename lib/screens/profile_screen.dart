@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:tobeto_app/widgets/custom_widgets/footer.dart';
 
+List<String> skills = [
+  "Flutter",
+  "Swift",
+  "React Native",
+];
+List<String> language = [
+  "İngilizce",
+];
+List<String> certificates = [
+  "Certificate 1",
+  "Certificate 2",
+  "Certificate 3",
+];
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -11,9 +25,9 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return ListView(
       children: [
-        ListView(
+        Stack(
           children: [
             Column(
               children: [
@@ -303,10 +317,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ListView.builder(
                           shrinkWrap: true,
                           physics: ClampingScrollPhysics(),
-                          itemCount: 5,
+                          itemCount: skills.length,
                           itemBuilder: (context, index) {
-                            return const ListTile(
-                              title: Text("data"),
+                            return ListTile(
+                              title: Text(skills[index]),
                             );
                           },
                         )
@@ -347,10 +361,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ListView.builder(
                           shrinkWrap: true,
                           physics: ClampingScrollPhysics(),
-                          itemCount: 1,
+                          itemCount: language.length,
                           itemBuilder: (context, index) {
-                            return const ListTile(
-                              title: Text("data"),
+                            return ListTile(
+                              leading: Image.asset("assets/globe.png"),
+                              title: Text(language[index]),
+                              subtitle: Text("data"),
+                              trailing: Image.asset("assets/home.png"),
                             );
                           },
                         )
@@ -359,13 +376,63 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.20,
+                  height: MediaQuery.of(context).size.height * 0.03,
                 ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      )
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Sertifikalarım",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        Divider(),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                          itemCount: certificates.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(certificates[index]),
+                              trailing: Image.asset(
+                                "assets/pdf.png",
+                                width: MediaQuery.of(context).size.width * 0.05,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
+                              ),
+                            );
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.10,
+                ),
+                Footer(),
               ],
             ),
           ],
         ),
-        Footer(),
       ],
     );
   }
