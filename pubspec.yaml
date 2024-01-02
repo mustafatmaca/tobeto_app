@@ -72,6 +72,10 @@ flutter:
     - assets/notFound.png
     - assets/istkod.png
     - assets/tbt.jpeg
+    - assets/cv-date.png
+    - assets/cv-mail.png
+    - assets/cv-name.png
+    - assets/cv-phone.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
