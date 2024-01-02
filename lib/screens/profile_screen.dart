@@ -232,7 +232,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 25,
+                  height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
@@ -265,6 +265,94 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum iaculis consequat. Nunc pulvinar, ipsum et lobortis convallis, dolor purus suscipit augue, a congue libero tellus et ante. Aliquam vitae risus consectetur, posuere mi quis, feugiat magna. Quisque et augue nunc. Vivamus lacinia purus in nisl consectetur malesuada. Curabitur vulputate tincidunt orci ut rutrum. Cras dolor odio, tristique ac posuere sed, varius in metus. Pellentesque vel nisi eu dolor consectetur molestie.",
                           maxLines: 6,
                           overflow: TextOverflow.ellipsis,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      )
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Yetkinliklerim",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        Divider(),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                          itemCount: 5,
+                          itemBuilder: (context, index) {
+                            return const ListTile(
+                              title: Text("data"),
+                            );
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      )
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Yabancı Dillerim",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        Divider(),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                          itemCount: 1,
+                          itemBuilder: (context, index) {
+                            return const ListTile(
+                              title: Text("data"),
+                            );
+                          },
                         )
                       ],
                     ),
