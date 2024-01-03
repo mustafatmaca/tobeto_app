@@ -165,145 +165,191 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.02,
                             ),
-                            Wrap(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      currentTab = 0;
-                                    });
-                                  },
-                                  child: currentTab == 0
-                                      ? Container(
-                                          decoration: BoxDecoration(
-                                              border: Border(
-                                                  bottom:
-                                                      BorderSide(width: 2.0))),
-                                          child: Text(
-                                            "  Başvurularım  ",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge!
-                                                .copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.05,
+                              child: ListView(
+                                padding: EdgeInsets.all(8),
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        currentTab = 0;
+                                      });
+                                    },
+                                    child: currentTab == 0
+                                        ? Container(
+                                            decoration: BoxDecoration(
+                                                color: Theme.of(context)
+                                                    .primaryColor
+                                                    .withOpacity(0.5),
+                                                borderRadius:
+                                                    BorderRadius.circular(4)),
+                                            child: Text(
+                                              "  Başvurularım  ",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge!
+                                                  .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            ),
+                                          )
+                                        : Container(
+                                            decoration: BoxDecoration(
+                                                color: Theme.of(context)
+                                                    .primaryColor
+                                                    .withOpacity(0.2),
+                                                borderRadius:
+                                                    BorderRadius.circular(4)),
+                                            child: Text(
+                                              "  Başvurularım  ",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge!
+                                                  .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            ),
                                           ),
-                                        )
-                                      : Text(
-                                          "  Başvurularım  ",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(
-                                                  fontWeight: FontWeight.bold),
-                                        ),
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.03,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      currentTab = 1;
-                                    });
-                                  },
-                                  child: currentTab == 1
-                                      ? Container(
-                                          decoration: BoxDecoration(
-                                              border: Border(
-                                                  bottom:
-                                                      BorderSide(width: 2.0))),
-                                          child: Text(
-                                            "  Eğitimlerim  ",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge!
-                                                .copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                          ),
-                                        )
-                                      : Text(
-                                          "  Eğitimlerim  ",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(
-                                                  fontWeight: FontWeight.bold),
-                                        ),
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.03,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      currentTab = 2;
-                                    });
-                                  },
-                                  child: currentTab == 2
-                                      ? Container(
-                                          decoration: BoxDecoration(
-                                              border: Border(
-                                                  bottom:
-                                                      BorderSide(width: 2.0))),
-                                          child: Text(
-                                            "  Duyuru ve Haberlerim  ",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge!
-                                                .copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                          ),
-                                        )
-                                      : Text(
-                                          "  Duyuru ve Haberlerim  ",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(
-                                                  fontWeight: FontWeight.bold),
-                                        ),
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.03,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      currentTab = 3;
-                                    });
-                                  },
-                                  child: currentTab == 3
-                                      ? Container(
-                                          decoration: BoxDecoration(
-                                              border: Border(
-                                                  bottom:
-                                                      BorderSide(width: 2.0))),
-                                          child: Text(
-                                            "  Anketlerim  ",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge!
-                                                .copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                          ),
-                                        )
-                                      : Text(
-                                          "  Anketlerim  ",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(
-                                                  fontWeight: FontWeight.bold),
-                                        ),
-                                )
-                              ],
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.03,
+                                  ),
+                                  InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          currentTab = 1;
+                                        });
+                                      },
+                                      child: currentTab == 1
+                                          ? Container(
+                                              decoration: BoxDecoration(
+                                                  color: Theme.of(context)
+                                                      .primaryColor
+                                                      .withOpacity(0.5),
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              child: Text(
+                                                "  Eğitimlerim  ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
+                                            )
+                                          : Container(
+                                              decoration: BoxDecoration(
+                                                  color: Theme.of(context)
+                                                      .primaryColor
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              child: Text(
+                                                "  Eğitimlerim  ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
+                                            )),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.03,
+                                  ),
+                                  InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          currentTab = 2;
+                                        });
+                                      },
+                                      child: currentTab == 2
+                                          ? Container(
+                                              decoration: BoxDecoration(
+                                                  color: Theme.of(context)
+                                                      .primaryColor
+                                                      .withOpacity(0.5),
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              child: Text(
+                                                "  Duyuru ve Haberlerim  ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
+                                            )
+                                          : Container(
+                                              decoration: BoxDecoration(
+                                                  color: Theme.of(context)
+                                                      .primaryColor
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              child: Text(
+                                                "  Duyuru ve Haberlerim  ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
+                                            )),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.03,
+                                  ),
+                                  InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          currentTab = 3;
+                                        });
+                                      },
+                                      child: currentTab == 3
+                                          ? Container(
+                                              decoration: BoxDecoration(
+                                                  color: Theme.of(context)
+                                                      .primaryColor
+                                                      .withOpacity(0.5),
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              child: Text(
+                                                "  Anketlerim  ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
+                                            )
+                                          : Container(
+                                              decoration: BoxDecoration(
+                                                  color: Theme.of(context)
+                                                      .primaryColor
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              child: Text(
+                                                "  Anketlerim  ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
+                                            ))
+                                ],
+                              ),
                             ),
                             Container(
                               padding: EdgeInsets.all(16),
@@ -409,24 +455,33 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                GradientCard(
-                    headLine: "Profilini Oluştur",
-                    color1: Color(0xFF1D0B8C),
-                    color2: Color(0xFFB49DF8)),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.01,
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  child: ListView(
+                    padding: EdgeInsets.all(8),
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      GradientCard(
+                          headLine: "Profilini Oluştur",
+                          color1: Color(0xFF1D0B8C),
+                          color2: Color(0xFFB49DF8)),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.01,
+                      ),
+                      GradientCard(
+                          headLine: "Kendini Değerlendir",
+                          color1: Color(0xFF0E0B93),
+                          color2: Color(0xFF59ACC7)),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.01,
+                      ),
+                      GradientCard(
+                          headLine: "Öğrenmeye Başla",
+                          color1: Color(0xFF3C0B8C),
+                          color2: Color(0xFFDA9DF8)),
+                    ],
+                  ),
                 ),
-                GradientCard(
-                    headLine: "Kendini Değerlendir",
-                    color1: Color(0xFF0E0B93),
-                    color2: Color(0xFF59ACC7)),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.01,
-                ),
-                GradientCard(
-                    headLine: "Öğrenmeye Başla",
-                    color1: Color(0xFF3C0B8C),
-                    color2: Color(0xFFDA9DF8)),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
