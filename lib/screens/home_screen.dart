@@ -166,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: MediaQuery.of(context).size.height * 0.02,
                             ),
                             Container(
-                              height: MediaQuery.of(context).size.height * 0.05,
+                              height: MediaQuery.of(context).size.height * 0.06,
                               child: ListView(
                                 padding: EdgeInsets.all(8),
                                 scrollDirection: Axis.horizontal,
@@ -185,14 +185,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .withOpacity(0.5),
                                                 borderRadius:
                                                     BorderRadius.circular(4)),
-                                            child: Text(
-                                              "  Başvurularım  ",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge!
-                                                  .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.bold),
+                                            child: Center(
+                                              child: Text(
+                                                "  Başvurularım  ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
                                             ),
                                           )
                                         : Container(
@@ -202,14 +204,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .withOpacity(0.2),
                                                 borderRadius:
                                                     BorderRadius.circular(4)),
-                                            child: Text(
-                                              "  Başvurularım  ",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge!
-                                                  .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.bold),
+                                            child: Center(
+                                              child: Text(
+                                                "  Başvurularım  ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
                                             ),
                                           ),
                                   ),
@@ -231,14 +235,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .withOpacity(0.5),
                                                   borderRadius:
                                                       BorderRadius.circular(4)),
-                                              child: Text(
-                                                "  Eğitimlerim  ",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge!
-                                                    .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                              child: Center(
+                                                child: Text(
+                                                  "  Eğitimlerim  ",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                ),
                                               ),
                                             )
                                           : Container(
@@ -248,14 +254,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .withOpacity(0.2),
                                                   borderRadius:
                                                       BorderRadius.circular(4)),
-                                              child: Text(
-                                                "  Eğitimlerim  ",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge!
-                                                    .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                              child: Center(
+                                                child: Text(
+                                                  "  Eğitimlerim  ",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                ),
                                               ),
                                             )),
                                   SizedBox(
@@ -276,14 +284,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .withOpacity(0.5),
                                                   borderRadius:
                                                       BorderRadius.circular(4)),
-                                              child: Text(
-                                                "  Duyuru ve Haberlerim  ",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge!
-                                                    .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                              child: Center(
+                                                child: Text(
+                                                  "  Duyuru ve Haberlerim  ",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                ),
                                               ),
                                             )
                                           : Container(
@@ -293,14 +303,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .withOpacity(0.2),
                                                   borderRadius:
                                                       BorderRadius.circular(4)),
-                                              child: Text(
-                                                "  Duyuru ve Haberlerim  ",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge!
-                                                    .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                              child: Center(
+                                                child: Text(
+                                                  "  Duyuru ve Haberlerim  ",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                ),
                                               ),
                                             )),
                                   SizedBox(
@@ -321,14 +333,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .withOpacity(0.5),
                                                   borderRadius:
                                                       BorderRadius.circular(4)),
-                                              child: Text(
-                                                "  Anketlerim  ",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge!
-                                                    .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                              child: Center(
+                                                child: Text(
+                                                  "  Anketlerim  ",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                ),
                                               ),
                                             )
                                           : Container(
@@ -338,14 +352,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .withOpacity(0.2),
                                                   borderRadius:
                                                       BorderRadius.circular(4)),
-                                              child: Text(
-                                                "  Anketlerim  ",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge!
-                                                    .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                              child: Center(
+                                                child: Text(
+                                                  "  Anketlerim  ",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                ),
                                               ),
                                             ))
                                 ],
