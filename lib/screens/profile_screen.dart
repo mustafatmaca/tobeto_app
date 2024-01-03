@@ -5,6 +5,7 @@ List<String> skills = [
   "Flutter",
   "Swift",
   "React Native",
+  "React",
 ];
 List<String> language = [
   "İngilizce",
@@ -14,6 +15,7 @@ List<String> certificates = [
   "Certificate 2",
   "Certificate 3",
 ];
+List<String> experience = ["Deneyim 1", "Deneyim 2"];
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -319,11 +321,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           physics: ClampingScrollPhysics(),
                           itemCount: skills.length,
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(skills[index]),
-                            );
+                            if (index <= 2) {
+                              return ListTile(
+                                title: Text(skills[index]),
+                              );
+                            }
+                            return null;
                           },
-                        )
+                        ),
+                        skills.length > 3
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton(
+                                      onPressed: () {},
+                                      child: Text("Daha Fazlasını Göster")),
+                                ],
+                              )
+                            : Row(),
                       ],
                     ),
                   ),
@@ -363,14 +378,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           physics: ClampingScrollPhysics(),
                           itemCount: language.length,
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              leading: Image.asset("assets/globe.png"),
-                              title: Text(language[index]),
-                              subtitle: Text("data"),
-                              trailing: Image.asset("assets/home.png"),
-                            );
+                            if (index <= 2) {
+                              return ListTile(
+                                leading: Image.asset("assets/globe.png"),
+                                title: Text(language[index]),
+                                subtitle: Text("data"),
+                                trailing: Image.asset("assets/home.png"),
+                              );
+                            }
+                            return null;
                           },
-                        )
+                        ),
+                        language.length > 2
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton(
+                                      onPressed: () {},
+                                      child: Text("Daha Fazlasını Göster")),
+                                ],
+                              )
+                            : Row(),
                       ],
                     ),
                   ),
@@ -410,17 +438,141 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           physics: ClampingScrollPhysics(),
                           itemCount: certificates.length,
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(certificates[index]),
-                              trailing: Image.asset(
-                                "assets/pdf.png",
-                                width: MediaQuery.of(context).size.width * 0.05,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.05,
-                              ),
-                            );
+                            if (index <= 2) {
+                              return ListTile(
+                                title: Text(certificates[index]),
+                                trailing: Image.asset(
+                                  "assets/pdf.png",
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.05,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.05,
+                                ),
+                              );
+                            }
+                            return null;
                           },
+                        ),
+                        certificates.length > 3
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton(
+                                      onPressed: () {},
+                                      child: Text("Daha Fazlasını Göster")),
+                                ],
+                              )
+                            : Row(),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      )
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Medya Hesaplarım",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        Divider(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            InkWell(
+                              onTap: () {},
+                              child: CircleAvatar(
+                                child: Image.asset("assets/cv-linkedn.png"),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {},
+                              child: CircleAvatar(
+                                child: Image.asset("assets/cv-github.png"),
+                              ),
+                            ),
+                          ],
                         )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      )
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Eğitim Hayatım ve Deneyimlerim",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        Divider(),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                          itemCount: experience.length,
+                          itemBuilder: (context, index) {
+                            if (index <= 2) {
+                              return ListTile(
+                                leading: Image.asset("assets/globe.png"),
+                                title: Text(experience[index]),
+                                subtitle: Text("2024"),
+                              );
+                            }
+                            return null;
+                          },
+                        ),
+                        experience.length > 2
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton(
+                                      onPressed: () {},
+                                      child: Text("Daha Fazlasını Göster")),
+                                ],
+                              )
+                            : Row(),
                       ],
                     ),
                   ),

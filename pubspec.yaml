@@ -76,6 +76,8 @@ flutter:
     - assets/cv-mail.png
     - assets/cv-name.png
     - assets/cv-phone.png
+    - assets/cv-github.png
+    - assets/cv-linkedn.png
     - assets/edu-banner2.png
     - assets/globe.png
     - assets/home.png
