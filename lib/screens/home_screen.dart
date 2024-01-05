@@ -367,10 +367,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.all(16),
-                              child: buildContent(currentTab),
-                            ),
+                            buildContent(currentTab),
                           ],
                         ),
                       ),
@@ -378,7 +375,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       Container(
-                        padding: EdgeInsets.all(8),
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             color: Theme.of(context).scaffoldBackgroundColor,
@@ -415,10 +411,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.01,
                             ),
-                            SingleChildScrollView(
-                              padding: EdgeInsets.all(8),
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.25,
+                              child: ListView(
+                                padding: EdgeInsets.all(8),
+                                scrollDirection: Axis.horizontal,
                                 children: [
                                   const ExamCard(
                                       examName:
@@ -472,7 +469,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: MediaQuery.of(context).size.height * 0.25,
                   child: ListView(
                     padding: EdgeInsets.all(8),
                     scrollDirection: Axis.horizontal,
@@ -516,60 +513,108 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildContent(int currentTab) {
     switch (currentTab) {
       case 0:
-        return ApplicationsCard(
-          title: "İstanbul Kodluyor Bilgilendirme",
-          subtitle: "İstanbul Kodluyor Başvuru Formu onaylandı",
-          subtitle2: "İstanbul Kodluyor Belge  Yükleme Formu Onaylandı ",
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.2,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ApplicationsCard(
+                  title: "İstanbul Kodluyor Bilgilendirme",
+                  subtitle: "İstanbul Kodluyor Başvuru Formu onaylandı",
+                  subtitle2:
+                      "İstanbul Kodluyor Belge  Yükleme Formu Onaylandı ",
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ApplicationsCard(
+                  title: "İstanbul Kodluyor Bilgilendirme",
+                  subtitle: "İstanbul Kodluyor Başvuru Formu onaylandı",
+                  subtitle2:
+                      "İstanbul Kodluyor Belge  Yükleme Formu Onaylandı ",
+                ),
+              ),
+            ],
+          ),
         );
       case 1:
-        return Column(
-          children: [
-            EducationCard(
-              context: context,
-              title: "Dr. Ecmel Ayral'dan Hoşgeldin Mesajı",
-              date: DateTime.now(),
-              image: "assets/ecmelayral.jpeg",
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
-            EducationCard(
-              context: context,
-              title: "Eğitimlere Nasıl Katılırım?",
-              date: DateTime.now(),
-              image: "assets/istkod.png",
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
-            EducationCard(
-              context: context,
-              title: "Herkes İçin Kodlama",
-              date: DateTime.now(),
-              image: "assets/tbt.jpeg",
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
-            EducationCard(
-              context: context,
-              title: "İstanbul Kodluyor Proje Aşamaları",
-              date: DateTime.now(),
-              image: "assets/istkod.png",
-            ),
-          ],
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.4,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: EducationCard(
+                  context: context,
+                  title: "Dr. Ecmel Ayral'dan Hoşgeldin Mesajı",
+                  date: DateTime.now(),
+                  image: "assets/ecmelayral.jpeg",
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: EducationCard(
+                  context: context,
+                  title: "Eğitimlere Nasıl Katılırım?",
+                  date: DateTime.now(),
+                  image: "assets/istkod.png",
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: EducationCard(
+                  context: context,
+                  title: "Herkes İçin Kodlama",
+                  date: DateTime.now(),
+                  image: "assets/tbt.jpeg",
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: EducationCard(
+                  context: context,
+                  title: "İstanbul Kodluyor Proje Aşamaları",
+                  date: DateTime.now(),
+                  image: "assets/istkod.png",
+                ),
+              ),
+            ],
+          ),
         );
       case 2:
-        return AnnouncementCard(
-          type: "Duyuru",
-          eduType: "İstanbul Kodluyor",
-          title: "Yeni Grupların Discorda Katılımı",
-          date: DateTime.now(),
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.2,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: AnnouncementCard(
+                  type: "Duyuru",
+                  eduType: "İstanbul Kodluyor",
+                  title: "Yeni Grupların Discorda Katılımı",
+                  date: DateTime.now(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: AnnouncementCard(
+                  type: "Duyuru",
+                  eduType: "İstanbul Kodluyor",
+                  title: "Yeni Grupların Discorda Katılımı",
+                  date: DateTime.now(),
+                ),
+              ),
+            ],
+          ),
         );
       case 3:
         return EmptyCard();
       default:
-        return Container(); // Varsayılan durumda boş bir container döndürüyoruz.
+        return EmptyCard(); // Varsayılan durumda boş bir container döndürüyoruz.
     }
   }
 }

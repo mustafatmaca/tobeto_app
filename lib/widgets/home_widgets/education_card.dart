@@ -18,6 +18,8 @@ class EducationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width * 0.8,
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(30),
@@ -31,28 +33,34 @@ class EducationCard extends StatelessWidget {
           ]),
       padding: EdgeInsets.all(5.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-              child: Image.asset(
-                image,
-                fit: BoxFit.fitWidth,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.2,
+                ),
               ),
-            ),
-            aspectRatio: 3 / 2,
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+              Text(title,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+              Text("${date.day}/${date.month}/${date.year}"),
+            ],
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
-          ),
-          Text(title,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
-          ),
-          Text("${date.day}/${date.month}/${date.year}"),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),

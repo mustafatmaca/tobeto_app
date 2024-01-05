@@ -8,51 +8,46 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.15,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    child: Image.asset(
-                      "assets/beyazlogo.png",
-                      width: 120,
-                      height: 60,
-                    ),
-                    onTap: () {},
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.15,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  child: Image.asset(
+                    "assets/beyazlogo.png",
+                    width: 120,
+                    height: 60,
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Bize Ulaşın",
-                      style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.bold),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.background,
-                    ),
+                  onTap: () {},
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Bize Ulaşın",
+                    style: GoogleFonts.poppins(
+                        color: Colors.black, fontWeight: FontWeight.bold),
                   ),
-                ],
-              ),
-              Text(
-                "© 2022 Tobeto",
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: Theme.of(context).colorScheme.background,
-                      fontWeight: FontWeight.bold,
-                    ),
-              )
-            ],
-          ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.background,
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              "© 2022 Tobeto",
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: Theme.of(context).colorScheme.background,
+                    fontWeight: FontWeight.bold,
+                  ),
+            )
+          ],
         ),
       ),
     );
