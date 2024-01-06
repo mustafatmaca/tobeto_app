@@ -82,6 +82,10 @@ flutter:
     - assets/globe.png
     - assets/home.png
     - assets/pdf.png
+    - assets/ENK-1.jpg
+    - assets/ENK-2.jpg
+    - assets/ENK-3.jpg
+    - assets/ENK-4.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
