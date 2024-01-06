@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/screens/profile_edit/edit_certificate.dart';
+import 'package:tobeto_app/screens/profile_edit/edit_education.dart';
+import 'package:tobeto_app/screens/profile_edit/edit_experience.dart';
+import 'package:tobeto_app/screens/profile_edit/edit_language.dart';
 import 'package:tobeto_app/screens/profile_edit/edit_personal.dart';
+import 'package:tobeto_app/screens/profile_edit/edit_settings.dart';
+import 'package:tobeto_app/screens/profile_edit/edit_skills.dart';
+import 'package:tobeto_app/screens/profile_edit/edit_social.dart';
 
 class EditMainScreen extends StatefulWidget {
   const EditMainScreen({Key? key}) : super(key: key);
@@ -277,35 +284,23 @@ class _EditMainScreenState extends State<EditMainScreen> {
       case 0:
         return EditPersonal();
       case 1:
-        return Container(
-          child: Center(child: Text("2")),
-        );
+        return EditExperience();
       case 2:
-        return Container(
-          child: Center(child: Text("3")),
-        );
+        return EditEducation();
       case 3:
-        return Container(
-          child: Center(child: Text("4")),
-        );
+        return EditSkills();
       case 4:
-        return Container(
-          child: Center(child: Text("5")),
-        );
+        return EditCertificate();
       case 5:
-        return Container(
-          child: Center(child: Text("6")),
-        );
+        return EditSocial();
       case 6:
-        return Container(
-          child: Center(child: Text("7")),
-        );
+        return EditLanguage();
       case 7:
-        return Container(
-          child: Center(child: Text("8")),
-        );
+        return EditSettings();
       default:
-        return Container(); // Varsayılan durumda boş bir container döndürüyoruz.
+        return Container(
+          child: Text("Oops! Bir hata oldu."),
+        ); // Varsayılan durumda boş bir container döndürüyoruz.
     }
   }
 }

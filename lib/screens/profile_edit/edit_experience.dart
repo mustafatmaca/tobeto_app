@@ -2,39 +2,25 @@ import 'package:flutter/material.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
-class EditPersonal extends StatefulWidget {
-  const EditPersonal({Key? key}) : super(key: key);
+class EditExperience extends StatefulWidget {
+  const EditExperience({Key? key}) : super(key: key);
 
   @override
-  _EditPersonalState createState() => _EditPersonalState();
+  _EditExperienceState createState() => _EditExperienceState();
 }
 
-class _EditPersonalState extends State<EditPersonal> {
+class _EditExperienceState extends State<EditExperience> {
   var dropdownValue = list.first;
-  var dropdownValueSecond = list.first;
-  var imagePath;
+  var isWork = false;
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
-          CircleAvatar(
-            maxRadius: 32,
-            child: imagePath != null
-                ? Image.asset(
-                    imagePath,
-                    width: 150,
-                    height: 75,
-                  )
-                : Icon(Icons.person),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Ad",
+              "Kurum Adı",
             ),
           ),
           TextField(
@@ -51,7 +37,7 @@ class _EditPersonalState extends State<EditPersonal> {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Soyad",
+              "Pozisyon",
             ),
           ),
           TextField(
@@ -67,7 +53,7 @@ class _EditPersonalState extends State<EditPersonal> {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Telefon Numarası",
+              "Sektör",
             ),
           ),
           TextField(
@@ -83,67 +69,7 @@ class _EditPersonalState extends State<EditPersonal> {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Doğum Tarihiniz",
-            ),
-          ),
-          DecoratedBox(
-            decoration: BoxDecoration(
-                border: Border.all(width: 1, color: Colors.black38),
-                borderRadius: BorderRadius.circular(14)),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 6.0, right: 6.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.calendar_month)),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "E-Posta",
-            ),
-          ),
-          TextField(
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                contentPadding: const EdgeInsets.all(8)),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Ülke",
-            ),
-          ),
-          TextField(
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                contentPadding: const EdgeInsets.all(8)),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "İl",
+              "Şehir Seçiniz",
             ),
           ),
           Align(
@@ -179,33 +105,25 @@ class _EditPersonalState extends State<EditPersonal> {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "İlçe",
+              "Başlangıç Tarihi",
             ),
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.black38),
-                  borderRadius: BorderRadius.circular(14)),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 6.0, right: 6.0),
-                child: DropdownButton<String>(
-                  isExpanded: true,
-                  underline: Container(),
-                  value: dropdownValueSecond,
-                  items: list.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? value) {
-                    setState(() {
-                      dropdownValueSecond = value!;
-                    });
-                  },
-                ),
+          DecoratedBox(
+            decoration: BoxDecoration(
+                border: Border.all(width: 1, color: Colors.black38),
+                borderRadius: BorderRadius.circular(14)),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  IconButton(
+                      onPressed: () {}, icon: const Icon(Icons.calendar_month)),
+                ],
               ),
             ),
           ),
@@ -215,16 +133,46 @@ class _EditPersonalState extends State<EditPersonal> {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Adres",
+              "Bitiş Tarihi",
             ),
           ),
-          TextField(
-            maxLines: 4,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+          DecoratedBox(
+            decoration: BoxDecoration(
+                border: Border.all(width: 1, color: Colors.black38),
+                borderRadius: BorderRadius.circular(14)),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  isWork == false
+                      ? IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.calendar_month))
+                      : Container(),
+                ],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Row(
+              children: [
+                Checkbox(
+                  value: isWork,
+                  onChanged: (value) {
+                    setState(() {
+                      isWork = value!;
+                    });
+                  },
                 ),
-                contentPadding: const EdgeInsets.all(8)),
+                Text("Çalışmaya Devam Ediyorum")
+              ],
+            ),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.03,
@@ -232,7 +180,7 @@ class _EditPersonalState extends State<EditPersonal> {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Hakkımda",
+              "İş Açıklaması",
             ),
           ),
           TextField(
