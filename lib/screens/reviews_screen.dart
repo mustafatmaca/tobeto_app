@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tobeto_app/widgets/custom_widgets/footer.dart';
+import 'package:tobeto_app/widgets/reviews_widget/reviews_button_card.dart';
+import 'package:tobeto_app/widgets/reviews_widget/reviews_horizontal_card.dart';
+import 'package:tobeto_app/widgets/reviews_widget/reviews_notbutton_card.dart';
 
 class ReviewsScreen extends StatefulWidget {
   const ReviewsScreen({Key? key}) : super(key: key);
@@ -13,10 +15,90 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Center(
-          child: Text("Reviews"),
+        Container(
+          child: Center(
+            child: Text("Yetkinliklerini ücretsiz ölç,bilgilerini test et",
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                    fontWeight: FontWeight.bold)),
+          ),
         ),
-        Footer(),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.02,
+        ),
+        const ReviewsButtonCard(
+          headLine: "Tobeto İşte Başarı Modeli",
+          explanation:
+              '80 Sroy ile yetkinliklerini ölç, önerilen eğitimleri tamamla, rozetini kazan',
+          color1: Color(0xFF1D0B8C),
+          color2: Color(0xFFB49DF8),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.03,
+        ),
+        const ReviewsNotButtonCard(
+          headLine: "Yazılımda Başarı Testi",
+          explanation: "Çoktan seçmeli sorular ile teknik bilgini test et",
+          color1: Color(0xFF1D0B8C),
+          color2: Color(0xFFB49DF8),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.03,
+        ),
+        const ReviewsHorizontalCard(
+            headLine: "Front End",
+            color1: Color(0xFF3C0B8C),
+            color2: Color(0xFFDA9DF8)),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.02,
+        ),
+        const ReviewsHorizontalCard(
+          headLine: "Full Stack",
+          color1: Color(0xFF3C0B8C),
+          color2: Color(0xFFDA9DF8),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.02,
+        ),
+        const ReviewsHorizontalCard(
+          headLine: "Back End",
+          color1: Color(0xFF3C0B8C),
+          color2: Color(0xFFDA9DF8),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.02,
+        ),
+        const ReviewsHorizontalCard(
+          headLine: "Microsoft SQL Server",
+          color1: Color(0xFF3C0B8C),
+          color2: Color(0xFFDA9DF8),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.02,
+        ),
+        const ReviewsHorizontalCard(
+          headLine: "Masaüstü Programlama",
+          color1: Color(0xFF3C0B8C),
+          color2: Color(0xFFDA9DF8),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.02,
+        ),
+        const ReviewsNotButtonCard(
+            headLine: "Kazanım Odaklı Testler",
+            explanation:
+                "Dijital Gelişim kategorisindeki eğitimlere başlamadan önce konuyla ilgili bilgin ölçülür ve seviyene göre yönlendirilirsin.",
+            color1: Color(0xFF3C0B8C),
+            color2: Color(0xFFDA9DF8)),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.02,
+        ),
+        const ReviewsNotButtonCard(
+            headLine: "Huawei Talent Interview Teknik Bilgi Sınavı*",
+            explanation:
+                "Sertifika alabilmen için, eğitim yolculuğunun sonuna kadar teknik yetkinliklerin ve kod bilgin ölçülür.  4400+ soru | 30+ programlama dili 4 zorluk seviyesi . *Türkiye Ar - Ge Merkezi tarafından tasarlanmıştır.",
+            color1: Color(0xFF3C0B8C),
+            color2: Color(0xFFDA9DF8))
       ],
     );
   }
