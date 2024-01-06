@@ -11,7 +11,7 @@ class ReviewsScreen extends StatefulWidget {
 class _ReviewsScreenState extends State<ReviewsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return ListView(
       children: [
         Center(
           child: Text("Reviews"),
