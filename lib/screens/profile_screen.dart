@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/screens/profile_edit/edit_main_screen.dart';
 import 'package:tobeto_app/widgets/custom_widgets/footer.dart';
 
 List<String> skills = [
@@ -34,7 +35,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+                IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EditMainScreen(),
+                          ));
+                    },
+                    icon: const Icon(Icons.edit)),
                 IconButton(
                     onPressed: () {}, icon: const Icon(Icons.share_outlined))
               ],
