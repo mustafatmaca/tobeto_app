@@ -50,7 +50,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                                 size: 40.0,
                               ),
                             ),
-                            label: const Text("Eğitim arayın..."),
+                            hintText: "Eğitim arayın...",
                             labelStyle: TextStyle(color: Colors.grey),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
