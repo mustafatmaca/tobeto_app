@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tobeto_app/widgets/custom_widgets/footer.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:tobeto_app/widgets/home_widgets/exam_card.dart';
 
 class CatalogScreen extends StatefulWidget {
   const CatalogScreen({Key? key}) : super(key: key);
@@ -402,7 +399,6 @@ class _CatalogScreenState extends State<CatalogScreen> {
                 ),
               ),
             ),
-            Footer(),
           ],
         ),
       ],

@@ -15,12 +15,9 @@ class GradientCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
-      height: MediaQuery.of(context).size.height * 0.18,
+      height: MediaQuery.of(context).size.height * 0.25,
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(18),
-              bottomRight: Radius.circular(18),
-              bottomLeft: Radius.circular(18)),
+          borderRadius: BorderRadius.circular(18),
           gradient: LinearGradient(
               colors: [color1, color2],
               begin: Alignment.topCenter,

@@ -16,6 +16,12 @@ class AppTheme {
         backgroundColor: AppColor.colorScheme.background,
         foregroundColor: AppColor.textColor,
       ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: AppColor.colorScheme.background,
+        unselectedItemColor: AppColor.textColor,
+        selectedItemColor: AppColor.colorScheme.primary,
+      ),
       drawerTheme: DrawerThemeData(
         backgroundColor: AppColor.colorScheme.background,
       ),
@@ -49,6 +55,12 @@ class AppTheme {
       appBarTheme: AppBarTheme(
         backgroundColor: AppColor.backgroundDark,
         foregroundColor: AppColor.textColorDark,
+      ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: AppColor.backgroundDark,
+        unselectedItemColor: AppColor.textColorDark,
+        selectedItemColor: AppColor.colorScheme.primary,
       ),
       drawerTheme: DrawerThemeData(
         backgroundColor: AppColor.backgroundDark,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tobeto_app/screens/profile_edit/edit_main_screen.dart';
-import 'package:tobeto_app/widgets/custom_widgets/footer.dart';
 
 List<String> skills = [
   "Flutter",
@@ -582,7 +581,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ],
         ),
-        Footer(),
       ],
     );
   }

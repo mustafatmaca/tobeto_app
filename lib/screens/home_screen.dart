@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/screens/home_application_screen.dart';
 import 'package:tobeto_app/widgets/home_widgets/announcement_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/applications_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/education_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/exam_card.dart';
-import 'package:tobeto_app/widgets/custom_widgets/footer.dart';
 import 'package:tobeto_app/widgets/home_widgets/gradient_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,491 +20,285 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Stack(
-          children: [
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.07,
-                      ),
-                      RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: "TOBETO",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium!
-                              .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).primaryColor),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: "'ya hoş geldin Kullanıcı Adı",
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Hoşgeldin Kullanıcı Adı",
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).textTheme.bodyLarge!.color),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              InkWell(
+                onTap: () {},
+                child: Row(
+                  children: [
+                    Text(
+                      "İstanbul Kodluyor",
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).textTheme.bodyLarge!.color),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.01,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeApplicationScreen(),
+                          ));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.47,
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      padding: EdgeInsets.all(18),
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Theme.of(context).primaryColor,
+                              Theme.of(context).primaryColor.withOpacity(0.8),
+                              Theme.of(context).primaryColor,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Center(
+                          child: Text("Başvurularım",
                               style: Theme.of(context)
                                   .textTheme
-                                  .headlineMedium!
+                                  .bodyLarge!
                                   .copyWith(
-                                      fontWeight: FontWeight.bold,
                                       color: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .color),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.03,
-                      ),
-                      Text(
-                        "Yeni nesil öğrenme deneyimi ile Tobeto kariyer yolculuğunda senin yanında!",
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color:
-                                Theme.of(context).textTheme.bodyLarge!.color),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.03,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                spreadRadius: 2,
-                                blurRadius: 7,
-                                offset: Offset(0, 3),
-                              )
-                            ]),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              "assets/istnblkodluyor.png",
-                              width: 200,
-                              height: 80,
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.02,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 50),
-                              child: Text(
-                                "Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al. ",
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.03,
-                            ),
-                            RichText(
-                              textAlign: TextAlign.center,
-                              text: TextSpan(
-                                text: "Aradığın ",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineMedium!
-                                    .copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: "${'"'}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .secondary),
-                                  ),
-                                  TextSpan(
-                                    text: "İş",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                  TextSpan(
-                                    text: "${'"'}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .secondary),
-                                  ),
-                                  TextSpan(
-                                    text: " Burada! ",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.02,
-                            ),
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.06,
-                              child: ListView(
-                                padding: EdgeInsets.all(8),
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        currentTab = 0;
-                                      });
-                                    },
-                                    child: currentTab == 0
-                                        ? Container(
-                                            decoration: BoxDecoration(
-                                                color: Theme.of(context)
-                                                    .primaryColor
-                                                    .withOpacity(0.5),
-                                                borderRadius:
-                                                    BorderRadius.circular(4)),
-                                            child: Center(
-                                              child: Text(
-                                                "  Başvurularım  ",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge!
-                                                    .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                              ),
-                                            ),
-                                          )
-                                        : Container(
-                                            decoration: BoxDecoration(
-                                                color: Theme.of(context)
-                                                    .primaryColor
-                                                    .withOpacity(0.2),
-                                                borderRadius:
-                                                    BorderRadius.circular(4)),
-                                            child: Center(
-                                              child: Text(
-                                                "  Başvurularım  ",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge!
-                                                    .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                              ),
-                                            ),
-                                          ),
-                                  ),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.03,
-                                  ),
-                                  InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          currentTab = 1;
-                                        });
-                                      },
-                                      child: currentTab == 1
-                                          ? Container(
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .primaryColor
-                                                      .withOpacity(0.5),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: Center(
-                                                child: Text(
-                                                  "  Eğitimlerim  ",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge!
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                ),
-                                              ),
-                                            )
-                                          : Container(
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .primaryColor
-                                                      .withOpacity(0.2),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: Center(
-                                                child: Text(
-                                                  "  Eğitimlerim  ",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge!
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                ),
-                                              ),
-                                            )),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.03,
-                                  ),
-                                  InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          currentTab = 2;
-                                        });
-                                      },
-                                      child: currentTab == 2
-                                          ? Container(
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .primaryColor
-                                                      .withOpacity(0.5),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: Center(
-                                                child: Text(
-                                                  "  Duyuru ve Haberlerim  ",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge!
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                ),
-                                              ),
-                                            )
-                                          : Container(
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .primaryColor
-                                                      .withOpacity(0.2),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: Center(
-                                                child: Text(
-                                                  "  Duyuru ve Haberlerim  ",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge!
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                ),
-                                              ),
-                                            )),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.03,
-                                  ),
-                                  InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          currentTab = 3;
-                                        });
-                                      },
-                                      child: currentTab == 3
-                                          ? Container(
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .primaryColor
-                                                      .withOpacity(0.5),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: Center(
-                                                child: Text(
-                                                  "  Anketlerim  ",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge!
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                ),
-                                              ),
-                                            )
-                                          : Container(
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .primaryColor
-                                                      .withOpacity(0.2),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: Center(
-                                                child: Text(
-                                                  "  Anketlerim  ",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge!
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                ),
-                                              ),
-                                            ))
-                                ],
-                              ),
-                            ),
-                            buildContent(currentTab),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.03,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                spreadRadius: 2,
-                                blurRadius: 7,
-                                offset: Offset(0, 3),
-                              )
-                            ]),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.02,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.02,
-                                ),
-                                Text(
-                                  "Sınavlarım",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.01,
-                            ),
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.25,
-                              child: ListView(
-                                padding: EdgeInsets.all(8),
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  const ExamCard(
-                                      examName:
-                                          "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                                      examClass: "Herkes İçin Kodlama 1A",
-                                      examTime: "45 Dakika"),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.04,
-                                  ),
-                                  const ExamCard(
-                                      examName:
-                                          "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                                      examClass: "Herkes İçin Kodlama 1A",
-                                      examTime: "45 Dakika"),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.04,
-                                  ),
-                                  const ExamCard(
-                                      examName:
-                                          "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                                      examClass: "Herkes İçin Kodlama 1A",
-                                      examTime: "45 Dakika"),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.04,
-                                  ),
-                                  const ExamCard(
-                                      examName:
-                                          "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                                      examClass: "Herkes İçin Kodlama 1A",
-                                      examTime: "45 Dakika"),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.04,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.02,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.01,
-                      ),
-                    ],
+                                          .colorScheme
+                                          .background,
+                                      fontWeight: FontWeight.bold))),
+                    ),
                   ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  child: ListView(
-                    padding: EdgeInsets.all(8),
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      GradientCard(
-                          headLine: "Profilini Oluştur",
-                          color1: Color(0xFF1D0B8C),
-                          color2: Color(0xFFB49DF8)),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.01,
-                      ),
-                      GradientCard(
-                          headLine: "Kendini Değerlendir",
-                          color1: Color(0xFF0E0B93),
-                          color2: Color(0xFF59ACC7)),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.01,
-                      ),
-                      GradientCard(
-                          headLine: "Öğrenmeye Başla",
-                          color1: Color(0xFF3C0B8C),
-                          color2: Color(0xFFDA9DF8)),
-                    ],
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.47,
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      padding: EdgeInsets.all(18),
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Theme.of(context).primaryColor,
+                              Theme.of(context).primaryColor.withOpacity(0.8),
+                              Theme.of(context).primaryColor,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Center(
+                          child: Text("Eğitimlerim",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .background,
+                                      fontWeight: FontWeight.bold))),
+                    ),
                   ),
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.47,
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      padding: EdgeInsets.all(18),
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Theme.of(context).primaryColor,
+                              Theme.of(context).primaryColor.withOpacity(0.8),
+                              Theme.of(context).primaryColor,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Center(
+                          child: Text("Duyurularım",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .background,
+                                      fontWeight: FontWeight.bold))),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.47,
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      padding: EdgeInsets.all(18),
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Theme.of(context).primaryColor,
+                              Theme.of(context).primaryColor.withOpacity(0.8),
+                              Theme.of(context).primaryColor,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Center(
+                          child: Text("Anketlerim",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .background,
+                                      fontWeight: FontWeight.bold))),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              InkWell(
+                onTap: () {},
+                child: Row(
+                  children: [
+                    Text(
+                      "Sınavlarım",
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).textTheme.bodyLarge!.color),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.01,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
+                    )
+                  ],
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              SingleChildScrollView(
+                padding: EdgeInsets.all(8),
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    const ExamCard(
+                        examName: "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                        examClass: "Herkes İçin Kodlama 1A",
+                        examTime: "45 Dakika"),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                    const ExamCard(
+                        examName: "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                        examClass: "Herkes İçin Kodlama 1A",
+                        examTime: "45 Dakika"),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                    const ExamCard(
+                        examName: "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                        examClass: "Herkes İçin Kodlama 1A",
+                        examTime: "45 Dakika"),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                    const ExamCard(
+                        examName: "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                        examClass: "Herkes İçin Kodlama 1A",
+                        examTime: "45 Dakika"),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                  ],
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Footer(),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Daha Fazla",
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).textTheme.bodyLarge!.color),
                 ),
-              ],
-            ),
-          ],
+              ),
+              SingleChildScrollView(
+                padding: EdgeInsets.all(8),
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    GradientCard(
+                        headLine: "Profilini Oluştur",
+                        color1: Color(0xFF1D0B8C),
+                        color2: Color(0xFFB49DF8)),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.02,
+                    ),
+                    GradientCard(
+                        headLine: "Kendini Değerlendir",
+                        color1: Color(0xFF0E0B93),
+                        color2: Color(0xFF59ACC7)),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.02,
+                    ),
+                    GradientCard(
+                        headLine: "Öğrenmeye Başla",
+                        color1: Color(0xFF3C0B8C),
+                        color2: Color(0xFFDA9DF8)),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+            ],
+          ),
         ),
       ],
     );
