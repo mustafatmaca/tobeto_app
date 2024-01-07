@@ -17,10 +17,49 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
       children: [
         Container(
           child: Center(
-            child: Text("Yetkinliklerini ücretsiz ölç,bilgilerini test et",
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: Theme.of(context).textTheme.bodyLarge!.color,
-                    fontWeight: FontWeight.bold)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: 'Yetkinlik',
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                  children: [
+                    TextSpan(
+                      text: 'lerini ücretsiz ölç, ',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(
+                              color:
+                                  Theme.of(context).textTheme.bodyLarge!.color,
+                              fontWeight: FontWeight.bold),
+                    ),
+                    TextSpan(
+                      text: 'bilgi',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                color: Theme.of(context).primaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                    ),
+                    TextSpan(
+                      text: 'lerini test et ',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(
+                              color:
+                                  Theme.of(context).textTheme.bodyLarge!.color,
+                              fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
         SizedBox(
