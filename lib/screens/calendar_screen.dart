@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tobeto_app/widgets/custom_widgets/footer.dart';
 
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({Key? key}) : super(key: key);
@@ -11,13 +10,26 @@ class CalendarScreen extends StatefulWidget {
 class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Center(
-          child: Text("Calender"),
-        ),
-        Footer(),
-      ],
-    );
+    return Scaffold(
+        body: NestedScrollView(
+      headerSliverBuilder: (context, innerBoxIsScrolled) {
+        return [
+          SliverAppBar(
+            snap: true,
+            floating: true,
+            scrolledUnderElevation: 0.0,
+            title: Text("Takvim"),
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back_ios)),
+          )
+        ];
+      },
+      body: Center(
+        child: Text("Takvim"),
+      ),
+    ));
   }
 }
