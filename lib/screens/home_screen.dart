@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/screens/home_announcement_screen.dart';
 import 'package:tobeto_app/screens/home_application_screen.dart';
 import 'package:tobeto_app/widgets/home_widgets/announcement_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/applications_card.dart';
@@ -138,7 +139,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeAnnouncement()));
+                    },
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.47,
                       height: MediaQuery.of(context).size.height * 0.1,
