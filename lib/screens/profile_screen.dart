@@ -324,7 +324,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       itemBuilder: (context, index) {
                         if (index <= 2) {
                           return ListTile(
-                            title: Text(skills[index]),
+                            title: Text(
+                              skills[index],
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
                           );
                         }
                         return null;
@@ -382,8 +385,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         if (index <= 2) {
                           return ListTile(
                             leading: Image.asset("assets/globe.png"),
-                            title: Text(language[index]),
-                            subtitle: Text("data"),
+                            title: Text(
+                              language[index],
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                            subtitle: Text(
+                              "data",
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
                             trailing: Image.asset("assets/home.png"),
                           );
                         }
@@ -441,7 +450,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       itemBuilder: (context, index) {
                         if (index <= 2) {
                           return ListTile(
-                            title: Text(certificates[index]),
+                            title: Text(
+                              certificates[index],
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
                             trailing: Image.asset(
                               "assets/pdf.png",
                               width: MediaQuery.of(context).size.width * 0.05,
@@ -555,8 +567,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         if (index <= 2) {
                           return ListTile(
                             leading: Image.asset("assets/globe.png"),
-                            title: Text(experience[index]),
-                            subtitle: Text("2024"),
+                            title: Text(
+                              experience[index],
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                            subtitle: Text(
+                              "2024",
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
                           );
                         }
                         return null;
