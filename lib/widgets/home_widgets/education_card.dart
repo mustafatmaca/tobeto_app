@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class EducationCard extends StatelessWidget {
   final String title;
   final DateTime date;
-  final String image;
+  final String? image;
 
   const EducationCard({
     required this.title,
@@ -18,7 +18,6 @@ class EducationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width * 0.8,
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
@@ -43,12 +42,14 @@ class EducationCard extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30)),
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.2,
-                ),
+                child: image == null
+                    ? Container()
+                    : Image.asset(
+                        image!,
+                        fit: BoxFit.cover,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.2,
+                      ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,

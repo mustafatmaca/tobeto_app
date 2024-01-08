@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
 
-class CalendarScreen extends StatefulWidget {
-  const CalendarScreen({Key? key}) : super(key: key);
+class HomeSurveyScreen extends StatefulWidget {
+  const HomeSurveyScreen({Key? key}) : super(key: key);
 
   @override
-  _CalendarScreenState createState() => _CalendarScreenState();
+  _HomeSurveyScreenState createState() => _HomeSurveyScreenState();
 }
 
-class _CalendarScreenState extends State<CalendarScreen> {
+class _HomeSurveyScreenState extends State<HomeSurveyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +19,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
             snap: true,
             floating: true,
             scrolledUnderElevation: 0.0,
-            title: Text("Takvim"),
+            title: Text("Anketlerim"),
             leading: IconButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -27,8 +28,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
           )
         ];
       },
-      body: Center(
-        child: Text("Takvim"),
+      body: ListView.builder(
+        itemCount: 1,
+        itemBuilder: (context, index) {
+          return EmptyCard();
+        },
       ),
     ));
   }
