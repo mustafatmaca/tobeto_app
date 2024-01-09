@@ -68,7 +68,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
         const ReviewsButtonCard(
           headLine: "Tobeto İşte Başarı Modeli",
           explanation:
-              '80 Sroy ile yetkinliklerini ölç, önerilen eğitimleri tamamla, rozetini kazan',
+              '80 Soru ile yetkinliklerini ölç, önerilen eğitimleri tamamla, rozetini kazan',
           color1: Color(0xFF1D0B8C),
           color2: Color(0xFFB49DF8),
         ),
@@ -124,11 +124,12 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
           height: MediaQuery.of(context).size.height * 0.02,
         ),
         const ReviewsNotButtonCard(
-            headLine: "Kazanım Odaklı Testler",
-            explanation:
-                "Dijital Gelişim kategorisindeki eğitimlere başlamadan önce konuyla ilgili bilgin ölçülür ve seviyene göre yönlendirilirsin.",
-            color1: Color(0xFF3C0B8C),
-            color2: Color(0xFFDA9DF8)),
+          headLine: "Kazanım Odaklı Testler",
+          explanation:
+              "Dijital Gelişim kategorisindeki eğitimlere başlamadan önce konuyla ilgili bilgin ölçülür ve seviyene göre yönlendirilirsin.",
+          color1: Color(0xFF1D0B8C),
+          color2: Color(0xFFB49DF8),
+        ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.02,
         ),

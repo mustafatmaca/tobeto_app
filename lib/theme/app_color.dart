@@ -10,5 +10,6 @@ class AppColor {
   static final Color textColorDark = Color(0xFFFFFFFF);
   static final Color boxColor = Color(0xFF0E0B93);
   static final Color favoriteButtonColor = Color(0xFFFE4657);
-  static final Color backgroundDark = Color(0xFF333333);
+  static final Color backgroundDark = Color.fromARGB(255, 23, 23, 23);
+  static final Color containerdarkbackground = Color.fromARGB(255, 32, 32, 32);
 }

@@ -5,42 +5,42 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
-      useMaterial3: true,
-      colorScheme: AppColor.colorScheme,
-      primaryColor: AppColor.colorScheme.primary,
-      scaffoldBackgroundColor: AppColor.colorScheme.background,
-      textTheme: GoogleFonts.poppinsTextTheme().apply(
-        bodyColor: AppColor.textColor,
-      ),
-      appBarTheme: AppBarTheme(
-        backgroundColor: AppColor.colorScheme.background,
-        foregroundColor: AppColor.textColor,
-      ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: AppColor.colorScheme.background,
-        unselectedItemColor: AppColor.textColor,
-        selectedItemColor: AppColor.colorScheme.primary,
-      ),
-      drawerTheme: DrawerThemeData(
-        backgroundColor: AppColor.colorScheme.background,
-      ),
-      iconTheme: IconThemeData(
-        color: AppColor.textColor,
-      ),
-      inputDecorationTheme: InputDecorationTheme(
-        prefixIconColor: AppColor.textColor,
-        suffixIconColor: AppColor.textColor,
-        labelStyle: TextStyle(
+        useMaterial3: true,
+        colorScheme: AppColor.colorScheme,
+        primaryColor: AppColor.colorScheme.primary,
+        scaffoldBackgroundColor: AppColor.colorScheme.background,
+        textTheme: GoogleFonts.poppinsTextTheme().apply(
+          bodyColor: AppColor.textColor,
+        ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColor.colorScheme.background,
+          foregroundColor: AppColor.textColor,
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: AppColor.colorScheme.background,
+          unselectedItemColor: AppColor.textColor,
+          selectedItemColor: AppColor.colorScheme.primary,
+        ),
+        drawerTheme: DrawerThemeData(
+          backgroundColor: AppColor.colorScheme.background,
+        ),
+        iconTheme: IconThemeData(
           color: AppColor.textColor,
         ),
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-            backgroundColor: AppColor.colorScheme.primary,
-            foregroundColor: AppColor.colorScheme.background),
-      ),
-    );
+        inputDecorationTheme: InputDecorationTheme(
+          prefixIconColor: AppColor.textColor,
+          suffixIconColor: AppColor.textColor,
+          labelStyle: TextStyle(
+            color: AppColor.textColor,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: AppColor.colorScheme.primary,
+              foregroundColor: AppColor.colorScheme.background),
+        ),
+        cardTheme: CardTheme(color: AppColor.colorScheme.background));
   }
 
   static ThemeData get darkTheme {
@@ -80,6 +80,7 @@ class AppTheme {
             backgroundColor: AppColor.colorScheme.primary,
             foregroundColor: AppColor.colorScheme.background),
       ),
+      cardTheme: CardTheme(color: AppColor.containerdarkbackground),
     );
   }
 }

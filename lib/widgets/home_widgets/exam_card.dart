@@ -16,7 +16,7 @@ class ExamCard extends StatelessWidget {
     return Container(
         width: MediaQuery.of(context).size.width * 0.4,
         decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: Theme.of(context).cardTheme.color,
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
