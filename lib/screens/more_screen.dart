@@ -15,24 +15,6 @@ class _MoreScreenState extends State<MoreScreen> {
     return ListView(
       children: [
         ListTile(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CalendarScreen(),
-                ));
-          },
-          leading: Icon(
-            Icons.calendar_month,
-            color: Theme.of(context).iconTheme.color,
-          ),
-          title: Text(
-            "Takvim",
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-        ),
-        Divider(),
-        ListTile(
           onTap: () {},
           leading: Icon(
             Icons.feedback,

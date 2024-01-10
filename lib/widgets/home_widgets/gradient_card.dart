@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class GradientCard extends StatelessWidget {
   final String headLine;
+  final String icon;
   final Color color1;
   final Color color2;
   const GradientCard(
       {required this.headLine,
+      required this.icon,
       required this.color1,
       required this.color2,
       Key? key})
@@ -31,6 +33,10 @@ class GradientCard extends StatelessWidget {
                 color: Theme.of(context).colorScheme.background,
                 fontWeight: FontWeight.bold),
           ),
+          Image.asset(
+            icon,
+            width: MediaQuery.of(context).size.width * 0.30,
+          ),
           ElevatedButton(
             onPressed: () {},
             child: Text("Başla",
@@ -40,7 +46,7 @@ class GradientCard extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).primaryColor,
                 minimumSize: Size(
-                  MediaQuery.of(context).size.width * 0.8,
+                  MediaQuery.of(context).size.width * 0.3,
                   MediaQuery.of(context).size.height * 0.04,
                 )),
           ),

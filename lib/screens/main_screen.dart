@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/screens/calendar_screen.dart';
 import 'package:tobeto_app/screens/catalog_screen.dart';
 import 'package:tobeto_app/screens/home_screen.dart';
 import 'package:tobeto_app/screens/more_screen.dart';
@@ -9,7 +10,7 @@ List<Widget> pages = [
   const HomeScreen(),
   const ReviewsScreen(),
   const CatalogScreen(),
-  const ProfileScreen(),
+  const CalendarScreen(),
   const MoreScreen(),
 ];
 
@@ -45,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.widgets), label: 'Katalog'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: 'Profilim'),
+                icon: Icon(Icons.calendar_month), label: 'Takvim'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.more_horiz), label: 'Daha Fazla'),
           ],
@@ -56,23 +57,6 @@ class _MainScreenState extends State<MainScreen> {
             });
           },
         ),
-        body: NestedScrollView(
-            physics: BouncingScrollPhysics(),
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return [
-                SliverAppBar(
-                  snap: true,
-                  floating: true,
-                  scrolledUnderElevation: 0.0,
-                  automaticallyImplyLeading: false,
-                  title: Image.asset(
-                    imagePath,
-                    width: 120,
-                    height: 60,
-                  ),
-                ),
-              ];
-            },
-            body: pages[currentPage]));
+        body: pages[currentPage]);
   }
 }

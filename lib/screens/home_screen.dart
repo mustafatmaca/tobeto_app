@@ -1,14 +1,17 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:tobeto_app/screens/home_announcement_screen.dart';
 import 'package:tobeto_app/screens/home_application_screen.dart';
 import 'package:tobeto_app/screens/home_education_screen.dart';
 import 'package:tobeto_app/screens/home_survey_screen.dart';
+import 'package:tobeto_app/screens/profile_screen.dart';
 import 'package:tobeto_app/widgets/home_widgets/announcement_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/applications_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/education_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/exam_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/gradient_card.dart';
+import 'package:tobeto_app/widgets/photo_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,22 +26,69 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.03,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Hoşgeldin!",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  Text("Kullanıcı Adı",
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontWeight: FontWeight.bold,
+                              )),
+                ],
+              ),
+              CircleAvatar(
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProfileScreen()));
+                      },
+                      icon: Icon(Icons.person)))
+            ],
+          ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.03,
+        ),
+        const FullWidthPhotoSlider(
+          imageAssets: [
+            GradientCard(
+                headLine: "Profilini Oluştur",
+                icon: "assets/profile.png",
+                color1: Color(0xFF1D0B8C),
+                color2: Color(0xFFB49DF8)),
+            GradientCard(
+                headLine: "Kendini Değerlendir",
+                icon: "assets/degerlendir.png",
+                color1: Color(0xFF0E0B93),
+                color2: Color(0xFF59ACC7)),
+            GradientCard(
+                headLine: "Öğrenmeye Başla",
+                icon: "assets/ogren.png",
+                color1: Color(0xFF3C0B8C),
+                color2: Color(0xFFDA9DF8)),
+          ],
+        ),
         Padding(
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Hoşgeldin Kullanıcı Adı",
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).textTheme.bodyLarge!.color),
-                ),
-              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
@@ -271,44 +321,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.04,
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Daha Fazla",
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).textTheme.bodyLarge!.color),
-                ),
-              ),
-              SingleChildScrollView(
-                padding: EdgeInsets.all(8),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    GradientCard(
-                        headLine: "Profilini Oluştur",
-                        color1: Color(0xFF1D0B8C),
-                        color2: Color(0xFFB49DF8)),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.02,
-                    ),
-                    GradientCard(
-                        headLine: "Kendini Değerlendir",
-                        color1: Color(0xFF0E0B93),
-                        color2: Color(0xFF59ACC7)),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.02,
-                    ),
-                    GradientCard(
-                        headLine: "Öğrenmeye Başla",
-                        color1: Color(0xFF3C0B8C),
-                        color2: Color(0xFFDA9DF8)),
                   ],
                 ),
               ),
