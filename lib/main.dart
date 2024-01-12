@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tobeto_app/screens/animation.dart';
+import 'package:tobeto_app/screens/splash/splash_screen.dart';
 import 'package:tobeto_app/theme/app_theme.dart';
 
 void main() {

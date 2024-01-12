@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:tobeto_app/screens/home_announcement_screen.dart';
-import 'package:tobeto_app/screens/home_application_screen.dart';
-import 'package:tobeto_app/screens/home_education_screen.dart';
-import 'package:tobeto_app/screens/home_survey_screen.dart';
+import 'package:tobeto_app/screens/home/home_announcement_screen.dart';
+import 'package:tobeto_app/screens/home/home_application_screen.dart';
+import 'package:tobeto_app/screens/home/home_education_screen.dart';
+import 'package:tobeto_app/screens/home/home_survey_screen.dart';
 import 'package:tobeto_app/screens/profile_screen.dart';
 import 'package:tobeto_app/widgets/home_widgets/announcement_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/applications_card.dart';
