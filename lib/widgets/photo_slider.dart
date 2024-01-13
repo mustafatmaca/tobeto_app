@@ -48,7 +48,7 @@ class _FullWidthPhotoSliderState extends State<FullWidthPhotoSlider> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: _currentIndex == index
-                    ? Colors.deepPurpleAccent
+                    ? const Color.fromARGB(255, 3, 29, 42)
                     : Colors.grey,
               ),
             );

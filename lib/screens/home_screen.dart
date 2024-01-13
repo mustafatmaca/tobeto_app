@@ -71,18 +71,21 @@ class _HomeScreenState extends State<HomeScreen> {
             GradientCard(
                 headLine: "Profilini Oluştur",
                 icon: "assets/profile.png",
-                color1: Color(0xFF1D0B8C),
-                color2: Color(0xFFB49DF8)),
+                color1: Color(0xFF004D79),
+                color2: Color(0xFF011D42),
+                color3: Color(0xFF341132)),
             GradientCard(
                 headLine: "Kendini Değerlendir",
-                icon: "assets/degerlendir.png",
-                color1: Color(0xFF0E0B93),
-                color2: Color(0xFF59ACC7)),
+                icon: "assets/review.png",
+                color1: Color(0xFF004D79),
+                color2: Color(0xFF011D42),
+                color3: Color(0xFF341132)),
             GradientCard(
                 headLine: "Öğrenmeye Başla",
-                icon: "assets/ogren.png",
-                color1: Color(0xFF3C0B8C),
-                color2: Color(0xFFDA9DF8)),
+                icon: "assets/learn.png",
+                color1: Color(0xFF004D79),
+                color2: Color(0xFF011D42),
+                color3: Color(0xFF341132)),
           ],
         ),
         Padding(
@@ -115,155 +118,187 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomeApplicationScreen(),
-                          ));
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.47,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      padding: EdgeInsets.all(18),
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Theme.of(context).primaryColor,
-                              Theme.of(context).primaryColor.withOpacity(0.8),
-                              Theme.of(context).primaryColor,
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Center(
-                          child: Text("Başvurularım",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .background,
-                                      fontWeight: FontWeight.bold))),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeApplicationScreen(),
+                            ));
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.32,
+                        height: MediaQuery.of(context).size.height * 0.18,
+                        padding: EdgeInsets.all(18),
+                        decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Color(0xFF004D79),
+                                Color(0xFF011D42),
+                                Color(0xFF341132),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              "assets/basvurularim.png",
+                              height: MediaQuery.of(context).size.height * 0.1,
+                            ),
+                            Text("Başvurularım",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .background,
+                                        fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeEducationScreen()));
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.47,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      padding: EdgeInsets.all(18),
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Theme.of(context).primaryColor,
-                              Theme.of(context).primaryColor.withOpacity(0.8),
-                              Theme.of(context).primaryColor,
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Center(
-                          child: Text("Eğitimlerim",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .background,
-                                      fontWeight: FontWeight.bold))),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.02,
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeAnnouncement()));
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.47,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      padding: EdgeInsets.all(18),
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Theme.of(context).primaryColor,
-                              Theme.of(context).primaryColor.withOpacity(0.8),
-                              Theme.of(context).primaryColor,
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Center(
-                          child: Text("Duyurularım",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .background,
-                                      fontWeight: FontWeight.bold))),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeEducationScreen()));
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.32,
+                        height: MediaQuery.of(context).size.height * 0.18,
+                        padding: EdgeInsets.all(18),
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Color(0xFF004D79),
+                                Color(0xFF011D42),
+                                Color(0xFF341132),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              "assets/egitimlerim.png",
+                              height: MediaQuery.of(context).size.height * 0.1,
+                            ),
+                            Text("Eğitimlerim",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .background,
+                                        fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeSurveyScreen()));
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.47,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      padding: EdgeInsets.all(18),
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Theme.of(context).primaryColor,
-                              Theme.of(context).primaryColor.withOpacity(0.8),
-                              Theme.of(context).primaryColor,
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Center(
-                          child: Text("Anketlerim",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .background,
-                                      fontWeight: FontWeight.bold))),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.02,
                     ),
-                  ),
-                ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeAnnouncement()));
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.32,
+                        height: MediaQuery.of(context).size.height * 0.18,
+                        padding: EdgeInsets.all(18),
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Color(0xFF004D79),
+                                Color(0xFF011D42),
+                                Color(0xFF341132),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              "assets/duyurularim.png",
+                              height: MediaQuery.of(context).size.height * 0.1,
+                            ),
+                            Text("Duyurularım",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .background,
+                                        fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.02,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeSurveyScreen()));
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.32,
+                        height: MediaQuery.of(context).size.height * 0.18,
+                        padding: EdgeInsets.all(18),
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Color(0xFF004D79),
+                                Color(0xFF011D42),
+                                Color(0xFF341132),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              "assets/anketlerim.png",
+                              height: MediaQuery.of(context).size.height * 0.1,
+                            ),
+                            Text("Anketlerim",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .background,
+                                        fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,

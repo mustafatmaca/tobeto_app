@@ -14,9 +14,16 @@ class ExamCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.4,
+        width: MediaQuery.of(context).size.width * 0.6,
         decoration: BoxDecoration(
-            color: Theme.of(context).cardTheme.color,
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Color(0xFF004D79),
+                  Color(0xFF011D42),
+                  Color(0xFF341132)
+                ]),
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
@@ -32,6 +39,7 @@ class ExamCard extends StatelessWidget {
             Stack(
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Wrap(
                       children: [
@@ -40,14 +48,18 @@ class ExamCard extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
+                              .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                         ),
                       ],
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.01,
                     ),
-                    Text(examClass),
+                    Text(examClass,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            fontWeight: FontWeight.bold, color: Colors.white)),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.01,
                     ),
@@ -57,12 +69,17 @@ class ExamCard extends StatelessWidget {
                           Icons.timer_outlined,
                           color: Theme.of(context).primaryColor,
                         ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.01,
+                        ),
                         Text(
                           examTime,
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
+                              .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                         ),
                       ],
                     ),

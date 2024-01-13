@@ -40,6 +40,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
   smooth_page_indicator: ^1.1.0
+  flutter_speed_dial: ^7.0.0
+  font_awesome_flutter: ^10.6.0
 
 dev_dependencies:
   flutter_test:
@@ -99,6 +101,13 @@ flutter:
     - assets/profile.png
     - assets/degerlendir.png
     - assets/ogren.png
+    - assets/basvurularim.png
+    - assets/egitimlerim.png
+    - assets/duyurularim.png
+    - assets/anketlerim.png
+    - assets/review.png
+    - assets/learn.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

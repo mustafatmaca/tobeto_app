@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tobeto_app/screens/calendar_screen.dart';
 import 'package:tobeto_app/screens/catalog_screen.dart';
 import 'package:tobeto_app/screens/home_screen.dart';
@@ -31,13 +33,31 @@ class _MainScreenState extends State<MainScreen> {
     String imagePath =
         isDarkMode ? "assets/dark.png" : "assets/tobeto-logo.png";
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: SpeedDial(
+          renderOverlay: false,
           elevation: 15,
           backgroundColor: Theme.of(context).primaryColor,
           foregroundColor: Theme.of(context).colorScheme.background,
-          onPressed: () {},
-          child: const Icon(Icons.messenger),
+          icon: Icons.messenger,
+          activeIcon: Icons.close,
+          direction: SpeedDialDirection.up,
+          children: [
+            SpeedDialChild(
+                child: FaIcon(FontAwesomeIcons.whatsapp),
+                backgroundColor: Colors.green),
+            SpeedDialChild(
+                child: FaIcon(FontAwesomeIcons.envelope),
+                backgroundColor: const Color.fromARGB(255, 240, 103, 93))
+          ],
         ),
+        // FloatingActionButton(
+        //   elevation: 15,
+        //   backgroundColor: Theme.of(context).primaryColor,
+        //   foregroundColor: Theme.of(context).colorScheme.background,
+        //   onPressed: () {},
+        //   child: const Icon(Icons.messenger),
+        // ),
+
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Anasayfa'),

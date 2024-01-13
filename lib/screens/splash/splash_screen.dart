@@ -121,7 +121,10 @@ class _SplashScreenState extends State<SplashScreen> {
             width: MediaQuery.of(context).size.width,
             top: 0,
             child: Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 18.0),
+              padding: EdgeInsets.only(
+                  left: 8.0,
+                  right: 8.0,
+                  top: MediaQuery.of(context).size.height * 0.05),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -149,7 +152,10 @@ class _SplashScreenState extends State<SplashScreen> {
                         );
                       },
                       child: Text("Atla",
-                          style: Theme.of(context).textTheme.bodyMedium!))
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(fontWeight: FontWeight.bold)))
                 ],
               ),
             ),
