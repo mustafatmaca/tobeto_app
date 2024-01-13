@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tobeto_app/screens/main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -34,10 +35,9 @@ class _LoginScreenState extends State<LoginScreen> {
           Center(
             child: Container(
               width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.4,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  borderRadius: BorderRadius.circular(24)),
+              height: MediaQuery.of(context).size.height * 0.5,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(24)),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -85,19 +85,65 @@ class _LoginScreenState extends State<LoginScreen> {
                           contentPadding: const EdgeInsets.all(8)),
                     ),
                     const Spacer(),
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MainScreen(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Theme.of(context).cardColor,
                             ),
-                          );
-                        },
-                        child: const Text("Giriş Yap")),
-                    const Spacer(),
+                            onPressed: () {},
+                            child: const Text("Kayıt Ol"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.02,
+                        ),
+                        Expanded(
+                          child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MainScreen(),
+                                  ),
+                                );
+                              },
+                              child: const Text("Giriş Yap")),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.02,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Theme.of(context).cardColor,
+                          foregroundColor: Theme.of(context).iconTheme.color,
+                          child: FaIcon(FontAwesomeIcons.google),
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Theme.of(context).cardColor,
+                          foregroundColor: Theme.of(context).iconTheme.color,
+                          child: FaIcon(FontAwesomeIcons.microsoft),
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Theme.of(context).cardColor,
+                          foregroundColor: Theme.of(context).iconTheme.color,
+                          child: FaIcon(FontAwesomeIcons.github),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.02,
+                    ),
                     const Divider(height: 0.1),
-                    const Spacer(),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.02,
+                    ),
                     InkWell(
                       onTap: () {},
                       child: const Text("Parolamı Unuttum"),

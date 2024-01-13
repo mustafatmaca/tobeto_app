@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:tobeto_app/screens/home/home_announcement_screen.dart';
 import 'package:tobeto_app/screens/home/home_application_screen.dart';

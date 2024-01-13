@@ -5,7 +5,6 @@ import 'package:tobeto_app/screens/calendar_screen.dart';
 import 'package:tobeto_app/screens/catalog_screen.dart';
 import 'package:tobeto_app/screens/home_screen.dart';
 import 'package:tobeto_app/screens/more_screen.dart';
-import 'package:tobeto_app/screens/profile_screen.dart';
 import 'package:tobeto_app/screens/reviews_screen.dart';
 
 List<Widget> pages = [
@@ -27,11 +26,6 @@ class _MainScreenState extends State<MainScreen> {
   var currentPage = 0;
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
-
-    String imagePath =
-        isDarkMode ? "assets/dark.png" : "assets/tobeto-logo.png";
     return Scaffold(
         floatingActionButton: SpeedDial(
           renderOverlay: false,
@@ -50,14 +44,6 @@ class _MainScreenState extends State<MainScreen> {
                 backgroundColor: const Color.fromARGB(255, 240, 103, 93))
           ],
         ),
-        // FloatingActionButton(
-        //   elevation: 15,
-        //   backgroundColor: Theme.of(context).primaryColor,
-        //   foregroundColor: Theme.of(context).colorScheme.background,
-        //   onPressed: () {},
-        //   child: const Icon(Icons.messenger),
-        // ),
-
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Anasayfa'),

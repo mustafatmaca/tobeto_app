@@ -12,6 +12,7 @@ class AppTheme {
         textTheme: GoogleFonts.poppinsTextTheme().apply(
           bodyColor: AppColor.textColor,
         ),
+        cardColor: AppColor.cardColor,
         appBarTheme: AppBarTheme(
           backgroundColor: AppColor.colorScheme.background,
           foregroundColor: AppColor.textColor,
@@ -52,6 +53,7 @@ class AppTheme {
       textTheme: GoogleFonts.ralewayTextTheme().apply(
         bodyColor: AppColor.textColorDark,
       ),
+      cardColor: AppColor.cardColorDark,
       appBarTheme: AppBarTheme(
         backgroundColor: AppColor.backgroundDark,
         foregroundColor: AppColor.textColorDark,
