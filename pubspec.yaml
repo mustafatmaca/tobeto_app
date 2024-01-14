@@ -107,6 +107,8 @@ flutter:
     - assets/anketlerim.png
     - assets/review.png
     - assets/learn.png
+    - assets/sayfa1.png
+    - assets/sayfa2.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

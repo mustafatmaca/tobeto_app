@@ -21,12 +21,17 @@ class _SplashScreenState extends State<SplashScreen> {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: Image.asset("assets/splash2.png").image)),
+                  fit: BoxFit.fill,
+                  image: Image.asset("assets/sayfa1.png").image)),
           child: Column(
             children: [
               SizedBox(
-                height: 400,
+                height: MediaQuery.of(context).size.height * 0.20,
+              ),
+              Image.asset("assets/tobeto-logo.png",
+                  width: MediaQuery.of(context).size.width * 0.5),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.10,
               ),
               RichText(
                 textAlign: TextAlign.center,
@@ -60,13 +65,13 @@ class _SplashScreenState extends State<SplashScreen> {
           decoration: BoxDecoration(
               image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: Image.asset("assets/splash1.png").image)),
+                  image: Image.asset("assets/sayfa2.png").image)),
           child: Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0),
             child: Column(
               children: [
                 SizedBox(
-                  height: 200,
+                  height: MediaQuery.of(context).size.height * 0.20,
                 ),
                 RichText(
                   textAlign: TextAlign.left,
@@ -100,6 +105,22 @@ class _SplashScreenState extends State<SplashScreen> {
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.05,
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(left: 150),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text("Hadi Başlayalım"),
+                    ))
               ],
             ),
           ),
@@ -154,8 +175,12 @@ class _SplashScreenState extends State<SplashScreen> {
                       child: Text("Atla",
                           style: Theme.of(context)
                               .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold)))
+                              .bodyLarge!
+                              .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .background)))
                 ],
               ),
             ),

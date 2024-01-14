@@ -20,6 +20,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final ScrollController _scrollMenuController = ScrollController();
+  final ScrollController _scrollExamController = ScrollController();
   var currentTab = 0;
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               CircleAvatar(
+                  backgroundColor: Color(0xFF004D79),
                   child: IconButton(
                       onPressed: () {
                         Navigator.push(
@@ -117,186 +120,199 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomeApplicationScreen(),
-                            ));
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.32,
-                        height: MediaQuery.of(context).size.height * 0.18,
-                        padding: EdgeInsets.all(18),
-                        decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFF004D79),
-                                Color(0xFF011D42),
-                                Color(0xFF341132),
+              Scrollbar(
+                trackVisibility: false,
+                controller: _scrollMenuController,
+                child: SingleChildScrollView(
+                  controller: _scrollMenuController,
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomeApplicationScreen(),
+                                ));
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            height: MediaQuery.of(context).size.height * 0.18,
+                            padding: EdgeInsets.all(18),
+                            decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Color(0xFF004D79),
+                                    Color(0xFF011D42),
+                                    Color(0xFF341132),
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  "assets/basvurularim.png",
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                ),
+                                Text("Başvurularım",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .background,
+                                            fontWeight: FontWeight.bold)),
                               ],
                             ),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              "assets/basvurularim.png",
-                              height: MediaQuery.of(context).size.height * 0.1,
-                            ),
-                            Text("Başvurularım",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .background,
-                                        fontWeight: FontWeight.bold)),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.02,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomeEducationScreen()));
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.32,
-                        height: MediaQuery.of(context).size.height * 0.18,
-                        padding: EdgeInsets.all(18),
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFF004D79),
-                                Color(0xFF011D42),
-                                Color(0xFF341132),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.02,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        HomeEducationScreen()));
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            height: MediaQuery.of(context).size.height * 0.18,
+                            padding: EdgeInsets.all(18),
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Color(0xFF004D79),
+                                    Color(0xFF011D42),
+                                    Color(0xFF341132),
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  "assets/egitimlerim.png",
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                ),
+                                Text("Eğitimlerim",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .background,
+                                            fontWeight: FontWeight.bold)),
                               ],
                             ),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              "assets/egitimlerim.png",
-                              height: MediaQuery.of(context).size.height * 0.1,
-                            ),
-                            Text("Eğitimlerim",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .background,
-                                        fontWeight: FontWeight.bold)),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.02,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomeAnnouncement()));
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.32,
-                        height: MediaQuery.of(context).size.height * 0.18,
-                        padding: EdgeInsets.all(18),
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFF004D79),
-                                Color(0xFF011D42),
-                                Color(0xFF341132),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.02,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeAnnouncement()));
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            height: MediaQuery.of(context).size.height * 0.18,
+                            padding: EdgeInsets.all(18),
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Color(0xFF004D79),
+                                    Color(0xFF011D42),
+                                    Color(0xFF341132),
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  "assets/duyurularim.png",
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                ),
+                                Text("Duyurularım",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .background,
+                                            fontWeight: FontWeight.bold)),
                               ],
                             ),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              "assets/duyurularim.png",
-                              height: MediaQuery.of(context).size.height * 0.1,
-                            ),
-                            Text("Duyurularım",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .background,
-                                        fontWeight: FontWeight.bold)),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.02,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomeSurveyScreen()));
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.32,
-                        height: MediaQuery.of(context).size.height * 0.18,
-                        padding: EdgeInsets.all(18),
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFF004D79),
-                                Color(0xFF011D42),
-                                Color(0xFF341132),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.02,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeSurveyScreen()));
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            height: MediaQuery.of(context).size.height * 0.18,
+                            padding: EdgeInsets.all(18),
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Color(0xFF004D79),
+                                    Color(0xFF011D42),
+                                    Color(0xFF341132),
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  "assets/anketlerim.png",
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                ),
+                                Text("Anketlerim",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .background,
+                                            fontWeight: FontWeight.bold)),
                               ],
                             ),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              "assets/anketlerim.png",
-                              height: MediaQuery.of(context).size.height * 0.1,
-                            ),
-                            Text("Anketlerim",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .background,
-                                        fontWeight: FontWeight.bold)),
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -322,40 +338,52 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              SingleChildScrollView(
-                padding: EdgeInsets.all(8),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    const ExamCard(
-                        examName: "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                        examClass: "Herkes İçin Kodlama 1A",
-                        examTime: "45 Dakika"),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.04,
+              Scrollbar(
+                trackVisibility: false,
+                controller: _scrollExamController,
+                child: SingleChildScrollView(
+                  controller: _scrollExamController,
+                  padding: EdgeInsets.all(8),
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 4.0),
+                    child: Row(
+                      children: [
+                        const ExamCard(
+                            examName:
+                                "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                            examClass: "Herkes İçin Kodlama 1A",
+                            examTime: "45 Dakika"),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.04,
+                        ),
+                        const ExamCard(
+                            examName:
+                                "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                            examClass: "Herkes İçin Kodlama 1A",
+                            examTime: "45 Dakika"),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.04,
+                        ),
+                        const ExamCard(
+                            examName:
+                                "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                            examClass: "Herkes İçin Kodlama 1A",
+                            examTime: "45 Dakika"),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.04,
+                        ),
+                        const ExamCard(
+                            examName:
+                                "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+                            examClass: "Herkes İçin Kodlama 1A",
+                            examTime: "45 Dakika"),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.04,
+                        ),
+                      ],
                     ),
-                    const ExamCard(
-                        examName: "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                        examClass: "Herkes İçin Kodlama 1A",
-                        examTime: "45 Dakika"),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.04,
-                    ),
-                    const ExamCard(
-                        examName: "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                        examClass: "Herkes İçin Kodlama 1A",
-                        examTime: "45 Dakika"),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.04,
-                    ),
-                    const ExamCard(
-                        examName: "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                        examClass: "Herkes İçin Kodlama 1A",
-                        examTime: "45 Dakika"),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.04,
-                    ),
-                  ],
+                  ),
                 ),
               ),
               SizedBox(
