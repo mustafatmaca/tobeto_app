@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
+import 'package:tobeto_app/blocs/application_bloc/application_event.dart';
 import 'package:tobeto_app/screens/home/home_announcement_screen.dart';
 import 'package:tobeto_app/screens/home/home_application_screen.dart';
 import 'package:tobeto_app/screens/home/home_education_screen.dart';
 import 'package:tobeto_app/screens/home/home_survey_screen.dart';
 import 'package:tobeto_app/screens/profile_screen.dart';
-import 'package:tobeto_app/widgets/home_widgets/announcement_card.dart';
-import 'package:tobeto_app/widgets/home_widgets/applications_card.dart';
-import 'package:tobeto_app/widgets/home_widgets/education_card.dart';
-import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/exam_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/gradient_card.dart';
 import 'package:tobeto_app/widgets/photo_slider.dart';
@@ -133,6 +132,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         InkWell(
                           onTap: () {
+                            context
+                                .read<ApplicationBloc>()
+                                .add(LoadApplication());
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -394,113 +396,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ],
     );
-  }
-
-  Widget buildContent(int currentTab) {
-    switch (currentTab) {
-      case 0:
-        return Container(
-          height: MediaQuery.of(context).size.height * 0.2,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ApplicationsCard(
-                  title: "İstanbul Kodluyor Bilgilendirme",
-                  subtitle: "İstanbul Kodluyor Başvuru Formu onaylandı",
-                  subtitle2:
-                      "İstanbul Kodluyor Belge  Yükleme Formu Onaylandı ",
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ApplicationsCard(
-                  title: "İstanbul Kodluyor Bilgilendirme",
-                  subtitle: "İstanbul Kodluyor Başvuru Formu onaylandı",
-                  subtitle2:
-                      "İstanbul Kodluyor Belge  Yükleme Formu Onaylandı ",
-                ),
-              ),
-            ],
-          ),
-        );
-      case 1:
-        return Container(
-          height: MediaQuery.of(context).size.height * 0.4,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: EducationCard(
-                  context: context,
-                  title: "Dr. Ecmel Ayral'dan Hoşgeldin Mesajı",
-                  date: DateTime.now(),
-                  image: "assets/ecmelayral.jpeg",
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: EducationCard(
-                  context: context,
-                  title: "Eğitimlere Nasıl Katılırım?",
-                  date: DateTime.now(),
-                  image: "assets/istkod.png",
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: EducationCard(
-                  context: context,
-                  title: "Herkes İçin Kodlama",
-                  date: DateTime.now(),
-                  image: "assets/tbt.jpeg",
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: EducationCard(
-                  context: context,
-                  title: "İstanbul Kodluyor Proje Aşamaları",
-                  date: DateTime.now(),
-                  image: "assets/istkod.png",
-                ),
-              ),
-            ],
-          ),
-        );
-      case 2:
-        return Container(
-          height: MediaQuery.of(context).size.height * 0.2,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AnnouncementCard(
-                  type: "Duyuru",
-                  eduType: "İstanbul Kodluyor",
-                  title: "Yeni Grupların Discorda Katılımı",
-                  date: DateTime.now(),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AnnouncementCard(
-                  type: "Duyuru",
-                  eduType: "İstanbul Kodluyor",
-                  title: "Yeni Grupların Discorda Katılımı",
-                  date: DateTime.now(),
-                ),
-              ),
-            ],
-          ),
-        );
-      case 3:
-        return EmptyCard();
-      default:
-        return EmptyCard(); // Varsayılan durumda boş bir container döndürüyoruz.
-    }
   }
 }

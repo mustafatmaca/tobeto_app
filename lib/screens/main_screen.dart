@@ -1,19 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tobeto_app/screens/calendar_screen.dart';
-import 'package:tobeto_app/screens/catalog_screen.dart';
-import 'package:tobeto_app/screens/home_screen.dart';
-import 'package:tobeto_app/screens/more_screen.dart';
-import 'package:tobeto_app/screens/reviews_screen.dart';
-
-List<Widget> pages = [
-  const HomeScreen(),
-  const ReviewsScreen(),
-  const CatalogScreen(),
-  const CalendarScreen(),
-  const MoreScreen(),
-];
+import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
+import 'package:tobeto_app/blocs/navigation_bloc/navigation_event.dart';
+import 'package:tobeto_app/blocs/navigation_bloc/navigation_state.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -23,46 +14,64 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  var currentPage = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButton: SpeedDial(
-          renderOverlay: false,
-          elevation: 15,
-          backgroundColor: Theme.of(context).primaryColor,
-          foregroundColor: Theme.of(context).colorScheme.background,
-          icon: Icons.messenger,
-          activeIcon: Icons.close,
-          direction: SpeedDialDirection.up,
-          children: [
-            SpeedDialChild(
-                child: FaIcon(FontAwesomeIcons.whatsapp),
-                backgroundColor: Colors.green),
-            SpeedDialChild(
-                child: FaIcon(FontAwesomeIcons.envelope),
-                backgroundColor: const Color.fromARGB(255, 240, 103, 93))
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Anasayfa'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.draw), label: 'Değerlendirmeler'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.widgets), label: 'Katalog'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.calendar_month), label: 'Takvim'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.more_horiz), label: 'Daha Fazla'),
-          ],
-          currentIndex: currentPage,
-          onTap: (value) {
-            setState(() {
-              currentPage = value;
-            });
-          },
-        ),
-        body: pages[currentPage]);
+    return BlocBuilder<NavigationBloc, NavigationState>(
+      builder: (context, state) {
+        if (state is NavigationInitial) {
+          context.read<NavigationBloc>().add(ChangeScreen(index: 0));
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else if (state is NavigationLoaded) {
+          return Scaffold(
+            floatingActionButton: SpeedDial(
+              renderOverlay: false,
+              elevation: 15,
+              backgroundColor: Theme.of(context).primaryColor,
+              foregroundColor: Theme.of(context).colorScheme.background,
+              icon: Icons.messenger,
+              activeIcon: Icons.close,
+              direction: SpeedDialDirection.up,
+              children: [
+                SpeedDialChild(
+                    child: FaIcon(FontAwesomeIcons.whatsapp),
+                    backgroundColor: Colors.green),
+                SpeedDialChild(
+                    child: FaIcon(FontAwesomeIcons.envelope),
+                    backgroundColor: const Color.fromARGB(255, 240, 103, 93))
+              ],
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              items: <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.home), label: 'Anasayfa'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.draw), label: 'Değerlendirmeler'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.widgets), label: 'Katalog'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.calendar_month), label: 'Takvim'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.more_horiz), label: 'Daha Fazla'),
+              ],
+              currentIndex: state.currentPage,
+              onTap: (value) {
+                context.read<NavigationBloc>().add(ChangeScreen(index: value));
+              },
+            ),
+            body: state.pages[state.currentPage],
+          );
+        } else {
+          return Scaffold(
+            body: Center(
+              child: Text("Something went wrong!"),
+            ),
+          );
+        }
+      },
+    );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
+import 'package:tobeto_app/blocs/navigation_bloc/navigation_event.dart';
 import 'package:tobeto_app/screens/main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -103,6 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         Expanded(
                           child: ElevatedButton(
                               onPressed: () {
+                                context.read<NavigationBloc>().add(LoginEvent(
+                                    email: _usernameController.text,
+                                    password: _passwordController.text));
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
@@ -120,21 +125,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        CircleAvatar(
-                          backgroundColor: Theme.of(context).cardColor,
-                          foregroundColor: Theme.of(context).iconTheme.color,
-                          child: FaIcon(FontAwesomeIcons.google),
+                        Expanded(
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Theme.of(context).cardColor,
+                              ),
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    "assets/google_icon.png",
+                                    height: MediaQuery.of(context).size.height *
+                                        0.04,
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.05,
+                                  ),
+                                  const Text("Google ile Giriş Yap"),
+                                ],
+                              )),
                         ),
-                        CircleAvatar(
-                          backgroundColor: Theme.of(context).cardColor,
-                          foregroundColor: Theme.of(context).iconTheme.color,
-                          child: FaIcon(FontAwesomeIcons.microsoft),
-                        ),
-                        CircleAvatar(
-                          backgroundColor: Theme.of(context).cardColor,
-                          foregroundColor: Theme.of(context).iconTheme.color,
-                          child: FaIcon(FontAwesomeIcons.github),
-                        )
                       ],
                     ),
                     SizedBox(

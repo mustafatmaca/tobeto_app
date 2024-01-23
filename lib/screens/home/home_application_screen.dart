@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
+import 'package:tobeto_app/blocs/application_bloc/application_event.dart';
+import 'package:tobeto_app/blocs/application_bloc/application_state.dart';
 import 'package:tobeto_app/widgets/home_widgets/applications_card.dart';
 
 class HomeApplicationScreen extends StatefulWidget {
@@ -13,30 +17,56 @@ class _HomeApplicationScreenState extends State<HomeApplicationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: NestedScrollView(
-      headerSliverBuilder: (context, innerBoxIsScrolled) {
-        return [
-          SliverAppBar(
-            snap: true,
-            floating: true,
-            scrolledUnderElevation: 0.0,
-            title: Text("Başvurularım"),
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(Icons.arrow_back_ios)),
-          )
-        ];
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+      return [
+        SliverAppBar(
+          snap: true,
+          floating: true,
+          scrolledUnderElevation: 0.0,
+          title: Text("Başvurularım"),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_ios)),
+        )
+      ];
+    }, body: BlocBuilder<ApplicationBloc, ApplicationState>(
+      builder: (context, state) {
+        if (state is ApplicationInitial) {
+          context.read<ApplicationBloc>().add(LoadApplication());
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is ApplicationLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is ApplicationLoaded) {
+          return ListView.builder(
+            itemCount: state.applicationList.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ApplicationsCard(
+                  title: state.applicationList[index].title,
+                  subtitle: state.applicationList[index].subtitle,
+                  subtitle2: state.applicationList[index].subtitle1,
+                  state: state.applicationList[index].state,
+                ),
+              );
+            },
+          );
+        } else if (state is ApplicationError) {
+          return const Center(
+            child: Text("That's an error."),
+          );
+        } else {
+          return const Center(
+            child: Text("Something went wrong."),
+          );
+        }
       },
-      body: ListView.builder(
-        itemCount: 12,
-        itemBuilder: (context, index) {
-          return ApplicationsCard(
-              title: "title $index",
-              subtitle: "subtitle $index",
-              subtitle2: "subtitle2 $index");
-        },
-      ),
-    ));
+    )));
   }
 }

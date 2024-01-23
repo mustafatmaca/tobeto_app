@@ -5,11 +5,13 @@ class ApplicationsCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String subtitle2;
+  final String state;
 
   const ApplicationsCard(
       {required this.title,
       required this.subtitle,
       required this.subtitle2,
+      required this.state,
       Key? key})
       : super(key: key);
 
@@ -18,9 +20,15 @@ class ApplicationsCard extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width * 0.88,
       decoration: BoxDecoration(
-        border: const Border(
+        border: Border(
             left: BorderSide(
-                width: 7, color: Color(0xFF076B34), style: BorderStyle.solid)),
+                width: 7,
+                color: state == "Kabul Edildi"
+                    ? Color(0xFF076B34)
+                    : state == "Beklemede"
+                        ? Color.fromARGB(255, 245, 201, 4)
+                        : Colors.red,
+                style: BorderStyle.solid)),
         color: Theme.of(context).scaffoldBackgroundColor,
         boxShadow: [
           BoxShadow(
@@ -48,12 +56,16 @@ class ApplicationsCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(
                     bottom: 5, top: 5, right: 40, left: 15),
-                decoration: const BoxDecoration(
-                    color: Color(0xFF076B34),
-                    borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                    color: state == "Kabul Edildi"
+                        ? Color(0xFF076B34)
+                        : state == "Beklemede"
+                            ? Color.fromARGB(255, 245, 201, 4)
+                            : Colors.red,
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(15),
                         bottomLeft: Radius.circular(15))),
-                child: Text("Kabul Edildi",
+                child: Text(state,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Theme.of(context).colorScheme.background)),
               )
@@ -61,22 +73,42 @@ class ApplicationsCard extends StatelessWidget {
           ),
           Row(
             children: [
-              Icon(
-                Icons.check,
-                color: Color(0xFF076B34),
-              ),
+              state == "Kabul Edildi"
+                  ? Icon(
+                      Icons.check,
+                      color: Color(0xFF076B34),
+                    )
+                  : state == "Beklemede"
+                      ? Icon(
+                          Icons.timer_outlined,
+                          color: Color.fromARGB(255, 245, 201, 4),
+                        )
+                      : Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ),
               SizedBox(width: 5),
-              Expanded(child: Text(subtitle)),
+              Expanded(child: Text(subtitle + " " + state)),
             ],
           ),
           Row(
             children: [
-              Icon(
-                Icons.check,
-                color: Color(0xFF076B34),
-              ),
+              state == "Kabul Edildi"
+                  ? Icon(
+                      Icons.check,
+                      color: Color(0xFF076B34),
+                    )
+                  : state == "Beklemede"
+                      ? Icon(
+                          Icons.timer_outlined,
+                          color: Color.fromARGB(255, 245, 201, 4),
+                        )
+                      : Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ),
               SizedBox(width: 5),
-              Expanded(child: Text(subtitle2)),
+              Expanded(child: Text(subtitle2 + " " + state)),
             ],
           ),
         ],

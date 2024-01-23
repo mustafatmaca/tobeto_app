@@ -114,6 +114,7 @@ flutter:
     - assets/learn.png
     - assets/sayfa1.png
     - assets/sayfa2.png
+    - assets/google_icon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
