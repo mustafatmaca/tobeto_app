@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tobeto_app/models/application.dart';
+import 'package:tobeto_app/models/education.dart';
 
 class FireStoreRepo {
   final firebaseAuthInstance = FirebaseAuth.instance;
@@ -31,5 +32,24 @@ class FireStoreRepo {
     List<Application> resolvedAppList = await Future.wait(appList);
 
     return resolvedAppList;
+  }
+
+  Future<List<Education>> getEducations() async {
+    final user = await FirebaseFirestoreInstance.collection("users")
+        .doc(firebaseAuthInstance.currentUser!.uid);
+    final docSnapShot = await user.get();
+
+    List eduId = await docSnapShot.get("educations");
+
+    final eduList = eduId.map((e) async {
+      final docRef = FirebaseFirestoreInstance.collection("educations").doc(e);
+
+      final eduSnapshot = await docRef.get();
+      return Education.fromMap(eduSnapshot.data()!);
+    }).toList();
+
+    List<Education> resolvedEduList = await Future.wait(eduList);
+
+    return resolvedEduList;
   }
 }

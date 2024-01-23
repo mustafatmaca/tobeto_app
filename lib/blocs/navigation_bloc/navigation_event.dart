@@ -18,3 +18,13 @@ class LoginEvent extends NavigationEvent {
     required this.password,
   });
 }
+
+class RegisterEvent extends NavigationEvent {
+  String email;
+  String password;
+
+  RegisterEvent({
+    required this.email,
+    required this.password,
+  });
+}

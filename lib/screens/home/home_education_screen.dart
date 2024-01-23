@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:tobeto_app/blocs/education_bloc/education_bloc.dart';
+import 'package:tobeto_app/blocs/education_bloc/education_event.dart';
+import 'package:tobeto_app/blocs/education_bloc/education_state.dart';
 import 'package:tobeto_app/widgets/home_widgets/education_card.dart';
 
 class HomeEducationScreen extends StatefulWidget {
@@ -9,35 +14,61 @@ class HomeEducationScreen extends StatefulWidget {
 }
 
 class _HomeEducationScreenState extends State<HomeEducationScreen> {
+  final DateFormat formatter = DateFormat('dd/MM/yyyy');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: NestedScrollView(
-      headerSliverBuilder: (context, innerBoxIsScrolled) {
-        return [
-          SliverAppBar(
-            snap: true,
-            floating: true,
-            scrolledUnderElevation: 0.0,
-            title: Text("Eğitimlerim"),
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(Icons.arrow_back_ios)),
-          )
-        ];
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+      return [
+        SliverAppBar(
+          snap: true,
+          floating: true,
+          scrolledUnderElevation: 0.0,
+          title: Text("Eğitimlerim"),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_ios)),
+        )
+      ];
+    }, body: BlocBuilder<EducationBloc, EducationState>(
+      builder: (context, state) {
+        if (state is EducationInitial) {
+          context.read<EducationBloc>().add(LoadEducation());
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is EducationLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is EducationLoaded) {
+          return ListView.builder(
+            itemCount: state.educationList.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: EducationCard(
+                    title: state.educationList[index].title,
+                    date: DateTime.fromMillisecondsSinceEpoch(
+                        state.educationList[index].date.millisecondsSinceEpoch),
+                    image: state.educationList[index].image,
+                    context: context),
+              );
+            },
+          );
+        } else if (state is EducationError) {
+          return const Center(
+            child: Text("That's an error"),
+          );
+        } else {
+          return const Center(
+            child: Text("Something went wrong"),
+          );
+        }
       },
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return EducationCard(
-              title: "title $index",
-              date: DateTime.now(),
-              image: null,
-              context: context);
-        },
-      ),
-    ));
+    )));
   }
 }

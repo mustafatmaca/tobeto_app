@@ -31,7 +31,7 @@ class EmptyCard extends StatelessWidget {
               children: [
                 Expanded(
                     child: Text(
-                  "Atanmış herhangi bir anketiniz bulunmamaktadır.",
+                  "Atanmış herhangi bir içeriğiniz bulunmamaktadır.",
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!

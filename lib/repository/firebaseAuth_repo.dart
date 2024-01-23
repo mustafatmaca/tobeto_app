@@ -12,4 +12,14 @@ class FirebaseAuthRepo {
       print(e.message);
     }
   }
+
+  void register(String email, String password) async {
+    try {
+      final userCredentials = await firebaseAuthInstance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      print(userCredentials);
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+    }
+  }
 }
