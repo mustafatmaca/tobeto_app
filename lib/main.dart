@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tobeto_app/blocs/announcement_bloc/announcement_bloc.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
 import 'package:tobeto_app/blocs/education_bloc/education_bloc.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
@@ -37,7 +38,10 @@ void main() async {
         ),
         BlocProvider<EducationBloc>(
           create: (context) => EducationBloc(fireStoreRepo: FireStoreRepo()),
-        )
+        ),
+        BlocProvider<AnnouncementBloc>(
+          create: (context) => AnnouncementBloc(fireStoreRepo: FireStoreRepo()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

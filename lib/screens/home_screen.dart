@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/announcement_bloc/announcement_bloc.dart';
+import 'package:tobeto_app/blocs/announcement_bloc/announcement_event.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_event.dart';
 import 'package:tobeto_app/screens/home/home_announcement_screen.dart';
@@ -227,6 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         InkWell(
                           onTap: () {
+                            context.read<AnnouncementBloc>().add(LoadAnno());
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
