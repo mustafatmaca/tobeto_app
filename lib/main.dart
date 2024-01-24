@@ -2,40 +2,44 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
 import 'package:tobeto_app/blocs/education_bloc/education_bloc.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
+import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
 import 'package:tobeto_app/firebase_options.dart';
 import 'package:tobeto_app/repository/firebaseAuth_repo.dart';
 import 'package:tobeto_app/repository/firestore_repo.dart';
+import 'package:tobeto_app/screens/login_screen.dart';
 import 'package:tobeto_app/screens/main_screen.dart';
 import 'package:tobeto_app/screens/splash/splash_screen.dart';
 import 'package:tobeto_app/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider<NavigationBloc>(
-      create: (context) => NavigationBloc(firebaseAuthRepo: FirebaseAuthRepo()),
-    ),
-    BlocProvider<ApplicationBloc>(
-      create: (context) => ApplicationBloc(fireStoreRepo: FireStoreRepo()),
-    ),
-    BlocProvider<EducationBloc>(
-      create: (context) => EducationBloc(fireStoreRepo: FireStoreRepo()),
-    )
-  ], child: const MyApp()));
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<UserControllerBloc>(
+          create: (context) =>
+              UserControllerBloc(firebaseAuthRepo: FirebaseAuthRepo()),
+        ),
+        BlocProvider<NavigationBloc>(
+          create: (context) =>
+              NavigationBloc(firebaseAuthRepo: FirebaseAuthRepo()),
+        ),
+        BlocProvider<ApplicationBloc>(
+          create: (context) => ApplicationBloc(fireStoreRepo: FireStoreRepo()),
+        ),
+        BlocProvider<EducationBloc>(
+          create: (context) => EducationBloc(fireStoreRepo: FireStoreRepo()),
+        )
+      ],
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
@@ -45,9 +49,14 @@ class MyApp extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return MainScreen();
+            } else if (prefs.getBool('isOpen') == null ||
+                prefs.getBool('isOpen') == false) {
+              return SplashScreen();
             }
-            return SplashScreen();
+            return LoginScreen();
           },
-        ));
-  }
+        ),
+      ),
+    ),
+  );
 }

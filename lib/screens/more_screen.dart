@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
+import 'package:tobeto_app/blocs/userController_bloc/user_controller_event.dart';
 import 'package:tobeto_app/screens/login_screen.dart';
 
 class MoreScreen extends StatefulWidget {
@@ -27,6 +30,7 @@ class _MoreScreenState extends State<MoreScreen> {
         Divider(),
         ListTile(
           onTap: () {
+            context.read<UserControllerBloc>().add(LogoutEvent());
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

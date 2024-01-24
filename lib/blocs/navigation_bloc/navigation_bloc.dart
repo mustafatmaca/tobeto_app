@@ -12,13 +12,5 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       // TODO: implement event handler
       emit(NavigationLoaded(currentPage: event.index));
     });
-
-    on<LoginEvent>((event, emit) {
-      firebaseAuthRepo.signIn(event.email, event.password);
-    });
-
-    on<RegisterEvent>((event, emit) {
-      firebaseAuthRepo.register(event.email, event.password);
-    });
   }
 }

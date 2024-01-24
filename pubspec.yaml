@@ -48,6 +48,8 @@ dependencies:
   firebase_auth: ^4.16.0
   firebase_storage: ^11.6.0
   intl: ^0.19.0
+  google_sign_in: ^6.2.1
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -78,13 +80,9 @@ flutter:
     - assets/tobeto-logo.png
     - assets/dark.png
     - assets/background.png
-    - assets/istnblkodluyor.png
     - assets/beyazlogo.png
     - assets/converted.png
-    - assets/ecmelayral.jpeg
     - assets/notFound.png
-    - assets/istkod.png
-    - assets/tbt.jpeg
     - assets/cv-date.png
     - assets/cv-mail.png
     - assets/cv-name.png
@@ -99,11 +97,6 @@ flutter:
     - assets/ENK-2.jpg
     - assets/ENK-3.jpg
     - assets/ENK-4.jpg
-    - assets/splash1.png
-    - assets/splash2.png
-    - assets/1.jpg
-    - assets/2.jpg
-    - assets/3.jpg
     - assets/profile.png
     - assets/degerlendir.png
     - assets/ogren.png

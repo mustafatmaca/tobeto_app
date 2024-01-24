@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tobeto_app/screens/login_screen.dart';
 
@@ -11,6 +12,11 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final controller = PageController(viewportFraction: 1, keepPage: true);
+
+  void changeIsOpen() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isOpen', true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +118,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     padding: const EdgeInsets.only(left: 150),
                     child: ElevatedButton(
                       onPressed: () {
+                        changeIsOpen();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
@@ -165,6 +172,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       ),
                   TextButton(
                       onPressed: () {
+                        changeIsOpen();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

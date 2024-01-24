@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
-import 'package:tobeto_app/blocs/navigation_bloc/navigation_event.dart';
+import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
+import 'package:tobeto_app/blocs/userController_bloc/user_controller_event.dart';
+import 'package:tobeto_app/blocs/userController_bloc/user_controller_state.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -17,7 +18,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _surnameController = TextEditingController();
-  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -92,52 +92,152 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     const Spacer(),
-                    TextField(
-                      controller: _passwordController,
-                      obscureText: !_isPasswordVisible,
-                      decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock_outline),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _isPasswordVisible = !_isPasswordVisible;
-                              });
-                            },
-                            child: Icon(
-                              _isPasswordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                          ),
-                          label: const Text("Parola"),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          contentPadding: const EdgeInsets.all(8)),
+                    BlocBuilder<UserControllerBloc, UserControllerState>(
+                      builder: (context, state) {
+                        if (state is UserControllerInitial) {
+                          return TextField(
+                            controller: _passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.lock_outline),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    context.read<UserControllerBloc>().add(
+                                        ShowPasswordRegister(
+                                            visibility: false));
+                                  },
+                                  child: Icon(
+                                    Icons.visibility,
+                                  ),
+                                ),
+                                label: const Text("Parola"),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                contentPadding: const EdgeInsets.all(8)),
+                          );
+                        } else if (state is PasswordVisibilityRegister) {
+                          return TextField(
+                            controller: _passwordController,
+                            obscureText: state.isVisible,
+                            decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.lock_outline),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    context.read<UserControllerBloc>().add(
+                                        ShowPasswordRegister(
+                                            visibility: !state.isVisible));
+                                  },
+                                  child: Icon(
+                                    state.isVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                  ),
+                                ),
+                                label: const Text("Parola"),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                contentPadding: const EdgeInsets.all(8)),
+                          );
+                        } else {
+                          return TextField(
+                            controller: _passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.lock_outline),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    context.read<UserControllerBloc>().add(
+                                        ShowPasswordRegister(
+                                            visibility: false));
+                                  },
+                                  child: Icon(
+                                    Icons.visibility,
+                                  ),
+                                ),
+                                label: const Text("Parola"),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                contentPadding: const EdgeInsets.all(8)),
+                          );
+                        }
+                      },
                     ),
                     const Spacer(),
-                    TextField(
-                      controller: _confirmPasswordController,
-                      obscureText: !_isPasswordVisible,
-                      decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock_outline),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _isPasswordVisible = !_isPasswordVisible;
-                              });
-                            },
-                            child: Icon(
-                              _isPasswordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                          ),
-                          label: const Text("Parola Tekrar"),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          contentPadding: const EdgeInsets.all(8)),
+                    BlocBuilder<UserControllerBloc, UserControllerState>(
+                      builder: (context, state) {
+                        if (state is UserControllerInitial) {
+                          return TextField(
+                            controller: _confirmPasswordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.lock_outline),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    context.read<UserControllerBloc>().add(
+                                        ShowPasswordRegister(
+                                            visibility: false));
+                                  },
+                                  child: Icon(
+                                    Icons.visibility,
+                                  ),
+                                ),
+                                label: const Text("Parolayı Doğrula"),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                contentPadding: const EdgeInsets.all(8)),
+                          );
+                        } else if (state is PasswordVisibilityRegister) {
+                          return TextField(
+                            controller: _confirmPasswordController,
+                            obscureText: state.isVisible,
+                            decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.lock_outline),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    context.read<UserControllerBloc>().add(
+                                        ShowPasswordRegister(
+                                            visibility: !state.isVisible));
+                                  },
+                                  child: Icon(
+                                    state.isVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                  ),
+                                ),
+                                label: const Text("Parolayı Doğrula"),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                contentPadding: const EdgeInsets.all(8)),
+                          );
+                        } else {
+                          return TextField(
+                            controller: _confirmPasswordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.lock_outline),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    context.read<UserControllerBloc>().add(
+                                        ShowPasswordRegister(
+                                            visibility: false));
+                                  },
+                                  child: Icon(
+                                    Icons.visibility,
+                                  ),
+                                ),
+                                label: const Text("Parolayı Doğrula"),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                contentPadding: const EdgeInsets.all(8)),
+                          );
+                        }
+                      },
                     ),
                     const Spacer(),
                     Row(
@@ -149,16 +249,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               backgroundColor: Theme.of(context).primaryColor,
                             ),
                             onPressed: () {
-                              context.read<NavigationBloc>().add(RegisterEvent(
-                                  email: _usernameController.text,
-                                  password: _passwordController.text));
-                              Navigator.pop(
-                                context,
-                              );
+                              context
+                                  .read<UserControllerBloc>()
+                                  .add(RegisterEvent(
+                                    email: _usernameController.text,
+                                    password: _passwordController.text,
+                                    confirmPassword:
+                                        _confirmPasswordController.text,
+                                    context: context,
+                                  ));
                             },
                             child: const Text("Kayıt Ol"),
                           ),
                         ),
+                      ],
+                    ),
+                    Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Hesabın var mı? "),
+                        InkWell(
+                          child: Text(
+                            "Giriş Yap",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    color: Theme.of(context).primaryColor),
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                        )
                       ],
                     ),
                     SizedBox(
