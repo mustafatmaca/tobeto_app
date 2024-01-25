@@ -4,69 +4,73 @@ class ReviewsHorizontalCard extends StatelessWidget {
   final String headLine;
   final Color color1;
   final Color color2;
+  final Color color3;
 
   const ReviewsHorizontalCard({
     required this.headLine,
     required this.color1,
     required this.color2,
+    required this.color3,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 20, left: 20),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.9,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(50),
-            bottomRight: Radius.circular(50),
-            bottomLeft: Radius.circular(50),
-            topLeft: Radius.circular(50),
-          ),
-          gradient: LinearGradient(
-            colors: [color1, color2],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomLeft,
-          ),
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.42,
+      height: MediaQuery.of(context).size.height * 0.22,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(10),
+          bottomRight: Radius.circular(10),
+          bottomLeft: Radius.circular(10),
+          topLeft: Radius.circular(10),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Icon(
-                Icons.cast_for_education,
-                color: Theme.of(context).colorScheme.background,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    headLine,
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.background,
-                          fontWeight: FontWeight.bold,
-                        ),
+        gradient: LinearGradient(
+          colors: [color1, color2, color3],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomLeft,
+        ),
+      ),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+            Icon(
+              Icons.cast_for_education,
+              color: Theme.of(context).colorScheme.background,
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+            Text(
+              headLine,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.background,
+                    fontWeight: FontWeight.bold,
                   ),
-                ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                "Başla",
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.background,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  "Başla",
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: Theme.of(context).colorScheme.background,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).primaryColor,
-                ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF004D79),
               ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.01,
+            ),
+          ],
         ),
       ),
     );
