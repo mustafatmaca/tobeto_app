@@ -5,11 +5,13 @@ class ReviewsNotButtonCard extends StatelessWidget {
   final String explanation;
   final Color color1;
   final Color color2;
+  final Color color3;
   const ReviewsNotButtonCard(
       {required this.headLine,
       required this.explanation,
       required this.color1,
       required this.color2,
+      required this.color3,
       Key? key})
       : super(key: key);
 
@@ -25,7 +27,7 @@ class ReviewsNotButtonCard extends StatelessWidget {
                 bottomRight: Radius.circular(18),
                 bottomLeft: Radius.circular(18)),
             gradient: LinearGradient(
-                colors: [color1, color2],
+                colors: [color1, color2, color3],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomLeft)),
         child: Column(
@@ -40,7 +42,7 @@ class ReviewsNotButtonCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Text(
                   headLine,
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: Theme.of(context).colorScheme.background,
                       fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
@@ -55,7 +57,7 @@ class ReviewsNotButtonCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Text(
                 explanation,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     color: Theme.of(context).colorScheme.background,
                     fontWeight: FontWeight.w100),
                 textAlign: TextAlign.center,
