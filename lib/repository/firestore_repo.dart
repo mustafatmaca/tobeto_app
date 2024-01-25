@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tobeto_app/models/announcement.dart';
 import 'package:tobeto_app/models/application.dart';
 import 'package:tobeto_app/models/education.dart';
+import 'package:tobeto_app/models/exam.dart';
 
 class FireStoreRepo {
   final firebaseAuthInstance = FirebaseAuth.instance;
@@ -59,6 +60,32 @@ class FireStoreRepo {
     List<Announcement> resolvedAnnoList = await Future.wait(annoList);
 
     return resolvedAnnoList;
+  }
+   Future<List<Exam>> getExams() async {
+    //giriş yapmış olan kullanıcıyı getirir
+    final user = await FirebaseFirestoreInstance.collection("users")
+        .doc(firebaseAuthInstance.currentUser!.uid);
+    final docSnapShot = await user.get();
+
+    //kullanıcının içindeki başvurular listesini döndürür
+    List examsId = await docSnapShot.get("exams");
+
+    // asenkron olduğu için içinde Future<Application>'lar tutan liste
+    final examList = examsId.map(
+      (e) async {
+        //kullanıcıdaki applications id'sine göre applications collection'undan application'ları getirir
+        final docRef =
+            FirebaseFirestoreInstance.collection("exams").doc(e);
+        final examSnapshot = await docRef.get();
+        // gelen applicationları bizim oluşturduğumuz modellere dönüştürür.
+        return Exam.fromMap(examSnapshot.data()!);
+      },
+    ).toList();
+
+    // Tüm asenkron işlemleri bekleyerek Future<List<Application>>'a dönüştürme
+    List<Exam> resolvedExamList = await Future.wait(examList);
+
+    return resolvedExamList;
   }
   Future<List<Education>> getEducations() async {
     final user = await FirebaseFirestoreInstance.collection("users")

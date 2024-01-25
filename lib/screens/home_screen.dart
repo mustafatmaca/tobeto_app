@@ -4,6 +4,9 @@ import 'package:tobeto_app/blocs/announcement_bloc/announcement_bloc.dart';
 import 'package:tobeto_app/blocs/announcement_bloc/announcement_event.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_event.dart';
+import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
+import 'package:tobeto_app/blocs/exam_bloc/exam_event.dart';
+import 'package:tobeto_app/blocs/exam_bloc/exam_state.dart';
 import 'package:tobeto_app/screens/home/home_announcement_screen.dart';
 import 'package:tobeto_app/screens/home/home_application_screen.dart';
 import 'package:tobeto_app/screens/home/home_education_screen.dart';
@@ -351,44 +354,41 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.all(8),
                   scrollDirection: Axis.horizontal,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 4.0),
-                    child: Row(
-                      children: [
-                        const ExamCard(
-                            examName:
-                                "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                            examClass: "Herkes İçin Kodlama 1A",
-                            examTime: "45 Dakika"),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.04,
-                        ),
-                        const ExamCard(
-                            examName:
-                                "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                            examClass: "Herkes İçin Kodlama 1A",
-                            examTime: "45 Dakika"),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.04,
-                        ),
-                        const ExamCard(
-                            examName:
-                                "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                            examClass: "Herkes İçin Kodlama 1A",
-                            examTime: "45 Dakika"),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.04,
-                        ),
-                        const ExamCard(
-                            examName:
-                                "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
-                            examClass: "Herkes İçin Kodlama 1A",
-                            examTime: "45 Dakika"),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.04,
-                        ),
-                      ],
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(bottom: 4.0),
+                      child: BlocBuilder<ExamBloc, ExamState>(
+                        builder: (context, state) {
+                          if (state is ExamInitial) {
+                            context.read<ExamBloc>().add(LoadExam());
+                            return Center(child: CircularProgressIndicator());
+                          } else if (state is ExamLoading) {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else if (state is ExamLoaded) {
+                            return Row(
+                              children: state.examList
+                                  .map(
+                                    (e) => ExamCard(
+                                      examName: e.name,
+                                      examClass: e.examClass,
+                                      examTime:
+                                          DateTime.fromMillisecondsSinceEpoch(
+                                              e.time.millisecondsSinceEpoch),
+                                    ),
+                                  )
+                                  .toList(),
+                            );
+                          } else if (state is ExamError) {
+                            return const Center(
+                              child: Text("That's an error"),
+                            );
+                          } else {
+                            return const Center(
+                              child: Text("Something went wrong"),
+                            );
+                          }
+                        },
+                      )),
                 ),
               ),
               SizedBox(

@@ -6,9 +6,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tobeto_app/blocs/announcement_bloc/announcement_bloc.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
 import 'package:tobeto_app/blocs/education_bloc/education_bloc.dart';
+import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
 import 'package:tobeto_app/firebase_options.dart';
+import 'package:tobeto_app/models/exam.dart';
 import 'package:tobeto_app/repository/firebaseAuth_repo.dart';
 import 'package:tobeto_app/repository/firestore_repo.dart';
 import 'package:tobeto_app/screens/login_screen.dart';
@@ -41,6 +43,9 @@ void main() async {
         ),
         BlocProvider<AnnouncementBloc>(
           create: (context) => AnnouncementBloc(fireStoreRepo: FireStoreRepo()),
+        ),
+         BlocProvider<ExamBloc>(
+          create: (context) => ExamBloc(fireStoreRepo: FireStoreRepo()),
         ),
       ],
       child: MaterialApp(

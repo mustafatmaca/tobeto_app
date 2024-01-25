@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ExamCard extends StatelessWidget {
   final String examName;
   final String examClass;
-  final String examTime;
+  final DateTime examTime;
   const ExamCard(
       {required this.examName,
       required this.examClass,
@@ -72,8 +72,7 @@ class ExamCard extends StatelessWidget {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.01,
                         ),
-                        Text(
-                          examTime,
+                        Text("${examTime.day}/${examTime.month}/${examTime.year}",
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
