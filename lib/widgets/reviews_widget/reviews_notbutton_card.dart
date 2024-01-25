@@ -22,10 +22,7 @@ class ReviewsNotButtonCard extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(18),
-                bottomRight: Radius.circular(18),
-                bottomLeft: Radius.circular(18)),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             gradient: LinearGradient(
                 colors: [color1, color2, color3],
                 begin: Alignment.topCenter,
