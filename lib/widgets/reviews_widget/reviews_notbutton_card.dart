@@ -50,19 +50,21 @@ class ReviewsNotButtonCard extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Text(
-                explanation,
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: Theme.of(context).colorScheme.background,
-                    fontWeight: FontWeight.w100),
-                textAlign: TextAlign.center,
-                softWrap: true,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                child: Text(
+                  explanation,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.background,
+                      fontWeight: FontWeight.w100),
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                ),
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.06,
+              height: MediaQuery.of(context).size.height * 0.02,
             ),
           ],
         ),
