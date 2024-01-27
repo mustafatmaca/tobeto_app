@@ -10,7 +10,6 @@ import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
 import 'package:tobeto_app/firebase_options.dart';
-import 'package:tobeto_app/models/exam.dart';
 import 'package:tobeto_app/repository/firebaseAuth_repo.dart';
 import 'package:tobeto_app/repository/firestore_repo.dart';
 import 'package:tobeto_app/screens/login_screen.dart';
@@ -44,7 +43,7 @@ void main() async {
         BlocProvider<AnnouncementBloc>(
           create: (context) => AnnouncementBloc(fireStoreRepo: FireStoreRepo()),
         ),
-         BlocProvider<ExamBloc>(
+        BlocProvider<ExamBloc>(
           create: (context) => ExamBloc(fireStoreRepo: FireStoreRepo()),
         ),
       ],

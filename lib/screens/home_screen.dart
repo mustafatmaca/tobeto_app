@@ -351,7 +351,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller: _scrollExamController,
                 child: SingleChildScrollView(
                   controller: _scrollExamController,
-                  padding: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(2),
                   scrollDirection: Axis.horizontal,
                   child: Padding(
                       padding: const EdgeInsets.only(bottom: 4.0),
@@ -368,12 +368,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             return Row(
                               children: state.examList
                                   .map(
-                                    (e) => ExamCard(
-                                      examName: e.name,
-                                      examClass: e.examClass,
-                                      examTime:
-                                          DateTime.fromMillisecondsSinceEpoch(
-                                              e.time.millisecondsSinceEpoch),
+                                    (e) => Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ExamCard(
+                                        examName: e.name,
+                                        examClass: e.examClass,
+                                        examTime: e.time,
+                                      ),
                                     ),
                                   )
                                   .toList(),
