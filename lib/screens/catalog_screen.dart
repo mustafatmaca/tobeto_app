@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/widgets/catalog_widgets/catalog_card.dart';
 
 class CatalogScreen extends StatefulWidget {
   const CatalogScreen({Key? key}) : super(key: key);
@@ -77,328 +78,255 @@ class _CatalogScreenState extends State<CatalogScreen> {
             ),
             Padding(
               padding: const EdgeInsets.all(40.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Image.asset(
-                      "assets/ENK-1.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                    Container(
-                      alignment: Alignment.bottomLeft,
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 106, 92, 92),
-                          borderRadius: BorderRadius.horizontal(
-                              right: Radius.circular(19),
-                              left: Radius.circular(19))),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Gürkan İlişen",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13.0,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 2,
-                              ),
-                              Icon(
-                                Icons.access_time,
-                                size: 18,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 3,
-                              ),
-                              Text(
-                                "4s 14dk",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "Dinle, Anla, İfade Et: Etkili İletişim Gelişim Yolculuğu",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            maxLines: 2,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Positioned(
-                      right: 12,
-                      top: 10,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.deepPurple,
-                        child: Icon(
-                          Icons.play_arrow,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              child: CatalogCard(
+                  title: "Dinle, Anla",
+                  image: "assets/ENK-1.jpg",
+                  instructor: "Gürkan",
+                  time: 255),
             ),
-            Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Image.asset(
-                      "assets/ENK-2.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                    Container(
-                      alignment: Alignment.bottomLeft,
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 106, 92, 92),
-                          borderRadius: BorderRadius.horizontal(
-                              right: Radius.circular(15),
-                              left: Radius.circular(15))),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Gürkan İlişen",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13.0,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 2,
-                              ),
-                              Icon(
-                                Icons.access_time,
-                                size: 18,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 3,
-                              ),
-                              Text(
-                                "40dk",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "Sürdürülebilir Bir Dünya için Bireysel Farkındalık",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            maxLines: 2,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Positioned(
-                      right: 12,
-                      top: 10,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.deepPurple,
-                        child: Icon(
-                          Icons.play_arrow,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Image.asset(
-                      "assets/ENK-3.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                    Container(
-                      alignment: Alignment.bottomLeft,
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 106, 92, 92),
-                          borderRadius: BorderRadius.horizontal(
-                              right: Radius.circular(15),
-                              left: Radius.circular(15))),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Gürkan İlişen",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13.0,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 2,
-                              ),
-                              Icon(
-                                Icons.access_time,
-                                size: 18,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 3,
-                              ),
-                              Text(
-                                "53dk",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "Hibrit Yaşamda Duyguyu Düzenleme",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            maxLines: 2,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Positioned(
-                      right: 12,
-                      top: 10,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.deepPurple,
-                        child: Icon(
-                          Icons.play_arrow,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Image.asset(
-                      "assets/ENK-4.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                    Container(
-                      alignment: Alignment.bottomLeft,
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 106, 92, 92),
-                          borderRadius: BorderRadius.horizontal(
-                              right: Radius.circular(19),
-                              left: Radius.circular(19))),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Gürkan İlişen",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13.0,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 2,
-                              ),
-                              Icon(
-                                Icons.access_time,
-                                size: 18,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 3,
-                              ),
-                              Text(
-                                "2s 1dk",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "Web Sayfası Tasarımı Nasıl Oluşturulur? - HTML(Temel Seviye)",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            maxLines: 2,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Positioned(
-                      right: 12,
-                      top: 10,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.deepPurple,
-                        child: Icon(
-                          Icons.play_arrow,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(40.0),
+            //   child: ClipRRect(
+            //     borderRadius: BorderRadius.circular(15.0),
+            //     child: Stack(
+            //       alignment: Alignment.bottomCenter,
+            //       children: [
+            //         Image.asset(
+            //           "assets/ENK-2.jpg",
+            //           fit: BoxFit.cover,
+            //         ),
+            //         Container(
+            //           alignment: Alignment.bottomLeft,
+            //           padding: const EdgeInsets.all(8.0),
+            //           decoration: const BoxDecoration(
+            //               color: Color.fromARGB(255, 106, 92, 92),
+            //               borderRadius: BorderRadius.horizontal(
+            //                   right: Radius.circular(15),
+            //                   left: Radius.circular(15))),
+            //           child: const Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               Row(
+            //                 children: [
+            //                   Text(
+            //                     "Gürkan İlişen",
+            //                     style: TextStyle(
+            //                       color: Colors.white,
+            //                       fontSize: 13.0,
+            //                     ),
+            //                   ),
+            //                   SizedBox(
+            //                     width: 2,
+            //                   ),
+            //                   Icon(
+            //                     Icons.access_time,
+            //                     size: 18,
+            //                     color: Colors.white,
+            //                   ),
+            //                   SizedBox(
+            //                     width: 3,
+            //                   ),
+            //                   Text(
+            //                     "40dk",
+            //                     style: TextStyle(
+            //                       color: Colors.white,
+            //                       fontSize: 14.0,
+            //                     ),
+            //                   ),
+            //                 ],
+            //               ),
+            //               SizedBox(
+            //                 height: 10,
+            //               ),
+            //               Text(
+            //                 "Sürdürülebilir Bir Dünya için Bireysel Farkındalık",
+            //                 style: TextStyle(
+            //                   color: Colors.white,
+            //                   fontSize: 16.0,
+            //                   fontWeight: FontWeight.bold,
+            //                 ),
+            //                 maxLines: 2,
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //         const Positioned(
+            //           right: 12,
+            //           top: 10,
+            //           child: CircleAvatar(
+            //             backgroundColor: Colors.deepPurple,
+            //             child: Icon(
+            //               Icons.play_arrow,
+            //               color: Colors.white,
+            //             ),
+            //           ),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.all(40.0),
+            //   child: ClipRRect(
+            //     borderRadius: BorderRadius.circular(15.0),
+            //     child: Stack(
+            //       alignment: Alignment.bottomCenter,
+            //       children: [
+            //         Image.asset(
+            //           "assets/ENK-3.jpg",
+            //           fit: BoxFit.cover,
+            //         ),
+            //         Container(
+            //           alignment: Alignment.bottomLeft,
+            //           padding: const EdgeInsets.all(8.0),
+            //           decoration: const BoxDecoration(
+            //               color: Color.fromARGB(255, 106, 92, 92),
+            //               borderRadius: BorderRadius.horizontal(
+            //                   right: Radius.circular(15),
+            //                   left: Radius.circular(15))),
+            //           child: const Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               Row(
+            //                 children: [
+            //                   Text(
+            //                     "Gürkan İlişen",
+            //                     style: TextStyle(
+            //                       color: Colors.white,
+            //                       fontSize: 13.0,
+            //                     ),
+            //                   ),
+            //                   SizedBox(
+            //                     width: 2,
+            //                   ),
+            //                   Icon(
+            //                     Icons.access_time,
+            //                     size: 18,
+            //                     color: Colors.white,
+            //                   ),
+            //                   SizedBox(
+            //                     width: 3,
+            //                   ),
+            //                   Text(
+            //                     "53dk",
+            //                     style: TextStyle(
+            //                       color: Colors.white,
+            //                       fontSize: 14.0,
+            //                     ),
+            //                   ),
+            //                 ],
+            //               ),
+            //               SizedBox(
+            //                 height: 10,
+            //               ),
+            //               Text(
+            //                 "Hibrit Yaşamda Duyguyu Düzenleme",
+            //                 style: TextStyle(
+            //                   color: Colors.white,
+            //                   fontSize: 16.0,
+            //                   fontWeight: FontWeight.bold,
+            //                 ),
+            //                 maxLines: 2,
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //         const Positioned(
+            //           right: 12,
+            //           top: 10,
+            //           child: CircleAvatar(
+            //             backgroundColor: Colors.deepPurple,
+            //             child: Icon(
+            //               Icons.play_arrow,
+            //               color: Colors.white,
+            //             ),
+            //           ),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.all(40.0),
+            //   child: ClipRRect(
+            //     borderRadius: BorderRadius.circular(15.0),
+            //     child: Stack(
+            //       alignment: Alignment.bottomCenter,
+            //       children: [
+            //         Image.asset(
+            //           "assets/ENK-4.jpg",
+            //           fit: BoxFit.cover,
+            //         ),
+            //         Container(
+            //           alignment: Alignment.bottomLeft,
+            //           padding: const EdgeInsets.all(8.0),
+            //           decoration: const BoxDecoration(
+            //               color: Color.fromARGB(255, 106, 92, 92),
+            //               borderRadius: BorderRadius.horizontal(
+            //                   right: Radius.circular(19),
+            //                   left: Radius.circular(19))),
+            //           child: const Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               Row(
+            //                 children: [
+            //                   Text(
+            //                     "Gürkan İlişen",
+            //                     style: TextStyle(
+            //                       color: Colors.white,
+            //                       fontSize: 13.0,
+            //                     ),
+            //                   ),
+            //                   SizedBox(
+            //                     width: 2,
+            //                   ),
+            //                   Icon(
+            //                     Icons.access_time,
+            //                     size: 18,
+            //                     color: Colors.white,
+            //                   ),
+            //                   SizedBox(
+            //                     width: 3,
+            //                   ),
+            //                   Text(
+            //                     "2s 1dk",
+            //                     style: TextStyle(
+            //                       color: Colors.white,
+            //                       fontSize: 14.0,
+            //                     ),
+            //                   ),
+            //                 ],
+            //               ),
+            //               SizedBox(
+            //                 height: 10,
+            //               ),
+            //               Text(
+            //                 "Web Sayfası Tasarımı Nasıl Oluşturulur? - HTML(Temel Seviye)",
+            //                 style: TextStyle(
+            //                   color: Colors.white,
+            //                   fontSize: 16.0,
+            //                   fontWeight: FontWeight.bold,
+            //                 ),
+            //                 maxLines: 2,
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //         const Positioned(
+            //           right: 12,
+            //           top: 10,
+            //           child: CircleAvatar(
+            //             backgroundColor: Colors.deepPurple,
+            //             child: Icon(
+            //               Icons.play_arrow,
+            //               color: Colors.white,
+            //             ),
+            //           ),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ],
