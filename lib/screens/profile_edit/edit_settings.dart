@@ -11,81 +11,86 @@ class _EditSettingsState extends State<EditSettings> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
+      padding: EdgeInsets.only(left: 8.0, right: 8.0),
+      child: ListView(
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Eski Şifre",
-            ),
-          ),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+          Column(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Eski Şifre",
+                ),
               ),
-              contentPadding: const EdgeInsets.all(8),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Yeni Şifre",
-            ),
-          ),
-          TextField(
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+              TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  contentPadding: const EdgeInsets.all(8),
                 ),
-                contentPadding: const EdgeInsets.all(8)),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Yeni Şifre Tekrar",
-            ),
-          ),
-          TextField(
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Yeni Şifre",
                 ),
-                contentPadding: const EdgeInsets.all(8)),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text("Şifre Değiştir"),
-            style: ElevatedButton.styleFrom(
-                minimumSize: Size(
-              MediaQuery.of(context).size.width * 0.9,
-              MediaQuery.of(context).size.height * 0.06,
-            )),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text("Üyeliği Sonlandır"),
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                minimumSize: Size(
+              ),
+              TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    contentPadding: const EdgeInsets.all(8)),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Yeni Şifre Tekrar",
+                ),
+              ),
+              TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    contentPadding: const EdgeInsets.all(8)),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text("Şifre Değiştir"),
+                style: ElevatedButton.styleFrom(
+                    minimumSize: Size(
                   MediaQuery.of(context).size.width * 0.9,
                   MediaQuery.of(context).size.height * 0.06,
                 )),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text("Üyeliği Sonlandır"),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    minimumSize: Size(
+                      MediaQuery.of(context).size.width * 0.9,
+                      MediaQuery.of(context).size.height * 0.06,
+                    )),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+            ],
           ),
         ],
       ),

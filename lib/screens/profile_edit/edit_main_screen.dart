@@ -1,4 +1,6 @@
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tobeto_app/screens/profile_edit/edit_certificate.dart';
 import 'package:tobeto_app/screens/profile_edit/edit_education.dart';
 import 'package:tobeto_app/screens/profile_edit/edit_experience.dart';
@@ -8,6 +10,65 @@ import 'package:tobeto_app/screens/profile_edit/edit_settings.dart';
 import 'package:tobeto_app/screens/profile_edit/edit_skills.dart';
 import 'package:tobeto_app/screens/profile_edit/edit_social.dart';
 
+List<Widget> tabList = [
+  const Tab(
+    icon: Icon(
+      FontAwesomeIcons.solidUser,
+      size: 16,
+    ),
+    text: "Kişisel",
+  ),
+  const Tab(
+    icon: Icon(
+      FontAwesomeIcons.briefcase,
+      size: 16,
+    ),
+    text: "Deneyim",
+  ),
+  const Tab(
+    icon: Icon(
+      FontAwesomeIcons.graduationCap,
+      size: 16,
+    ),
+    text: "Eğitim",
+  ),
+  const Tab(
+    icon: Icon(
+      FontAwesomeIcons.solidStar,
+      size: 16,
+    ),
+    text: "Yetenek",
+  ),
+  const Tab(
+    icon: Icon(
+      FontAwesomeIcons.certificate,
+      size: 16,
+    ),
+    text: "Sertifika",
+  ),
+  const Tab(
+    icon: Icon(
+      FontAwesomeIcons.hashtag,
+      size: 16,
+    ),
+    text: "Sosyal",
+  ),
+  const Tab(
+    icon: Icon(
+      FontAwesomeIcons.globe,
+      size: 16,
+    ),
+    text: "Dil",
+  ),
+  const Tab(
+    icon: Icon(
+      FontAwesomeIcons.gear,
+      size: 16,
+    ),
+    text: "Ayarlar",
+  ),
+];
+
 class EditMainScreen extends StatefulWidget {
   const EditMainScreen({Key? key}) : super(key: key);
 
@@ -16,9 +77,6 @@ class EditMainScreen extends StatefulWidget {
 }
 
 class _EditMainScreenState extends State<EditMainScreen> {
-  final ScrollController _scrollController = ScrollController();
-  int currentTab = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,274 +91,64 @@ class _EditMainScreenState extends State<EditMainScreen> {
               },
               icon: Icon(Icons.close))
         ],
-        bottom: PreferredSize(
+        bottom: const PreferredSize(
             preferredSize: Size.fromHeight(1.0),
             child: Divider(
               color: Colors.black26,
               height: 1.0,
             )),
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-            child: Container(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.03,
-                  ),
-                  Scrollbar(
-                    thumbVisibility: true,
-                    controller: _scrollController,
-                    child: SingleChildScrollView(
-                      controller: _scrollController,
-                      scrollDirection: Axis.horizontal,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 12.0),
-                        child: Row(
-                          children: [
-                            currentTab == 0
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              width: 1.8,
-                                              color: Theme.of(context)
-                                                  .primaryColor)),
-                                    ),
-                                    child: IconButton(
-                                        iconSize: 25,
-                                        onPressed: () {
-                                          setState(() {
-                                            currentTab = 0;
-                                          });
-                                        },
-                                        icon: Icon(Icons.person)),
-                                  )
-                                : IconButton(
-                                    iconSize: 25,
-                                    onPressed: () {
-                                      setState(() {
-                                        currentTab = 0;
-                                      });
-                                    },
-                                    icon: Icon(Icons.person)),
-                            currentTab == 1
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                width: 1.8,
-                                                color: Theme.of(context)
-                                                    .primaryColor))),
-                                    child: IconButton(
-                                        iconSize: 25,
-                                        onPressed: () {
-                                          setState(() {
-                                            currentTab = 1;
-                                          });
-                                        },
-                                        icon: Icon(Icons.work)),
-                                  )
-                                : IconButton(
-                                    iconSize: 25,
-                                    onPressed: () {
-                                      setState(() {
-                                        currentTab = 1;
-                                      });
-                                    },
-                                    icon: Icon(Icons.work)),
-                            currentTab == 2
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                width: 1.8,
-                                                color: Theme.of(context)
-                                                    .primaryColor))),
-                                    child: IconButton(
-                                        iconSize: 25,
-                                        onPressed: () {
-                                          setState(() {
-                                            currentTab = 2;
-                                          });
-                                        },
-                                        icon: Icon(Icons.book)),
-                                  )
-                                : IconButton(
-                                    iconSize: 25,
-                                    onPressed: () {
-                                      setState(() {
-                                        currentTab = 2;
-                                      });
-                                    },
-                                    icon: Icon(Icons.book)),
-                            currentTab == 3
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                width: 1.8,
-                                                color: Theme.of(context)
-                                                    .primaryColor))),
-                                    child: IconButton(
-                                        iconSize: 25,
-                                        onPressed: () {
-                                          setState(() {
-                                            currentTab = 3;
-                                          });
-                                        },
-                                        icon: Icon(Icons.ac_unit)),
-                                  )
-                                : IconButton(
-                                    iconSize: 25,
-                                    onPressed: () {
-                                      setState(() {
-                                        currentTab = 3;
-                                      });
-                                    },
-                                    icon: Icon(Icons.ac_unit)),
-                            currentTab == 4
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                width: 1.8,
-                                                color: Theme.of(context)
-                                                    .primaryColor))),
-                                    child: IconButton(
-                                        iconSize: 25,
-                                        onPressed: () {
-                                          setState(() {
-                                            currentTab = 4;
-                                          });
-                                        },
-                                        icon: Icon(Icons.calendar_view_day)),
-                                  )
-                                : IconButton(
-                                    iconSize: 25,
-                                    onPressed: () {
-                                      setState(() {
-                                        currentTab = 4;
-                                      });
-                                    },
-                                    icon: Icon(Icons.calendar_view_day)),
-                            currentTab == 5
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                width: 1.8,
-                                                color: Theme.of(context)
-                                                    .primaryColor))),
-                                    child: IconButton(
-                                        iconSize: 25,
-                                        onPressed: () {
-                                          setState(() {
-                                            currentTab = 5;
-                                          });
-                                        },
-                                        icon: Icon(Icons.language)),
-                                  )
-                                : IconButton(
-                                    iconSize: 25,
-                                    onPressed: () {
-                                      setState(() {
-                                        currentTab = 5;
-                                      });
-                                    },
-                                    icon: Icon(Icons.language)),
-                            currentTab == 6
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                width: 1.8,
-                                                color: Theme.of(context)
-                                                    .primaryColor))),
-                                    child: IconButton(
-                                        iconSize: 25,
-                                        onPressed: () {
-                                          setState(() {
-                                            currentTab = 6;
-                                          });
-                                        },
-                                        icon: Icon(Icons.translate)),
-                                  )
-                                : IconButton(
-                                    iconSize: 25,
-                                    onPressed: () {
-                                      setState(() {
-                                        currentTab = 6;
-                                      });
-                                    },
-                                    icon: Icon(Icons.translate)),
-                            currentTab == 7
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                width: 1.8,
-                                                color: Theme.of(context)
-                                                    .primaryColor))),
-                                    child: IconButton(
-                                        iconSize: 25,
-                                        onPressed: () {
-                                          setState(() {
-                                            currentTab = 7;
-                                          });
-                                        },
-                                        icon: Icon(Icons.settings)),
-                                  )
-                                : IconButton(
-                                    iconSize: 25,
-                                    onPressed: () {
-                                      setState(() {
-                                        currentTab = 7;
-                                      });
-                                    },
-                                    icon: Icon(Icons.settings)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.03,
-                  ),
-                  buildContent(currentTab),
-                ],
+      body: DefaultTabController(
+        length: tabList.length,
+        child: Column(
+          children: [
+            ButtonsTabBar(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: <Color>[
+                    Color(0xFF004D79),
+                    Color(0xFF011D42),
+                    Color(0xFF341132)
+                  ],
+                ),
               ),
+              unselectedBackgroundColor:
+                  Theme.of(context).scaffoldBackgroundColor,
+              unselectedLabelStyle: Theme.of(context)
+                  .textTheme
+                  .labelLarge!
+                  .copyWith(inherit: true),
+              radius: 100,
+              tabs: tabList,
             ),
-          ),
-        ],
+            Divider(
+              height: 1.0,
+              color: Theme.of(context).iconTheme.color!.withOpacity(0.3),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            buildContent(),
+          ],
+        ),
       ),
     );
   }
 
-  Widget buildContent(int currentTab) {
-    switch (currentTab) {
-      case 0:
-        return EditPersonal();
-      case 1:
-        return EditExperience();
-      case 2:
-        return EditEducation();
-      case 3:
-        return EditSkills();
-      case 4:
-        return EditCertificate();
-      case 5:
-        return EditSocial();
-      case 6:
-        return EditLanguage();
-      case 7:
-        return EditSettings();
-      default:
-        return Container(
-          child: Text("Oops! Bir hata oldu."),
-        ); // Varsayılan durumda boş bir container döndürüyoruz.
-    }
+  Widget buildContent() {
+    return const Expanded(
+      child: TabBarView(viewportFraction: 1.0, children: [
+        EditPersonal(),
+        EditExperience(),
+        EditEducation(),
+        EditSkills(),
+        EditCertificate(),
+        EditSocial(),
+        EditLanguage(),
+        EditSettings(),
+      ]),
+    );
   }
 }
