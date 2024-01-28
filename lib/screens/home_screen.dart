@@ -4,17 +4,23 @@ import 'package:tobeto_app/blocs/announcement_bloc/announcement_bloc.dart';
 import 'package:tobeto_app/blocs/announcement_bloc/announcement_event.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_event.dart';
+import 'package:tobeto_app/blocs/education_bloc/education_bloc.dart';
+import 'package:tobeto_app/blocs/education_bloc/education_event.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_event.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_state.dart';
+import 'package:tobeto_app/blocs/navigation_bloc/navigation_event.dart';
+import 'package:tobeto_app/screens/home/exam_screen.dart';
 import 'package:tobeto_app/screens/home/home_announcement_screen.dart';
 import 'package:tobeto_app/screens/home/home_application_screen.dart';
 import 'package:tobeto_app/screens/home/home_education_screen.dart';
 import 'package:tobeto_app/screens/home/home_survey_screen.dart';
+import 'package:tobeto_app/screens/home/menu_screen.dart';
 import 'package:tobeto_app/screens/profile_screen.dart';
 import 'package:tobeto_app/widgets/home_widgets/exam_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/gradient_card.dart';
 import 'package:tobeto_app/widgets/photo_slider.dart';
+import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -57,41 +63,59 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               CircleAvatar(
-                  backgroundColor: Color(0xFF004D79),
+                  backgroundColor: const Color(0xFF004D79),
                   child: IconButton(
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ProfileScreen()));
+                                builder: (context) => const ProfileScreen()));
                       },
-                      icon: Icon(Icons.person)))
+                      icon: const Icon(Icons.person)))
             ],
           ),
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.03,
         ),
-        const FullWidthPhotoSlider(
+        FullWidthPhotoSlider(
           imageAssets: [
-            GradientCard(
-                headLine: "Profilini Oluştur",
-                icon: "assets/profile.png",
-                color1: Color(0xFF004D79),
-                color2: Color(0xFF011D42),
-                color3: Color(0xFF341132)),
-            GradientCard(
-                headLine: "Kendini Değerlendir",
-                icon: "assets/review.png",
-                color1: Color(0xFF004D79),
-                color2: Color(0xFF011D42),
-                color3: Color(0xFF341132)),
-            GradientCard(
-                headLine: "Öğrenmeye Başla",
-                icon: "assets/learn.png",
-                color1: Color(0xFF004D79),
-                color2: Color(0xFF011D42),
-                color3: Color(0xFF341132)),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfileScreen()));
+              },
+              child: const GradientCard(
+                  headLine: "Profilini Oluştur",
+                  icon: "assets/profile.png",
+                  color1: Color(0xFF004D79),
+                  color2: Color(0xFF011D42),
+                  color3: Color(0xFF341132)),
+            ),
+            InkWell(
+              onTap: () {
+                context.read<NavigationBloc>().add(ChangeScreen(index: 1));
+              },
+              child: const GradientCard(
+                  headLine: "Kendini Değerlendir",
+                  icon: "assets/review.png",
+                  color1: Color(0xFF004D79),
+                  color2: Color(0xFF011D42),
+                  color3: Color(0xFF341132)),
+            ),
+            InkWell(
+              onTap: () {
+                context.read<NavigationBloc>().add(ChangeScreen(index: 2));
+              },
+              child: const GradientCard(
+                  headLine: "Öğrenmeye Başla",
+                  icon: "assets/learn.png",
+                  color1: Color(0xFF004D79),
+                  color2: Color(0xFF011D42),
+                  color3: Color(0xFF341132)),
+            ),
           ],
         ),
         Padding(
@@ -102,7 +126,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MenuScreen(),
+                      ));
+                },
                 child: Row(
                   children: [
                     Text(
@@ -114,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.01,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_forward_ios,
                       size: 18,
                     )
@@ -143,13 +173,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => HomeApplicationScreen(),
+                                  builder: (context) =>
+                                      const HomeApplicationScreen(),
                                 ));
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.35,
                             height: MediaQuery.of(context).size.height * 0.18,
-                            padding: EdgeInsets.all(18),
+                            padding: const EdgeInsets.all(18),
                             decoration: BoxDecoration(
                                 gradient: const LinearGradient(
                                   begin: Alignment.topLeft,
@@ -186,18 +217,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         InkWell(
                           onTap: () {
+                            context.read<EducationBloc>().add(LoadEducation());
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        HomeEducationScreen()));
+                                        const HomeEducationScreen()));
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.35,
                             height: MediaQuery.of(context).size.height * 0.18,
-                            padding: EdgeInsets.all(18),
+                            padding: const EdgeInsets.all(18),
                             decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                   colors: [
@@ -236,14 +268,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomeAnnouncement()));
+                                    builder: (context) =>
+                                        const HomeAnnouncement()));
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.35,
                             height: MediaQuery.of(context).size.height * 0.18,
-                            padding: EdgeInsets.all(18),
+                            padding: const EdgeInsets.all(18),
                             decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                   colors: [
@@ -281,14 +314,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomeSurveyScreen()));
+                                    builder: (context) =>
+                                        const HomeSurveyScreen()));
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.35,
                             height: MediaQuery.of(context).size.height * 0.18,
-                            padding: EdgeInsets.all(18),
+                            padding: const EdgeInsets.all(18),
                             decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                   colors: [
@@ -327,7 +361,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  context.read<ExamBloc>().add(LoadExam());
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ExamScreen(),
+                      ));
+                },
                 child: Row(
                   children: [
                     Text(
@@ -339,7 +380,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.01,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_forward_ios,
                       size: 18,
                     )
@@ -351,7 +392,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller: _scrollExamController,
                 child: SingleChildScrollView(
                   controller: _scrollExamController,
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   scrollDirection: Axis.horizontal,
                   child: Padding(
                       padding: const EdgeInsets.only(bottom: 4.0),
@@ -359,9 +400,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         builder: (context, state) {
                           if (state is ExamInitial) {
                             context.read<ExamBloc>().add(LoadExam());
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(
+                                child: CircularProgressIndicator());
                           } else if (state is ExamLoading) {
-                            return Center(
+                            return const Center(
                               child: CircularProgressIndicator(),
                             );
                           } else if (state is ExamLoaded) {
