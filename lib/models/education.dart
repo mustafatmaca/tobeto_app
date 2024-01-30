@@ -5,10 +5,12 @@ class Education {
   String title;
   Timestamp date;
   String image;
+  String videoUrl;
   Education({
     required this.title,
     required this.date,
     required this.image,
+    required this.videoUrl,
   });
 
   factory Education.fromMap(Map<String, dynamic> map) {
@@ -16,6 +18,7 @@ class Education {
       title: map['title'] ?? '',
       date: map['date'],
       image: map['image'] ?? '',
+      videoUrl: map['video'],
     );
   }
 

@@ -6,38 +6,34 @@ class EmptyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          )
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.fill,
+                image: Image.asset("assets/empty.png").image)),
         child: Column(
           children: [
-            AspectRatio(
-                aspectRatio: 4 / 2, child: Image.asset('assets/notFound.png')),
             SizedBox(
-              height: 5,
+              height: MediaQuery.of(context).size.height * 0.18,
             ),
-            Row(
-              children: [
-                Expanded(
-                    child: Text(
-                  "Atanmış herhangi bir içeriğiniz bulunmamaktadır.",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Theme.of(context).colorScheme.primary),
-                )),
-              ],
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                text: "Size atanmış",
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColor),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: " herhangi bir içerik bulunmamaktadır!",
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).primaryColor),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
