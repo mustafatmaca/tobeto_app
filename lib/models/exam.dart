@@ -4,10 +4,16 @@ import 'dart:convert';
 class Exam {
   String name;
   String examClass;
+  String examType;
+  String content;
+  int questionNumber;
   int time;
   Exam({
     required this.name,
     required this.examClass,
+    required this.examType,
+    required this.content,
+    required this.questionNumber,
     required this.time,
   });
 
@@ -15,7 +21,10 @@ class Exam {
     return Exam(
       name: map['name'] as String,
       examClass: map['examClass'] as String,
-      time: map['time'],
+      examType: map['examType'] as String,
+      content: map['content'] as String,
+      questionNumber: map['questionNumber'] as int,
+      time: map['time'] as int,
     );
   }
 
