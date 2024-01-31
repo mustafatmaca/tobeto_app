@@ -8,10 +8,12 @@ import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
 import 'package:tobeto_app/blocs/education_bloc/education_bloc.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
+import 'package:tobeto_app/blocs/service_bloc/service_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
 import 'package:tobeto_app/firebase_options.dart';
 import 'package:tobeto_app/repository/firebaseAuth_repo.dart';
 import 'package:tobeto_app/repository/firestore_repo.dart';
+import 'package:tobeto_app/repository/urlLaunch_service.dart';
 import 'package:tobeto_app/screens/login_screen.dart';
 import 'package:tobeto_app/screens/main_screen.dart';
 import 'package:tobeto_app/screens/splash/splash_screen.dart';
@@ -45,6 +47,10 @@ void main() async {
         ),
         BlocProvider<ExamBloc>(
           create: (context) => ExamBloc(fireStoreRepo: FireStoreRepo()),
+        ),
+        BlocProvider<ServiceBloc>(
+          create: (context) =>
+              ServiceBloc(urlLaunchService: UrlLaunchService()),
         ),
       ],
       child: MaterialApp(
