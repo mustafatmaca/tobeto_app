@@ -55,7 +55,52 @@ class ReviewsHorizontalCard extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.02,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      height: MediaQuery.of(context).size.height * 0.6,
+                      padding: const EdgeInsets.all(16.0),
+                      child: ListView(
+                        children: [
+                          Text(
+                            headLine,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
+                          const Text(
+                              "Bu sınav 25 sorudan oluşmakta olup sınav süresi 30 dakikadır. Sınav çoktan seçmeli test şeklinde olup sınavı yarıda bıraktığınız taktırde çözdüğünüz kısım kadarıyla değerlendirileceksiniz."),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02,
+                          ),
+                          const Text("Sınav Süresi: 30"),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
+                          const Text("Soru Sayısı: 25"),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
+                          const Text("Soru Tipi: Çoktan Seçmeli"),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text("Sınava Başla"),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
               child: Text(
                 "Başla",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(

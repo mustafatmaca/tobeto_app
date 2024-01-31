@@ -415,6 +415,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: ExamCard(
                                         examName: e.name,
                                         examClass: e.examClass,
+                                        examType: e.examType,
+                                        examContent: e.content,
+                                        examQuestionNumber: e.questionNumber,
                                         examTime: e.time,
                                       ),
                                     ),

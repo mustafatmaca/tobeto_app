@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_event.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_state.dart';
+import 'package:tobeto_app/blocs/service_bloc/service_bloc.dart';
+import 'package:tobeto_app/blocs/service_bloc/service_event.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -37,9 +39,15 @@ class _MainScreenState extends State<MainScreen> {
               direction: SpeedDialDirection.up,
               children: [
                 SpeedDialChild(
+                    onTap: () {
+                      context.read<ServiceBloc>().add(SendMessage());
+                    },
                     child: FaIcon(FontAwesomeIcons.whatsapp),
                     backgroundColor: Colors.green),
                 SpeedDialChild(
+                    onTap: () {
+                      context.read<ServiceBloc>().add(SendMail());
+                    },
                     child: FaIcon(FontAwesomeIcons.envelope),
                     backgroundColor: const Color.fromARGB(255, 240, 103, 93))
               ],
