@@ -46,13 +46,20 @@ class _HomeAnnouncementState extends State<HomeAnnouncement> {
                 itemCount: state.announcementList.length,
                 itemBuilder: (context, index) {
                   return AnnouncementCard(
-                      type: state.announcementList[index].type,
-                      eduType: state.announcementList[index].eduType,
-                      title: state.announcementList[index].title,
-                      date: DateTime.fromMillisecondsSinceEpoch(state
-                          .announcementList[index]
-                          .date
-                          .millisecondsSinceEpoch));
+                    type: state.announcementList[index].type,
+                    eduType: state.announcementList[index].eduType,
+                    title: state.announcementList[index].title,
+                    content: state.announcementList[index].content,
+                    date: DateTime.fromMillisecondsSinceEpoch(state
+                        .announcementList[index].date.millisecondsSinceEpoch),
+                    onTapReadMore: () {
+                      _showReadMoreModal(
+                        context,
+                        state.announcementList[index].title,
+                        state.announcementList[index].content,
+                      );
+                    },
+                  );
                 });
           } else if (state is AnnouncementError) {
             return const Center(
@@ -67,4 +74,33 @@ class _HomeAnnouncementState extends State<HomeAnnouncement> {
       ),
     ));
   }
+}
+
+void _showReadMoreModal(BuildContext context, String title, String content) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return SingleChildScrollView(
+        child: Container(
+           height:  MediaQuery.of(context).size.height,
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
+              // İstediğiniz içeriği ekleyebilirsiniz.
+              Text(content, style: Theme.of(context).textTheme.bodyLarge),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }

@@ -5,11 +5,15 @@ class AnnouncementCard extends StatelessWidget {
   final String eduType;
   final String title;
   final DateTime date;
+  final String content;
+  final VoidCallback onTapReadMore;
   const AnnouncementCard(
       {Key? key,
       required this.type,
       required this.eduType,
       required this.title,
+      required this.content,
+      required this.onTapReadMore,
       required this.date})
       : super(key: key);
 
@@ -82,7 +86,10 @@ class AnnouncementCard extends StatelessWidget {
               Expanded(
                 child: Text("${date.day}/${date.month}/${date.year}"),
               ),
-              InkWell(onTap: () {}, child: const Text("Devamını Oku")),
+              InkWell(
+                onTap: onTapReadMore,
+                child: const Text("Devamını Oku"),
+              ),
             ],
           ),
         ],

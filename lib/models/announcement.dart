@@ -8,11 +8,13 @@ class Announcement {
   String type;
   String eduType;
   Timestamp date;
+  String content;
   Announcement({
     required this.title,
     required this.type,
     required this.eduType,
     required this.date,
+    required this.content,
   });
 
   
@@ -23,6 +25,7 @@ class Announcement {
       type: map['type'] as String,
       eduType: map['eduType'] as String,
       date: map['date'],
+      content: map['content'] as String,
     );
   }
 
