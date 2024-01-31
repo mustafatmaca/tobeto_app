@@ -37,9 +37,13 @@ class _ExamScreenState extends State<ExamScreen> {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ExamCard(
-                      examName: state.examList[index].name,
-                      examClass: state.examList[index].examClass,
-                      examTime: state.examList[index].time),
+                    examName: state.examList[index].name,
+                    examClass: state.examList[index].examClass,
+                    examType: state.examList[index].examType,
+                    examContent: state.examList[index].content,
+                    examQuestionNumber: state.examList[index].questionNumber,
+                    examTime: state.examList[index].time,
+                  ),
                 );
               },
             );
