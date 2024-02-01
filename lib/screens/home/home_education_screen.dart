@@ -55,6 +55,7 @@ class _HomeEducationScreenState extends State<HomeEducationScreen> {
                     date: DateTime.fromMillisecondsSinceEpoch(
                         state.educationList[index].date.millisecondsSinceEpoch),
                     image: state.educationList[index].image,
+                    video: state.educationList[index].videoUrl,
                     context: context),
               );
             },

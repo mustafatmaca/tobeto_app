@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/widgets/video_player_page.dart';
 
 class EducationCard extends StatelessWidget {
   final String title;
   final DateTime date;
   final String? image;
+  final String video;
 
   const EducationCard({
     required this.title,
@@ -11,6 +13,7 @@ class EducationCard extends StatelessWidget {
     required this.image,
     super.key,
     required this.context,
+    required this.video,
   });
 
   final BuildContext context;
@@ -71,7 +74,17 @@ class EducationCard extends StatelessWidget {
                   fixedSize: Size.fromWidth(
                 MediaQuery.of(context).size.width * 0.85,
               )),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => VideoPlayerPage(
+                      videoUrl: video,
+                      title: title,
+                    ),
+                  ),
+                );
+              },
               child: Text('Eğitime Git'),
             ),
           ),
