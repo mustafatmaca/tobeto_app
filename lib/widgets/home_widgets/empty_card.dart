@@ -18,21 +18,27 @@ class EmptyCard extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.18,
             ),
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                text: "Size atanmış",
-                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColor),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: " herhangi bir içerik bulunmamaktadır!",
-                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: "Size atanmış",
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: " herhangi bir içerik bulunmamaktadır!",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).primaryColor),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   video_player: ^2.6.0
-  chewie: ^1.2.2
+  chewie: ^1.7.4
   carousel_slider: ^4.0.0
 
   # The following adds the Cupertino Icons font to your application.
