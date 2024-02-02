@@ -5,6 +5,7 @@ import 'package:tobeto_app/blocs/education_bloc/education_bloc.dart';
 import 'package:tobeto_app/blocs/education_bloc/education_event.dart';
 import 'package:tobeto_app/blocs/education_bloc/education_state.dart';
 import 'package:tobeto_app/widgets/home_widgets/education_card.dart';
+import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
 
 class HomeEducationScreen extends StatefulWidget {
   const HomeEducationScreen({Key? key}) : super(key: key);
@@ -45,20 +46,24 @@ class _HomeEducationScreenState extends State<HomeEducationScreen> {
             child: CircularProgressIndicator(),
           );
         } else if (state is EducationLoaded) {
-          return ListView.builder(
-            itemCount: state.educationList.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: EducationCard(
-                    title: state.educationList[index].title,
-                    date: DateTime.fromMillisecondsSinceEpoch(
-                        state.educationList[index].date.millisecondsSinceEpoch),
-                    image: state.educationList[index].image,
-                    context: context),
-              );
-            },
-          );
+          if (state.educationList.isEmpty) {
+            return EmptyCard();
+          } else {
+            return ListView.builder(
+              itemCount: state.educationList.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: EducationCard(
+                      title: state.educationList[index].title,
+                      date: DateTime.fromMillisecondsSinceEpoch(state
+                          .educationList[index].date.millisecondsSinceEpoch),
+                      image: state.educationList[index].image,
+                      context: context),
+                );
+              },
+            );
+          }
         } else if (state is EducationError) {
           return const Center(
             child: Text("That's an error"),

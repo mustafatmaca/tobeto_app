@@ -4,6 +4,7 @@ import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_event.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_state.dart';
 import 'package:tobeto_app/widgets/home_widgets/applications_card.dart';
+import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
 
 class HomeApplicationScreen extends StatefulWidget {
   const HomeApplicationScreen({Key? key}) : super(key: key);
@@ -43,20 +44,24 @@ class _HomeApplicationScreenState extends State<HomeApplicationScreen> {
             child: CircularProgressIndicator(),
           );
         } else if (state is ApplicationLoaded) {
-          return ListView.builder(
-            itemCount: state.applicationList.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ApplicationsCard(
-                  title: state.applicationList[index].title,
-                  subtitle: state.applicationList[index].subtitle,
-                  subtitle2: state.applicationList[index].subtitle1,
-                  state: state.applicationList[index].state,
-                ),
-              );
-            },
-          );
+          if (state.applicationList.isEmpty) {
+            return EmptyCard();
+          } else {
+            return ListView.builder(
+              itemCount: state.applicationList.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ApplicationsCard(
+                    title: state.applicationList[index].title,
+                    subtitle: state.applicationList[index].subtitle,
+                    subtitle2: state.applicationList[index].subtitle1,
+                    state: state.applicationList[index].state,
+                  ),
+                );
+              },
+            );
+          }
         } else if (state is ApplicationError) {
           return const Center(
             child: Text("That's an error."),

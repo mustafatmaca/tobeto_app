@@ -15,6 +15,13 @@ class FireStoreRepo {
         .doc(firebaseAuthInstance.currentUser!.uid);
     final docSnapShot = await user.get();
 
+    // Hata durumunu kontrol et (kullanıcı var ve applications yoksa)
+    if (docSnapShot.exists &&
+        !docSnapShot.data()!.containsKey("applications")) {
+      //'applications' alanı yok
+      return []; // Boş bir liste döndür
+    }
+
     //kullanıcının içindeki başvurular listesini döndürür
     List appsId = await docSnapShot.get("applications");
 
@@ -41,6 +48,13 @@ class FireStoreRepo {
         .doc(firebaseAuthInstance.currentUser!.uid);
     final docSnapShot = await user.get();
 
+    // Hata durumunu kontrol et (kullanıcı var ve announcements yoksa)
+    if (docSnapShot.exists &&
+        !docSnapShot.data()!.containsKey("announcements")) {
+      //'announcements' alanı yok
+      return []; // Boş bir liste döndür
+    }
+
     List annoId = await docSnapShot.get("announcements");
 
     final annoList = annoId.map(
@@ -62,6 +76,12 @@ class FireStoreRepo {
         .doc(firebaseAuthInstance.currentUser!.uid);
     final docSnapShot = await user.get();
 
+    // Hata durumunu kontrol et (kullanıcı var ve exams yoksa)
+    if (docSnapShot.exists && !docSnapShot.data()!.containsKey("exams")) {
+      //'exams' alanı yok
+      return []; // Boş bir liste döndür
+    }
+
     List examsId = await docSnapShot.get("exams");
 
     final examList = examsId.map(
@@ -82,11 +102,16 @@ class FireStoreRepo {
         .doc(firebaseAuthInstance.currentUser!.uid);
     final docSnapShot = await user.get();
 
+    // Hata durumunu kontrol et (kullanıcı var ve educations yoksa)
+    if (docSnapShot.exists && !docSnapShot.data()!.containsKey("educations")) {
+      //'educations' alanı yok
+      return []; // Boş bir liste döndür
+    }
+
     List eduId = await docSnapShot.get("educations");
 
     final eduList = eduId.map((e) async {
       final docRef = FirebaseFirestoreInstance.collection("educations").doc(e);
-
       final eduSnapshot = await docRef.get();
       return Education.fromMap(eduSnapshot.data()!);
     }).toList();
