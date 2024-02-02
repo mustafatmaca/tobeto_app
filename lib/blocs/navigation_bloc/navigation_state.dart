@@ -14,7 +14,7 @@ class NavigationLoaded extends NavigationState {
     const HomeScreen(),
     const ReviewsScreen(),
     const CatalogScreen(),
-    const CalendarScreen(),
+    const CalendarPage(),
     const MoreScreen(),
   ];
 
