@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthRepo {
   final firebaseAuthInstance = FirebaseAuth.instance;
+  final firebaseFirestoreInstance = FirebaseFirestore.instance;
 
   void signIn(String email, String password) async {
     try {
@@ -50,9 +52,26 @@ class FirebaseAuthRepo {
     try {
       final userCredentials = await firebaseAuthInstance
           .createUserWithEmailAndPassword(email: email, password: password);
+      firebaseFirestoreInstance
+          .collection("users")
+          .doc(userCredentials.user!.uid)
+          .set(
+        {
+          'email': email,
+        },
+      );
       print(userCredentials);
     } on FirebaseAuthException catch (e) {
       print(e.message);
+    }
+  }
+
+  void forgotPassword(String email) async {
+    try {
+      await firebaseAuthInstance.setLanguageCode('tr');
+      await firebaseAuthInstance.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      print(e);
     }
   }
 }

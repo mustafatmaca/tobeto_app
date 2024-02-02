@@ -34,6 +34,13 @@ class UserControllerBloc
       }
     });
 
+    on<ForgotPasswordEvent>((event, emit) {
+      firebaseAuthRepo.forgotPassword(event.email);
+      ScaffoldMessenger.of(event.context).showSnackBar(SnackBar(
+        content: Text("E-posta Gönderildi!"),
+      ));
+    });
+
     on<ShowPassword>((event, emit) {
       emit(PasswordVisibility(isVisible: event.visibility));
     });

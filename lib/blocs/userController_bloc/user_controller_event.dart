@@ -31,6 +31,16 @@ class RegisterEvent extends UserControllerEvent {
   });
 }
 
+class ForgotPasswordEvent extends UserControllerEvent {
+  String email;
+  BuildContext context;
+
+  ForgotPasswordEvent({
+    required this.email,
+    required this.context,
+  });
+}
+
 class ShowPassword extends UserControllerEvent {
   bool visibility;
 
