@@ -7,7 +7,7 @@ class EducationBloc extends Bloc<EducationEvent, EducationState> {
   final FireStoreRepo fireStoreRepo;
 
   EducationBloc({required this.fireStoreRepo}) : super(EducationInitial()) {
-    on<EducationEvent>((event, emit) async {
+    on<LoadEducation>((event, emit) async {
       emit(EducationLoading());
 
       try {

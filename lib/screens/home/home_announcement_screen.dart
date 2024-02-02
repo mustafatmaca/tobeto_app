@@ -4,6 +4,7 @@ import 'package:tobeto_app/blocs/announcement_bloc/announcement_bloc.dart';
 import 'package:tobeto_app/blocs/announcement_bloc/announcement_event.dart';
 import 'package:tobeto_app/blocs/announcement_bloc/announcement_state.dart';
 import 'package:tobeto_app/widgets/home_widgets/announcement_card.dart';
+import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
 
 class HomeAnnouncement extends StatefulWidget {
   const HomeAnnouncement({Key? key}) : super(key: key);
@@ -42,7 +43,10 @@ class _HomeAnnouncementState extends State<HomeAnnouncement> {
               child: CircularProgressIndicator(),
             );
           } else if (state is AnnouncementLoaded) {
-            return ListView.builder(
+            if (state.announcementList.isEmpty) {
+              return EmptyCard();
+            } else {
+              return ListView.builder(
                 itemCount: state.announcementList.length,
                 itemBuilder: (context, index) {
                   return AnnouncementCard(
@@ -60,7 +64,9 @@ class _HomeAnnouncementState extends State<HomeAnnouncement> {
                       );
                     },
                   );
-                });
+                },
+              );
+            }
           } else if (state is AnnouncementError) {
             return const Center(
               child: Text("That's an error"),
@@ -82,7 +88,7 @@ void _showReadMoreModal(BuildContext context, String title, String content) {
     builder: (BuildContext context) {
       return SingleChildScrollView(
         child: Container(
-           height:  MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height,
           padding: EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_event.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_state.dart';
+import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
 import 'package:tobeto_app/widgets/home_widgets/exam_card.dart';
 
 class ExamScreen extends StatefulWidget {
@@ -31,22 +32,26 @@ class _ExamScreenState extends State<ExamScreen> {
               child: CircularProgressIndicator(),
             );
           } else if (state is ExamLoaded) {
-            return ListView.builder(
-              itemCount: state.examList.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ExamCard(
-                    examName: state.examList[index].name,
-                    examClass: state.examList[index].examClass,
-                    examType: state.examList[index].examType,
-                    examContent: state.examList[index].content,
-                    examQuestionNumber: state.examList[index].questionNumber,
-                    examTime: state.examList[index].time,
-                  ),
-                );
-              },
-            );
+            if (state.examList.isEmpty) {
+              return EmptyCard();
+            } else {
+              return ListView.builder(
+                itemCount: state.examList.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ExamCard(
+                      examName: state.examList[index].name,
+                      examClass: state.examList[index].examClass,
+                      examType: state.examList[index].examType,
+                      examContent: state.examList[index].content,
+                      examQuestionNumber: state.examList[index].questionNumber,
+                      examTime: state.examList[index].time,
+                    ),
+                  );
+                },
+              );
+            }
           } else if (state is ExamError) {
             return const Center(
               child: Text("That's an error."),

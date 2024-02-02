@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_event.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_state.dart';
-import 'package:tobeto_app/screens/main_screen.dart';
+import 'package:tobeto_app/screens/forgot_password_screen.dart';
 import 'package:tobeto_app/screens/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -165,12 +165,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     LoginEvent(
                                         email: _usernameController.text,
                                         password: _passwordController.text));
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MainScreen(),
-                                  ),
-                                );
                               },
                               child: const Text("Giriş Yap")),
                         ),
@@ -217,7 +211,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ForgotPasswordScreen(),
+                          ),
+                        );
+                      },
                       child: const Text("Parolamı Unuttum"),
                     )
                   ],

@@ -407,23 +407,27 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: CircularProgressIndicator(),
                             );
                           } else if (state is ExamLoaded) {
-                            return Row(
-                              children: state.examList
-                                  .map(
-                                    (e) => Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: ExamCard(
-                                        examName: e.name,
-                                        examClass: e.examClass,
-                                        examType: e.examType,
-                                        examContent: e.content,
-                                        examQuestionNumber: e.questionNumber,
-                                        examTime: e.time,
+                            if (state.examList.isEmpty) {
+                              return Text("İçerik Bulunamadı!");
+                            } else {
+                              return Row(
+                                children: state.examList
+                                    .map(
+                                      (e) => Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: ExamCard(
+                                          examName: e.name,
+                                          examClass: e.examClass,
+                                          examType: e.examType,
+                                          examContent: e.content,
+                                          examQuestionNumber: e.questionNumber,
+                                          examTime: e.time,
+                                        ),
                                       ),
-                                    ),
-                                  )
-                                  .toList(),
-                            );
+                                    )
+                                    .toList(),
+                              );
+                            }
                           } else if (state is ExamError) {
                             return const Center(
                               child: Text("That's an error"),
