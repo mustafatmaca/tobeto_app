@@ -8,7 +8,8 @@ class ContactUsPageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const Text('İletişim Bilgileri'),
+        scrolledUnderElevation: 0,
+        title: const Text('İletişim Bilgileri'),
       ),
       body: ListView(children: [
         const Padding(
@@ -39,7 +40,7 @@ class ContactUsPageScreen extends StatelessWidget {
                 'Firma Unvan:',
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
-               Text(
+              Text(
                 'Avez Elektronik İletişim Eğitim Danışmanlığı Ticaret Anonim Şirketi',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
               ),
@@ -113,12 +114,12 @@ class ContactUsPageScreen extends StatelessWidget {
         Center(
             child: ElevatedButton(
                 onPressed: () {
-                   showModalBottomSheet(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return ContactForm(); 
-                        },
-                      );
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return ContactForm();
+                    },
+                  );
                 },
                 style: ButtonStyle(),
                 child: const Text("Mesaj Bırakın")))
@@ -126,6 +127,3 @@ class ContactUsPageScreen extends StatelessWidget {
     );
   }
 }
-
-
- 
