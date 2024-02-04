@@ -112,6 +112,8 @@ flutter:
     - assets/sayfa2.png
     - assets/google_icon.png
     - assets/empty.png
+    - assets/katalog.png
+    - assets/arkavideo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

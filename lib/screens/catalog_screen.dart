@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tobeto_app/widgets/catalog_widgets/catalog_card.dart';
+import 'package:tobeto_app/widgets/catalog_widgets/filter_button.dart';
 
 class CatalogScreen extends StatefulWidget {
   const CatalogScreen({Key? key}) : super(key: key);
@@ -9,34 +10,47 @@ class CatalogScreen extends StatefulWidget {
 }
 
 class _CatalogScreenState extends State<CatalogScreen> {
-  Image img = Image.asset("assets/edu-banner2.png");
+  Image img = Image.asset("assets/katalog.png");
+  String searchText = '';
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Column(
-          children: [
-            Container(
-                height: MediaQuery.of(context).size.height * 0.3,
+    return Scaffold(
+      body: ListView(
+        children: [
+          Column(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.32,
                 decoration: BoxDecoration(
-                    image: DecorationImage(fit: BoxFit.fill, image: img.image)),
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: img.image,
+                  ),
+                ),
                 child: Container(
                   decoration:
                       BoxDecoration(color: Colors.black.withOpacity(0.3)),
                   child: Padding(
                     padding: const EdgeInsets.all(17.0),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         const Text(
                           "Öğrenmeye başla !",
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 50,
-                              fontWeight: FontWeight.bold),
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         const SizedBox(height: 10.0),
                         TextField(
+                          onChanged: (value) {
+                            setState(() {
+                              searchText = value;
+                            });
+                          },
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
@@ -45,291 +59,68 @@ class _CatalogScreenState extends State<CatalogScreen> {
                               child: Icon(
                                 Icons.search,
                                 color: Colors.grey,
-                                size: 40.0,
+                                size: 25.0,
                               ),
                             ),
                             hintText: "Eğitim arayın...",
                             labelStyle: TextStyle(color: Colors.grey),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            contentPadding: const EdgeInsets.all(8),
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 15),
                           ),
                         ),
                       ],
                     ),
                   ),
-                )),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text("Filtrele",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.background,
-                      fontWeight: FontWeight.bold)),
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  minimumSize: Size(
-                    MediaQuery.of(context).size.width * 0.9,
-                    MediaQuery.of(context).size.height * 0.05,
-                  )),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: CatalogCard(
-                  title: "Dinle, Anla",
-                  image: "assets/ENK-1.jpg",
-                  instructor: "Gürkan",
-                  time: 255),
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.all(40.0),
-            //   child: ClipRRect(
-            //     borderRadius: BorderRadius.circular(15.0),
-            //     child: Stack(
-            //       alignment: Alignment.bottomCenter,
-            //       children: [
-            //         Image.asset(
-            //           "assets/ENK-2.jpg",
-            //           fit: BoxFit.cover,
-            //         ),
-            //         Container(
-            //           alignment: Alignment.bottomLeft,
-            //           padding: const EdgeInsets.all(8.0),
-            //           decoration: const BoxDecoration(
-            //               color: Color.fromARGB(255, 106, 92, 92),
-            //               borderRadius: BorderRadius.horizontal(
-            //                   right: Radius.circular(15),
-            //                   left: Radius.circular(15))),
-            //           child: const Column(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             children: [
-            //               Row(
-            //                 children: [
-            //                   Text(
-            //                     "Gürkan İlişen",
-            //                     style: TextStyle(
-            //                       color: Colors.white,
-            //                       fontSize: 13.0,
-            //                     ),
-            //                   ),
-            //                   SizedBox(
-            //                     width: 2,
-            //                   ),
-            //                   Icon(
-            //                     Icons.access_time,
-            //                     size: 18,
-            //                     color: Colors.white,
-            //                   ),
-            //                   SizedBox(
-            //                     width: 3,
-            //                   ),
-            //                   Text(
-            //                     "40dk",
-            //                     style: TextStyle(
-            //                       color: Colors.white,
-            //                       fontSize: 14.0,
-            //                     ),
-            //                   ),
-            //                 ],
-            //               ),
-            //               SizedBox(
-            //                 height: 10,
-            //               ),
-            //               Text(
-            //                 "Sürdürülebilir Bir Dünya için Bireysel Farkındalık",
-            //                 style: TextStyle(
-            //                   color: Colors.white,
-            //                   fontSize: 16.0,
-            //                   fontWeight: FontWeight.bold,
-            //                 ),
-            //                 maxLines: 2,
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //         const Positioned(
-            //           right: 12,
-            //           top: 10,
-            //           child: CircleAvatar(
-            //             backgroundColor: Colors.deepPurple,
-            //             child: Icon(
-            //               Icons.play_arrow,
-            //               color: Colors.white,
-            //             ),
-            //           ),
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.all(40.0),
-            //   child: ClipRRect(
-            //     borderRadius: BorderRadius.circular(15.0),
-            //     child: Stack(
-            //       alignment: Alignment.bottomCenter,
-            //       children: [
-            //         Image.asset(
-            //           "assets/ENK-3.jpg",
-            //           fit: BoxFit.cover,
-            //         ),
-            //         Container(
-            //           alignment: Alignment.bottomLeft,
-            //           padding: const EdgeInsets.all(8.0),
-            //           decoration: const BoxDecoration(
-            //               color: Color.fromARGB(255, 106, 92, 92),
-            //               borderRadius: BorderRadius.horizontal(
-            //                   right: Radius.circular(15),
-            //                   left: Radius.circular(15))),
-            //           child: const Column(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             children: [
-            //               Row(
-            //                 children: [
-            //                   Text(
-            //                     "Gürkan İlişen",
-            //                     style: TextStyle(
-            //                       color: Colors.white,
-            //                       fontSize: 13.0,
-            //                     ),
-            //                   ),
-            //                   SizedBox(
-            //                     width: 2,
-            //                   ),
-            //                   Icon(
-            //                     Icons.access_time,
-            //                     size: 18,
-            //                     color: Colors.white,
-            //                   ),
-            //                   SizedBox(
-            //                     width: 3,
-            //                   ),
-            //                   Text(
-            //                     "53dk",
-            //                     style: TextStyle(
-            //                       color: Colors.white,
-            //                       fontSize: 14.0,
-            //                     ),
-            //                   ),
-            //                 ],
-            //               ),
-            //               SizedBox(
-            //                 height: 10,
-            //               ),
-            //               Text(
-            //                 "Hibrit Yaşamda Duyguyu Düzenleme",
-            //                 style: TextStyle(
-            //                   color: Colors.white,
-            //                   fontSize: 16.0,
-            //                   fontWeight: FontWeight.bold,
-            //                 ),
-            //                 maxLines: 2,
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //         const Positioned(
-            //           right: 12,
-            //           top: 10,
-            //           child: CircleAvatar(
-            //             backgroundColor: Colors.deepPurple,
-            //             child: Icon(
-            //               Icons.play_arrow,
-            //               color: Colors.white,
-            //             ),
-            //           ),
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.all(40.0),
-            //   child: ClipRRect(
-            //     borderRadius: BorderRadius.circular(15.0),
-            //     child: Stack(
-            //       alignment: Alignment.bottomCenter,
-            //       children: [
-            //         Image.asset(
-            //           "assets/ENK-4.jpg",
-            //           fit: BoxFit.cover,
-            //         ),
-            //         Container(
-            //           alignment: Alignment.bottomLeft,
-            //           padding: const EdgeInsets.all(8.0),
-            //           decoration: const BoxDecoration(
-            //               color: Color.fromARGB(255, 106, 92, 92),
-            //               borderRadius: BorderRadius.horizontal(
-            //                   right: Radius.circular(19),
-            //                   left: Radius.circular(19))),
-            //           child: const Column(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             children: [
-            //               Row(
-            //                 children: [
-            //                   Text(
-            //                     "Gürkan İlişen",
-            //                     style: TextStyle(
-            //                       color: Colors.white,
-            //                       fontSize: 13.0,
-            //                     ),
-            //                   ),
-            //                   SizedBox(
-            //                     width: 2,
-            //                   ),
-            //                   Icon(
-            //                     Icons.access_time,
-            //                     size: 18,
-            //                     color: Colors.white,
-            //                   ),
-            //                   SizedBox(
-            //                     width: 3,
-            //                   ),
-            //                   Text(
-            //                     "2s 1dk",
-            //                     style: TextStyle(
-            //                       color: Colors.white,
-            //                       fontSize: 14.0,
-            //                     ),
-            //                   ),
-            //                 ],
-            //               ),
-            //               SizedBox(
-            //                 height: 10,
-            //               ),
-            //               Text(
-            //                 "Web Sayfası Tasarımı Nasıl Oluşturulur? - HTML(Temel Seviye)",
-            //                 style: TextStyle(
-            //                   color: Colors.white,
-            //                   fontSize: 16.0,
-            //                   fontWeight: FontWeight.bold,
-            //                 ),
-            //                 maxLines: 2,
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //         const Positioned(
-            //           right: 12,
-            //           top: 10,
-            //           child: CircleAvatar(
-            //             backgroundColor: Colors.deepPurple,
-            //             child: Icon(
-            //               Icons.play_arrow,
-            //               color: Colors.white,
-            //             ),
-            //           ),
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
-          ],
-        ),
-      ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              FilterButton(
+                filterOptions: const [
+                  'Kategori',
+                  'Eğitimler',
+                  'Seviye',
+                  'Konu',
+                  'Yazılım Dili',
+                  'Eğitmen',
+                ],
+                onFilterSelected: (selectedFilter) {
+                  // Seçilen filtreleme seçeneğine göre katalogu güncelleme işlemleri
+                  print("Seçilen filtre: $selectedFilter");
+                  // Burada katalogu güncellemek için gerekli işlemleri yapabilirsiniz
+                },
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.015,
+              ),
+              CatalogCard(
+                title: "Dinle, Anla",
+                image: "assets/ENK-1.jpg",
+                instructor: "Gürkan",
+                time: 255,
+                isVisible: searchText.isEmpty ||
+                    "Dinle, Anla"
+                        .toLowerCase()
+                        .contains(searchText.toLowerCase()),
+              ),
+              CatalogCard(
+                title: "Hibrit Yaşamda Duyguyu Düzenleme",
+                image: "assets/ENK-3.jpg",
+                instructor: "Gürkan İlişen",
+                time: 53,
+                isVisible: searchText.isEmpty ||
+                    "Hibrit Yaşamda Duyguyu Düzenleme"
+                        .toLowerCase()
+                        .contains(searchText.toLowerCase()),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
