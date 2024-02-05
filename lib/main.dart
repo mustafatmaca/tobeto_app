@@ -5,8 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tobeto_app/blocs/announcement_bloc/announcement_bloc.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
+import 'package:tobeto_app/blocs/carousel_bloc/carousel_bloc.dart';
 import 'package:tobeto_app/blocs/education_bloc/education_bloc.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
+import 'package:tobeto_app/blocs/lesson_bloc/lesson_bloc.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
 import 'package:tobeto_app/blocs/service_bloc/service_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
@@ -52,6 +54,12 @@ void main() async {
           create: (context) =>
               ServiceBloc(urlLaunchService: UrlLaunchService()),
         ),
+        BlocProvider<CarouselBloc>(
+          create: (context) => CarouselBloc(),
+        ),
+        BlocProvider<LessonBloc>(
+          create: (context) => LessonBloc(fireStoreRepo: FireStoreRepo()),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

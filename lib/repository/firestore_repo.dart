@@ -4,6 +4,7 @@ import 'package:tobeto_app/models/announcement.dart';
 import 'package:tobeto_app/models/application.dart';
 import 'package:tobeto_app/models/education.dart';
 import 'package:tobeto_app/models/exam.dart';
+import 'package:tobeto_app/models/lesson.dart';
 
 class FireStoreRepo {
   final firebaseAuthInstance = FirebaseAuth.instance;
@@ -119,5 +120,29 @@ class FireStoreRepo {
     List<Education> resolvedEduList = await Future.wait(eduList);
 
     return resolvedEduList;
+  }
+
+  Future<List<Lesson>> getLessons() async {
+    final user = await FirebaseFirestoreInstance.collection("users")
+        .doc(firebaseAuthInstance.currentUser!.uid);
+    final docSnapShot = await user.get();
+
+    // Hata durumunu kontrol et (kullanıcı var ve educations yoksa)
+    if (docSnapShot.exists && !docSnapShot.data()!.containsKey("lessons")) {
+      //'educations' alanı yok
+      return []; // Boş bir liste döndür
+    }
+
+    List lessonId = await docSnapShot.get("lessons");
+
+    final lessonList = lessonId.map((e) async {
+      final docRef = FirebaseFirestoreInstance.collection("lessons").doc(e);
+      final lessonSnapshot = await docRef.get();
+      return Lesson.fromMap(lessonSnapshot.data()!);
+    }).toList();
+
+    List<Lesson> resolvedLessonList = await Future.wait(lessonList);
+
+    return resolvedLessonList;
   }
 }

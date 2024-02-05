@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tobeto_app/blocs/lesson_bloc/lesson_bloc.dart';
+import 'package:tobeto_app/blocs/lesson_bloc/lesson_event.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_event.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_state.dart';
@@ -67,6 +69,9 @@ class _MainScreenState extends State<MainScreen> {
               ],
               currentIndex: state.currentPage,
               onTap: (value) {
+                if (value == 3) {
+                  context.read<LessonBloc>().add(LoadLessons());
+                }
                 context.read<NavigationBloc>().add(ChangeScreen(index: value));
               },
             ),

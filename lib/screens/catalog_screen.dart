@@ -11,7 +11,6 @@ class CatalogScreen extends StatefulWidget {
 
 class _CatalogScreenState extends State<CatalogScreen> {
   Image img = Image.asset("assets/katalog.png");
-  String searchText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +45,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                         ),
                         const SizedBox(height: 10.0),
                         TextField(
-                          onChanged: (value) {
-                            setState(() {
-                              searchText = value;
-                            });
-                          },
+                          onChanged: (value) {},
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
@@ -102,20 +97,12 @@ class _CatalogScreenState extends State<CatalogScreen> {
                 image: "assets/ENK-1.jpg",
                 instructor: "Gürkan",
                 time: 255,
-                isVisible: searchText.isEmpty ||
-                    "Dinle, Anla"
-                        .toLowerCase()
-                        .contains(searchText.toLowerCase()),
               ),
               CatalogCard(
                 title: "Hibrit Yaşamda Duyguyu Düzenleme",
                 image: "assets/ENK-3.jpg",
                 instructor: "Gürkan İlişen",
                 time: 53,
-                isVisible: searchText.isEmpty ||
-                    "Hibrit Yaşamda Duyguyu Düzenleme"
-                        .toLowerCase()
-                        .contains(searchText.toLowerCase()),
               ),
             ],
           ),

@@ -5,7 +5,6 @@ class CatalogCard extends StatelessWidget {
   final String image;
   final String instructor;
   final int time;
-  final bool isVisible;
 
   const CatalogCard({
     Key? key,
@@ -13,7 +12,6 @@ class CatalogCard extends StatelessWidget {
     required this.image,
     required this.instructor,
     required this.time,
-    required this.isVisible,
   }) : super(key: key);
 
   @override
