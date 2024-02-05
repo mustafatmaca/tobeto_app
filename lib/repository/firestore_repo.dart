@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tobeto_app/models/announcement.dart';
 import 'package:tobeto_app/models/application.dart';
+import 'package:tobeto_app/models/catalog.dart';
 import 'package:tobeto_app/models/education.dart';
 import 'package:tobeto_app/models/exam.dart';
 import 'package:tobeto_app/models/lesson.dart';
@@ -144,5 +145,18 @@ class FireStoreRepo {
     List<Lesson> resolvedLessonList = await Future.wait(lessonList);
 
     return resolvedLessonList;
+  }
+
+  Future<List<Catalog>> getCAtalog() async {
+    final catalogs =
+        await FirebaseFirestoreInstance.collection("catalogs").get();
+
+    final catalogList = catalogs.docs.map((e) async {
+      return Catalog.fromMap(e.data());
+    }).toList();
+
+    List<Catalog> resolvedCatalogList = await Future.wait(catalogList);
+
+    return resolvedCatalogList;
   }
 }

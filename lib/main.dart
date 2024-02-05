@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tobeto_app/blocs/announcement_bloc/announcement_bloc.dart';
 import 'package:tobeto_app/blocs/application_bloc/application_bloc.dart';
 import 'package:tobeto_app/blocs/carousel_bloc/carousel_bloc.dart';
+import 'package:tobeto_app/blocs/catalog_bloc/catalog_bloc.dart';
 import 'package:tobeto_app/blocs/education_bloc/education_bloc.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
 import 'package:tobeto_app/blocs/lesson_bloc/lesson_bloc.dart';
@@ -59,7 +60,10 @@ void main() async {
         ),
         BlocProvider<LessonBloc>(
           create: (context) => LessonBloc(fireStoreRepo: FireStoreRepo()),
-        )
+        ),
+        BlocProvider<CatalogBloc>(
+          create: (context) => CatalogBloc(fireStoreRepo: FireStoreRepo()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

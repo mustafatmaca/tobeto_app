@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/catalog_bloc/catalog_bloc.dart';
+import 'package:tobeto_app/blocs/catalog_bloc/catalog_event.dart';
+import 'package:tobeto_app/blocs/catalog_bloc/catalog_state.dart';
 import 'package:tobeto_app/widgets/catalog_widgets/catalog_card.dart';
 import 'package:tobeto_app/widgets/catalog_widgets/filter_button.dart';
+import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
 
 class CatalogScreen extends StatefulWidget {
   const CatalogScreen({Key? key}) : super(key: key);
@@ -92,18 +97,35 @@ class _CatalogScreenState extends State<CatalogScreen> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.015,
               ),
-              CatalogCard(
-                title: "Dinle, Anla",
-                image: "assets/ENK-1.jpg",
-                instructor: "Gürkan",
-                time: 255,
-              ),
-              CatalogCard(
-                title: "Hibrit Yaşamda Duyguyu Düzenleme",
-                image: "assets/ENK-3.jpg",
-                instructor: "Gürkan İlişen",
-                time: 53,
-              ),
+              BlocBuilder<CatalogBloc, CatalogState>(
+                builder: (context, state) {
+                  if (state is CatalogInitial) {
+                    context.read<CatalogBloc>().add(LoadCatalog());
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is CatalogLoading) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is CatalogLoaded) {
+                    return ListView.builder(
+                      itemCount: state.catalogs.length,
+                      itemBuilder: (context, index) {
+                        return CatalogCard(
+                            title: state.catalogs[index].title,
+                            image: state.catalogs[index].image,
+                            instructor: state.catalogs[index].instructor,
+                            time: state.catalogs[index].time);
+                      },
+                    );
+                  } else if (state is CatalogError) {
+                    return EmptyCard();
+                  } else {
+                    return Text("Error");
+                  }
+                },
+              )
             ],
           ),
         ],
