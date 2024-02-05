@@ -25,10 +25,12 @@ class CatalogCard extends StatelessWidget {
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              Image.asset(
-                image,
-                fit: BoxFit.cover,
-              ),
+              image == ""
+                  ? Container()
+                  : Image.network(
+                      image,
+                      fit: BoxFit.cover,
+                    ),
               Container(
                 alignment: Alignment.bottomLeft,
                 padding: const EdgeInsets.all(8.0),

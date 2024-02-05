@@ -109,16 +109,25 @@ class _CatalogScreenState extends State<CatalogScreen> {
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is CatalogLoaded) {
-                    return ListView.builder(
-                      itemCount: state.catalogs.length,
-                      itemBuilder: (context, index) {
-                        return CatalogCard(
-                            title: state.catalogs[index].title,
-                            image: state.catalogs[index].image,
-                            instructor: state.catalogs[index].instructor,
-                            time: state.catalogs[index].time);
-                      },
+                    return Column(
+                      children: state.catalogs
+                          .map((e) => CatalogCard(
+                              title: e.title,
+                              image: e.image,
+                              instructor: e.instructor,
+                              time: e.time))
+                          .toList(),
                     );
+                    // return ListView.builder(
+                    //   itemCount: state.catalogs.length,
+                    //   itemBuilder: (context, index) {
+                    //     return CatalogCard(
+                    //         title: state.catalogs[index].title,
+                    //         image: state.catalogs[index].image,
+                    //         instructor: state.catalogs[index].instructor,
+                    //         time: state.catalogs[index].time);
+                    //   },
+                    // );
                   } else if (state is CatalogError) {
                     return EmptyCard();
                   } else {
