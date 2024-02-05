@@ -112,10 +112,12 @@ class _CatalogScreenState extends State<CatalogScreen> {
                     return Column(
                       children: state.catalogs
                           .map((e) => CatalogCard(
-                              title: e.title,
-                              image: e.image,
-                              instructor: e.instructor,
-                              time: e.time))
+                                title: e.title,
+                                image: e.image,
+                                instructor: e.instructor,
+                                time: e.time,
+                                video: e.video,
+                              ))
                           .toList(),
                     );
                     // return ListView.builder(

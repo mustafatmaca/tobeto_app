@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tobeto_app/widgets/video_player_page.dart';
 
 class CatalogCard extends StatelessWidget {
   final String title;
   final String image;
   final String instructor;
   final int time;
+  final String video;
 
   const CatalogCard({
     Key? key,
@@ -12,16 +14,25 @@ class CatalogCard extends StatelessWidget {
     required this.image,
     required this.instructor,
     required this.time,
+    required this.video,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 25, right: 25, top: 15, bottom: 15),
+      padding: const EdgeInsets.only(left: 50, right: 50, top: 25, bottom: 25),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => VideoPlayerPage(
+                        videoUrl: video,
+                        title: title,
+                      )));
+        },
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(15.0),
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
