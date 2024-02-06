@@ -51,13 +51,20 @@ class ReviewsHorizontalCard extends StatelessWidget {
                       ),
                       SizedBox(
                           width: MediaQuery.of(context).size.width * 0.002),
-                      Text(
-                        headLine,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              color: Theme.of(context).colorScheme.background,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: Text(
+                          overflow: TextOverflow.ellipsis,
+                          headLine,
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.background,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
                       ),
                     ],
                   ),

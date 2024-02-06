@@ -49,20 +49,23 @@ class _HomeAnnouncementState extends State<HomeAnnouncement> {
               return ListView.builder(
                 itemCount: state.announcementList.length,
                 itemBuilder: (context, index) {
-                  return AnnouncementCard(
-                    type: state.announcementList[index].type,
-                    eduType: state.announcementList[index].eduType,
-                    title: state.announcementList[index].title,
-                    content: state.announcementList[index].content,
-                    date: DateTime.fromMillisecondsSinceEpoch(state
-                        .announcementList[index].date.millisecondsSinceEpoch),
-                    onTapReadMore: () {
-                      _showReadMoreModal(
-                        context,
-                        state.announcementList[index].title,
-                        state.announcementList[index].content,
-                      );
-                    },
+                  return Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: AnnouncementCard(
+                      type: state.announcementList[index].type,
+                      eduType: state.announcementList[index].eduType,
+                      title: state.announcementList[index].title,
+                      content: state.announcementList[index].content,
+                      date: DateTime.fromMillisecondsSinceEpoch(state
+                          .announcementList[index].date.millisecondsSinceEpoch),
+                      onTapReadMore: () {
+                        _showReadMoreModal(
+                          context,
+                          state.announcementList[index].title,
+                          state.announcementList[index].content,
+                        );
+                      },
+                    ),
                   );
                 },
               );

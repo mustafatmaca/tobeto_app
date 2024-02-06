@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/report_bloc/report_bloc.dart';
+import 'package:tobeto_app/blocs/report_bloc/report_event.dart';
+import 'package:tobeto_app/blocs/report_bloc/report_state.dart';
+import 'package:tobeto_app/models/report.dart';
+
+final reports = Report(reports: {"dfsf": 3.5, "dbfdbf": 3.5, "dfvvfsf": 3.5});
 
 class ReviewsButtonCard extends StatelessWidget {
   final String headLine;
@@ -62,7 +69,63 @@ class ReviewsButtonCard extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.01,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return BlocBuilder<ReportBloc, ReportState>(
+                        builder: (context, state) {
+                      if (state is ReportInitial) {
+                        context.read<ReportBloc>().add(LoadReport());
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (state is ReportLoading) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (state is ReportLoaded) {
+                        return Container(
+                          padding: EdgeInsets.all(25),
+                          height: MediaQuery.of(context).size.height * 0.5,
+                          child: Column(
+                              children: state.report.first.reports.entries
+                                  .map((e) => Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                padding:
+                                                    const EdgeInsets.all(6),
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.amber,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                                child:
+                                                    Text(e.value.toString())),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.03,
+                                            ),
+                                            Text(e.key)
+                                          ],
+                                        ),
+                                      ))
+                                  .toList()),
+                        );
+                      } else if (state is ReportError) {
+                        return Center(child: Text("Something went wrong !"));
+                      } else {
+                        return Center(child: Text("Thats an Error !"));
+                      }
+                    });
+                  },
+                );
+              },
               child: Text("Raporu Görüntüle",
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       color: Theme.of(context).colorScheme.background,
