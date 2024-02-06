@@ -109,65 +109,50 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ReviewsHorizontalCard(
-                  headLine: "Front End",
-                  color1: Color(0xFF004D79),
-                  color2: Color(0xFF011D42),
-                  color3: Color(0xFF341132),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.05,
-                ),
-                ReviewsHorizontalCard(
-                  headLine: "Full Stack",
-                  color1: Color(0xFF004D79),
-                  color2: Color(0xFF011D42),
-                  color3: Color(0xFF341132),
-                ),
-              ],
+            ReviewsHorizontalCard(
+              headLine: "Front End",
+              color1: Color(0xFF004D79),
+              color2: Color(0xFF011D42),
+              color3: Color(0xFF341132),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ReviewsHorizontalCard(
-                  headLine: "Back End",
-                  color1: Color(0xFF004D79),
-                  color2: Color(0xFF011D42),
-                  color3: Color(0xFF341132),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.05,
-                ),
-                ReviewsHorizontalCard(
-                  headLine: "Microsoft SQL Server",
-                  color1: Color(0xFF004D79),
-                  color2: Color(0xFF011D42),
-                  color3: Color(0xFF341132),
-                ),
-              ],
+            ReviewsHorizontalCard(
+              headLine: "Full Stack",
+              color1: Color(0xFF004D79),
+              color2: Color(0xFF011D42),
+              color3: Color(0xFF341132),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ReviewsHorizontalCard(
-                  headLine: "Masaüstü Programlama",
-                  color1: Color(0xFF004D79),
-                  color2: Color(0xFF011D42),
-                  color3: Color(0xFF341132),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.05,
-                ),
-              ],
+            ReviewsHorizontalCard(
+              headLine: "Back End",
+              color1: Color(0xFF004D79),
+              color2: Color(0xFF011D42),
+              color3: Color(0xFF341132),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            ReviewsHorizontalCard(
+              headLine: "Microsoft SQL Server",
+              color1: Color(0xFF004D79),
+              color2: Color(0xFF011D42),
+              color3: Color(0xFF341132),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            ReviewsHorizontalCard(
+              headLine: "Masaüstü Programlama",
+              color1: Color(0xFF004D79),
+              color2: Color(0xFF011D42),
+              color3: Color(0xFF341132),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
             ),
           ],
         ),

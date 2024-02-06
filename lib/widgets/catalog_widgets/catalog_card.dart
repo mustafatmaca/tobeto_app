@@ -19,102 +19,126 @@ class CatalogCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 50, right: 50, top: 25, bottom: 25),
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.93,
+      height: MediaQuery.of(context).size.height * 0.15,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
       child: InkWell(
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => VideoPlayerPage(
-                        videoUrl: video,
-                        title: title,
-                      )));
+            context,
+            MaterialPageRoute(
+              builder: (context) => VideoPlayerPage(
+                videoUrl: video,
+                title: title,
+              ),
+            ),
+          );
         },
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Stack(
-            alignment: Alignment.bottomCenter,
             children: [
-              image == ""
-                  ? Container()
-                  : Image.network(
-                      image,
-                      fit: BoxFit.cover,
+              Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
                     ),
-              Container(
-                alignment: Alignment.bottomLeft,
-                padding: const EdgeInsets.all(8.0),
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Color(0xFF004D79),
-                      Color(0xFF011D42),
-                      Color(0xFF341132),
-                    ], begin: Alignment.topCenter, end: Alignment.bottomLeft),
-                    borderRadius: BorderRadius.horizontal(
-                        right: Radius.circular(19), left: Radius.circular(19))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          instructor,
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.background,
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.bold),
+                    child: image == ""
+                        ? Container()
+                        : Image.network(
+                            image,
+                            fit: BoxFit.cover,
+                          ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0xFF004D79),
+                            Color(0xFF011D42),
+                            Color(0xFF341132),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomLeft,
                         ),
-                        const SizedBox(
-                          width: 2,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(12.0),
+                          bottomRight: Radius.circular(12.0),
                         ),
-                        Icon(
-                          Icons.access_time,
-                          size: 18,
-                          color: Theme.of(context).colorScheme.background,
-                        ),
-                        const SizedBox(
-                          width: 3,
-                        ),
-                        Text(
-                          (time / 60).toInt().toString() +
-                              " Saat"
-                                  " " +
-                              (time % 60).toString() +
-                              " Dakika",
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.background,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      title,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.background,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
                       ),
-                      maxLines: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                instructor,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.background,
+                                  fontSize: 13.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Icon(
+                                Icons.access_time,
+                                size: 18,
+                                color: Theme.of(context).colorScheme.background,
+                              ),
+                              SizedBox(
+                                width:
+                                    MediaQuery.of(context).size.width * 0.006,
+                              ),
+                              Text(
+                                (time / 60).toInt().toString() +
+                                    " Saat" +
+                                    " " +
+                                    (time % 60).toString() +
+                                    " Dakika",
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.background,
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.006,
+                          ),
+                          Text(
+                            title,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.background,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 4,
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
+                  ),
+                ],
+              ),
+              const Positioned(
+                bottom: 3,
+                right: 3,
+                child: Icon(
+                  Icons.play_circle_filled,
+                  size: 30,
+                  color: Colors.white,
                 ),
               ),
-              Positioned(
-                right: 12,
-                top: 10,
-                child: CircleAvatar(
-                  backgroundColor: Color(0xFF011D42),
-                  child: Icon(
-                    Icons.play_arrow,
-                    color: Theme.of(context).colorScheme.background,
-                  ),
-                ),
-              )
             ],
           ),
         ),
