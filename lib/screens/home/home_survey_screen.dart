@@ -12,27 +12,29 @@ class _HomeSurveyScreenState extends State<HomeSurveyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: NestedScrollView(
-      headerSliverBuilder: (context, innerBoxIsScrolled) {
-        return [
-          SliverAppBar(
-            snap: true,
-            floating: true,
-            scrolledUnderElevation: 0.0,
-            title: Text("Anketlerim"),
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(Icons.arrow_back_ios)),
-          )
-        ];
-      },
-      body: ListView.builder(
-        itemCount: 1,
-        itemBuilder: (context, index) {
-          return EmptyCard();
+        body: SafeArea(
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              snap: true,
+              floating: true,
+              scrolledUnderElevation: 0.0,
+              title: Text("Anketlerim"),
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back_ios)),
+            )
+          ];
         },
+        body: ListView.builder(
+          itemCount: 1,
+          itemBuilder: (context, index) {
+            return EmptyCard();
+          },
+        ),
       ),
     ));
   }

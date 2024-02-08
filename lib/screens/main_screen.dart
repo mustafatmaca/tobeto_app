@@ -80,7 +80,7 @@ class _MainScreenState extends State<MainScreen> {
                 context.read<NavigationBloc>().add(ChangeScreen(index: value));
               },
             ),
-            body: state.pages[state.currentPage],
+            body: SafeArea(child: state.pages[state.currentPage]),
           );
         } else {
           return Scaffold(
