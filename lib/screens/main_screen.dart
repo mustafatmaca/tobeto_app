@@ -67,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.calendar_month), label: 'Takvim'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.more_horiz), label: 'Daha Fazla'),
+                    icon: Icon(Icons.person), label: 'Hesabım'),
               ],
               currentIndex: state.currentPage,
               onTap: (value) {

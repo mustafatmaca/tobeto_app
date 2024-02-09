@@ -15,256 +15,174 @@ class _EditPersonalState extends State<EditPersonal> {
   var imagePath;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 8.0, right: 8.0),
-      child: ListView(
-        children: [
-          Column(
-            children: [
-              CircleAvatar(
-                maxRadius: 32,
-                child: imagePath != null
-                    ? Image.asset(
-                        imagePath,
-                        width: 150,
-                        height: 75,
-                      )
-                    : Icon(Icons.person),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Ad",
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Hakkımda"),
+        scrolledUnderElevation: 0,
+      ),
+      body: Container(
+        padding: EdgeInsets.only(left: 16.0, right: 16.0),
+        child: ListView(
+          children: [
+            Column(
+              children: [
+                CircleAvatar(
+                  maxRadius: 32,
+                  child: imagePath != null
+                      ? Image.asset(
+                          imagePath,
+                          width: 150,
+                          height: 75,
+                        )
+                      : Icon(Icons.person),
                 ),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Ad",
                   ),
-                  contentPadding: const EdgeInsets.all(8),
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Soyad",
-                ),
-              ),
-              TextField(
-                decoration: InputDecoration(
+                TextField(
+                  decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    contentPadding: const EdgeInsets.all(8)),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Telefon Numarası",
+                    contentPadding: const EdgeInsets.all(8),
+                  ),
                 ),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    contentPadding: const EdgeInsets.all(8)),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Doğum Tarihiniz",
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
                 ),
-              ),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.black38),
-                    borderRadius: BorderRadius.circular(14)),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 6.0, right: 6.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
-                        style: Theme.of(context).textTheme.titleSmall,
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Soyad",
+                  ),
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.calendar_month)),
-                    ],
+                      contentPadding: const EdgeInsets.all(8)),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Telefon Numarası",
                   ),
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "E-Posta",
+                TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: const EdgeInsets.all(8)),
                 ),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    contentPadding: const EdgeInsets.all(8)),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Ülke",
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
                 ),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    contentPadding: const EdgeInsets.all(8)),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "İl",
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Doğum Tarihiniz",
+                  ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: DecoratedBox(
+                DecoratedBox(
                   decoration: BoxDecoration(
                       border: Border.all(width: 1, color: Colors.black38),
                       borderRadius: BorderRadius.circular(14)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 6.0, right: 6.0),
-                    child: DropdownButton<String>(
-                      isExpanded: true,
-                      underline: Container(),
-                      value: dropdownValue,
-                      items: list.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (String? value) {
-                        setState(() {
-                          dropdownValue = value!;
-                        });
-                      },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.calendar_month)),
+                      ],
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "İlçe",
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
                 ),
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.black38),
-                      borderRadius: BorderRadius.circular(14)),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 6.0, right: 6.0),
-                    child: DropdownButton<String>(
-                      isExpanded: true,
-                      underline: Container(),
-                      value: dropdownValueSecond,
-                      items: list.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (String? value) {
-                        setState(() {
-                          dropdownValueSecond = value!;
-                        });
-                      },
-                    ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "E-Posta",
                   ),
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Adres",
+                TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: const EdgeInsets.all(8)),
                 ),
-              ),
-              TextField(
-                maxLines: 4,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    contentPadding: const EdgeInsets.all(8)),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Hakkımda",
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
                 ),
-              ),
-              TextField(
-                maxLines: 4,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    contentPadding: const EdgeInsets.all(8)),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text("Kaydet"),
-                style: ElevatedButton.styleFrom(
-                    minimumSize: Size(
-                  MediaQuery.of(context).size.width * 0.9,
-                  MediaQuery.of(context).size.height * 0.06,
-                )),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-            ],
-          ),
-        ],
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Adres",
+                  ),
+                ),
+                TextField(
+                  maxLines: 4,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: const EdgeInsets.all(8)),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Hakkımda",
+                  ),
+                ),
+                TextField(
+                  maxLines: 4,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: const EdgeInsets.all(8)),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text("Kaydet"),
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: Size(
+                    MediaQuery.of(context).size.width * 0.9,
+                    MediaQuery.of(context).size.height * 0.06,
+                  )),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

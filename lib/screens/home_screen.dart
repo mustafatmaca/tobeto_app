@@ -62,16 +62,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               )),
                 ],
               ),
-              CircleAvatar(
-                  backgroundColor: const Color(0xFF004D79),
-                  child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ProfileScreen()));
-                      },
-                      icon: const Icon(Icons.person)))
+              // CircleAvatar(
+              //     backgroundColor: const Color(0xFF004D79),
+              //     child: IconButton(
+              //         onPressed: () {
+              //           Navigator.push(
+              //               context,
+              //               MaterialPageRoute(
+              //                   builder: (context) => const ProfileScreen()));
+              //         },
+              //         icon: const Icon(Icons.person)))
             ],
           ),
         ),
