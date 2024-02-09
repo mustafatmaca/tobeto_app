@@ -103,10 +103,11 @@ class _EditLanguageState extends State<EditLanguage> {
                   onPressed: () {},
                   child: const Text("Kaydet"),
                   style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF011D42),
                       minimumSize: Size(
-                    MediaQuery.of(context).size.width * 0.9,
-                    MediaQuery.of(context).size.height * 0.06,
-                  )),
+                        MediaQuery.of(context).size.width * 0.9,
+                        MediaQuery.of(context).size.height * 0.06,
+                      )),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,

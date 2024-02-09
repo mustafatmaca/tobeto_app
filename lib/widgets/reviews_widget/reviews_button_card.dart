@@ -86,6 +86,13 @@ class ReviewsButtonCard extends StatelessWidget {
                         );
                       } else if (state is ReportLoaded) {
                         return Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.background,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
+                          ),
                           padding: EdgeInsets.all(25),
                           height: MediaQuery.of(context).size.height * 0.5,
                           child: Column(

@@ -169,12 +169,14 @@ class _EditPersonalState extends State<EditPersonal> {
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text("Kaydet"),
+                  child: Text("Kaydet"),
                   style: ElevatedButton.styleFrom(
-                      minimumSize: Size(
-                    MediaQuery.of(context).size.width * 0.9,
-                    MediaQuery.of(context).size.height * 0.06,
-                  )),
+                    backgroundColor: Color(0xFF011D42),
+                    minimumSize: Size(
+                      MediaQuery.of(context).size.width * 0.9,
+                      MediaQuery.of(context).size.height * 0.06,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,

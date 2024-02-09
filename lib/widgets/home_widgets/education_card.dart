@@ -11,7 +11,6 @@ class EducationCard extends StatelessWidget {
     required this.title,
     required this.date,
     required this.image,
-    super.key,
     required this.context,
     required this.video,
   });
@@ -20,75 +19,109 @@ class EducationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.8,
-      decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(30),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              spreadRadius: 2,
-              blurRadius: 7,
-              offset: Offset(0, 3),
-            )
-          ]),
-      padding: EdgeInsets.all(5.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
+    return Padding(
+      padding: EdgeInsets.only(
+          top: MediaQuery.of(context).size.width * 0.03,
+          left: MediaQuery.of(context).size.width * 0.04,
+          right: MediaQuery.of(context).size.width * 0.04),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VideoPlayerPage(
+                  videoUrl: video,
+                  title: title,
+                ),
+              ));
+        },
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.93,
+          height: MediaQuery.of(context).size.height * 0.15,
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                spreadRadius: 2,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Stack(children: [
+            Row(
+              children: [
+                ClipRRect(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)),
+                    topLeft: Radius.circular(10),
+                    bottomLeft: Radius.circular(10),
+                  ),
                   child: image == null
                       ? Container()
                       : Image.network(
                           image!,
                           fit: BoxFit.cover,
-                          width: MediaQuery.of(context).size.width,
+                          width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.height * 0.2,
-                        )),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ),
-              Text(title,
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ),
-              Text("${date.day}/${date.month}/${date.year}"),
-            ],
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  fixedSize: Size.fromWidth(
-                MediaQuery.of(context).size.width * 0.85,
-              )),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => VideoPlayerPage(
-                      videoUrl: video,
-                      title: title,
+                        ),
+                ),
+                Expanded(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0xFF004D79),
+                          Color(0xFF011D42),
+                          Color(0xFF341132),
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomLeft,
+                      ),
+                    ),
+                    padding: EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.background,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        Text("${date.day}/${date.month}/${date.year}",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.background,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      ],
                     ),
                   ),
-                );
-              },
-              child: Text('Eğitime Git'),
+                ),
+              ],
             ),
-          ),
-        ],
+            const Positioned(
+              bottom: 3,
+              right: 3,
+              child: Icon(
+                Icons.play_circle_filled,
+                size: 30,
+                color: Colors.white,
+              ),
+            ),
+          ]),
+        ),
       ),
     );
   }

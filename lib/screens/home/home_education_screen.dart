@@ -33,7 +33,7 @@ class _HomeEducationScreenState extends State<HomeEducationScreen> {
                   Navigator.pop(context);
                 },
                 icon: Icon(Icons.arrow_back_ios)),
-          )
+          ),
         ];
       }, body: BlocBuilder<EducationBloc, EducationState>(
         builder: (context, state) {
@@ -53,16 +53,13 @@ class _HomeEducationScreenState extends State<HomeEducationScreen> {
               return ListView.builder(
                 itemCount: state.educationList.length,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: EducationCard(
-                        title: state.educationList[index].title,
-                        date: DateTime.fromMillisecondsSinceEpoch(state
-                            .educationList[index].date.millisecondsSinceEpoch),
-                        image: state.educationList[index].image,
-                        video: state.educationList[index].videoUrl,
-                        context: context),
-                  );
+                  return EducationCard(
+                      title: state.educationList[index].title,
+                      date: DateTime.fromMillisecondsSinceEpoch(state
+                          .educationList[index].date.millisecondsSinceEpoch),
+                      image: state.educationList[index].image,
+                      video: state.educationList[index].videoUrl,
+                      context: context);
                 },
               );
             }

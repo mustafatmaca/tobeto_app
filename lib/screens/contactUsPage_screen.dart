@@ -12,117 +12,178 @@ class ContactUsPageScreen extends StatelessWidget {
         title: const Text('İletişim Bilgileri'),
       ),
       body: ListView(children: [
-        const Padding(
-          padding: EdgeInsets.all(16.0),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'Firma Adı: ',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
               Text(
                 'Tobeto',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.w200),
               ),
-              Divider(),
+              Divider(color: Colors.grey[700], thickness: 1.5),
               Text(
                 'Firma Unvan:',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
               Text(
                 'Avez Elektronik İletişim Eğitim Danışmanlığı Ticaret Anonim Şirketi',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.w200),
               ),
-              Divider(),
-              Text(
-                'Firma Unvan:',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'Avez Elektronik İletişim Eğitim Danışmanlığı Ticaret Anonim Şirketi',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
-              ),
-              Divider(),
+              Divider(color: Colors.grey[700], thickness: 1.5),
               Text(
                 'Vergi Dairesi:',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
               Text(
                 'Beykoz',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.w200),
               ),
-              Divider(),
+              Divider(color: Colors.grey[700], thickness: 1.5),
               Text(
                 'Vergi No:',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
               Text(
                 '1050250859',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.w200),
               ),
-              Divider(),
+              Divider(color: Colors.grey[700], thickness: 1.5),
               Text(
                 'Telefon:	',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
               Text(
                 '(0216) 331 48 00',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.w200),
               ),
-              Divider(),
+              Divider(color: Colors.grey[700], thickness: 1.5),
               Text(
                 'E-Posta:',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
               Text(
                 'info@tobeto.com',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.w200),
               ),
-              Divider(),
+              Divider(color: Colors.grey[700], thickness: 1.5),
               Text(
                 'Adres:',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
               Text(
                 'Kavacık, Rüzgarlıbahçe Mah. Çampınarı Sok. No:4 Smart Plaza B Blok Kat:3 34805, Beykoz/İstanbul',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.w200),
               ),
-              Divider(),
+              Divider(color: Colors.grey[700], thickness: 1.5),
               Text(
                 'İstanbul Kodluyor için Telefon:',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
               Text(
                 '(0216) 969 22 40',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.w200),
               ),
-              Divider(),
+              Divider(color: Colors.grey[700], thickness: 1.5),
               Text(
                 'İstanbul Kodluyor için E-Posta:',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
               Text(
                 'istanbulkodluyor@tobeto.com',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.w200),
               ),
-              Divider(),
+              Divider(color: Colors.grey[700], thickness: 1.5),
             ],
           ),
         ),
         Center(
-            child: ElevatedButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return ContactForm();
-                    },
+          child: ElevatedButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.background,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      ),
+                    ),
+                    child: ContactForm(),
                   );
                 },
-                style: ButtonStyle(),
-                child: const Text("Mesaj Bırakın")))
+              );
+            },
+            child: const Text("Bize Ulaşın"),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.grey[800],
+                minimumSize: Size(
+                  MediaQuery.of(context).size.width * 0.5,
+                  MediaQuery.of(context).size.height * 0.05,
+                )),
+          ),
+        ),
       ]),
     );
   }

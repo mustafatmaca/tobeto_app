@@ -25,6 +25,13 @@ class ExamCard extends StatelessWidget {
           context: context,
           builder: (context) {
             return Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.background,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
               height: MediaQuery.of(context).size.height * 0.6,
               padding: EdgeInsets.all(16.0),
               child: ListView(

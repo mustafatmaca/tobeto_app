@@ -93,24 +93,32 @@ void _showReadMoreModal(BuildContext context, String title, String content) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
-      return SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
-              // İstediğiniz içeriği ekleyebilirsiniz.
-              Text(content, style: Theme.of(context).textTheme.bodyLarge),
-            ],
+      return Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.background,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                Text(content, style: Theme.of(context).textTheme.bodyMedium),
+              ],
+            ),
           ),
         ),
       );
