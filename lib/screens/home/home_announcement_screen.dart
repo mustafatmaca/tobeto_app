@@ -17,69 +17,73 @@ class _HomeAnnouncementState extends State<HomeAnnouncement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: NestedScrollView(
-      headerSliverBuilder: (context, innerBoxIsScrolled) {
-        return [
-          SliverAppBar(
-            title: Text("Duyurularım"),
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back),
-            ),
-          ),
-        ];
-      },
-      body: BlocBuilder<AnnouncementBloc, AnnouncementState>(
-        builder: (context, state) {
-          if (state is AnnouncementInitial) {
-            context.read<AnnouncementBloc>().add(LoadAnno());
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is AnnouncementLoading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is AnnouncementLoaded) {
-            if (state.announcementList.isEmpty) {
-              return EmptyCard();
-            } else {
-              return ListView.builder(
-                itemCount: state.announcementList.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: AnnouncementCard(
-                      type: state.announcementList[index].type,
-                      eduType: state.announcementList[index].eduType,
-                      title: state.announcementList[index].title,
-                      content: state.announcementList[index].content,
-                      date: DateTime.fromMillisecondsSinceEpoch(state
-                          .announcementList[index].date.millisecondsSinceEpoch),
-                      onTapReadMore: () {
-                        _showReadMoreModal(
-                          context,
-                          state.announcementList[index].title,
-                          state.announcementList[index].content,
-                        );
-                      },
-                    ),
-                  );
+        body: SafeArea(
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              title: Text("Duyurularım"),
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
                 },
+                icon: Icon(Icons.arrow_back),
+              ),
+            ),
+          ];
+        },
+        body: BlocBuilder<AnnouncementBloc, AnnouncementState>(
+          builder: (context, state) {
+            if (state is AnnouncementInitial) {
+              context.read<AnnouncementBloc>().add(LoadAnno());
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is AnnouncementLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is AnnouncementLoaded) {
+              if (state.announcementList.isEmpty) {
+                return EmptyCard();
+              } else {
+                return ListView.builder(
+                  itemCount: state.announcementList.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: AnnouncementCard(
+                        type: state.announcementList[index].type,
+                        eduType: state.announcementList[index].eduType,
+                        title: state.announcementList[index].title,
+                        content: state.announcementList[index].content,
+                        date: DateTime.fromMillisecondsSinceEpoch(state
+                            .announcementList[index]
+                            .date
+                            .millisecondsSinceEpoch),
+                        onTapReadMore: () {
+                          _showReadMoreModal(
+                            context,
+                            state.announcementList[index].title,
+                            state.announcementList[index].content,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                );
+              }
+            } else if (state is AnnouncementError) {
+              return const Center(
+                child: Text("That's an error"),
+              );
+            } else {
+              return const Center(
+                child: Text("Something went wrong"),
               );
             }
-          } else if (state is AnnouncementError) {
-            return const Center(
-              child: Text("That's an error"),
-            );
-          } else {
-            return const Center(
-              child: Text("Something went wrong"),
-            );
-          }
-        },
+          },
+        ),
       ),
     ));
   }
