@@ -10,6 +10,9 @@ import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_event.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_state.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_event.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_state.dart';
 import 'package:tobeto_app/screens/home/exam_screen.dart';
 import 'package:tobeto_app/screens/home/home_announcement_screen.dart';
 import 'package:tobeto_app/screens/home/home_application_screen.dart';
@@ -55,11 +58,53 @@ class _HomeScreenState extends State<HomeScreen> {
                         .bodyLarge!
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
-                  Text("Kullanıcı Adı",
-                      style:
-                          Theme.of(context).textTheme.headlineSmall!.copyWith(
-                                fontWeight: FontWeight.bold,
-                              )),
+                  BlocBuilder<UserInfoBloc, UserInfoState>(
+                    builder: (context, state) {
+                      if (state is UserInfoInitial) {
+                        context.read<UserInfoBloc>().add(LoadUser());
+                        return Text("Kullanıcı Yükleniyor",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ));
+                      } else if (state is UserInfoLoading) {
+                        return Text("Kullanıcı Yükleniyor",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ));
+                      } else if (state is UserInfoLoaded) {
+                        return Text(
+                            "${state.userModel.name} ${state.userModel.surname}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ));
+                      } else if (state is UserInfoError) {
+                        return Text("Kullanıcı Yüklenemedi",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ));
+                      } else {
+                        return Text("Hata",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ));
+                      }
+                    },
+                  )
                 ],
               ),
               // CircleAvatar(

@@ -252,6 +252,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               context
                                   .read<UserControllerBloc>()
                                   .add(RegisterEvent(
+                                    name: _nameController.text,
+                                    surname: _surnameController.text,
                                     email: _usernameController.text,
                                     password: _passwordController.text,
                                     confirmPassword:

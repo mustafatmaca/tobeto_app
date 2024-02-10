@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_event.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_state.dart';
 import 'package:tobeto_app/screens/contactUsPage_screen.dart';
 import 'package:tobeto_app/screens/profile_edit/edit_settings.dart';
 import 'package:tobeto_app/screens/profile_screen.dart';
@@ -41,18 +44,121 @@ class _MoreScreenState extends State<MoreScreen> {
                 height: MediaQuery.of(context).size.height * 0.80,
                 child: Column(
                   children: [
-                    Text(
-                      "Kullanıcı Adı",
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                    Text(
-                      "emailadresi@gmail.com",
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .color!
-                              .withOpacity(0.7)),
+                    BlocBuilder<UserInfoBloc, UserInfoState>(
+                      builder: (context, state) {
+                        if (state is UserInfoInitial) {
+                          context.read<UserInfoBloc>().add(LoadUser());
+                          return Column(
+                            children: [
+                              Text(
+                                "Kullanıcı Yükleniyor",
+                                style:
+                                    Theme.of(context).textTheme.headlineMedium,
+                              ),
+                              Text(
+                                "Mail yükleniyor",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .color!
+                                            .withOpacity(0.7)),
+                              ),
+                            ],
+                          );
+                        } else if (state is UserInfoLoading) {
+                          return Column(
+                            children: [
+                              Text(
+                                "Kullanıcı Yükleniyor",
+                                style:
+                                    Theme.of(context).textTheme.headlineMedium,
+                              ),
+                              Text(
+                                "Mail yükleniyor",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .color!
+                                            .withOpacity(0.7)),
+                              ),
+                            ],
+                          );
+                        } else if (state is UserInfoLoaded) {
+                          return Column(
+                            children: [
+                              Text(
+                                "${state.userModel.name} ${state.userModel.surname}",
+                                style:
+                                    Theme.of(context).textTheme.headlineMedium,
+                              ),
+                              Text(
+                                state.userModel.email,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .color!
+                                            .withOpacity(0.7)),
+                              ),
+                            ],
+                          );
+                        } else if (state is UserInfoError) {
+                          return Column(
+                            children: [
+                              Text(
+                                "Kullanıcı Yüklenemedi",
+                                style:
+                                    Theme.of(context).textTheme.headlineMedium,
+                              ),
+                              Text(
+                                "Mail yüklenemedi",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .color!
+                                            .withOpacity(0.7)),
+                              ),
+                            ],
+                          );
+                        } else {
+                          return Column(
+                            children: [
+                              Text(
+                                "Hata",
+                                style:
+                                    Theme.of(context).textTheme.headlineMedium,
+                              ),
+                              Text(
+                                "Hata",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .color!
+                                            .withOpacity(0.7)),
+                              ),
+                            ],
+                          );
+                        }
+                      },
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,

@@ -14,6 +14,7 @@ import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
 import 'package:tobeto_app/blocs/report_bloc/report_bloc.dart';
 import 'package:tobeto_app/blocs/service_bloc/service_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
 import 'package:tobeto_app/firebase_options.dart';
 import 'package:tobeto_app/repository/firebaseAuth_repo.dart';
 import 'package:tobeto_app/repository/firestore_repo.dart';
@@ -67,6 +68,9 @@ void main() async {
         ),
         BlocProvider<ReportBloc>(
           create: (context) => ReportBloc(fireStoreRepo: FireStoreRepo()),
+        ),
+        BlocProvider<UserInfoBloc>(
+          create: (context) => UserInfoBloc(fireStoreRepo: FireStoreRepo()),
         ),
       ],
       child: MaterialApp(

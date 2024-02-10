@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_event.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_state.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
 import 'package:tobeto_app/screens/forgot_password_screen.dart';
 import 'package:tobeto_app/screens/register_screen.dart';
 
@@ -165,6 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     LoginEvent(
                                         email: _usernameController.text,
                                         password: _passwordController.text));
+                                context.read<UserInfoBloc>().add(LoadUser());
                               },
                               child: const Text("Giriş Yap")),
                         ),

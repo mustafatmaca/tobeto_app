@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class User {
+class UserModel {
   String name;
   String surname;
   String email;
@@ -15,7 +15,7 @@ class User {
   List<String>? languages;
   List<String>? socials;
 
-  User(
+  UserModel(
       {required this.name,
       required this.surname,
       required this.email,
@@ -38,7 +38,7 @@ class User {
       result.addAll({'gsm': gsm});
     }
     if (birthdate != null) {
-      result.addAll({'birthdate': birthdate!.toMap()});
+      result.addAll({'birthdate': birthdate});
     }
     if (adress != null) {
       result.addAll({'adress': adress});
@@ -62,23 +62,24 @@ class User {
     return result;
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
-      map['name'] ?? '',
-      map['surname'] ?? '',
-      map['email'] ?? '',
-      map['gsm'],
-      map['birthdate'] != null ? Timestamp.fromMap(map['birthdate']) : null,
-      map['adress'],
-      map['about'],
-      List<String>.from(map['skills']),
-      List<String>.from(map['certificates']),
-      List<String>.from(map['languages']),
-      List<String>.from(map['socials']),
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      name: map['name'] ?? '',
+      surname: map['surname'] ?? '',
+      email: map['email'] ?? '',
+      gsm: map['gsm'],
+      birthdate: map['birthdate'],
+      adress: map['adress'],
+      about: map['about'],
+      skills: map['skills'],
+      certificates: map['certificates'],
+      languages: map['languages'],
+      socials: map['socials'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) => User.fromMap(json.decode(source));
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source));
 }

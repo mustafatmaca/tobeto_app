@@ -7,10 +7,20 @@ import 'package:tobeto_app/models/education.dart';
 import 'package:tobeto_app/models/exam.dart';
 import 'package:tobeto_app/models/lesson.dart';
 import 'package:tobeto_app/models/report.dart';
+import 'package:tobeto_app/models/user.dart';
 
 class FireStoreRepo {
   final firebaseAuthInstance = FirebaseAuth.instance;
   final FirebaseFirestoreInstance = FirebaseFirestore.instance;
+
+  Future<UserModel> getUser() async {
+    final userId = await FirebaseFirestoreInstance.collection("users")
+        .doc(firebaseAuthInstance.currentUser!.uid);
+
+    final docSnapshot = await userId.get();
+
+    return UserModel.fromMap(docSnapshot.data()!);
+  }
 
   Future<List<Application>> getApplications() async {
     //giriş yapmış olan kullanıcıyı getirir
@@ -162,8 +172,7 @@ class FireStoreRepo {
   }
 
   Future<List<Report>> getReports() async {
-    final reports =
-        await FirebaseFirestoreInstance.collection("reports").get();
+    final reports = await FirebaseFirestoreInstance.collection("reports").get();
 
     final reportList = reports.docs.map((e) async {
       return Report.fromMap(e.data());

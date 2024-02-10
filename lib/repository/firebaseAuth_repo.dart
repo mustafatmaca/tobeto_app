@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:tobeto_app/models/user.dart';
 
 class FirebaseAuthRepo {
   final firebaseAuthInstance = FirebaseAuth.instance;
@@ -48,18 +49,16 @@ class FirebaseAuthRepo {
     }
   }
 
-  void register(String email, String password) async {
+  void register(
+      String name, String surname, String email, String password) async {
     try {
       final userCredentials = await firebaseAuthInstance
           .createUserWithEmailAndPassword(email: email, password: password);
+
       firebaseFirestoreInstance
           .collection("users")
           .doc(userCredentials.user!.uid)
-          .set(
-        {
-          'email': email,
-        },
-      );
+          .set(UserModel(name: name, surname: surname, email: email).toMap());
       print(userCredentials);
     } on FirebaseAuthException catch (e) {
       print(e.message);

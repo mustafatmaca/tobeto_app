@@ -23,7 +23,8 @@ class UserControllerBloc
 
     on<RegisterEvent>((event, emit) {
       if (event.password == event.confirmPassword) {
-        firebaseAuthRepo.register(event.email, event.password);
+        firebaseAuthRepo.register(
+            event.name, event.surname, event.email, event.password);
         Navigator.pop(event.context);
         ScaffoldMessenger.of(event.context).showSnackBar(SnackBar(
           content: Text("Kayıt Olundu!"),
