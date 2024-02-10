@@ -95,31 +95,26 @@ void _showReadMoreModal(BuildContext context, String title, String content) {
     builder: (BuildContext context) {
       return Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
         ),
-        child: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                Text(content, style: Theme.of(context).textTheme.bodyMedium),
-              ],
+        height: MediaQuery.of(context).size.height,
+        padding: EdgeInsets.all(16),
+        child: ListView(
+          children: [
+            Text(
+              title,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(fontWeight: FontWeight.bold),
             ),
-          ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            Text(content, style: Theme.of(context).textTheme.bodyMedium),
+          ],
         ),
       );
     },

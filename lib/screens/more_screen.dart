@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_event.dart';
 import 'package:tobeto_app/screens/contactUsPage_screen.dart';
-import 'package:tobeto_app/screens/login_screen.dart';
 import 'package:tobeto_app/screens/profile_edit/edit_settings.dart';
 import 'package:tobeto_app/screens/profile_screen.dart';
 
@@ -34,7 +33,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 padding: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height * 0.12),
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
@@ -48,10 +47,12 @@ class _MoreScreenState extends State<MoreScreen> {
                     ),
                     Text(
                       "emailadresi@gmail.com",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(color: Colors.black45),
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .color!
+                              .withOpacity(0.7)),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
@@ -111,11 +112,11 @@ class _MoreScreenState extends State<MoreScreen> {
                     ListTile(
                       onTap: () {
                         context.read<UserControllerBloc>().add(LogoutEvent());
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
-                            ));
+                        // Navigator.pushReplacement(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => LoginScreen(),
+                        //     ));
                       },
                       leading: Icon(
                         Icons.logout,

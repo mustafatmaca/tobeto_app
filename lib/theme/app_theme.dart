@@ -10,6 +10,7 @@ class AppTheme {
         primaryColor: AppColor.colorScheme.primary,
         scaffoldBackgroundColor: AppColor.colorScheme.background,
         textTheme: GoogleFonts.poppinsTextTheme().apply(
+          displayColor: AppColor.textColor,
           bodyColor: AppColor.textColor,
         ),
         cardColor: AppColor.cardColor,
@@ -51,6 +52,7 @@ class AppTheme {
       primaryColor: AppColor.colorScheme.primary,
       scaffoldBackgroundColor: AppColor.backgroundDark,
       textTheme: GoogleFonts.ralewayTextTheme().apply(
+        displayColor: AppColor.textColorDark,
         bodyColor: AppColor.textColorDark,
       ),
       cardColor: AppColor.cardColorDark,

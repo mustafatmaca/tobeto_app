@@ -78,7 +78,7 @@ class ReviewsHorizontalCard extends StatelessWidget {
                         builder: (context) {
                           return Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                               borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(30),
                                 topRight: Radius.circular(30),
