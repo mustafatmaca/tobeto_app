@@ -182,4 +182,19 @@ class FireStoreRepo {
 
     return resolvedReportList;
   }
+
+  void updateUserAbout(UserModel userModel) async {
+    final user = await FirebaseFirestoreInstance.collection("users")
+        .doc(firebaseAuthInstance.currentUser!.uid);
+    user.update(UserModel(
+            name: userModel.name,
+            surname: userModel.surname,
+            email: userModel.email,
+            photoUrl: userModel.photoUrl,
+            gsm: userModel.gsm,
+            birthdate: userModel.birthdate,
+            adress: userModel.adress,
+            about: userModel.about)
+        .toMap());
+  }
 }

@@ -1,11 +1,14 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tobeto_app/models/experience.dart';
+import 'package:tobeto_app/models/graduate.dart';
 
 class UserModel {
   String name;
   String surname;
   String email;
+  String? photoUrl;
   String? gsm;
   Timestamp? birthdate;
   String? adress;
@@ -14,11 +17,14 @@ class UserModel {
   List<String>? certificates;
   List<String>? languages;
   List<String>? socials;
+  List<Graduate>? graduates;
+  List<Experience>? experiences;
 
   UserModel(
       {required this.name,
       required this.surname,
       required this.email,
+      this.photoUrl,
       this.gsm,
       this.birthdate,
       this.adress,
@@ -26,7 +32,9 @@ class UserModel {
       this.skills,
       this.certificates,
       this.languages,
-      this.socials});
+      this.socials,
+      this.graduates,
+      this.experiences});
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
@@ -34,6 +42,9 @@ class UserModel {
     result.addAll({'name': name});
     result.addAll({'surname': surname});
     result.addAll({'email': email});
+    if (photoUrl != null) {
+      result.addAll({'photoUrl': photoUrl});
+    }
     if (gsm != null) {
       result.addAll({'gsm': gsm});
     }
@@ -58,6 +69,12 @@ class UserModel {
     if (socials != null) {
       result.addAll({'socials': socials});
     }
+    if (graduates != null) {
+      result.addAll({'graduates': graduates});
+    }
+    if (experiences != null) {
+      result.addAll({'experiences': experiences});
+    }
 
     return result;
   }
@@ -67,6 +84,7 @@ class UserModel {
       name: map['name'] ?? '',
       surname: map['surname'] ?? '',
       email: map['email'] ?? '',
+      photoUrl: map['photoUrl'],
       gsm: map['gsm'],
       birthdate: map['birthdate'],
       adress: map['adress'],
@@ -75,6 +93,8 @@ class UserModel {
       certificates: map['certificates'],
       languages: map['languages'],
       socials: map['socials'],
+      graduates: map['graduates'],
+      experiences: map['experiences'],
     );
   }
 

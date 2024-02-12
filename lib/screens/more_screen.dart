@@ -165,6 +165,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     ),
                     ListTile(
                       onTap: () {
+                        context.read<UserInfoBloc>().add(LoadUser());
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -238,10 +239,25 @@ class _MoreScreenState extends State<MoreScreen> {
               ),
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.10,
-                child: CircleAvatar(
-                  radius: MediaQuery.of(context).size.height * 0.1,
-                  backgroundImage: AssetImage("assets/mine.png"),
-                ),
+                child: BlocBuilder<UserInfoBloc, UserInfoState>(
+                    builder: (context, state) {
+                  if (state is UserInfoInitial) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is UserInfoLoading) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is UserInfoLoaded) {
+                    return CircleAvatar(
+                        radius: MediaQuery.of(context).size.height * 0.1,
+                        backgroundImage:
+                            NetworkImage(state.userModel.photoUrl!));
+                  } else {
+                    return Text("Error");
+                  }
+                }),
               ),
             ],
           ),

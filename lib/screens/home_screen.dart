@@ -228,8 +228,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.all(18),
                             decoration: BoxDecoration(
                                 gradient: const LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomLeft,
                                   colors: [
                                     Color(0xFF004D79),
                                     Color(0xFF011D42),
@@ -275,8 +275,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.all(18),
                             decoration: BoxDecoration(
                                 gradient: const LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomLeft,
                                   colors: [
                                     Color(0xFF004D79),
                                     Color(0xFF011D42),
@@ -322,8 +322,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.all(18),
                             decoration: BoxDecoration(
                                 gradient: const LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomLeft,
                                   colors: [
                                     Color(0xFF004D79),
                                     Color(0xFF011D42),
@@ -368,8 +368,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.all(18),
                             decoration: BoxDecoration(
                                 gradient: const LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomLeft,
                                   colors: [
                                     Color(0xFF004D79),
                                     Color(0xFF011D42),
