@@ -14,10 +14,11 @@ class FireStoreRepo {
   final FirebaseFirestoreInstance = FirebaseFirestore.instance;
 
   Future<UserModel> getUser() async {
-    final userId = await FirebaseFirestoreInstance.collection("users")
-        .doc(firebaseAuthInstance.currentUser!.uid);
+    final userId = await firebaseAuthInstance.currentUser!.uid;
+    final user =
+        await FirebaseFirestoreInstance.collection("users").doc(userId);
 
-    final docSnapshot = await userId.get();
+    final docSnapshot = await user.get();
 
     return UserModel.fromMap(docSnapshot.data()!);
   }

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_event.dart';
 import 'package:tobeto_app/blocs/exam_bloc/exam_state.dart';
@@ -11,11 +9,15 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
     on<LoadExam>((event, emit) async {
       emit(ExamLoading());
       try {
-       final examList = await fireStoreRepo.getExams();
-       emit(ExamLoaded(examList: examList));
+        final examList = await fireStoreRepo.getExams();
+        emit(ExamLoaded(examList: examList));
       } catch (e) {
         emit(ExamError());
       }
+    });
+
+    on<ResetExamEvent>((event, emit) {
+      emit(ExamInitial());
     });
   }
 }

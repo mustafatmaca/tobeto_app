@@ -49,9 +49,5 @@ class UserControllerBloc
     on<ShowPasswordRegister>((event, emit) {
       emit(PasswordVisibilityRegister(isVisible: event.visibility));
     });
-
-    on<ResetEvent>((event, emit) {
-      emit(UserControllerInitial());
-    });
   }
 }

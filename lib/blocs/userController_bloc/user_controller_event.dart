@@ -60,5 +60,3 @@ class ShowPasswordRegister extends UserControllerEvent {
     required this.visibility,
   });
 }
-
-class ResetEvent extends UserControllerEvent {}

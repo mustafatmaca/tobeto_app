@@ -6,6 +6,10 @@ import 'package:tobeto_app/repository/firestore_repo.dart';
 class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
   FireStoreRepo fireStoreRepo;
   UserInfoBloc({required this.fireStoreRepo}) : super(UserInfoInitial()) {
+    on<ResetEvent>((event, emit) {
+      emit(UserInfoInitial());
+    });
+
     on<LoadUser>((event, emit) async {
       emit(UserInfoLoading());
 

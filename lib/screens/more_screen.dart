@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
+import 'package:tobeto_app/blocs/exam_bloc/exam_event.dart';
+import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
+import 'package:tobeto_app/blocs/navigation_bloc/navigation_event.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_event.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
@@ -219,11 +223,11 @@ class _MoreScreenState extends State<MoreScreen> {
                     ListTile(
                       onTap: () {
                         context.read<UserControllerBloc>().add(LogoutEvent());
-                        // Navigator.pushReplacement(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) => LoginScreen(),
-                        //     ));
+                        context
+                            .read<NavigationBloc>()
+                            .add(ChangeScreen(index: 0));
+                        context.read<UserInfoBloc>().add(ResetEvent());
+                        context.read<ExamBloc>().add(ResetExamEvent());
                       },
                       leading: Icon(
                         Icons.logout,
@@ -250,10 +254,14 @@ class _MoreScreenState extends State<MoreScreen> {
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is UserInfoLoaded) {
-                    return CircleAvatar(
-                        radius: MediaQuery.of(context).size.height * 0.1,
-                        backgroundImage:
-                            NetworkImage(state.userModel.photoUrl!));
+                    return state.userModel.photoUrl != null
+                        ? CircleAvatar(
+                            radius: MediaQuery.of(context).size.height * 0.1,
+                            backgroundImage:
+                                NetworkImage(state.userModel.photoUrl!))
+                        : CircleAvatar(
+                            radius: MediaQuery.of(context).size.height * 0.1,
+                            backgroundImage: AssetImage("assets/mine.png"));
                   } else {
                     return Text("Error");
                   }

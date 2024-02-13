@@ -105,11 +105,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    CircleAvatar(
-                                      backgroundImage: NetworkImage(
-                                          state.userModel.photoUrl!),
-                                      radius: 45,
-                                    ),
+                                    state.userModel.photoUrl != null
+                                        ? CircleAvatar(
+                                            radius: 45,
+                                            backgroundImage: NetworkImage(
+                                                state.userModel.photoUrl!))
+                                        : CircleAvatar(
+                                            radius: 45,
+                                            backgroundImage:
+                                                AssetImage("assets/mine.png")),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
@@ -138,15 +142,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.w600),
                                         ),
-                                        Text(
-                                          state.userModel.gsm!,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall!
-                                              .copyWith(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w600),
-                                        ),
+                                        state.userModel.gsm != null
+                                            ? Text(
+                                                state.userModel.gsm!,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .copyWith(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                              )
+                                            : Text(
+                                                "Telefon Numarası",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .copyWith(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                              ),
                                       ],
                                     )
                                   ],
@@ -175,11 +191,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        state.userModel.about!,
-                                        maxLines: 6,
-                                        overflow: TextOverflow.ellipsis,
-                                      )
+                                      state.userModel.about != null
+                                          ? Text(
+                                              state.userModel.about!,
+                                              maxLines: 6,
+                                              overflow: TextOverflow.ellipsis,
+                                            )
+                                          : Text(
+                                              "Hakkında Kısmı",
+                                              maxLines: 6,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
                                     ],
                                   ),
                                 ),

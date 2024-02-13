@@ -38,16 +38,16 @@ class _EditPersonalState extends State<EditPersonal> {
   void renameName() async {
     user = await FireStoreRepo().getUser();
     _nameController.text = user!.name;
-    _aboutController.text = user!.about!;
+    _aboutController.text = user!.about ?? '';
     _surnameController.text = user!.surname;
-    _gsmController.text = user!.gsm!;
-    _adressController.text = user!.adress!;
+    _gsmController.text = user!.gsm ?? '';
+    _adressController.text = user!.adress ?? '';
     _emailController.text = user!.email;
   }
 
   void _pickImage() async {
-    final image = await ImagePicker()
-        .pickImage(source: ImageSource.camera, imageQuality: 50, maxWidth: 150);
+    final image = await ImagePicker().pickImage(
+        source: ImageSource.gallery, imageQuality: 50, maxWidth: 150);
     if (image != null) {
       setState(() {
         _pickedFile = File(image.path);
