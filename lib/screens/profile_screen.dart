@@ -218,7 +218,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => EditEducation()));
+                                  builder: (context) => EditEducation(
+                                        userModel: state.userModel,
+                                      )));
                         },
                         child: Column(
                           children: [
@@ -283,18 +285,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: ListView.builder(
                                 shrinkWrap: true,
                                 physics: ClampingScrollPhysics(),
-                                itemCount: experience.length,
+                                itemCount: state.userModel.graduates != null
+                                    ? state.userModel.graduates!.length
+                                    : experience.length,
                                 itemBuilder: (context, index) {
                                   if (index <= 2) {
                                     return ListTile(
                                       leading:
                                           Icon(FontAwesomeIcons.graduationCap),
-                                      title: Text(
-                                        experience[index],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
-                                      ),
+                                      title: state.userModel.graduates != null
+                                          ? Text(
+                                              state.userModel.graduates![index]
+                                                  .name!,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge,
+                                            )
+                                          : Text(
+                                              experience[index],
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge,
+                                            ),
                                       subtitle: Text(
                                         "2024",
                                         style: Theme.of(context)

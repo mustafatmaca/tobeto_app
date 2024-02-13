@@ -198,4 +198,15 @@ class FireStoreRepo {
             about: userModel.about)
         .toMap());
   }
+
+  void updateUserGraduate(UserModel userModel) async {
+    final user = await FirebaseFirestoreInstance.collection("users")
+        .doc(firebaseAuthInstance.currentUser!.uid);
+    user.update(UserModel(
+      name: userModel.name,
+      surname: userModel.surname,
+      email: userModel.email,
+      graduates: userModel.graduates,
+    ).toMap());
+  }
 }

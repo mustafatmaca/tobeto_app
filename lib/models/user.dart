@@ -70,7 +70,18 @@ class UserModel {
       result.addAll({'socials': socials});
     }
     if (graduates != null) {
-      result.addAll({'graduates': graduates});
+      result.addAll({
+        'graduates': graduates!
+            .map((e) => Graduate(
+                    type: e.type,
+                    name: e.name,
+                    section: e.section,
+                    startDate: e.startDate,
+                    endDate: e.endDate,
+                    isContinue: e.isContinue)
+                .toMap())
+            .toList()
+      });
     }
     if (experiences != null) {
       result.addAll({'experiences': experiences});
@@ -93,7 +104,13 @@ class UserModel {
       certificates: map['certificates'],
       languages: map['languages'],
       socials: map['socials'],
-      graduates: map['graduates'],
+      graduates: map['graduates'] != null
+          ? List<Graduate>.from(
+              (map['graduates'] as List<dynamic>).map<Graduate?>(
+                (x) => Graduate.fromMap(x),
+              ),
+            )
+          : [],
       experiences: map['experiences'],
     );
   }

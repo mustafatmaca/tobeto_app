@@ -12,3 +12,10 @@ class UpdateAboutUser extends UserInfoEvent {
     required this.userModel,
   });
 }
+
+class UpdateUserGraduate extends UserInfoEvent {
+  UserModel userModel;
+  UpdateUserGraduate({
+    required this.userModel,
+  });
+}
