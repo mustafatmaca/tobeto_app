@@ -153,11 +153,16 @@ class ReviewsHorizontalCard extends StatelessWidget {
                                     child: Center(
                                       child: Text(
                                         'Sınava Başla',
-                                        style: TextStyle(
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white, // Yazı rengi
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .copyWith(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .background,
+                                                fontWeight: FontWeight
+                                                    .bold // Yazı rengi
+                                                ),
                                       ),
                                     ),
                                   ),
