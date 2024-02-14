@@ -9,8 +9,15 @@ class UserControllerBloc
   final FirebaseAuthRepo firebaseAuthRepo;
   UserControllerBloc({required this.firebaseAuthRepo})
       : super(UserControllerInitial()) {
-    on<LoginEvent>((event, emit) {
-      firebaseAuthRepo.signIn(event.email, event.password);
+    on<LoginEvent>((event, emit) async {
+      final message =
+          await firebaseAuthRepo.signIn(event.email, event.password);
+
+      if (message != "Giriş Başarılı!") {
+        ScaffoldMessenger.of(event.context).showSnackBar(SnackBar(
+          content: Text(message),
+        ));
+      }
     });
 
     on<SignInWithGoogle>((event, emit) {
@@ -21,17 +28,19 @@ class UserControllerBloc
       firebaseAuthRepo.logout();
     });
 
-    on<RegisterEvent>((event, emit) {
-      if (event.password == event.confirmPassword) {
-        firebaseAuthRepo.register(
-            event.name, event.surname, event.email, event.password);
+    on<RegisterEvent>((event, emit) async {
+      final message = await firebaseAuthRepo.register(event.name, event.surname,
+          event.email, event.password, event.confirmPassword);
+
+      if (message == "Kayıt Başarılı!") {
         Navigator.pop(event.context);
         ScaffoldMessenger.of(event.context).showSnackBar(SnackBar(
-          content: Text("Kayıt Olundu!"),
+          content: Text(message),
         ));
       } else {
-        ScaffoldMessenger.of(event.context)
-            .showSnackBar(SnackBar(content: Text("Parolalar Uyuşmuyor!")));
+        ScaffoldMessenger.of(event.context).showSnackBar(SnackBar(
+          content: Text(message),
+        ));
       }
     });
 

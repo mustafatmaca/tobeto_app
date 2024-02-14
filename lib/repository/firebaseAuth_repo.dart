@@ -7,13 +7,15 @@ class FirebaseAuthRepo {
   final firebaseAuthInstance = FirebaseAuth.instance;
   final firebaseFirestoreInstance = FirebaseFirestore.instance;
 
-  void signIn(String email, String password) async {
+  Future<String> signIn(String email, String password) async {
     try {
       final userCredentials = await firebaseAuthInstance
           .signInWithEmailAndPassword(email: email, password: password);
       print(userCredentials);
+      return "Giriş Başarılı!";
     } on FirebaseAuthException catch (e) {
       print(e.message);
+      return e.message!;
     }
   }
 
@@ -49,19 +51,31 @@ class FirebaseAuthRepo {
     }
   }
 
-  void register(
-      String name, String surname, String email, String password) async {
-    try {
-      final userCredentials = await firebaseAuthInstance
-          .createUserWithEmailAndPassword(email: email, password: password);
+  Future<String> register(String name, String surname, String email,
+      String password, String confirmPassword) async {
+    if (password == confirmPassword) {
+      try {
+        final userCredentials = await firebaseAuthInstance
+            .createUserWithEmailAndPassword(email: email, password: password);
 
-      firebaseFirestoreInstance
-          .collection("users")
-          .doc(userCredentials.user!.uid)
-          .set(UserModel(name: name, surname: surname, email: email).toMap());
-      print(userCredentials);
-    } on FirebaseAuthException catch (e) {
-      print(e.message);
+        firebaseFirestoreInstance
+            .collection("users")
+            .doc(userCredentials.user!.uid)
+            .set(UserModel(name: name, surname: surname, email: email).toMap());
+        print(userCredentials);
+        return "Kayıt Başarılı!";
+      } on FirebaseAuthException catch (e) {
+        print(e.message);
+        if (e.message ==
+            "The email address is already in use by another account.") {
+          return "Bu mail kullanılıyor!";
+        } else if (e.message == "Password should be at least 6 characters") {
+          return "Şifre en az 6 karakterden oluşmalı!";
+        }
+        return e.message!;
+      }
+    } else {
+      return "Parolalar Uyuşmuyor!";
     }
   }
 

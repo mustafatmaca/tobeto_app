@@ -6,10 +6,12 @@ abstract class UserControllerEvent {}
 class LoginEvent extends UserControllerEvent {
   String email;
   String password;
+  BuildContext context;
 
   LoginEvent({
     required this.email,
     required this.password,
+    required this.context,
   });
 }
 

@@ -161,10 +161,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         Expanded(
                           child: ElevatedButton(
                               onPressed: () {
-                                context.read<UserControllerBloc>().add(
-                                    LoginEvent(
-                                        email: _usernameController.text,
-                                        password: _passwordController.text));
+                                context
+                                    .read<UserControllerBloc>()
+                                    .add(LoginEvent(
+                                      email: _usernameController.text,
+                                      password: _passwordController.text,
+                                      context: context,
+                                    ));
                               },
                               child: const Text("Giriş Yap")),
                         ),
