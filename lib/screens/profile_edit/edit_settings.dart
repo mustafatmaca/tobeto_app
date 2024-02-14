@@ -12,15 +12,17 @@ class _EditSettingsState extends State<EditSettings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ayarlar"),
+        title: const Text("Ayarlar"),
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 16.0, right: 16.0),
+        padding: EdgeInsets.only(
+            left: MediaQuery.of(context).size.width * 0.04,
+            right: MediaQuery.of(context).size.width * 0.04),
         child: ListView(
           children: [
             Column(
               children: [
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Eski Şifre",
@@ -31,13 +33,14 @@ class _EditSettingsState extends State<EditSettings> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    contentPadding: const EdgeInsets.all(8),
+                    contentPadding: EdgeInsets.all(
+                        MediaQuery.of(context).size.width * 0.02),
                   ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Yeni Şifre",
@@ -48,12 +51,13 @@ class _EditSettingsState extends State<EditSettings> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      contentPadding: const EdgeInsets.all(8)),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02)),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Yeni Şifre Tekrar",
@@ -64,33 +68,34 @@ class _EditSettingsState extends State<EditSettings> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      contentPadding: const EdgeInsets.all(8)),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02)),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text("Şifre Değiştir"),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF011D42),
+                      backgroundColor: const Color(0xFF011D42),
                       minimumSize: Size(
                         MediaQuery.of(context).size.width * 0.9,
                         MediaQuery.of(context).size.height * 0.06,
                       )),
+                  child: const Text("Şifre Değiştir"),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text("Üyeliği Sonlandır"),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
                       minimumSize: Size(
                         MediaQuery.of(context).size.width * 0.9,
                         MediaQuery.of(context).size.height * 0.06,
                       )),
+                  child: const Text("Üyeliği Sonlandır"),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,

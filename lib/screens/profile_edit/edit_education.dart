@@ -29,16 +29,18 @@ class _EditEducationState extends State<EditEducation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Eğitim Hayatım"),
+        title: const Text("Eğitim Hayatım"),
         scrolledUnderElevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 16.0, right: 16.0),
+        padding: EdgeInsets.only(
+            left: MediaQuery.of(context).size.width * 0.04,
+            right: MediaQuery.of(context).size.width * 0.04),
         child: ListView(
           children: [
             Column(
               children: [
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Eğitim Durumu",
@@ -51,7 +53,9 @@ class _EditEducationState extends State<EditEducation> {
                         border: Border.all(width: 1, color: Colors.black38),
                         borderRadius: BorderRadius.circular(14)),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.02,
+                          right: MediaQuery.of(context).size.width * 0.02),
                       child: DropdownButton<String>(
                         isExpanded: true,
                         underline: Container(),
@@ -75,7 +79,7 @@ class _EditEducationState extends State<EditEducation> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Okul Adı",
@@ -87,13 +91,14 @@ class _EditEducationState extends State<EditEducation> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    contentPadding: const EdgeInsets.all(8),
+                    contentPadding: EdgeInsets.all(
+                        MediaQuery.of(context).size.width * 0.02),
                   ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Bölüm",
@@ -105,12 +110,13 @@ class _EditEducationState extends State<EditEducation> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      contentPadding: const EdgeInsets.all(8)),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02)),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Başlangıç Yılı",
@@ -121,7 +127,9 @@ class _EditEducationState extends State<EditEducation> {
                       border: Border.all(width: 1, color: Colors.black38),
                       borderRadius: BorderRadius.circular(14)),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.02,
+                        right: MediaQuery.of(context).size.width * 0.02),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -144,7 +152,7 @@ class _EditEducationState extends State<EditEducation> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Mezuniyet Yılı",
@@ -155,7 +163,9 @@ class _EditEducationState extends State<EditEducation> {
                       border: Border.all(width: 1, color: Colors.black38),
                       borderRadius: BorderRadius.circular(14)),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.02,
+                        right: MediaQuery.of(context).size.width * 0.02),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -189,7 +199,7 @@ class _EditEducationState extends State<EditEducation> {
                           });
                         },
                       ),
-                      Text("Devam Ediyorum")
+                      const Text("Devam Ediyorum")
                     ],
                   ),
                 ),
@@ -227,13 +237,13 @@ class _EditEducationState extends State<EditEducation> {
                               ],
                             )));
                   },
-                  child: const Text("Kaydet"),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF011D42),
+                      backgroundColor: const Color(0xFF011D42),
                       minimumSize: Size(
                         MediaQuery.of(context).size.width * 0.9,
                         MediaQuery.of(context).size.height * 0.06,
                       )),
+                  child: const Text("Kaydet"),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,

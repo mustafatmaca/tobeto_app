@@ -23,7 +23,7 @@ class _CalendarPageState extends State<CalendarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Takvim",
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
@@ -33,11 +33,11 @@ class _CalendarPageState extends State<CalendarPage> {
           builder: (context, state) {
             if (state is LessonInitial) {
               context.read<LessonBloc>().add(LoadLessons());
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is LessonLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is LessonLoaded) {
@@ -64,7 +64,7 @@ class _CalendarPageState extends State<CalendarPage> {
                         _calendarFormat = format;
                       });
                     },
-                    calendarStyle: CalendarStyle(
+                    calendarStyle: const CalendarStyle(
                       todayDecoration: BoxDecoration(
                         color: Colors.blueAccent,
                         shape: BoxShape.circle,
@@ -77,27 +77,29 @@ class _CalendarPageState extends State<CalendarPage> {
                     ),
                     calendarBuilders: CalendarBuilders(
                       selectedBuilder: (context, date, events) => Container(
-                        margin: const EdgeInsets.all(4.0),
+                        margin: EdgeInsets.all(
+                            MediaQuery.of(context).size.width * 0.015),
                         alignment: Alignment.center,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.green,
                           shape: BoxShape.circle,
                         ),
                         child: Text(
                           date.day.toString(),
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                       todayBuilder: (context, date, events) => Container(
-                        margin: const EdgeInsets.all(4.0),
+                        margin: EdgeInsets.all(
+                            MediaQuery.of(context).size.width * 0.015),
                         alignment: Alignment.center,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.blueAccent,
                           shape: BoxShape.circle,
                         ),
                         child: Text(
                           date.day.toString(),
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                     ),
@@ -108,11 +110,11 @@ class _CalendarPageState extends State<CalendarPage> {
                 ],
               );
             } else if (state is LessonError) {
-              return Center(
+              return const Center(
                 child: Text("Something went wrong!"),
               );
             } else {
-              return Center(
+              return const Center(
                 child: Text("Error"),
               );
             }

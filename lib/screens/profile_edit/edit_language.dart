@@ -16,16 +16,18 @@ class _EditLanguageState extends State<EditLanguage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dil"),
+        title: const Text("Dil"),
         scrolledUnderElevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 16.0, right: 16.0),
+        padding: EdgeInsets.only(
+            left: MediaQuery.of(context).size.width * 0.04,
+            right: MediaQuery.of(context).size.width * 0.04),
         child: ListView(
           children: [
             Column(
               children: [
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Dil Seçiniz",
@@ -38,7 +40,9 @@ class _EditLanguageState extends State<EditLanguage> {
                         border: Border.all(width: 1, color: Colors.black38),
                         borderRadius: BorderRadius.circular(14)),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.02,
+                          right: MediaQuery.of(context).size.width * 0.02),
                       child: DropdownButton<String>(
                         isExpanded: true,
                         underline: Container(),
@@ -62,7 +66,7 @@ class _EditLanguageState extends State<EditLanguage> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Seviye Seçiniz",
@@ -75,7 +79,9 @@ class _EditLanguageState extends State<EditLanguage> {
                         border: Border.all(width: 1, color: Colors.black38),
                         borderRadius: BorderRadius.circular(14)),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.02,
+                          right: MediaQuery.of(context).size.width * 0.02),
                       child: DropdownButton<String>(
                         isExpanded: true,
                         underline: Container(),
@@ -101,13 +107,13 @@ class _EditLanguageState extends State<EditLanguage> {
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text("Kaydet"),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF011D42),
+                      backgroundColor: const Color(0xFF011D42),
                       minimumSize: Size(
                         MediaQuery.of(context).size.width * 0.9,
                         MediaQuery.of(context).size.height * 0.06,
                       )),
+                  child: const Text("Kaydet"),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,

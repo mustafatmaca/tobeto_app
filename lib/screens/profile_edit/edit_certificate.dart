@@ -12,11 +12,13 @@ class _EditCertificateState extends State<EditCertificate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sertifikalarım"),
+        title: const Text("Sertifikalarım"),
         scrolledUnderElevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 16.0, right: 16.0),
+        padding: EdgeInsets.only(
+            left: MediaQuery.of(context).size.width * 0.04,
+            right: MediaQuery.of(context).size.width * 0.04),
         child: ListView(
           children: [
             Column(
@@ -38,12 +40,12 @@ class _EditCertificateState extends State<EditCertificate> {
                       children: [
                         Icon(
                           Icons.cloud_upload,
-                          size: 30,
+                          size: MediaQuery.of(context).size.width * 0.1,
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03,
                         ),
-                        Text("Dosya Yükle")
+                        const Text("Dosya Yükle")
                       ],
                     ),
                   ),

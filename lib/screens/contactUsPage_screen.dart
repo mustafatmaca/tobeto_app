@@ -13,7 +13,7 @@ class ContactUsPageScreen extends StatelessWidget {
       ),
       body: ListView(children: [
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -175,13 +175,13 @@ class ContactUsPageScreen extends StatelessWidget {
                 },
               );
             },
-            child: const Text("Bize Ulaşın"),
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.grey[800],
                 minimumSize: Size(
                   MediaQuery.of(context).size.width * 0.5,
                   MediaQuery.of(context).size.height * 0.05,
                 )),
+            child: const Text("Bize Ulaşın"),
           ),
         ),
       ]),

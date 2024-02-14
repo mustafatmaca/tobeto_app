@@ -42,21 +42,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0.0,
-        title: Text("Profil"),
+        title: const Text("Profil"),
       ),
       body: ListView(
         children: [
           Padding(
-              padding: const EdgeInsets.only(top: 14.0),
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.02),
               child: BlocBuilder<UserInfoBloc, UserInfoState>(
                   builder: (context, state) {
                 if (state is UserInfoInitial) {
                   context.read<UserInfoBloc>().add(LoadUser());
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is UserInfoLoading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is UserInfoLoaded) {
@@ -72,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               color: Colors.black.withOpacity(0.2),
                               spreadRadius: 2,
                               blurRadius: 7,
-                              offset: Offset(0, 3),
+                              offset: const Offset(0, 3),
                             )
                           ],
                         ),
@@ -81,14 +82,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => EditPersonal()));
+                                    builder: (context) =>
+                                        const EditPersonal()));
                           },
                           child: Column(
                             children: [
                               Container(
-                                padding: EdgeInsets.all(24),
+                                padding: EdgeInsets.all(
+                                    MediaQuery.of(context).size.width * 0.06),
                                 width: MediaQuery.of(context).size.width * 0.9,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   gradient: LinearGradient(
                                       begin: Alignment.topRight,
                                       end: Alignment.bottomLeft,
@@ -107,13 +110,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   children: [
                                     state.userModel.photoUrl != null
                                         ? CircleAvatar(
-                                            radius: 45,
+                                            radius: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.12,
                                             backgroundImage: NetworkImage(
                                                 state.userModel.photoUrl!))
                                         : CircleAvatar(
-                                            radius: 45,
-                                            backgroundImage:
-                                                AssetImage("assets/mine.png")),
+                                            radius: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.12,
+                                            backgroundImage: const AssetImage(
+                                                "assets/mine.png")),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
@@ -173,7 +182,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 decoration: BoxDecoration(
                                   color:
                                       Theme.of(context).scaffoldBackgroundColor,
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       bottomLeft: Radius.circular(12),
                                       bottomRight: Radius.circular(12)),
                                   boxShadow: [
@@ -181,12 +190,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       color: Colors.black.withOpacity(0.2),
                                       spreadRadius: 2,
                                       blurRadius: 7,
-                                      offset: Offset(0, 3),
+                                      offset: const Offset(0, 3),
                                     )
                                   ],
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(
+                                      MediaQuery.of(context).size.width * 0.02),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -197,7 +207,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               maxLines: 6,
                                               overflow: TextOverflow.ellipsis,
                                             )
-                                          : Text(
+                                          : const Text(
                                               "Hakkında Kısmı",
                                               maxLines: 6,
                                               overflow: TextOverflow.ellipsis,
@@ -227,7 +237,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Container(
                               width: MediaQuery.of(context).size.width * 0.9,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                     begin: Alignment.topRight,
                                     end: Alignment.bottomLeft,
                                     colors: [
@@ -235,7 +245,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Color(0xFF011D42),
                                       Color(0xFF341132),
                                     ]),
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(12),
                                     topRight: Radius.circular(12)),
                                 boxShadow: [
@@ -243,12 +253,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   )
                                 ],
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(
+                                    MediaQuery.of(context).size.width * 0.02),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -270,7 +281,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               decoration: BoxDecoration(
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(12),
                                     bottomRight: Radius.circular(12)),
                                 boxShadow: [
@@ -278,21 +289,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   )
                                 ],
                               ),
                               child: ListView.builder(
                                 shrinkWrap: true,
-                                physics: ClampingScrollPhysics(),
+                                physics: const ClampingScrollPhysics(),
                                 itemCount: state.userModel.graduates != null
                                     ? state.userModel.graduates!.length
                                     : experience.length,
                                 itemBuilder: (context, index) {
                                   if (index <= 2) {
                                     return ListTile(
-                                      leading:
-                                          Icon(FontAwesomeIcons.graduationCap),
+                                      leading: const Icon(
+                                          FontAwesomeIcons.graduationCap),
                                       title: state.userModel.graduates != null
                                           ? Text(
                                               state.userModel.graduates![index]
@@ -330,14 +341,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => EditExperience()));
+                                  builder: (context) =>
+                                      const EditExperience()));
                         },
                         child: Column(
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width * 0.9,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                     begin: Alignment.topRight,
                                     end: Alignment.bottomLeft,
                                     colors: [
@@ -345,7 +357,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Color(0xFF011D42),
                                       Color(0xFF341132),
                                     ]),
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(12),
                                     topRight: Radius.circular(12)),
                                 boxShadow: [
@@ -353,12 +365,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   )
                                 ],
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(
+                                    MediaQuery.of(context).size.width * 0.02),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -380,7 +393,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               decoration: BoxDecoration(
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(12),
                                     bottomRight: Radius.circular(12)),
                                 boxShadow: [
@@ -388,18 +401,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   )
                                 ],
                               ),
                               child: ListView.builder(
                                 shrinkWrap: true,
-                                physics: ClampingScrollPhysics(),
+                                physics: const ClampingScrollPhysics(),
                                 itemCount: experience.length,
                                 itemBuilder: (context, index) {
                                   if (index <= 2) {
                                     return ListTile(
-                                      leading: Icon(FontAwesomeIcons.briefcase),
+                                      leading: const Icon(
+                                          FontAwesomeIcons.briefcase),
                                       title: Text(
                                         experience[index],
                                         style: Theme.of(context)
@@ -429,14 +443,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => EditSkills()));
+                                  builder: (context) => const EditSkills()));
                         },
                         child: Column(
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width * 0.9,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                     begin: Alignment.topRight,
                                     end: Alignment.bottomLeft,
                                     colors: [
@@ -444,7 +458,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Color(0xFF011D42),
                                       Color(0xFF341132),
                                     ]),
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(12),
                                     topRight: Radius.circular(12)),
                                 boxShadow: [
@@ -452,12 +466,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   )
                                 ],
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(
+                                    MediaQuery.of(context).size.width * 0.02),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -479,7 +494,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               decoration: BoxDecoration(
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(12),
                                     bottomRight: Radius.circular(12)),
                                 boxShadow: [
@@ -487,13 +502,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   )
                                 ],
                               ),
                               child: ListView.builder(
                                 shrinkWrap: true,
-                                physics: ClampingScrollPhysics(),
+                                physics: const ClampingScrollPhysics(),
                                 itemCount: skills.length,
                                 itemBuilder: (context, index) {
                                   if (index <= 2) {
@@ -521,14 +536,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => EditCertificate()));
+                                  builder: (context) =>
+                                      const EditCertificate()));
                         },
                         child: Column(
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width * 0.9,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                     begin: Alignment.topRight,
                                     end: Alignment.bottomLeft,
                                     colors: [
@@ -536,7 +552,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Color(0xFF011D42),
                                       Color(0xFF341132),
                                     ]),
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(12),
                                     topRight: Radius.circular(12)),
                                 boxShadow: [
@@ -544,12 +560,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   )
                                 ],
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(
+                                    MediaQuery.of(context).size.width * 0.02),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -571,7 +588,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               decoration: BoxDecoration(
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(12),
                                     bottomRight: Radius.circular(12)),
                                 boxShadow: [
@@ -579,13 +596,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   )
                                 ],
                               ),
                               child: ListView.builder(
                                 shrinkWrap: true,
-                                physics: ClampingScrollPhysics(),
+                                physics: const ClampingScrollPhysics(),
                                 itemCount: certificates.length,
                                 itemBuilder: (context, index) {
                                   if (index <= 2) {
@@ -622,14 +639,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => EditLanguage()));
+                                  builder: (context) => const EditLanguage()));
                         },
                         child: Column(
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width * 0.9,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                     begin: Alignment.topRight,
                                     end: Alignment.bottomLeft,
                                     colors: [
@@ -637,7 +654,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Color(0xFF011D42),
                                       Color(0xFF341132),
                                     ]),
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(12),
                                     topRight: Radius.circular(12)),
                                 boxShadow: [
@@ -645,12 +662,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   )
                                 ],
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(
+                                    MediaQuery.of(context).size.width * 0.02),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -672,7 +690,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               decoration: BoxDecoration(
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(12),
                                     bottomRight: Radius.circular(12)),
                                 boxShadow: [
@@ -680,19 +698,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   )
                                 ],
                               ),
                               child: ListView.builder(
                                 shrinkWrap: true,
-                                physics: ClampingScrollPhysics(),
+                                physics: const ClampingScrollPhysics(),
                                 itemCount: language.length,
                                 itemBuilder: (context, index) {
                                   if (index <= 2) {
                                     return ListTile(
-                                      leading:
-                                          Icon(FontAwesomeIcons.earthEurope),
+                                      leading: const Icon(
+                                          FontAwesomeIcons.earthEurope),
                                       title: Text(
                                         language[index],
                                         style: Theme.of(context)
@@ -716,14 +734,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => EditSocial()));
+                                  builder: (context) => const EditSocial()));
                         },
                         child: Column(
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width * 0.9,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                     begin: Alignment.topRight,
                                     end: Alignment.bottomLeft,
                                     colors: [
@@ -731,7 +749,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Color(0xFF011D42),
                                       Color(0xFF341132),
                                     ]),
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(12),
                                     topRight: Radius.circular(12)),
                                 boxShadow: [
@@ -739,12 +757,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Colors.black.withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   )
                                 ],
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(
+                                    MediaQuery.of(context).size.width * 0.02),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -766,7 +785,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 decoration: BoxDecoration(
                                   color:
                                       Theme.of(context).scaffoldBackgroundColor,
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       bottomLeft: Radius.circular(12),
                                       bottomRight: Radius.circular(12)),
                                   boxShadow: [
@@ -774,12 +793,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       color: Colors.black.withOpacity(0.2),
                                       spreadRadius: 2,
                                       blurRadius: 7,
-                                      offset: Offset(0, 3),
+                                      offset: const Offset(0, 3),
                                     )
                                   ],
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(
+                                      MediaQuery.of(context).size.width * 0.02),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -816,9 +836,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   );
                 } else if (state is UserInfoError) {
-                  return EmptyCard();
+                  return const EmptyCard();
                 } else {
-                  return Text("Error");
+                  return const Text("Error");
                 }
               })),
         ],

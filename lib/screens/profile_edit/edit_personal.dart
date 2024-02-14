@@ -27,8 +27,10 @@ class _EditPersonalState extends State<EditPersonal> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _adressController = TextEditingController();
   final TextEditingController _aboutController = TextEditingController();
+  var imagePath;
   File? _pickedFile;
   UserModel? user;
+
   @override
   void initState() {
     renameName();
@@ -43,6 +45,7 @@ class _EditPersonalState extends State<EditPersonal> {
     _gsmController.text = user!.gsm ?? '';
     _adressController.text = user!.adress ?? '';
     _emailController.text = user!.email;
+    imagePath = user!.photoUrl;
   }
 
   void _pickImage() async {
@@ -64,7 +67,6 @@ class _EditPersonalState extends State<EditPersonal> {
 
     await ref.putFile(_pickedFile!);
     final url = await ref.getDownloadURL();
-    print(url);
 
     final document =
         FirebaseFirestore.instance.collection("users").doc(user.uid);
@@ -74,16 +76,18 @@ class _EditPersonalState extends State<EditPersonal> {
 
   var dropdownValue = list.first;
   var dropdownValueSecond = list.first;
-  var imagePath;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hakkımda"),
+        title: const Text("Hakkımda"),
         scrolledUnderElevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 16.0, right: 16.0),
+        padding: EdgeInsets.only(
+            left: MediaQuery.of(context).size.width * 0.04,
+            right: MediaQuery.of(context).size.width * 0.04),
         child: ListView(
           children: [
             Column(
@@ -92,21 +96,18 @@ class _EditPersonalState extends State<EditPersonal> {
                   onTap: () {
                     _pickImage();
                   },
-                  child: CircleAvatar(
-                    maxRadius: 32,
-                    child: imagePath != null
-                        ? Image.asset(
-                            imagePath,
-                            width: 150,
-                            height: 75,
-                          )
-                        : Icon(Icons.person),
-                  ),
+                  child: imagePath != null
+                      ? CircleAvatar(
+                          radius: MediaQuery.of(context).size.height * 0.08,
+                          backgroundImage: NetworkImage(imagePath))
+                      : CircleAvatar(
+                          radius: MediaQuery.of(context).size.height * 0.08,
+                          backgroundImage: const AssetImage("assets/mine.png")),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Ad",
@@ -118,13 +119,14 @@ class _EditPersonalState extends State<EditPersonal> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    contentPadding: const EdgeInsets.all(8),
+                    contentPadding: EdgeInsets.all(
+                        MediaQuery.of(context).size.width * 0.02),
                   ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Soyad",
@@ -136,12 +138,13 @@ class _EditPersonalState extends State<EditPersonal> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      contentPadding: const EdgeInsets.all(8)),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02)),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Telefon Numarası",
@@ -153,12 +156,13 @@ class _EditPersonalState extends State<EditPersonal> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      contentPadding: const EdgeInsets.all(8)),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02)),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Doğum Tarihiniz",
@@ -169,7 +173,9 @@ class _EditPersonalState extends State<EditPersonal> {
                       border: Border.all(width: 1, color: Colors.black38),
                       borderRadius: BorderRadius.circular(14)),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.02,
+                        right: MediaQuery.of(context).size.width * 0.02),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -191,7 +197,7 @@ class _EditPersonalState extends State<EditPersonal> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "E-Posta",
@@ -203,12 +209,13 @@ class _EditPersonalState extends State<EditPersonal> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      contentPadding: const EdgeInsets.all(8)),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02)),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Adres",
@@ -221,12 +228,13 @@ class _EditPersonalState extends State<EditPersonal> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      contentPadding: const EdgeInsets.all(8)),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02)),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Hakkımda",
@@ -239,7 +247,8 @@ class _EditPersonalState extends State<EditPersonal> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      contentPadding: const EdgeInsets.all(8)),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02)),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
@@ -256,14 +265,14 @@ class _EditPersonalState extends State<EditPersonal> {
                             about: _aboutController.text)));
                     _upload();
                   },
-                  child: Text("Kaydet"),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF011D42),
+                    backgroundColor: const Color(0xFF011D42),
                     minimumSize: Size(
                       MediaQuery.of(context).size.width * 0.9,
                       MediaQuery.of(context).size.height * 0.06,
                     ),
                   ),
+                  child: const Text("Kaydet"),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
