@@ -27,12 +27,12 @@ class _HomeEducationScreenState extends State<HomeEducationScreen> {
             snap: true,
             floating: true,
             scrolledUnderElevation: 0.0,
-            title: Text("Eğitimlerim"),
+            title: const Text("Eğitimlerim"),
             leading: IconButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(Icons.arrow_back_ios)),
+                icon: const Icon(Icons.arrow_back_ios)),
           ),
         ];
       }, body: BlocBuilder<EducationBloc, EducationState>(
@@ -48,7 +48,7 @@ class _HomeEducationScreenState extends State<HomeEducationScreen> {
             );
           } else if (state is EducationLoaded) {
             if (state.educationList.isEmpty) {
-              return EmptyCard();
+              return const EmptyCard();
             } else {
               return ListView.builder(
                 itemCount: state.educationList.length,

@@ -25,12 +25,12 @@ class _HomeApplicationScreenState extends State<HomeApplicationScreen> {
             snap: true,
             floating: true,
             scrolledUnderElevation: 0.0,
-            title: Text("Başvurularım"),
+            title: const Text("Başvurularım"),
             leading: IconButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(Icons.arrow_back_ios)),
+                icon: const Icon(Icons.arrow_back_ios)),
           )
         ];
       }, body: BlocBuilder<ApplicationBloc, ApplicationState>(
@@ -46,13 +46,14 @@ class _HomeApplicationScreenState extends State<HomeApplicationScreen> {
             );
           } else if (state is ApplicationLoaded) {
             if (state.applicationList.isEmpty) {
-              return EmptyCard();
+              return const EmptyCard();
             } else {
               return ListView.builder(
                 itemCount: state.applicationList.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(
+                        MediaQuery.of(context).size.width * 0.03),
                     child: ApplicationsCard(
                       title: state.applicationList[index].title,
                       subtitle: state.applicationList[index].subtitle,

@@ -20,19 +20,19 @@ class _HomeSurveyScreenState extends State<HomeSurveyScreen> {
               snap: true,
               floating: true,
               scrolledUnderElevation: 0.0,
-              title: Text("Anketlerim"),
+              title:const Text("Anketlerim"),
               leading: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back_ios)),
+                  icon:const  Icon(Icons.arrow_back_ios)),
             )
           ];
         },
         body: ListView.builder(
           itemCount: 1,
           itemBuilder: (context, index) {
-            return EmptyCard();
+            return const EmptyCard();
           },
         ),
       ),

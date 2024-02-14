@@ -39,7 +39,7 @@ class _ExamScreenState extends State<ExamScreen> {
                 itemCount: state.examList.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
                     child: ExamCard(
                       examName: state.examList[index].name,
                       examClass: state.examList[index].examClass,

@@ -22,12 +22,12 @@ class _HomeAnnouncementState extends State<HomeAnnouncement> {
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
             SliverAppBar(
-              title: Text("Duyurularım"),
+              title: const Text("Duyurularım"),
               leading: IconButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
               ),
             ),
           ];
@@ -36,22 +36,23 @@ class _HomeAnnouncementState extends State<HomeAnnouncement> {
           builder: (context, state) {
             if (state is AnnouncementInitial) {
               context.read<AnnouncementBloc>().add(LoadAnno());
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is AnnouncementLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is AnnouncementLoaded) {
               if (state.announcementList.isEmpty) {
-                return EmptyCard();
+                return const EmptyCard();
               } else {
                 return ListView.builder(
                   itemCount: state.announcementList.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.all(5),
+                      padding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02),
                       child: AnnouncementCard(
                         type: state.announcementList[index].type,
                         eduType: state.announcementList[index].eduType,
@@ -102,7 +103,7 @@ void _showReadMoreModal(BuildContext context, String title, String content) {
           ),
         ),
         height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.03),
         child: ListView(
           children: [
             Text(

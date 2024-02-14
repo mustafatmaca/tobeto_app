@@ -21,7 +21,7 @@ class MenuScreen extends StatelessWidget {
         title: const Text("İstanbul Kodluyor"),
       ),
       body: GridView(
-        padding: const EdgeInsets.all(12),
+        padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, mainAxisSpacing: 12, crossAxisSpacing: 12),
         children: [
@@ -35,7 +35,7 @@ class MenuScreen extends StatelessWidget {
                   ));
             },
             child: Container(
-              padding: const EdgeInsets.all(18),
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
               decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     begin: Alignment.topLeft,
@@ -74,7 +74,7 @@ class MenuScreen extends StatelessWidget {
                       builder: (context) => const HomeEducationScreen()));
             },
             child: Container(
-              padding: const EdgeInsets.all(18),
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
               decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     begin: Alignment.topLeft,
@@ -113,7 +113,7 @@ class MenuScreen extends StatelessWidget {
                       builder: (context) => const HomeAnnouncement()));
             },
             child: Container(
-              padding: const EdgeInsets.all(18),
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
               decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     begin: Alignment.topLeft,
@@ -151,7 +151,7 @@ class MenuScreen extends StatelessWidget {
                       builder: (context) => const HomeSurveyScreen()));
             },
             child: Container(
-              padding: const EdgeInsets.all(18),
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
               decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     begin: Alignment.topLeft,
