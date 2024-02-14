@@ -109,7 +109,9 @@ class ExamCard extends StatelessWidget {
                                 .bodyMedium!
                                 .copyWith(
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .background),
                           ),
                         ],
                       ),
@@ -122,7 +124,9 @@ class ExamCard extends StatelessWidget {
                               .bodySmall!
                               .copyWith(
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white)),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .background)),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
@@ -142,7 +146,9 @@ class ExamCard extends StatelessWidget {
                                 .bodyMedium!
                                 .copyWith(
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .background),
                           ),
                         ],
                       ),

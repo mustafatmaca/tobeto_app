@@ -45,7 +45,7 @@ class ApplicationsCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const SizedBox(width: 5),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.015),
               Expanded(
                 child: Text(title,
                     style: Theme.of(context)
@@ -87,7 +87,7 @@ class ApplicationsCard extends StatelessWidget {
                           Icons.close,
                           color: Colors.red,
                         ),
-              SizedBox(width: 5),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.015),
               Expanded(child: Text(subtitle + " " + state)),
             ],
           ),
@@ -107,7 +107,7 @@ class ApplicationsCard extends StatelessWidget {
                           Icons.close,
                           color: Colors.red,
                         ),
-              SizedBox(width: 5),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.015),
               Expanded(child: Text(subtitle2 + " " + state)),
             ],
           ),

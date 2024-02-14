@@ -79,15 +79,15 @@ class CatalogCard extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                instructor,
-                                style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.background,
-                                  fontSize: 13.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              Text(instructor,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .background,
+                                          fontWeight: FontWeight.bold)),
                               Icon(
                                 Icons.access_time,
                                 size: 18,
@@ -103,12 +103,15 @@ class CatalogCard extends StatelessWidget {
                                     " " +
                                     (time % 60).toString() +
                                     " Dakika",
-                                style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.background,
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .background,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                             ],
                           ),
@@ -117,11 +120,14 @@ class CatalogCard extends StatelessWidget {
                           ),
                           Text(
                             title,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.background,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.background,
+                                  fontWeight: FontWeight.bold,
+                                ),
                             maxLines: 4,
                           ),
                         ],

@@ -63,7 +63,7 @@ class AnnouncementCard extends StatelessWidget {
           ),
           Row(
             children: [
-              const SizedBox(width: 5),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.02),
               Expanded(
                 child: Text(title,
                     style: Theme.of(context)
@@ -82,7 +82,7 @@ class AnnouncementCard extends StatelessWidget {
               const Icon(
                 Icons.date_range_outlined,
               ),
-              const SizedBox(width: 5),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.015),
               Expanded(
                 child: Text("${date.day}/${date.month}/${date.year}"),
               ),
