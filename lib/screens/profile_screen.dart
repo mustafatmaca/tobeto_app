@@ -13,12 +13,6 @@ import 'package:tobeto_app/screens/profile_edit/edit_skills.dart';
 import 'package:tobeto_app/screens/profile_edit/edit_social.dart';
 import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
 
-List<String> skills = [
-  "Flutter",
-  "Swift",
-  "React Native",
-  "React",
-];
 List<String> language = [
   "İngilizce",
 ];
@@ -27,7 +21,6 @@ List<String> certificates = [
   "Certificate 2",
   "Certificate 3",
 ];
-List<String> experience = ["Deneyim 1", "Deneyim 2"];
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -277,59 +270,74 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                             Container(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              decoration: BoxDecoration(
-                                color:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                                borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(12),
-                                    bottomRight: Radius.circular(12)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
-                                    spreadRadius: 2,
-                                    blurRadius: 7,
-                                    offset: const Offset(0, 3),
-                                  )
-                                ],
-                              ),
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: const ClampingScrollPhysics(),
-                                itemCount: state.userModel.graduates != null
-                                    ? state.userModel.graduates!.length
-                                    : experience.length,
-                                itemBuilder: (context, index) {
-                                  if (index <= 2) {
-                                    return ListTile(
-                                      leading: const Icon(
-                                          FontAwesomeIcons.graduationCap),
-                                      title: state.userModel.graduates != null
-                                          ? Text(
+                                width: MediaQuery.of(context).size.width * 0.9,
+                                decoration: BoxDecoration(
+                                  color:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(12),
+                                      bottomRight: Radius.circular(12)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.2),
+                                      spreadRadius: 2,
+                                      blurRadius: 7,
+                                      offset: const Offset(0, 3),
+                                    )
+                                  ],
+                                ),
+                                child: state.userModel.graduates != null
+                                    ? ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: const ClampingScrollPhysics(),
+                                        itemCount:
+                                            state.userModel.graduates!.length,
+                                        itemBuilder: (context, index) {
+                                          return ListTile(
+                                            leading: const Icon(
+                                                FontAwesomeIcons.graduationCap),
+                                            title: Text(
                                               state.userModel.graduates![index]
                                                   .name!,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyLarge,
-                                            )
-                                          : Text(
-                                              experience[index],
+                                            ),
+                                            subtitle: Text(
+                                              state.userModel.graduates![index]
+                                                  .type!,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall,
+                                            ),
+                                            trailing: const Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(FontAwesomeIcons.calendar),
+                                                Text("2024"),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    : ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: const ClampingScrollPhysics(),
+                                        itemCount: 1,
+                                        itemBuilder: (context, index) {
+                                          return ListTile(
+                                            leading: const Icon(
+                                                FontAwesomeIcons.graduationCap),
+                                            title: Text(
+                                              "Eğitim Ekle",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyLarge,
                                             ),
-                                      subtitle: Text(
-                                        "2024",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall,
-                                      ),
-                                    );
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
+                                          );
+                                        },
+                                      )),
                           ],
                         ),
                       ),
@@ -390,59 +398,76 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                             Container(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              decoration: BoxDecoration(
-                                color:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                                borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(12),
-                                    bottomRight: Radius.circular(12)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
-                                    spreadRadius: 2,
-                                    blurRadius: 7,
-                                    offset: const Offset(0, 3),
-                                  )
-                                ],
-                              ),
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: const ClampingScrollPhysics(),
-                                itemCount: state.userModel.experiences != null
-                                    ? state.userModel.experiences!.length
-                                    : experience.length,
-                                itemBuilder: (context, index) {
-                                  if (index <= 2) {
-                                    return ListTile(
-                                      leading: const Icon(
-                                          FontAwesomeIcons.briefcase),
-                                      title: state.userModel.experiences != null
-                                          ? Text(
+                                width: MediaQuery.of(context).size.width * 0.9,
+                                decoration: BoxDecoration(
+                                  color:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(12),
+                                      bottomRight: Radius.circular(12)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.2),
+                                      spreadRadius: 2,
+                                      blurRadius: 7,
+                                      offset: const Offset(0, 3),
+                                    )
+                                  ],
+                                ),
+                                child: state.userModel.experiences != null
+                                    ? ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: const ClampingScrollPhysics(),
+                                        itemCount:
+                                            state.userModel.experiences!.length,
+                                        itemBuilder: (context, index) {
+                                          return ListTile(
+                                            leading: const Icon(
+                                                FontAwesomeIcons.briefcase),
+                                            title: Text(
                                               state.userModel
                                                   .experiences![index].name!,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyLarge,
-                                            )
-                                          : Text(
-                                              experience[index],
+                                            ),
+                                            subtitle: Text(
+                                              state
+                                                  .userModel
+                                                  .experiences![index]
+                                                  .position!,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall,
+                                            ),
+                                            trailing: const Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(FontAwesomeIcons.calendar),
+                                                Text("2024"),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    : ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: const ClampingScrollPhysics(),
+                                        itemCount: 1,
+                                        itemBuilder: (context, index) {
+                                          return ListTile(
+                                            leading: const Icon(
+                                                FontAwesomeIcons.briefcase),
+                                            title: Text(
+                                              "Deneyim Ekle",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyLarge,
                                             ),
-                                      subtitle: Text(
-                                        "2024",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall,
-                                      ),
-                                    );
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
+                                          );
+                                        },
+                                      )),
                           ],
                         ),
                       ),
@@ -519,33 +544,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   )
                                 ],
                               ),
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: const ClampingScrollPhysics(),
-                                itemCount: state.userModel.skills != null
-                                    ? state.userModel.skills!.length
-                                    : skills.length,
-                                itemBuilder: (context, index) {
-                                  if (index <= 2) {
-                                    return ListTile(
-                                      title: state.userModel.skills != null
-                                          ? Text(
+                              child: state.userModel.skills != null
+                                  ? ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const ClampingScrollPhysics(),
+                                      itemCount: state.userModel.skills!.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                            leading: const Icon(
+                                                FontAwesomeIcons.bookBookmark),
+                                            title: Text(
                                               state.userModel.skills![index],
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyLarge,
-                                            )
-                                          : Text(
-                                              skills[index],
+                                            ));
+                                      },
+                                    )
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const ClampingScrollPhysics(),
+                                      itemCount: 1,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                            leading: const Icon(
+                                                FontAwesomeIcons.bookBookmark),
+                                            title: Text(
+                                              "Yetkinlik Ekle",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyLarge,
-                                            ),
-                                    );
-                                  }
-                                  return null;
-                                },
-                              ),
+                                            ));
+                                      },
+                                    ),
                             )
                           ],
                         ),

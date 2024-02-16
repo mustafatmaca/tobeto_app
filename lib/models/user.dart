@@ -122,14 +122,14 @@ class UserModel {
                 (x) => Graduate.fromMap(x),
               ),
             )
-          : [],
+          : null,
       experiences: map['experiences'] != null
           ? List<Experience>.from(
               (map['experiences'] as List<dynamic>).map<Experience?>(
                 (x) => Experience.fromMap(x),
               ),
             )
-          : [],
+          : null,
     );
   }
 
