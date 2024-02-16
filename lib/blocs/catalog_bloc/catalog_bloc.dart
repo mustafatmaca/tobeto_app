@@ -9,7 +9,7 @@ class CatalogBloc extends Bloc<CatalogEvent, CatalogState> {
     on<LoadCatalog>((event, emit) async {
       emit(CatalogLoading());
       try {
-        final catalogList = await fireStoreRepo.getCAtalog();
+        final catalogList = await fireStoreRepo.getCatalog();
         emit(CatalogLoaded(catalogs: catalogList));
       } catch (e) {
         emit(CatalogError());

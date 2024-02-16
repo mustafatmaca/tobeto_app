@@ -13,6 +13,7 @@ class FireStoreRepo {
   final firebaseAuthInstance = FirebaseAuth.instance;
   final FirebaseFirestoreInstance = FirebaseFirestore.instance;
 
+  //Kullanıcı bilgilerini firestore üzerinden getirme
   Future<UserModel> getUser() async {
     final userId = await firebaseAuthInstance.currentUser!.uid;
     final user =
@@ -23,6 +24,7 @@ class FireStoreRepo {
     return UserModel.fromMap(docSnapshot.data()!);
   }
 
+  //Kullanıcıya ait başvuruları firestore üzerinden getirme
   Future<List<Application>> getApplications() async {
     //giriş yapmış olan kullanıcıyı getirir
     final user = await FirebaseFirestoreInstance.collection("users")
@@ -57,6 +59,7 @@ class FireStoreRepo {
     return resolvedAppList;
   }
 
+  //Kullanıcıya ait duyuruları firestore üzerinden getirme
   Future<List<Announcement>> getAnnouncements() async {
     final user = await FirebaseFirestoreInstance.collection("users")
         .doc(firebaseAuthInstance.currentUser!.uid);
@@ -85,6 +88,7 @@ class FireStoreRepo {
     return resolvedAnnoList;
   }
 
+  //Kullanıcıya ait sınavları firestore üzerinden getirme
   Future<List<Exam>> getExams() async {
     final user = await FirebaseFirestoreInstance.collection("users")
         .doc(firebaseAuthInstance.currentUser!.uid);
@@ -111,6 +115,7 @@ class FireStoreRepo {
     return resolvedExamList;
   }
 
+  //Kullanıcıya ait eğitimleri firestore üzerinden getirme
   Future<List<Education>> getEducations() async {
     final user = await FirebaseFirestoreInstance.collection("users")
         .doc(firebaseAuthInstance.currentUser!.uid);
@@ -135,6 +140,7 @@ class FireStoreRepo {
     return resolvedEduList;
   }
 
+  //Kullanıcıya ait takvim kısmında gösterilen dersleri firestore üzerinden getirme
   Future<List<Lesson>> getLessons() async {
     final user = await FirebaseFirestoreInstance.collection("users")
         .doc(firebaseAuthInstance.currentUser!.uid);
@@ -159,7 +165,8 @@ class FireStoreRepo {
     return resolvedLessonList;
   }
 
-  Future<List<Catalog>> getCAtalog() async {
+  //Katalog kısmına ait eğitimleri firestore üzerinden getirme
+  Future<List<Catalog>> getCatalog() async {
     final catalogs =
         await FirebaseFirestoreInstance.collection("catalogs").get();
 
@@ -172,6 +179,7 @@ class FireStoreRepo {
     return resolvedCatalogList;
   }
 
+  // Değerlendirmeler kısmındaki raporları firestore üzerinden getirme
   Future<List<Report>> getReports() async {
     final reports = await FirebaseFirestoreInstance.collection("reports").get();
 
@@ -184,6 +192,7 @@ class FireStoreRepo {
     return resolvedReportList;
   }
 
+  //Kullanıcının hakkında kısmında düzenleyebildiği verileri güncelleme
   void updateUserAbout(UserModel userModel) async {
     final user = await FirebaseFirestoreInstance.collection("users")
         .doc(firebaseAuthInstance.currentUser!.uid);
@@ -199,6 +208,7 @@ class FireStoreRepo {
         .toMap());
   }
 
+  //Kullanıcının eğitim hayatı kısmında düzenleyebildiği verileri güncelleme
   void updateUserGraduate(UserModel userModel) async {
     final user = await FirebaseFirestoreInstance.collection("users")
         .doc(firebaseAuthInstance.currentUser!.uid);
