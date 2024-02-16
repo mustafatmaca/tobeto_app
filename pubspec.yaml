@@ -53,6 +53,7 @@ dependencies:
   table_calendar: ^3.0.9
   intl: ^0.18.1
   image_picker: ^1.0.7
+  lecle_yoyo_player: ^0.0.8
 
 dev_dependencies:
   flutter_test:
