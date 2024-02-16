@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
+import 'package:tobeto_app/models/user.dart';
+import 'package:tobeto_app/screens/profile_screen.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
 class EditSkills extends StatefulWidget {
-  const EditSkills({Key? key}) : super(key: key);
+  EditSkills({Key? key, required this.userModel}) : super(key: key);
+  UserModel userModel;
 
   @override
   _EditSkillsState createState() => _EditSkillsState();
 }
 
 class _EditSkillsState extends State<EditSkills> {
+  final TextEditingController _skillController = TextEditingController();
   var dropdownValue = list.first;
   @override
   Widget build(BuildContext context) {
@@ -32,6 +39,7 @@ class _EditSkillsState extends State<EditSkills> {
                   ),
                 ),
                 TextField(
+                  controller: _skillController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -44,7 +52,27 @@ class _EditSkillsState extends State<EditSkills> {
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.userModel.skills != null
+                        ? context.read<UserInfoBloc>().add(UpdateUserSkill(
+                                userModel: UserModel(
+                                    name: widget.userModel.name,
+                                    surname: widget.userModel.surname,
+                                    email: widget.userModel.email,
+                                    skills: [
+                                  ...widget.userModel.skills!,
+                                  _skillController.text
+                                ])))
+                        : context.read<UserInfoBloc>().add(UpdateUserSkill(
+                            userModel: UserModel(
+                                name: widget.userModel.name,
+                                surname: widget.userModel.surname,
+                                email: widget.userModel.email,
+                                skills: [_skillController.text])));
+
+                    Navigator.pop(context);
+                    context.read<UserInfoBloc>().add(ResetEvent());
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF011D42),
                       minimumSize: Size(

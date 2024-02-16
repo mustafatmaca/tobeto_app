@@ -219,4 +219,26 @@ class FireStoreRepo {
       graduates: userModel.graduates,
     ).toMap());
   }
+
+  void updateUserExperience(UserModel userModel) async {
+    final user = await FirebaseFirestoreInstance.collection("users")
+        .doc(firebaseAuthInstance.currentUser!.uid);
+    user.update(UserModel(
+      name: userModel.name,
+      surname: userModel.surname,
+      email: userModel.email,
+      experiences: userModel.experiences,
+    ).toMap());
+  }
+
+  void updateUserSkill(UserModel userModel) async {
+    final user = await FirebaseFirestoreInstance.collection("users")
+        .doc(firebaseAuthInstance.currentUser!.uid);
+    user.update(UserModel(
+            name: userModel.name,
+            surname: userModel.surname,
+            email: userModel.email,
+            skills: userModel.skills)
+        .toMap());
+  }
 }

@@ -341,8 +341,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const EditExperience()));
+                                  builder: (context) => EditExperience(
+                                        userModel: state.userModel,
+                                      )));
                         },
                         child: Column(
                           children: [
@@ -408,18 +409,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: ListView.builder(
                                 shrinkWrap: true,
                                 physics: const ClampingScrollPhysics(),
-                                itemCount: experience.length,
+                                itemCount: state.userModel.experiences != null
+                                    ? state.userModel.experiences!.length
+                                    : experience.length,
                                 itemBuilder: (context, index) {
                                   if (index <= 2) {
                                     return ListTile(
                                       leading: const Icon(
                                           FontAwesomeIcons.briefcase),
-                                      title: Text(
-                                        experience[index],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
-                                      ),
+                                      title: state.userModel.experiences != null
+                                          ? Text(
+                                              state.userModel
+                                                  .experiences![index].name!,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge,
+                                            )
+                                          : Text(
+                                              experience[index],
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge,
+                                            ),
                                       subtitle: Text(
                                         "2024",
                                         style: Theme.of(context)
@@ -443,7 +454,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const EditSkills()));
+                                  builder: (context) => EditSkills(
+                                        userModel: state.userModel,
+                                      )));
                         },
                         child: Column(
                           children: [
@@ -509,16 +522,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: ListView.builder(
                                 shrinkWrap: true,
                                 physics: const ClampingScrollPhysics(),
-                                itemCount: skills.length,
+                                itemCount: state.userModel.skills != null
+                                    ? state.userModel.skills!.length
+                                    : skills.length,
                                 itemBuilder: (context, index) {
                                   if (index <= 2) {
                                     return ListTile(
-                                      title: Text(
-                                        skills[index],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
-                                      ),
+                                      title: state.userModel.skills != null
+                                          ? Text(
+                                              state.userModel.skills![index],
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge,
+                                            )
+                                          : Text(
+                                              skills[index],
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge,
+                                            ),
                                     );
                                   }
                                   return null;

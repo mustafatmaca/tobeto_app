@@ -236,6 +236,9 @@ class _EditEducationState extends State<EditEducation> {
                                     isContinue: isWork)
                               ],
                             )));
+
+                    Navigator.pop(context);
+                    context.read<UserInfoBloc>().add(ResetEvent());
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF011D42),

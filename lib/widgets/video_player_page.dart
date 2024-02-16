@@ -13,8 +13,6 @@ class VideoPlayerPage extends StatefulWidget {
 }
 
 class _VideoPlayerPageState extends State<VideoPlayerPage> {
-  late final VideoPlayerController _controller =
-      VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl));
   bool fullscreen = false;
 
   @override
@@ -87,8 +85,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
               ),
             ),
             videoQualityPadding: EdgeInsets.all(4.0),
-            // showLiveDirectButton: true,
-            // enableSystemOrientationsOverride: false,
           ),
           videoLoadingStyle: const VideoLoadingStyle(
             loading: Center(

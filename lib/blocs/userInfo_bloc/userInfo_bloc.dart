@@ -36,5 +36,20 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
         print(e);
       }
     });
+
+    on<UpdateUserExperience>((event, emit) async {
+      try {
+        fireStoreRepo.updateUserExperience(event.userModel);
+      } catch (e) {
+        print(e);
+      }
+    });
+    on<UpdateUserSkill>((event, emit) async {
+      try {
+        fireStoreRepo.updateUserSkill(event.userModel);
+      } catch (e) {
+        print(e);
+      }
+    });
   }
 }

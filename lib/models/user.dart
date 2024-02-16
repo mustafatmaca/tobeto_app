@@ -84,7 +84,19 @@ class UserModel {
       });
     }
     if (experiences != null) {
-      result.addAll({'experiences': experiences});
+      result.addAll({
+        'experiences': experiences!
+            .map((e) => Experience(
+                    about: e.about,
+                    name: e.name,
+                    position: e.position,
+                    sector: e.sector,
+                    isContinue: e.isContinue,
+                    endDate: e.endDate,
+                    startDate: e.startDate)
+                .toMap())
+            .toList()
+      });
     }
 
     return result;
@@ -111,7 +123,13 @@ class UserModel {
               ),
             )
           : [],
-      experiences: map['experiences'],
+      experiences: map['experiences'] != null
+          ? List<Experience>.from(
+              (map['experiences'] as List<dynamic>).map<Experience?>(
+                (x) => Experience.fromMap(x),
+              ),
+            )
+          : [],
     );
   }
 

@@ -4,7 +4,6 @@ import 'package:tobeto_app/blocs/catalog_bloc/catalog_bloc.dart';
 import 'package:tobeto_app/blocs/catalog_bloc/catalog_event.dart';
 import 'package:tobeto_app/blocs/catalog_bloc/catalog_state.dart';
 import 'package:tobeto_app/widgets/catalog_widgets/catalog_card.dart';
-import 'package:tobeto_app/widgets/catalog_widgets/filter_button.dart';
 import 'package:tobeto_app/widgets/home_widgets/empty_card.dart';
 
 class CatalogScreen extends StatefulWidget {
@@ -78,24 +77,6 @@ class _CatalogScreenState extends State<CatalogScreen> {
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
-              ),
-              FilterButton(
-                filterOptions: const [
-                  'Kategori',
-                  'Eğitimler',
-                  'Seviye',
-                  'Konu',
-                  'Yazılım Dili',
-                  'Eğitmen',
-                ],
-                onFilterSelected: (selectedFilter) {
-                  // Seçilen filtreleme seçeneğine göre katalogu güncelleme işlemleri
-                  print("Seçilen filtre: $selectedFilter");
-                  // Burada katalogu güncellemek için gerekli işlemleri yapabilirsiniz
-                },
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.015,
               ),
               BlocBuilder<CatalogBloc, CatalogState>(
                 builder: (context, state) {

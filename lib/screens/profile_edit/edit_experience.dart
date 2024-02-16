@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
-
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
+import 'package:tobeto_app/models/experience.dart';
+import 'package:tobeto_app/models/user.dart';
 
 class EditExperience extends StatefulWidget {
-  const EditExperience({Key? key}) : super(key: key);
+  EditExperience({Key? key, required this.userModel}) : super(key: key);
+  final UserModel userModel;
 
   @override
   _EditExperienceState createState() => _EditExperienceState();
 }
 
 class _EditExperienceState extends State<EditExperience> {
-  var dropdownValue = list.first;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _positionController = TextEditingController();
+  final TextEditingController _sectorController = TextEditingController();
+  final TextEditingController _aboutController = TextEditingController();
   var isWork = false;
   @override
   Widget build(BuildContext context) {
@@ -34,6 +41,7 @@ class _EditExperienceState extends State<EditExperience> {
                   ),
                 ),
                 TextField(
+                  controller: _nameController,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -51,6 +59,7 @@ class _EditExperienceState extends State<EditExperience> {
                   ),
                 ),
                 TextField(
+                  controller: _positionController,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -68,6 +77,7 @@ class _EditExperienceState extends State<EditExperience> {
                   ),
                 ),
                 TextField(
+                  controller: _sectorController,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -165,6 +175,7 @@ class _EditExperienceState extends State<EditExperience> {
                   ),
                 ),
                 TextField(
+                  controller: _aboutController,
                   maxLines: 4,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -177,7 +188,40 @@ class _EditExperienceState extends State<EditExperience> {
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.userModel.experiences != null
+                        ? context.read<UserInfoBloc>().add(UpdateUserExperience(
+                                userModel: UserModel(
+                              name: widget.userModel.name,
+                              surname: widget.userModel.surname,
+                              email: widget.userModel.email,
+                              experiences: [
+                                ...widget.userModel.experiences!,
+                                Experience(
+                                    about: _aboutController.text,
+                                    name: _nameController.text,
+                                    position: _positionController.text,
+                                    sector: _sectorController.text,
+                                    isContinue: isWork)
+                              ],
+                            )))
+                        : context.read<UserInfoBloc>().add(UpdateUserExperience(
+                                userModel: UserModel(
+                                    name: widget.userModel.name,
+                                    surname: widget.userModel.surname,
+                                    email: widget.userModel.email,
+                                    experiences: [
+                                  Experience(
+                                      about: _aboutController.text,
+                                      name: _nameController.text,
+                                      position: _positionController.text,
+                                      sector: _sectorController.text,
+                                      isContinue: isWork)
+                                ])));
+
+                    Navigator.pop(context);
+                    context.read<UserInfoBloc>().add(ResetEvent());
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF011D42),
                       minimumSize: Size(

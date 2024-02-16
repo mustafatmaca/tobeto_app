@@ -19,3 +19,17 @@ class UpdateUserGraduate extends UserInfoEvent {
     required this.userModel,
   });
 }
+
+class UpdateUserExperience extends UserInfoEvent {
+  UserModel userModel;
+  UpdateUserExperience({
+    required this.userModel,
+  });
+}
+
+class UpdateUserSkill extends UserInfoEvent {
+  UserModel userModel;
+  UpdateUserSkill({
+    required this.userModel,
+  });
+}
