@@ -13,7 +13,7 @@ class UserModel {
   Timestamp? birthdate;
   String? adress;
   String? about;
-  List<String>? skills;
+  List<dynamic>? skills;
   List<String>? certificates;
   List<String>? languages;
   List<String>? socials;

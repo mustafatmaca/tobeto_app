@@ -3,13 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
 import 'package:tobeto_app/models/user.dart';
-import 'package:tobeto_app/screens/profile_screen.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
 class EditSkills extends StatefulWidget {
+  final UserModel userModel;
   EditSkills({Key? key, required this.userModel}) : super(key: key);
-  UserModel userModel;
 
   @override
   _EditSkillsState createState() => _EditSkillsState();
