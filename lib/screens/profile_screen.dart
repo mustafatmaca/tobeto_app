@@ -692,7 +692,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const EditLanguage()));
+                                  builder: (context) => EditLanguage(
+                                        userModel: state.userModel,
+                                      )));
                         },
                         child: Column(
                           children: [
@@ -755,27 +757,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   )
                                 ],
                               ),
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: const ClampingScrollPhysics(),
-                                itemCount: language.length,
-                                itemBuilder: (context, index) {
-                                  if (index <= 2) {
-                                    return ListTile(
-                                      leading: const Icon(
-                                          FontAwesomeIcons.earthEurope),
-                                      title: Text(
-                                        language[index],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
-                                      ),
-                                    );
-                                  }
-                                  return null;
-                                },
-                              ),
-                            )
+                              child: state.userModel.languages != null
+                                  ? ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const ClampingScrollPhysics(),
+                                      itemCount:
+                                          state.userModel.languages!.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          leading: const Icon(
+                                              FontAwesomeIcons.earthEurope),
+                                          title: Text(
+                                            state.userModel.languages![index],
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge,
+                                          ),
+                                        );
+                                      },
+                                    )
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const ClampingScrollPhysics(),
+                                      itemCount: 1,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          leading: const Icon(
+                                              FontAwesomeIcons.earthEurope),
+                                          title: Text(
+                                            "Dil Ekle",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                            ),
                           ],
                         ),
                       ),

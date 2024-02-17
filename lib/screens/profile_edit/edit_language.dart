@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
+import 'package:tobeto_app/models/user.dart';
 
 class EditLanguage extends StatefulWidget {
-  const EditLanguage({Key? key}) : super(key: key);
+  final UserModel userModel;
+  const EditLanguage({Key? key, required this.userModel}) : super(key: key);
 
   @override
   _EditLanguageState createState() => _EditLanguageState();
 }
 
 class _EditLanguageState extends State<EditLanguage> {
-  var dropdownValue = list.first;
-  var dropdownValueSecond = list.first;
+  final TextEditingController _languageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,83 +33,44 @@ class _EditLanguageState extends State<EditLanguage> {
                 const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Dil Seçiniz",
+                    "Dil Giriniz",
                   ),
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 1, color: Colors.black38),
-                        borderRadius: BorderRadius.circular(14)),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.02,
-                          right: MediaQuery.of(context).size.width * 0.02),
-                      child: DropdownButton<String>(
-                        isExpanded: true,
-                        underline: Container(),
-                        value: dropdownValue,
-                        items:
-                            list.map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (String? value) {
-                          setState(() {
-                            dropdownValue = value!;
-                          });
-                        },
+                TextField(
+                  controller: _languageController,
+                  decoration: InputDecoration(
+                      hintText: "Örn. İngilizce",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Seviye Seçiniz",
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 1, color: Colors.black38),
-                        borderRadius: BorderRadius.circular(14)),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.02,
-                          right: MediaQuery.of(context).size.width * 0.02),
-                      child: DropdownButton<String>(
-                        isExpanded: true,
-                        underline: Container(),
-                        value: dropdownValueSecond,
-                        items:
-                            list.map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (String? value) {
-                          setState(() {
-                            dropdownValueSecond = value!;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02)),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.userModel.languages != null
+                        ? context.read<UserInfoBloc>().add(UpdateUserLanguage(
+                                userModel: UserModel(
+                                    name: widget.userModel.name,
+                                    surname: widget.userModel.surname,
+                                    email: widget.userModel.email,
+                                    languages: [
+                                  ...widget.userModel.languages!,
+                                  _languageController.text
+                                ])))
+                        : context.read<UserInfoBloc>().add(UpdateUserLanguage(
+                            userModel: UserModel(
+                                name: widget.userModel.name,
+                                surname: widget.userModel.surname,
+                                email: widget.userModel.email,
+                                languages: [_languageController.text])));
+
+                    Navigator.pop(context);
+                    context.read<UserInfoBloc>().add(ResetEvent());
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF011D42),
                       minimumSize: Size(
@@ -115,6 +79,46 @@ class _EditLanguageState extends State<EditLanguage> {
                       )),
                   child: const Text("Kaydet"),
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                widget.userModel.languages != null
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        itemCount: widget.userModel.languages!.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: const Icon(FontAwesomeIcons.earthEurope),
+                            title: Text(
+                              widget.userModel.languages![index],
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                            trailing: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    widget.userModel.languages!.remove(
+                                        widget.userModel.languages![index]);
+                                    context.read<UserInfoBloc>().add(
+                                        UpdateUserLanguage(
+                                            userModel: UserModel(
+                                                name: widget.userModel.name,
+                                                surname:
+                                                    widget.userModel.surname,
+                                                email: widget.userModel.email,
+                                                languages: widget
+                                                    .userModel.languages!)));
+                                  });
+                                  Navigator.pop(context);
+                                  context
+                                      .read<UserInfoBloc>()
+                                      .add(ResetEvent());
+                                },
+                                icon: Icon(FontAwesomeIcons.trash)),
+                          );
+                        },
+                      )
+                    : Container(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),

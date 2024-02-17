@@ -33,3 +33,10 @@ class UpdateUserSkill extends UserInfoEvent {
     required this.userModel,
   });
 }
+
+class UpdateUserLanguage extends UserInfoEvent {
+  UserModel userModel;
+  UpdateUserLanguage({
+    required this.userModel,
+  });
+}
