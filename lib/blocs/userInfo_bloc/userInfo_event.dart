@@ -40,3 +40,10 @@ class UpdateUserLanguage extends UserInfoEvent {
     required this.userModel,
   });
 }
+
+class UpdateUserSocial extends UserInfoEvent {
+  UserModel userModel;
+  UpdateUserSocial({
+    required this.userModel,
+  });
+}

@@ -252,4 +252,15 @@ class FireStoreRepo {
             languages: userModel.languages)
         .toMap());
   }
+
+  void updateUserSocial(UserModel userModel) async {
+    final user = await FirebaseFirestoreInstance.collection("users")
+        .doc(firebaseAuthInstance.currentUser!.uid);
+    user.update(UserModel(
+            name: userModel.name,
+            surname: userModel.surname,
+            email: userModel.email,
+            socials: userModel.socials)
+        .toMap());
+  }
 }

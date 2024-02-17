@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tobeto_app/blocs/service_bloc/service_bloc.dart';
+import 'package:tobeto_app/blocs/service_bloc/service_event.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_state.dart';
@@ -256,14 +258,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Eğitim Hayatım",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Eğitim Hayatım",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge!
+                                              .copyWith(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                        const Icon(
+                                          FontAwesomeIcons.penToSquare,
+                                          color: Colors.white,
+                                        )
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -384,14 +396,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Deneyimlerim",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Deneyimlerim",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge!
+                                              .copyWith(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                        const Icon(
+                                          FontAwesomeIcons.penToSquare,
+                                          color: Colors.white,
+                                        )
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -514,14 +536,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Yetkinliklerim",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Yetkinliklerim",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge!
+                                              .copyWith(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                        const Icon(
+                                          FontAwesomeIcons.penToSquare,
+                                          color: Colors.white,
+                                        )
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -623,14 +655,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Sertifikalarım",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Sertifikalarım",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge!
+                                              .copyWith(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                        const Icon(
+                                          FontAwesomeIcons.penToSquare,
+                                          color: Colors.white,
+                                        )
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -727,14 +769,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Dillerim",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Dillerim",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge!
+                                              .copyWith(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                        const Icon(
+                                          FontAwesomeIcons.penToSquare,
+                                          color: Colors.white,
+                                        )
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -805,7 +857,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const EditSocial()));
+                                  builder: (context) => EditSocial(
+                                        userModel: state.userModel,
+                                      )));
                         },
                         child: Column(
                           children: [
@@ -838,66 +892,89 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Sosyal Medya Hesaplarım",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Sosyal Medya Hesaplarım",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge!
+                                              .copyWith(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                        const Icon(
+                                          FontAwesomeIcons.penToSquare,
+                                          color: Colors.white,
+                                        )
+                                      ],
                                     ),
                                   ],
                                 ),
                               ),
                             ),
                             Container(
-                                width: MediaQuery.of(context).size.width * 0.9,
-                                decoration: BoxDecoration(
-                                  color:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                  borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(12),
-                                      bottomRight: Radius.circular(12)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.2),
-                                      spreadRadius: 2,
-                                      blurRadius: 7,
-                                      offset: const Offset(0, 3),
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              decoration: BoxDecoration(
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor,
+                                borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(12),
+                                    bottomRight: Radius.circular(12)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.2),
+                                    spreadRadius: 2,
+                                    blurRadius: 7,
+                                    offset: const Offset(0, 3),
+                                  )
+                                ],
+                              ),
+                              child: state.userModel.socials != null
+                                  ? ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const ClampingScrollPhysics(),
+                                      itemCount:
+                                          state.userModel.socials!.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          onTap: () {
+                                            context.read<ServiceBloc>().add(
+                                                LaunchSocialUrl(
+                                                    url: state.userModel
+                                                        .socials![index]));
+                                          },
+                                          leading: const Icon(
+                                              FontAwesomeIcons.paperclip),
+                                          title: Text(
+                                            state.userModel.socials![index],
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge,
+                                          ),
+                                        );
+                                      },
                                     )
-                                  ],
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(
-                                      MediaQuery.of(context).size.width * 0.02),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          InkWell(
-                                            onTap: () {},
-                                            child: CircleAvatar(
-                                              child: Image.asset(
-                                                  "assets/cv-linkedn.png"),
-                                            ),
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const ClampingScrollPhysics(),
+                                      itemCount: 1,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          leading: const Icon(
+                                              FontAwesomeIcons.paperclip),
+                                          title: Text(
+                                            "Sosyal Medya Ekle",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge,
                                           ),
-                                          InkWell(
-                                            onTap: () {},
-                                            child: CircleAvatar(
-                                              child: Image.asset(
-                                                  "assets/cv-github.png"),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ))
+                                        );
+                                      },
+                                    ),
+                            )
                           ],
                         ),
                       ),

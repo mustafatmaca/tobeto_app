@@ -16,7 +16,7 @@ class UserModel {
   List<dynamic>? skills;
   List<String>? certificates;
   List<dynamic>? languages;
-  List<String>? socials;
+  List<dynamic>? socials;
   List<Graduate>? graduates;
   List<Experience>? experiences;
 

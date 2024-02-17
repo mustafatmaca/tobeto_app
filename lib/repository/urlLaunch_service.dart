@@ -24,4 +24,14 @@ class UrlLaunchService {
       throw 'Could not launch $uri';
     }
   }
+
+  void launchSocialUrl(String socialUrl) async {
+    var uri = socialUrl;
+
+    if (await canLaunchUrl(Uri.tryParse(uri)!)) {
+      await launchUrl(Uri.tryParse(uri)!);
+    } else {
+      throw 'Could not launch $uri';
+    }
+  }
 }

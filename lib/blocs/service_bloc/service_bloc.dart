@@ -13,5 +13,9 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
     on<SendMessage>((event, emit) {
       urlLaunchService.sendWpMessage();
     });
+
+    on<LaunchSocialUrl>((event, emit) {
+      urlLaunchService.launchSocialUrl(event.url);
+    });
   }
 }

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
+import 'package:tobeto_app/models/user.dart';
 
 class EditSocial extends StatefulWidget {
-  const EditSocial({Key? key}) : super(key: key);
+  final UserModel userModel;
+  const EditSocial({Key? key, required this.userModel}) : super(key: key);
 
   @override
   _EditSocialState createState() => _EditSocialState();
 }
 
 class _EditSocialState extends State<EditSocial> {
-  var dropdownValue = list.first;
+  final TextEditingController _socialController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,42 +35,10 @@ class _EditSocialState extends State<EditSocial> {
                     "Sosyal Medya",
                   ),
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 1, color: Colors.black38),
-                        borderRadius: BorderRadius.circular(14)),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.02,
-                          right: MediaQuery.of(context).size.width * 0.02),
-                      child: DropdownButton<String>(
-                        isExpanded: true,
-                        underline: Container(),
-                        value: dropdownValue,
-                        items:
-                            list.map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (String? value) {
-                          setState(() {
-                            dropdownValue = value!;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
                 TextField(
+                  controller: _socialController,
                   decoration: InputDecoration(
-                      hintText: 'https://',
+                      prefixText: 'https://',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -78,7 +49,28 @@ class _EditSocialState extends State<EditSocial> {
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.userModel.socials != null
+                        ? context.read<UserInfoBloc>().add(UpdateUserSocial(
+                                userModel: UserModel(
+                                    name: widget.userModel.name,
+                                    surname: widget.userModel.surname,
+                                    email: widget.userModel.email,
+                                    socials: [
+                                  ...widget.userModel.socials!,
+                                  _socialController.text
+                                ])))
+                        : context.read<UserInfoBloc>().add(UpdateUserSocial(
+                                userModel: UserModel(
+                                    name: widget.userModel.name,
+                                    surname: widget.userModel.surname,
+                                    email: widget.userModel.email,
+                                    socials: [
+                                  'https://${_socialController.text}'
+                                ])));
+                    Navigator.pop(context);
+                    context.read<UserInfoBloc>().add(ResetEvent());
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF011D42),
                       minimumSize: Size(
