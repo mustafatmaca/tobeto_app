@@ -113,7 +113,8 @@ class _EditCertificateState extends State<EditCertificate> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      if (widget.userModel.certificates != null) {
+                      if (widget.userModel.certificates != null &&
+                          _pickedFile != null) {
                         context.read<UserInfoBloc>().add(UpdateUserCertificate(
                             userModel: UserModel(
                                 name: widget.userModel.name,
@@ -121,7 +122,10 @@ class _EditCertificateState extends State<EditCertificate> {
                                 email: widget.userModel.email,
                                 certificates: widget.userModel.certificates),
                             file: _pickedFile!));
-                      } else {
+                        Navigator.pop(context);
+                        context.read<UserInfoBloc>().add(ResetEvent());
+                      } else if (widget.userModel.certificates == null &&
+                          _pickedFile != null) {
                         context.read<UserInfoBloc>().add(UpdateUserCertificate(
                             userModel: UserModel(
                                 name: widget.userModel.name,
@@ -129,10 +133,13 @@ class _EditCertificateState extends State<EditCertificate> {
                                 email: widget.userModel.email,
                                 certificates: []),
                             file: _pickedFile!));
+                        Navigator.pop(context);
+                        context.read<UserInfoBloc>().add(ResetEvent());
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Bir Dosya Seçmelisiniz"),
+                        ));
                       }
-
-                      Navigator.pop(context);
-                      context.read<UserInfoBloc>().add(ResetEvent());
                     },
                     child: Text("Kaydet")),
                 SizedBox(
