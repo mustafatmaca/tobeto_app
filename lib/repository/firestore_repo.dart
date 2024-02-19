@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:tobeto_app/models/announcement.dart';
 import 'package:tobeto_app/models/application.dart';
 import 'package:tobeto_app/models/catalog.dart';
@@ -262,5 +265,21 @@ class FireStoreRepo {
             email: userModel.email,
             socials: userModel.socials)
         .toMap());
+  }
+
+  void updateUserCertificate(UserModel userModel, File file) async {
+    final user = await FirebaseFirestoreInstance.collection("users")
+        .doc(firebaseAuthInstance.currentUser!.uid);
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child("files")
+        .child("${file.path.substring(53)}");
+    await ref.putFile(file);
+    final url = await ref.getDownloadURL();
+    user.update(UserModel(
+        name: userModel.name,
+        surname: userModel.surname,
+        email: userModel.email,
+        certificates: [...userModel.certificates!, url]).toMap());
   }
 }

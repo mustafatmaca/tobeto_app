@@ -54,6 +54,7 @@ dependencies:
   video_player: ^2.6.0
   chewie: ^1.7.4
   lecle_yoyo_player: ^0.0.8
+  file_picker: ^6.1.1
 
 dev_dependencies:
   flutter_test:

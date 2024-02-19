@@ -621,8 +621,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const EditCertificate()));
+                                  builder: (context) => EditCertificate(
+                                      userModel: state.userModel)));
                         },
                         child: Column(
                           children: [
@@ -695,33 +695,59 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   )
                                 ],
                               ),
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: const ClampingScrollPhysics(),
-                                itemCount: certificates.length,
-                                itemBuilder: (context, index) {
-                                  if (index <= 2) {
-                                    return ListTile(
-                                      title: Text(
-                                        certificates[index],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
-                                      ),
-                                      trailing: Image.asset(
-                                        "assets/pdf.png",
-                                        width:
-                                            MediaQuery.of(context).size.width *
+                              child: state.userModel.certificates != null
+                                  ? ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const ClampingScrollPhysics(),
+                                      itemCount:
+                                          state.userModel.certificates!.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          onTap: () {
+                                            context.read<ServiceBloc>().add(
+                                                LaunchSocialUrl(
+                                                    url: state.userModel
+                                                        .certificates![index]));
+                                          },
+                                          leading: const Icon(
+                                              FontAwesomeIcons.scroll),
+                                          title: Text(
+                                            "Sertifika ${index + 1}",
+                                            overflow: TextOverflow.ellipsis,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge,
+                                          ),
+                                          trailing: Image.asset(
+                                            "assets/pdf.png",
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
                                                 0.05,
-                                        height:
-                                            MediaQuery.of(context).size.height *
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
                                                 0.05,
-                                      ),
-                                    );
-                                  }
-                                  return null;
-                                },
-                              ),
+                                          ),
+                                        );
+                                      },
+                                    )
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const ClampingScrollPhysics(),
+                                      itemCount: 1,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                            leading: const Icon(
+                                                FontAwesomeIcons.bookBookmark),
+                                            title: Text(
+                                              "Yetkinlik Ekle",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge,
+                                            ));
+                                      },
+                                    ),
                             )
                           ],
                         ),
