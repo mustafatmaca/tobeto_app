@@ -64,7 +64,12 @@ class ExamCard extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text("Raporu Görüntüle"),
+                    child: Text(
+                      "Raporu Görüntüle",
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF011D42),
+                    ),
                   ),
                 ],
               ),

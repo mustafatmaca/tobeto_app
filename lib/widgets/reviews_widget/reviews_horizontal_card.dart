@@ -122,51 +122,18 @@ class ReviewsHorizontalCard extends StatelessWidget {
                                       MediaQuery.of(context).size.height * 0.02,
                                 ),
                                 ElevatedButton(
-                                  onPressed: () {
-                                    // Butona tıklandığında yapılacak işlemler
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20.0),
-                                    ),
-                                    primary: Colors
-                                        .transparent, // Arka plan rengi şeffaf olmalı
-                                    elevation: 0, // Z-eğimi sıfır olmalı
-                                  ),
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 1,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.050,
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Color(0xFF004D79),
-                                          Color(0xFF011D42),
-                                          Color(0xFF341132),
-                                        ], // Gradient renkleri
-                                        begin: Alignment.centerLeft,
-                                        end: Alignment.centerRight,
+                                    onPressed: () {
+                                      // Butona tıklandığında yapılacak işlemler
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(20.0),
+                                      backgroundColor: Color(
+                                          0xFF011D42), // Z-eğimi sıfır olmalı
                                     ),
-                                    child: Center(
-                                      child: Text(
-                                        'Sınava Başla',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .background,
-                                                fontWeight: FontWeight
-                                                    .bold // Yazı rengi
-                                                ),
-                                      ),
-                                    ),
-                                  ),
-                                )
+                                    child: Text("Sınava Başla"))
                               ],
                             ),
                           );
