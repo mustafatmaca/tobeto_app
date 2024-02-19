@@ -1,9 +1,6 @@
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
@@ -116,13 +113,23 @@ class _EditCertificateState extends State<EditCertificate> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      context.read<UserInfoBloc>().add(UpdateUserCertificate(
-                          userModel: UserModel(
-                              name: widget.userModel.name,
-                              surname: widget.userModel.surname,
-                              email: widget.userModel.email,
-                              certificates: widget.userModel.certificates),
-                          file: _pickedFile!));
+                      if (widget.userModel.certificates != null) {
+                        context.read<UserInfoBloc>().add(UpdateUserCertificate(
+                            userModel: UserModel(
+                                name: widget.userModel.name,
+                                surname: widget.userModel.surname,
+                                email: widget.userModel.email,
+                                certificates: widget.userModel.certificates),
+                            file: _pickedFile!));
+                      } else {
+                        context.read<UserInfoBloc>().add(UpdateUserCertificate(
+                            userModel: UserModel(
+                                name: widget.userModel.name,
+                                surname: widget.userModel.surname,
+                                email: widget.userModel.email,
+                                certificates: []),
+                            file: _pickedFile!));
+                      }
 
                       Navigator.pop(context);
                       context.read<UserInfoBloc>().add(ResetEvent());

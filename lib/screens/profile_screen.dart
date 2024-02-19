@@ -739,9 +739,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       itemBuilder: (context, index) {
                                         return ListTile(
                                             leading: const Icon(
-                                                FontAwesomeIcons.bookBookmark),
+                                                FontAwesomeIcons.scroll),
                                             title: Text(
-                                              "Yetkinlik Ekle",
+                                              "Sertifika Ekle",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyLarge,
