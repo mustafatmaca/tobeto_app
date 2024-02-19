@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class ApplicationsCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String subtitle2;
-  final String state;
+  final int state;
 
   const ApplicationsCard(
       {required this.title,
@@ -23,9 +22,9 @@ class ApplicationsCard extends StatelessWidget {
         border: Border(
             left: BorderSide(
                 width: 7,
-                color: state == "Kabul Edildi"
+                color: state == 0
                     ? Color(0xFF076B34)
-                    : state == "Beklemede"
+                    : state == 1
                         ? Color.fromARGB(255, 245, 201, 4)
                         : Colors.red,
                 style: BorderStyle.solid)),
@@ -57,15 +56,20 @@ class ApplicationsCard extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     bottom: 5, top: 5, right: 40, left: 15),
                 decoration: BoxDecoration(
-                    color: state == "Kabul Edildi"
+                    color: state == 0
                         ? Color(0xFF076B34)
-                        : state == "Beklemede"
+                        : state == 1
                             ? Color.fromARGB(255, 245, 201, 4)
                             : Colors.red,
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(15),
                         bottomLeft: Radius.circular(15))),
-                child: Text(state,
+                child: Text(
+                    state == 0
+                        ? "Kabul Edildi"
+                        : state == 1
+                            ? "Beklemede"
+                            : "Reddedildi",
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Theme.of(context).colorScheme.background)),
               )
@@ -73,12 +77,12 @@ class ApplicationsCard extends StatelessWidget {
           ),
           Row(
             children: [
-              state == "Kabul Edildi"
+              state == 0
                   ? Icon(
                       Icons.check,
                       color: Color(0xFF076B34),
                     )
-                  : state == "Beklemede"
+                  : state == 1
                       ? Icon(
                           Icons.timer_outlined,
                           color: Color.fromARGB(255, 245, 201, 4),
@@ -88,17 +92,23 @@ class ApplicationsCard extends StatelessWidget {
                           color: Colors.red,
                         ),
               SizedBox(width: MediaQuery.of(context).size.width * 0.015),
-              Expanded(child: Text(subtitle + " " + state)),
+              Expanded(
+                child: state == 0
+                    ? Text(subtitle + " Kabul Edildi")
+                    : state == 1
+                        ? Text(subtitle + " Beklemede")
+                        : Text(subtitle + " Reddedildi"),
+              ),
             ],
           ),
           Row(
             children: [
-              state == "Kabul Edildi"
+              state == 0
                   ? Icon(
                       Icons.check,
                       color: Color(0xFF076B34),
                     )
-                  : state == "Beklemede"
+                  : state == 1
                       ? Icon(
                           Icons.timer_outlined,
                           color: Color.fromARGB(255, 245, 201, 4),
@@ -108,7 +118,13 @@ class ApplicationsCard extends StatelessWidget {
                           color: Colors.red,
                         ),
               SizedBox(width: MediaQuery.of(context).size.width * 0.015),
-              Expanded(child: Text(subtitle2 + " " + state)),
+              Expanded(
+                child: state == 0
+                    ? Text(subtitle2 + " Kabul Edildi")
+                    : state == 1
+                        ? Text(subtitle2 + " Beklemede")
+                        : Text(subtitle2 + " Reddedildi"),
+              ),
             ],
           ),
         ],

@@ -4,7 +4,7 @@ class Application {
   String title;
   String subtitle;
   String subtitle1;
-  String state;
+  int state;
 
   Application({
     required this.title,
@@ -21,7 +21,7 @@ class Application {
     };
   }
 
-  factory Application.fromMap(Map<String, dynamic> map, String state) {
+  factory Application.fromMap(Map<String, dynamic> map, int state) {
     return Application(
       title: map['title'] as String,
       subtitle: map['subtitle'] as String,
@@ -32,6 +32,6 @@ class Application {
 
   String toJson() => json.encode(toMap());
 
-  factory Application.fromJson(String source) => Application.fromMap(
-      json.decode(source) as Map<String, dynamic>, "Bekleniyor");
+  factory Application.fromJson(String source) =>
+      Application.fromMap(json.decode(source) as Map<String, dynamic>, 1);
 }
