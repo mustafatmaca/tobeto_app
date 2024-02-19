@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tobeto_app/widgets/contact_form.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/service_bloc/service_bloc.dart';
+import 'package:tobeto_app/blocs/service_bloc/service_event.dart';
 
 class ContactUsPageScreen extends StatelessWidget {
   const ContactUsPageScreen({Key? key}) : super(key: key);
@@ -159,21 +161,7 @@ class ContactUsPageScreen extends StatelessWidget {
         Center(
           child: ElevatedButton(
             onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (BuildContext context) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                      ),
-                    ),
-                    child: ContactForm(),
-                  );
-                },
-              );
+              context.read<ServiceBloc>().add(SendMail());
             },
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.grey[800],

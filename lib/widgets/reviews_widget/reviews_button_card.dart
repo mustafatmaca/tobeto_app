@@ -25,11 +25,11 @@ class ReviewsButtonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 20, left: 20),
+      padding: const EdgeInsets.only(right: 20, left: 20),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             gradient: LinearGradient(
                 colors: [color1, color2, color3],
                 begin: Alignment.topCenter,
@@ -77,23 +77,23 @@ class ReviewsButtonCard extends StatelessWidget {
                         builder: (context, state) {
                       if (state is ReportInitial) {
                         context.read<ReportBloc>().add(LoadReport());
-                        return Center(
+                        return const Center(
                           child: CircularProgressIndicator(),
                         );
                       } else if (state is ReportLoading) {
-                        return Center(
+                        return const Center(
                           child: CircularProgressIndicator(),
                         );
                       } else if (state is ReportLoaded) {
                         return Container(
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.background,
+                            color: Theme.of(context).scaffoldBackgroundColor,
                             borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(30),
                               topRight: Radius.circular(30),
                             ),
                           ),
-                          padding: EdgeInsets.all(25),
+                          padding: const EdgeInsets.all(25),
                           height: MediaQuery.of(context).size.height * 0.5,
                           child: Column(
                               children: state.report.first.reports.entries
