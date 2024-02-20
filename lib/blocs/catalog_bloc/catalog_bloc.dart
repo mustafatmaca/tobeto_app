@@ -15,5 +15,15 @@ class CatalogBloc extends Bloc<CatalogEvent, CatalogState> {
         emit(CatalogError());
       }
     });
+
+    on<LoadCatalogByTitle>((event, emit) async {
+      emit(CatalogLoading());
+      try {
+        final catalogList = await fireStoreRepo.getCatalogByTitle(event.title);
+        emit(CatalogLoaded(catalogs: catalogList));
+      } catch (e) {
+        emit(CatalogError());
+      }
+    });
   }
 }

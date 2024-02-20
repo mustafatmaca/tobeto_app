@@ -49,7 +49,11 @@ class _CatalogScreenState extends State<CatalogScreen> {
                         ),
                         const SizedBox(height: 10.0),
                         TextField(
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            context
+                                .read<CatalogBloc>()
+                                .add(LoadCatalogByTitle(title: value));
+                          },
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,

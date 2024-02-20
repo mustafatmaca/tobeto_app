@@ -256,13 +256,15 @@ class _EditPersonalState extends State<EditPersonal> {
                 ElevatedButton(
                   onPressed: () {
                     context.read<UserInfoBloc>().add(UpdateAboutUser(
-                        userModel: UserModel(
-                            name: _nameController.text,
-                            surname: _surnameController.text,
-                            email: _emailController.text,
-                            gsm: _gsmController.text,
-                            adress: _adressController.text,
-                            about: _aboutController.text)));
+                          userModel: UserModel(
+                              name: _nameController.text,
+                              surname: _surnameController.text,
+                              email: _emailController.text,
+                              gsm: _gsmController.text,
+                              adress: _adressController.text,
+                              about: _aboutController.text),
+                          file: _pickedFile!,
+                        ));
                     _upload();
                   },
                   style: ElevatedButton.styleFrom(
