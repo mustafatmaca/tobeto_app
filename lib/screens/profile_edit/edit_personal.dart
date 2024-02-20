@@ -1,20 +1,15 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
 import 'package:tobeto_app/models/user.dart';
-import 'package:tobeto_app/repository/firestore_repo.dart';
-
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
 class EditPersonal extends StatefulWidget {
-  const EditPersonal({Key? key}) : super(key: key);
+  final UserModel userModel;
+  const EditPersonal({Key? key, required this.userModel}) : super(key: key);
 
   @override
   _EditPersonalState createState() => _EditPersonalState();
@@ -28,8 +23,8 @@ class _EditPersonalState extends State<EditPersonal> {
   final TextEditingController _adressController = TextEditingController();
   final TextEditingController _aboutController = TextEditingController();
   var imagePath;
+  DateTime? birthDate = DateTime.now();
   File? _pickedFile;
-  UserModel? user;
 
   @override
   void initState() {
@@ -37,15 +32,36 @@ class _EditPersonalState extends State<EditPersonal> {
     super.initState();
   }
 
-  void renameName() async {
-    user = await FireStoreRepo().getUser();
-    _nameController.text = user!.name;
-    _aboutController.text = user!.about ?? '';
-    _surnameController.text = user!.surname;
-    _gsmController.text = user!.gsm ?? '';
-    _adressController.text = user!.adress ?? '';
-    _emailController.text = user!.email;
-    imagePath = user!.photoUrl;
+  void renameName() {
+    _nameController.text = widget.userModel.name;
+    _aboutController.text = widget.userModel.about ?? '';
+    _surnameController.text = widget.userModel.surname;
+    _gsmController.text = widget.userModel.gsm ?? '';
+    _adressController.text = widget.userModel.adress ?? '';
+    _emailController.text = widget.userModel.email;
+    imagePath = widget.userModel.photoUrl;
+    birthDate = widget.userModel.birthdate != null
+        ? DateTime.fromMillisecondsSinceEpoch(
+            widget.userModel.birthdate!.millisecondsSinceEpoch)
+        : DateTime.now();
+  }
+
+  void birthDatePicker() async {
+    var date = await showDatePicker(
+      context: context,
+      initialDate: birthDate,
+      firstDate: DateTime(2000, 1, 1),
+      lastDate: DateTime.now(),
+    );
+    if (date != null) {
+      changeBirthDateText(date);
+    }
+  }
+
+  void changeBirthDateText(date) {
+    setState(() {
+      birthDate = date;
+    });
   }
 
   void _pickImage() async {
@@ -58,24 +74,21 @@ class _EditPersonalState extends State<EditPersonal> {
     }
   }
 
-  void _upload() async {
-    final user = FirebaseAuth.instance.currentUser;
-    final ref = FirebaseStorage.instance
-        .ref()
-        .child("images")
-        .child("${user!.uid}.jpg");
+  // void _upload() async {
+  //   final user = FirebaseAuth.instance.currentUser;
+  //   final ref = FirebaseStorage.instance
+  //       .ref()
+  //       .child("images")
+  //       .child("${user!.uid}.jpg");
 
-    await ref.putFile(_pickedFile!);
-    final url = await ref.getDownloadURL();
+  //   await ref.putFile(_pickedFile!);
+  //   final url = await ref.getDownloadURL();
 
-    final document =
-        FirebaseFirestore.instance.collection("users").doc(user.uid);
+  //   final document =
+  //       FirebaseFirestore.instance.collection("users").doc(user.uid);
 
-    await document.update({'photoUrl': url});
-  }
-
-  var dropdownValue = list.first;
-  var dropdownValueSecond = list.first;
+  //   await document.update({'photoUrl': url});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -180,14 +193,12 @@ class _EditPersonalState extends State<EditPersonal> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+                          '${birthDate!.day}/${birthDate!.month}/${birthDate!.year}',
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         IconButton(
                             onPressed: () {
-                              DatePickerDialog(
-                                  firstDate: DateTime(1970),
-                                  lastDate: DateTime(2006));
+                              birthDatePicker();
                             },
                             icon: const Icon(Icons.calendar_month)),
                       ],
@@ -255,17 +266,50 @@ class _EditPersonalState extends State<EditPersonal> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    context.read<UserInfoBloc>().add(UpdateAboutUser(
-                          userModel: UserModel(
-                              name: _nameController.text,
-                              surname: _surnameController.text,
-                              email: _emailController.text,
-                              gsm: _gsmController.text,
-                              adress: _adressController.text,
-                              about: _aboutController.text),
-                          file: _pickedFile!,
-                        ));
-                    _upload();
+                    if (_nameController.text != "" &&
+                        _nameController.text.length >= 3 &&
+                        _pickedFile != null &&
+                        _surnameController.text != "" &&
+                        _surnameController.text.length >= 3 &&
+                        RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(_emailController.text)) {
+                      context.read<UserInfoBloc>().add(UpdateAboutUser(
+                            userModel: UserModel(
+                                name: _nameController.text,
+                                surname: _surnameController.text,
+                                email: _emailController.text,
+                                gsm: _gsmController.text,
+                                birthdate: Timestamp.fromDate(birthDate!),
+                                adress: _adressController.text,
+                                about: _aboutController.text),
+                            file: _pickedFile!,
+                          ));
+                      Navigator.pop(context);
+                      context.read<UserInfoBloc>().add(ResetEvent());
+                    } else if (_nameController.text != "" &&
+                        _nameController.text.length >= 3 &&
+                        _pickedFile == null &&
+                        _surnameController.text != "" &&
+                        _surnameController.text.length >= 3 &&
+                        RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(_emailController.text)) {
+                      context.read<UserInfoBloc>().add(UpdateAboutUser(
+                            userModel: UserModel(
+                                name: _nameController.text,
+                                surname: _surnameController.text,
+                                email: _emailController.text,
+                                gsm: _gsmController.text,
+                                birthdate: Timestamp.fromDate(birthDate!),
+                                adress: _adressController.text,
+                                about: _aboutController.text),
+                          ));
+                      Navigator.pop(context);
+                      context.read<UserInfoBloc>().add(ResetEvent());
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Hatalı Bilgi Girişi Yaptınız!"),
+                      ));
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF011D42),

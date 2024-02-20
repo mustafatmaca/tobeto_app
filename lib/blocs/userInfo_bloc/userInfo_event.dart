@@ -10,10 +10,10 @@ class LoadUser extends UserInfoEvent {}
 
 class UpdateAboutUser extends UserInfoEvent {
   UserModel userModel;
-  File file;
+  File? file;
   UpdateAboutUser({
     required this.userModel,
-    required this.file,
+    this.file,
   });
 }
 

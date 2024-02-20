@@ -77,8 +77,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        const EditPersonal()));
+                                    builder: (context) => EditPersonal(
+                                          userModel: state.userModel,
+                                        )));
                           },
                           child: Column(
                             children: [

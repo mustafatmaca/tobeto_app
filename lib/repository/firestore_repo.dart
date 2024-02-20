@@ -196,26 +196,38 @@ class FireStoreRepo {
   }
 
   //Kullanıcının hakkında kısmında düzenleyebildiği verileri güncelleme
-  void updateUserAbout(UserModel userModel, File file) async {
+  void updateUserAbout(UserModel userModel, File? file) async {
     final user = await FirebaseFirestoreInstance.collection("users")
         .doc(firebaseAuthInstance.currentUser!.uid);
-    final ref = FirebaseStorage.instance
-        .ref()
-        .child("images")
-        .child("${firebaseAuthInstance.currentUser!.uid}.jpg");
-    await ref.putFile(file);
-    final photoUrl = await ref.getDownloadURL();
 
-    user.update(UserModel(
-            name: userModel.name,
-            surname: userModel.surname,
-            email: userModel.email,
-            photoUrl: photoUrl,
-            gsm: userModel.gsm,
-            birthdate: userModel.birthdate,
-            adress: userModel.adress,
-            about: userModel.about)
-        .toMap());
+    if (file != null) {
+      final ref = FirebaseStorage.instance
+          .ref()
+          .child("images")
+          .child("${firebaseAuthInstance.currentUser!.uid}.jpg");
+      await ref.putFile(file);
+      final photoUrl = await ref.getDownloadURL();
+      user.update(UserModel(
+              name: userModel.name,
+              surname: userModel.surname,
+              email: userModel.email,
+              photoUrl: photoUrl,
+              gsm: userModel.gsm,
+              birthdate: userModel.birthdate,
+              adress: userModel.adress,
+              about: userModel.about)
+          .toMap());
+    } else {
+      user.update(UserModel(
+              name: userModel.name,
+              surname: userModel.surname,
+              email: userModel.email,
+              gsm: userModel.gsm,
+              birthdate: userModel.birthdate,
+              adress: userModel.adress,
+              about: userModel.about)
+          .toMap());
+    }
   }
 
   //Kullanıcının eğitim hayatı kısmında düzenleyebildiği verileri güncelleme
