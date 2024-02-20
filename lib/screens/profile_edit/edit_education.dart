@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
@@ -25,6 +26,45 @@ class _EditEducationState extends State<EditEducation> {
   final TextEditingController _sectionController = TextEditingController();
   var dropdownValue = list.first;
   var isWork = false;
+  DateTime? startDate = DateTime.now();
+  DateTime? endDate = DateTime.now();
+
+  void startDatePicker() async {
+    var date = await showDatePicker(
+      context: context,
+      initialDate: startDate,
+      firstDate: DateTime(2000, 1, 1),
+      lastDate: DateTime.now(),
+    );
+    if (date != null) {
+      changeStartDateText(date);
+    }
+  }
+
+  void changeStartDateText(date) {
+    setState(() {
+      startDate = date;
+    });
+  }
+
+  void endDatePicker() async {
+    var date = await showDatePicker(
+      context: context,
+      initialDate: endDate,
+      firstDate: DateTime(2000, 1, 1),
+      lastDate: DateTime.now(),
+    );
+    if (date != null) {
+      changeEndDateText(date);
+    }
+  }
+
+  void changeEndDateText(date) {
+    setState(() {
+      endDate = date;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,15 +174,12 @@ class _EditEducationState extends State<EditEducation> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${DateTime.now().year}',
+                          '${startDate!.year}',
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         IconButton(
                             onPressed: () {
-                              showDatePicker(
-                                  context: context,
-                                  firstDate: DateTime(1990),
-                                  lastDate: DateTime(2024, 2, 13));
+                              startDatePicker();
                             },
                             icon: const Icon(Icons.calendar_month)),
                       ],
@@ -170,16 +207,13 @@ class _EditEducationState extends State<EditEducation> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${DateTime.now().year}',
+                          '${endDate!.year}',
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         isWork == false
                             ? IconButton(
                                 onPressed: () {
-                                  showDatePicker(
-                                      context: context,
-                                      firstDate: DateTime(1990),
-                                      lastDate: DateTime(2024, 2, 13));
+                                  endDatePicker();
                                 },
                                 icon: const Icon(Icons.calendar_month))
                             : Container(),
@@ -220,6 +254,8 @@ class _EditEducationState extends State<EditEducation> {
                                     type: dropdownValue,
                                     name: _schoolController.text,
                                     section: _sectionController.text,
+                                    startDate: Timestamp.fromDate(startDate!),
+                                    endDate: Timestamp.fromDate(endDate!),
                                     isContinue: isWork)
                               ],
                             )))
@@ -233,6 +269,8 @@ class _EditEducationState extends State<EditEducation> {
                                     type: dropdownValue,
                                     name: _schoolController.text,
                                     section: _sectionController.text,
+                                    startDate: Timestamp.fromDate(startDate!),
+                                    endDate: Timestamp.fromDate(endDate!),
                                     isContinue: isWork)
                               ],
                             )));

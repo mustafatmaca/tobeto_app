@@ -19,6 +19,45 @@ class _EditExperienceState extends State<EditExperience> {
   final TextEditingController _sectorController = TextEditingController();
   final TextEditingController _aboutController = TextEditingController();
   var isWork = false;
+  DateTime? startDate = DateTime.now();
+  DateTime? endDate = DateTime.now();
+
+  void startDatePicker() async {
+    var date = await showDatePicker(
+      context: context,
+      initialDate: startDate,
+      firstDate: DateTime(2000, 1, 1),
+      lastDate: DateTime.now(),
+    );
+    if (date != null) {
+      changeStartDateText(date);
+    }
+  }
+
+  void changeStartDateText(date) {
+    setState(() {
+      startDate = date;
+    });
+  }
+
+  void endDatePicker() async {
+    var date = await showDatePicker(
+      context: context,
+      initialDate: endDate,
+      firstDate: DateTime(2000, 1, 1),
+      lastDate: DateTime.now(),
+    );
+    if (date != null) {
+      changeEndDateText(date);
+    }
+  }
+
+  void changeEndDateText(date) {
+    setState(() {
+      endDate = date;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,11 +145,13 @@ class _EditExperienceState extends State<EditExperience> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+                          '${startDate!.day}/${startDate!.month}/${startDate!.year}',
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              startDatePicker();
+                            },
                             icon: const Icon(Icons.calendar_month)),
                       ],
                     ),
@@ -137,12 +178,14 @@ class _EditExperienceState extends State<EditExperience> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+                          '${endDate!.day}/${endDate!.month}/${endDate!.year}',
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         isWork == false
                             ? IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  endDatePicker();
+                                },
                                 icon: const Icon(Icons.calendar_month))
                             : Container(),
                       ],

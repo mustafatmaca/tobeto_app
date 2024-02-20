@@ -322,12 +322,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   .textTheme
                                                   .bodySmall,
                                             ),
-                                            trailing: const Column(
+                                            trailing: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Icon(FontAwesomeIcons.calendar),
-                                                Text("2024"),
+                                                const Icon(
+                                                    FontAwesomeIcons.calendar),
+                                                Text(state
+                                                            .userModel
+                                                            .graduates![index]
+                                                            .endDate !=
+                                                        null
+                                                    ? DateTime.fromMillisecondsSinceEpoch(
+                                                            state
+                                                                .userModel
+                                                                .graduates![
+                                                                    index]
+                                                                .endDate!
+                                                                .millisecondsSinceEpoch)
+                                                        .year
+                                                        .toString()
+                                                    : "2024"),
                                               ],
                                             ),
                                           );
@@ -462,12 +477,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   .textTheme
                                                   .bodySmall,
                                             ),
-                                            trailing: const Column(
+                                            trailing: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Icon(FontAwesomeIcons.calendar),
-                                                Text("2024"),
+                                                const Icon(
+                                                    FontAwesomeIcons.calendar),
+                                                Text(state
+                                                            .userModel
+                                                            .experiences![index]
+                                                            .endDate !=
+                                                        null
+                                                    ? DateTime.fromMillisecondsSinceEpoch(
+                                                            state
+                                                                .userModel
+                                                                .experiences![
+                                                                    index]
+                                                                .endDate!
+                                                                .millisecondsSinceEpoch)
+                                                        .year
+                                                        .toString()
+                                                    : "2024"),
                                               ],
                                             ),
                                           );
