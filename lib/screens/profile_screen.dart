@@ -299,7 +299,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     )
                                   ],
                                 ),
-                                child: state.userModel.graduates != null
+                                child: state.userModel.graduates != null &&
+                                        state.userModel.graduates!.isNotEmpty
                                     ? ListView.builder(
                                         shrinkWrap: true,
                                         physics: const ClampingScrollPhysics(),
@@ -343,7 +344,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                 .millisecondsSinceEpoch)
                                                         .year
                                                         .toString()
-                                                    : "2024"),
+                                                    : "Devam"),
                                               ],
                                             ),
                                           );

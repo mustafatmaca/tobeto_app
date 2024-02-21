@@ -16,6 +16,7 @@ class EditPersonal extends StatefulWidget {
 }
 
 class _EditPersonalState extends State<EditPersonal> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _surnameController = TextEditingController();
   final TextEditingController _gsmController = TextEditingController();
@@ -101,231 +102,262 @@ class _EditPersonalState extends State<EditPersonal> {
         padding: EdgeInsets.only(
             left: MediaQuery.of(context).size.width * 0.04,
             right: MediaQuery.of(context).size.width * 0.04),
-        child: ListView(
-          children: [
-            Column(
-              children: [
-                InkWell(
-                  onTap: () {
-                    _pickImage();
-                  },
-                  child: imagePath != null
-                      ? CircleAvatar(
-                          radius: MediaQuery.of(context).size.height * 0.08,
-                          backgroundImage: NetworkImage(imagePath))
-                      : CircleAvatar(
-                          radius: MediaQuery.of(context).size.height * 0.08,
-                          backgroundImage: const AssetImage("assets/mine.png")),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Ad",
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: [
+              Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      _pickImage();
+                    },
+                    child: imagePath != null
+                        ? CircleAvatar(
+                            radius: MediaQuery.of(context).size.height * 0.08,
+                            backgroundImage: NetworkImage(imagePath))
+                        : CircleAvatar(
+                            radius: MediaQuery.of(context).size.height * 0.08,
+                            backgroundImage:
+                                const AssetImage("assets/mine.png")),
                   ),
-                ),
-                TextField(
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    contentPadding: EdgeInsets.all(
-                        MediaQuery.of(context).size.width * 0.02),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Soyad",
-                  ),
-                ),
-                TextField(
-                  controller: _surnameController,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      contentPadding: EdgeInsets.all(
-                          MediaQuery.of(context).size.width * 0.02)),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Telefon Numarası",
-                  ),
-                ),
-                TextField(
-                  controller: _gsmController,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      contentPadding: EdgeInsets.all(
-                          MediaQuery.of(context).size.width * 0.02)),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Doğum Tarihiniz",
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.black38),
-                      borderRadius: BorderRadius.circular(14)),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.02,
-                        right: MediaQuery.of(context).size.width * 0.02),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '${birthDate!.day}/${birthDate!.month}/${birthDate!.year}',
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              birthDatePicker();
-                            },
-                            icon: const Icon(Icons.calendar_month)),
-                      ],
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Ad",
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "E-Posta",
-                  ),
-                ),
-                TextField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                       contentPadding: EdgeInsets.all(
-                          MediaQuery.of(context).size.width * 0.02)),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Adres",
+                          MediaQuery.of(context).size.width * 0.02),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty || value.length < 3) {
+                        return "Lütfen Ad Kısmını Doldurunuz.";
+                      }
+                      return null;
+                    },
+                    onSaved: (newValue) => _nameController.text = newValue!,
                   ),
-                ),
-                TextField(
-                  controller: _adressController,
-                  maxLines: 4,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      contentPadding: EdgeInsets.all(
-                          MediaQuery.of(context).size.width * 0.02)),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Hakkımda",
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                ),
-                TextField(
-                  controller: _aboutController,
-                  maxLines: 4,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      contentPadding: EdgeInsets.all(
-                          MediaQuery.of(context).size.width * 0.02)),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_nameController.text != "" &&
-                        _nameController.text.length >= 3 &&
-                        _pickedFile != null &&
-                        _surnameController.text != "" &&
-                        _surnameController.text.length >= 3 &&
-                        RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(_emailController.text)) {
-                      context.read<UserInfoBloc>().add(UpdateAboutUser(
-                            userModel: UserModel(
-                                name: _nameController.text,
-                                surname: _surnameController.text,
-                                email: _emailController.text,
-                                gsm: _gsmController.text,
-                                birthdate: Timestamp.fromDate(birthDate!),
-                                adress: _adressController.text,
-                                about: _aboutController.text),
-                            file: _pickedFile!,
-                          ));
-                      Navigator.pop(context);
-                      context.read<UserInfoBloc>().add(ResetEvent());
-                    } else if (_nameController.text != "" &&
-                        _nameController.text.length >= 3 &&
-                        _pickedFile == null &&
-                        _surnameController.text != "" &&
-                        _surnameController.text.length >= 3 &&
-                        RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(_emailController.text)) {
-                      context.read<UserInfoBloc>().add(UpdateAboutUser(
-                            userModel: UserModel(
-                                name: _nameController.text,
-                                surname: _surnameController.text,
-                                email: _emailController.text,
-                                gsm: _gsmController.text,
-                                birthdate: Timestamp.fromDate(birthDate!),
-                                adress: _adressController.text,
-                                about: _aboutController.text),
-                          ));
-                      Navigator.pop(context);
-                      context.read<UserInfoBloc>().add(ResetEvent());
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Hatalı Bilgi Girişi Yaptınız!"),
-                      ));
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF011D42),
-                    minimumSize: Size(
-                      MediaQuery.of(context).size.width * 0.9,
-                      MediaQuery.of(context).size.height * 0.06,
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Soyad",
                     ),
                   ),
-                  child: const Text("Kaydet"),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-              ],
-            ),
-          ],
+                  TextFormField(
+                    controller: _surnameController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Lütfen Soyad Kısmını Doldurunuz.";
+                      }
+                      return null;
+                    },
+                    onSaved: (newValue) => _surnameController.text = newValue!,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Telefon Numarası",
+                    ),
+                  ),
+                  TextFormField(
+                    controller: _gsmController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02),
+                    ),
+                    onSaved: (newValue) => _gsmController.text = newValue!,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Doğum Tarihiniz",
+                    ),
+                  ),
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 1, color: Colors.black38),
+                        borderRadius: BorderRadius.circular(14)),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.02,
+                          right: MediaQuery.of(context).size.width * 0.02),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '${birthDate!.day}/${birthDate!.month}/${birthDate!.year}',
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                birthDatePicker();
+                              },
+                              icon: const Icon(Icons.calendar_month)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "E-Posta",
+                    ),
+                  ),
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Lütfen E-Posta Kısmını Doldurunuz.";
+                      }
+                      if (!RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(value)) {
+                        return "Lütfen Geçerli Bir E-Posta Giriniz";
+                      }
+                      return null;
+                    },
+                    onSaved: (newValue) => _emailController.text = newValue!,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Adres",
+                    ),
+                  ),
+                  TextFormField(
+                    controller: _adressController,
+                    maxLines: 4,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02),
+                    ),
+                    onSaved: (newValue) => _adressController.text = newValue!,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Hakkımda",
+                    ),
+                  ),
+                  TextFormField(
+                    controller: _aboutController,
+                    maxLines: 4,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.02),
+                    ),
+                    onSaved: (newValue) => _aboutController.text = newValue!,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate() &&
+                          _pickedFile != null) {
+                        _formKey.currentState!.save();
+                        context.read<UserInfoBloc>().add(UpdateAboutUser(
+                              userModel: UserModel(
+                                  name: _nameController.text,
+                                  surname: _surnameController.text,
+                                  email: _emailController.text,
+                                  gsm: _gsmController.text,
+                                  birthdate: Timestamp.fromDate(birthDate!),
+                                  adress: _adressController.text,
+                                  about: _aboutController.text),
+                              file: _pickedFile!,
+                            ));
+                        Navigator.pop(context);
+                        context.read<UserInfoBloc>().add(ResetEvent());
+                      } else if (_formKey.currentState!.validate() &&
+                          _pickedFile == null) {
+                        _formKey.currentState!.save();
+                        context.read<UserInfoBloc>().add(UpdateAboutUser(
+                              userModel: UserModel(
+                                  name: _nameController.text,
+                                  surname: _surnameController.text,
+                                  email: _emailController.text,
+                                  gsm: _gsmController.text,
+                                  birthdate: Timestamp.fromDate(birthDate!),
+                                  adress: _adressController.text,
+                                  about: _aboutController.text),
+                            ));
+                        Navigator.pop(context);
+                        context.read<UserInfoBloc>().add(ResetEvent());
+                      } else {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text("Hatalı Bilgi Girişi Yaptınız!"),
+                        ));
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF011D42),
+                      minimumSize: Size(
+                        MediaQuery.of(context).size.width * 0.9,
+                        MediaQuery.of(context).size.height * 0.06,
+                      ),
+                    ),
+                    child: const Text("Kaydet"),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
