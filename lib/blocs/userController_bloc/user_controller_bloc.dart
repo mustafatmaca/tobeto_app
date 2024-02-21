@@ -69,5 +69,9 @@ class UserControllerBloc
         print(e);
       }
     });
+
+    on<DeleteUser>((event, emit) {
+      firebaseAuthRepo.deleteUser();
+    });
   }
 }

@@ -106,4 +106,14 @@ class FirebaseAuthRepo {
       print(e);
     }
   }
+
+  void deleteUser() async {
+    final user = await FirebaseAuth.instance.currentUser!;
+
+    try {
+      await user.delete();
+    } catch (e) {
+      print(e);
+    }
+  }
 }

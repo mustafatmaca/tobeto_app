@@ -72,3 +72,5 @@ class UpdatePassword extends UserControllerEvent {
     required this.context,
   });
 }
+
+class DeleteUser extends UserControllerEvent {}
