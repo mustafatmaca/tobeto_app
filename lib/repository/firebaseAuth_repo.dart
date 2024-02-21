@@ -94,6 +94,16 @@ class FirebaseAuthRepo {
     final user = await FirebaseAuth.instance.currentUser!;
 
     //Pass in the password to updatePassword.
-    user.updatePassword(password);
+    try {
+      await user
+          .updatePassword(password)
+          .then((value) => print("Başarılı"))
+          .catchError((error) {
+        print(error);
+        // An error happened.
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 }

@@ -60,10 +60,14 @@ class UserControllerBloc
     });
 
     on<UpdatePassword>((event, emit) {
-      firebaseAuthRepo.changePassword(event.password);
-      ScaffoldMessenger.of(event.context).showSnackBar(SnackBar(
-        content: Text("Parola Güncellendi!"),
-      ));
+      try {
+        firebaseAuthRepo.changePassword(event.password);
+        ScaffoldMessenger.of(event.context).showSnackBar(const SnackBar(
+          content: Text("Parola Güncellendi!"),
+        ));
+      } catch (e) {
+        print(e);
+      }
     });
   }
 }
