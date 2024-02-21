@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:tobeto_app/constants/collection_names.dart';
 import 'package:tobeto_app/models/announcement.dart';
 import 'package:tobeto_app/models/application.dart';
 import 'package:tobeto_app/models/catalog.dart';
@@ -19,8 +20,8 @@ class FireStoreRepo {
   //Kullanıcı bilgilerini firestore üzerinden getirme
   Future<UserModel> getUser() async {
     final userId = await firebaseAuthInstance.currentUser!.uid;
-    final user =
-        await FirebaseFirestoreInstance.collection("users").doc(userId);
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
+        .doc(userId);
 
     final docSnapshot = await user.get();
 
@@ -30,26 +31,27 @@ class FireStoreRepo {
   //Kullanıcıya ait başvuruları firestore üzerinden getirme
   Future<List<Application>> getApplications() async {
     //giriş yapmış olan kullanıcıyı getirir
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
     final docSnapShot = await user.get();
 
     // Hata durumunu kontrol et (kullanıcı var ve applications yoksa)
     if (docSnapShot.exists &&
-        !docSnapShot.data()!.containsKey("applications")) {
+        !docSnapShot.data()!.containsKey(Collections.APPLICATIONS)) {
       //'applications' alanı yok
       return []; // Boş bir liste döndür
     }
 
     //kullanıcının içindeki başvurular listesini döndürür
-    List appsId = await docSnapShot.get("applications");
+    List appsId = await docSnapShot.get(Collections.APPLICATIONS);
 
     // asenkron olduğu için içinde Future<Application>'lar tutan liste
     final appList = appsId.map(
       (e) async {
         //kullanıcıdaki applications id'sine göre applications collection'undan application'ları getirir
         final docRef =
-            FirebaseFirestoreInstance.collection("applications").doc(e["id"]);
+            FirebaseFirestoreInstance.collection(Collections.APPLICATIONS)
+                .doc(e["id"]);
         final appSnapshot = await docRef.get();
         // gelen applicationları bizim oluşturduğumuz modellere dönüştürür.
         return Application.fromMap(appSnapshot.data()!, e["state"]);
@@ -64,23 +66,24 @@ class FireStoreRepo {
 
   //Kullanıcıya ait duyuruları firestore üzerinden getirme
   Future<List<Announcement>> getAnnouncements() async {
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
     final docSnapShot = await user.get();
 
     // Hata durumunu kontrol et (kullanıcı var ve announcements yoksa)
     if (docSnapShot.exists &&
-        !docSnapShot.data()!.containsKey("announcements")) {
+        !docSnapShot.data()!.containsKey(Collections.ANNOUNCEMENTS)) {
       //'announcements' alanı yok
       return []; // Boş bir liste döndür
     }
 
-    List annoId = await docSnapShot.get("announcements");
+    List annoId = await docSnapShot.get(Collections.ANNOUNCEMENTS);
 
     final annoList = annoId.map(
       (e) async {
         final docRef =
-            FirebaseFirestoreInstance.collection("announcements").doc(e);
+            FirebaseFirestoreInstance.collection(Collections.ANNOUNCEMENTS)
+                .doc(e);
         final appSnapshot = await docRef.get();
         return Announcement.fromMap(appSnapshot.data()!);
       },
@@ -93,21 +96,23 @@ class FireStoreRepo {
 
   //Kullanıcıya ait sınavları firestore üzerinden getirme
   Future<List<Exam>> getExams() async {
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
     final docSnapShot = await user.get();
 
     // Hata durumunu kontrol et (kullanıcı var ve exams yoksa)
-    if (docSnapShot.exists && !docSnapShot.data()!.containsKey("exams")) {
+    if (docSnapShot.exists &&
+        !docSnapShot.data()!.containsKey(Collections.EXAMS)) {
       //'exams' alanı yok
       return []; // Boş bir liste döndür
     }
 
-    List examsId = await docSnapShot.get("exams");
+    List examsId = await docSnapShot.get(Collections.EXAMS);
 
     final examList = examsId.map(
       (e) async {
-        final docRef = FirebaseFirestoreInstance.collection("exams").doc(e);
+        final docRef =
+            FirebaseFirestoreInstance.collection(Collections.EXAMS).doc(e);
         final examSnapshot = await docRef.get();
         return Exam.fromMap(examSnapshot.data()!);
       },
@@ -120,20 +125,22 @@ class FireStoreRepo {
 
   //Kullanıcıya ait eğitimleri firestore üzerinden getirme
   Future<List<Education>> getEducations() async {
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
     final docSnapShot = await user.get();
 
     // Hata durumunu kontrol et (kullanıcı var ve educations yoksa)
-    if (docSnapShot.exists && !docSnapShot.data()!.containsKey("educations")) {
+    if (docSnapShot.exists &&
+        !docSnapShot.data()!.containsKey(Collections.EDUCATIONS)) {
       //'educations' alanı yok
       return []; // Boş bir liste döndür
     }
 
-    List eduId = await docSnapShot.get("educations");
+    List eduId = await docSnapShot.get(Collections.EDUCATIONS);
 
     final eduList = eduId.map((e) async {
-      final docRef = FirebaseFirestoreInstance.collection("educations").doc(e);
+      final docRef =
+          FirebaseFirestoreInstance.collection(Collections.EDUCATIONS).doc(e);
       final eduSnapshot = await docRef.get();
       return Education.fromMap(eduSnapshot.data()!);
     }).toList();
@@ -145,20 +152,22 @@ class FireStoreRepo {
 
   //Kullanıcıya ait takvim kısmında gösterilen dersleri firestore üzerinden getirme
   Future<List<Lesson>> getLessons() async {
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
     final docSnapShot = await user.get();
 
     // Hata durumunu kontrol et (kullanıcı var ve educations yoksa)
-    if (docSnapShot.exists && !docSnapShot.data()!.containsKey("lessons")) {
+    if (docSnapShot.exists &&
+        !docSnapShot.data()!.containsKey(Collections.LESSONS)) {
       //'educations' alanı yok
       return []; // Boş bir liste döndür
     }
 
-    List lessonId = await docSnapShot.get("lessons");
+    List lessonId = await docSnapShot.get(Collections.LESSONS);
 
     final lessonList = lessonId.map((e) async {
-      final docRef = FirebaseFirestoreInstance.collection("lessons").doc(e);
+      final docRef =
+          FirebaseFirestoreInstance.collection(Collections.LESSONS).doc(e);
       final lessonSnapshot = await docRef.get();
       return Lesson.fromMap(lessonSnapshot.data()!);
     }).toList();
@@ -171,7 +180,7 @@ class FireStoreRepo {
   //Katalog kısmına ait eğitimleri firestore üzerinden getirme
   Future<List<Catalog>> getCatalog() async {
     final catalogs =
-        await FirebaseFirestoreInstance.collection("catalogs").get();
+        await FirebaseFirestoreInstance.collection(Collections.CATALOGS).get();
 
     final catalogList = catalogs.docs.map((e) async {
       return Catalog.fromMap(e.data());
@@ -184,7 +193,8 @@ class FireStoreRepo {
 
   // Değerlendirmeler kısmındaki raporları firestore üzerinden getirme
   Future<List<Report>> getReports() async {
-    final reports = await FirebaseFirestoreInstance.collection("reports").get();
+    final reports =
+        await FirebaseFirestoreInstance.collection(Collections.REPORTS).get();
 
     final reportList = reports.docs.map((e) async {
       return Report.fromMap(e.data());
@@ -197,7 +207,7 @@ class FireStoreRepo {
 
   //Kullanıcının hakkında kısmında düzenleyebildiği verileri güncelleme
   void updateUserAbout(UserModel userModel, File? file) async {
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
 
     if (file != null) {
@@ -232,7 +242,7 @@ class FireStoreRepo {
 
   //Kullanıcının eğitim hayatı kısmında düzenleyebildiği verileri güncelleme
   void updateUserGraduate(UserModel userModel) async {
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
     user.update(UserModel(
       name: userModel.name,
@@ -243,7 +253,7 @@ class FireStoreRepo {
   }
 
   void updateUserExperience(UserModel userModel) async {
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
     user.update(UserModel(
       name: userModel.name,
@@ -254,7 +264,7 @@ class FireStoreRepo {
   }
 
   void updateUserSkill(UserModel userModel) async {
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
     user.update(UserModel(
             name: userModel.name,
@@ -265,7 +275,7 @@ class FireStoreRepo {
   }
 
   void updateUserLanguage(UserModel userModel) async {
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
     user.update(UserModel(
             name: userModel.name,
@@ -276,7 +286,7 @@ class FireStoreRepo {
   }
 
   void updateUserSocial(UserModel userModel) async {
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
     user.update(UserModel(
             name: userModel.name,
@@ -287,7 +297,7 @@ class FireStoreRepo {
   }
 
   void updateUserCertificate(UserModel userModel, File file) async {
-    final user = await FirebaseFirestoreInstance.collection("users")
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
     final ref = FirebaseStorage.instance
         .ref()
@@ -304,7 +314,7 @@ class FireStoreRepo {
 
   Future<List<Catalog>> getCatalogByTitle(String title) async {
     final catalogs =
-        await FirebaseFirestoreInstance.collection("catalogs").get();
+        await FirebaseFirestoreInstance.collection(Collections.CATALOGS).get();
 
     final catalogList = catalogs.docs.map((e) async {
       return Catalog.fromMap(e.data());
