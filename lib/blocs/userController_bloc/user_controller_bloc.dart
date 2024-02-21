@@ -58,5 +58,12 @@ class UserControllerBloc
     on<ShowPasswordRegister>((event, emit) {
       emit(PasswordVisibilityRegister(isVisible: event.visibility));
     });
+
+    on<UpdatePassword>((event, emit) {
+      firebaseAuthRepo.changePassword(event.password);
+      ScaffoldMessenger.of(event.context).showSnackBar(SnackBar(
+        content: Text("Parola Güncellendi!"),
+      ));
+    });
   }
 }

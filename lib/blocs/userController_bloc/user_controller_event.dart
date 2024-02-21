@@ -62,3 +62,13 @@ class ShowPasswordRegister extends UserControllerEvent {
     required this.visibility,
   });
 }
+
+class UpdatePassword extends UserControllerEvent {
+  String password;
+  BuildContext context;
+
+  UpdatePassword({
+    required this.password,
+    required this.context,
+  });
+}

@@ -88,4 +88,12 @@ class FirebaseAuthRepo {
       print(e);
     }
   }
+
+  void changePassword(String password) async {
+    //Create an instance of the current user.
+    final user = await FirebaseAuth.instance.currentUser!;
+
+    //Pass in the password to updatePassword.
+    user.updatePassword(password);
+  }
 }
