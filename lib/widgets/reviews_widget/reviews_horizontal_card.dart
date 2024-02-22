@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/service_bloc/service_bloc.dart';
+import 'package:tobeto_app/blocs/service_bloc/service_event.dart';
 
 class ReviewsHorizontalCard extends StatelessWidget {
   final String headLine;
   final Color color1;
   final Color color2;
   final Color color3;
+  String url;
 
-  const ReviewsHorizontalCard({
+  ReviewsHorizontalCard({
     required this.headLine,
     required this.color1,
     required this.color2,
     required this.color3,
+    required this.url,
     Key? key,
   }) : super(key: key);
 
@@ -100,18 +105,12 @@ class ReviewsHorizontalCard extends StatelessWidget {
                                       MediaQuery.of(context).size.height * 0.01,
                                 ),
                                 const Text(
-                                  "Bu sınav 25 sorudan oluşmakta olup sınav süresi 30 dakikadır. Sınav çoktan seçmeli test şeklinde olup sınavı yarıda bıraktığınız taktırde çözdüğünüz kısım kadarıyla değerlendirileceksiniz.",
-                                ),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.02,
-                                ),
-                                const Text("Sınav Süresi: 30"),
+                                    "Bu sınav 5 sorudan oluşmaktadır. Sınav çoktan seçmeli test şeklinde olup boş soru bırakma hakkınız olmamaktadır. Sınava ''Sınava Başla'' butonundan ulaşabilirsiniz. Başarılar! "),
                                 SizedBox(
                                   height:
                                       MediaQuery.of(context).size.height * 0.01,
                                 ),
-                                const Text("Soru Sayısı: 25"),
+                                const Text("Soru Sayısı: 5"),
                                 SizedBox(
                                   height:
                                       MediaQuery.of(context).size.height * 0.01,
@@ -123,6 +122,9 @@ class ReviewsHorizontalCard extends StatelessWidget {
                                 ),
                                 ElevatedButton(
                                     onPressed: () {
+                                      context
+                                          .read<ServiceBloc>()
+                                          .add(LaunchSocialUrl(url: url));
                                       // Butona tıklandığında yapılacak işlemler
                                     },
                                     style: ElevatedButton.styleFrom(
