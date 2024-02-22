@@ -12,6 +12,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final TextEditingController _emailController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,52 +40,64 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   BoxDecoration(borderRadius: BorderRadius.circular(24)),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      imagePath,
-                      width: 150,
-                      height: 75,
-                    ),
-                    const Spacer(),
-                    TextField(
-                      controller: _emailController,
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.email_outlined),
-                        label: const Text("E-Mail"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        contentPadding: const EdgeInsets.all(8),
+                child: Form(
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        imagePath,
+                        width: 150,
+                        height: 75,
                       ),
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Theme.of(context).primaryColor,
-                            ),
-                            onPressed: () {
-                              context.read<UserControllerBloc>().add(
-                                    ForgotPasswordEvent(
-                                      email: _emailController.text,
-                                      context: context,
-                                    ),
-                                  );
-                            },
-                            child: const Text("E-posta Gönder"),
+                      const Spacer(),
+                      TextFormField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.email_outlined),
+                          label: const Text("E-Mail"),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
+                          contentPadding: const EdgeInsets.all(8),
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
-                    ),
-                  ],
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return " E-Mail Boş Bırakılamaz";
+                          }
+                          return null;
+                        },
+                        onSaved: (newValue) =>
+                            _emailController.text = newValue!,
+                      ),
+                      const Spacer(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Theme.of(context).primaryColor,
+                              ),
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  context.read<UserControllerBloc>().add(
+                                        ForgotPasswordEvent(
+                                          email: _emailController.text,
+                                          context: context,
+                                        ),
+                                      );
+                                }
+                              },
+                              child: const Text("E-posta Gönder"),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
