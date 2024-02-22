@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
-import 'package:tobeto_app/blocs/exam_bloc/exam_event.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_event.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
@@ -216,8 +214,6 @@ class _MoreScreenState extends State<MoreScreen> {
                 onTap: () {
                   context.read<UserControllerBloc>().add(LogoutEvent());
                   context.read<NavigationBloc>().add(ChangeScreen(index: 0));
-                  context.read<UserInfoBloc>().add(ResetEvent());
-                  context.read<ExamBloc>().add(ResetExamEvent());
                 },
                 leading: Icon(
                   Icons.logout,

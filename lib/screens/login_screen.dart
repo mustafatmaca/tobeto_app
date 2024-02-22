@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobeto_app/blocs/exam_bloc/exam_bloc.dart';
+import 'package:tobeto_app/blocs/exam_bloc/exam_event.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_event.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_state.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
+import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
 import 'package:tobeto_app/screens/forgot_password_screen.dart';
 import 'package:tobeto_app/screens/register_screen.dart';
 
@@ -168,6 +172,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       password: _passwordController.text,
                                       context: context,
                                     ));
+                                context.read<UserInfoBloc>().add(ResetEvent());
+                                context.read<ExamBloc>().add(ResetExamEvent());
                               },
                               child: const Text("Giriş Yap")),
                         ),
