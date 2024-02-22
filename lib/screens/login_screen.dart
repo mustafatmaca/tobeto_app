@@ -20,6 +20,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,190 +48,236 @@ class _LoginScreenState extends State<LoginScreen> {
                   BoxDecoration(borderRadius: BorderRadius.circular(24)),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      imagePath,
-                      width: 150,
-                      height: 75,
-                    ),
-                    const Spacer(),
-                    TextField(
-                      controller: _usernameController,
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.person_outline),
-                        label: const Text("E-Mail"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        contentPadding: const EdgeInsets.all(8),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        imagePath,
+                        width: 150,
+                        height: 75,
                       ),
-                    ),
-                    const Spacer(),
-                    BlocBuilder<UserControllerBloc, UserControllerState>(
-                      builder: (context, state) {
-                        if (state is UserControllerInitial) {
-                          return TextField(
-                            controller: _passwordController,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.lock_outline),
-                                suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    context
-                                        .read<UserControllerBloc>()
-                                        .add(ShowPassword(visibility: true));
-                                  },
-                                  child: Icon(
-                                    Icons.visibility,
-                                  ),
-                                ),
-                                label: const Text("Parola"),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                contentPadding: const EdgeInsets.all(8)),
-                          );
-                        } else if (state is PasswordVisibility) {
-                          return TextField(
-                            controller: _passwordController,
-                            obscureText: state.isVisible,
-                            decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.lock_outline),
-                                suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    context.read<UserControllerBloc>().add(
-                                        ShowPassword(
-                                            visibility: !state.isVisible));
-                                  },
-                                  child: Icon(
-                                    state.isVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                  ),
-                                ),
-                                label: const Text("Parola"),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                contentPadding: const EdgeInsets.all(8)),
-                          );
-                        } else {
-                          return TextField(
-                            controller: _passwordController,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.lock_outline),
-                                suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    context
-                                        .read<UserControllerBloc>()
-                                        .add(ShowPassword(visibility: true));
-                                  },
-                                  child: Icon(
-                                    Icons.visibility,
-                                  ),
-                                ),
-                                label: const Text("Parola"),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                contentPadding: const EdgeInsets.all(8)),
-                          );
-                        }
-                      },
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Theme.of(context).cardColor,
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RegisterScreen()));
-                            },
-                            child: const Text("Kayıt Ol"),
+                      const Spacer(),
+                      TextFormField(
+                        controller: _usernameController,
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.person_outline),
+                          label: const Text("E-Mail"),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
+                          contentPadding: const EdgeInsets.all(8),
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.02,
-                        ),
-                        Expanded(
-                          child: ElevatedButton(
-                              onPressed: () {
-                                context
-                                    .read<UserControllerBloc>()
-                                    .add(LoginEvent(
-                                      email: _usernameController.text,
-                                      password: _passwordController.text,
-                                      context: context,
-                                    ));
-                                context.read<UserInfoBloc>().add(ResetEvent());
-                                context.read<ExamBloc>().add(ResetExamEvent());
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "E-Mail Alanı Boş Bırakılamaz.";
+                          }
+                          if (!RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(value)) {
+                            return "Lütfen Geçerli Bir E-Posta Giriniz";
+                          }
+                          return null;
+                        },
+                        onSaved: (newValue) {
+                          _usernameController.text = newValue!;
+                        },
+                      ),
+                      const Spacer(),
+                      BlocBuilder<UserControllerBloc, UserControllerState>(
+                        builder: (context, state) {
+                          if (state is UserControllerInitial) {
+                            return TextFormField(
+                              controller: _passwordController,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.lock_outline),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    context
+                                        .read<UserControllerBloc>()
+                                        .add(ShowPassword(visibility: true));
+                                  },
+                                  child: const Icon(
+                                    Icons.visibility,
+                                  ),
+                                ),
+                                label: const Text("Parola"),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                contentPadding: const EdgeInsets.all(8),
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Parola Alanı Boş Bırakılamaz";
+                                }
+                                const Spacer();
+                                return null;
                               },
-                              child: const Text("Giriş Yap")),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.01,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
+                            );
+                          } else if (state is PasswordVisibility) {
+                            return TextFormField(
+                              controller: _passwordController,
+                              obscureText: state.isVisible,
+                              decoration: InputDecoration(
+                                  prefixIcon: const Icon(Icons.lock_outline),
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      context.read<UserControllerBloc>().add(
+                                          ShowPassword(
+                                              visibility: !state.isVisible));
+                                    },
+                                    child: Icon(
+                                      state.isVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                    ),
+                                  ),
+                                  label: const Text("Parola"),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  contentPadding: const EdgeInsets.all(8)),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Parola Alanı Boş Bırakılamaz";
+                                }
+
+                                return null;
+                              },
+                            );
+                          } else {
+                            return TextFormField(
+                              controller: _passwordController,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                  prefixIcon: const Icon(Icons.lock_outline),
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      context
+                                          .read<UserControllerBloc>()
+                                          .add(ShowPassword(visibility: true));
+                                    },
+                                    child: const Icon(
+                                      Icons.visibility,
+                                    ),
+                                  ),
+                                  label: const Text("Parola"),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  contentPadding: const EdgeInsets.all(8)),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Parola Alanı Boş Bırakılamaz";
+                                }
+                                return null;
+                              },
+                            );
+                          }
+                        },
+                      ),
+                      const Spacer(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Theme.of(context).cardColor,
                               ),
                               onPressed: () {
-                                context
-                                    .read<UserControllerBloc>()
-                                    .add(SignInWithGoogle());
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const RegisterScreen()));
                               },
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/google_icon.png",
-                                    height: MediaQuery.of(context).size.height *
-                                        0.04,
-                                  ),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.05,
-                                  ),
-                                  const Text("Google ile Giriş Yap"),
-                                ],
-                              )),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
-                    ),
-                    const Divider(height: 0.1),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ForgotPasswordScreen(),
+                              child: const Text("Kayıt Ol"),
+                            ),
                           ),
-                        );
-                      },
-                      child: const Text("Parolamı Unuttum"),
-                    )
-                  ],
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.02,
+                          ),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  _formKey.currentState!.save();
+                                  context.read<UserControllerBloc>().add(
+                                        LoginEvent(
+                                          email: _usernameController.text,
+                                          password: _passwordController.text,
+                                          context: context,
+                                        ),
+                                      );
+                                  context
+                                      .read<UserInfoBloc>()
+                                      .add(ResetEvent());
+                                  context
+                                      .read<ExamBloc>()
+                                      .add(ResetExamEvent());
+                                }
+                              },
+                              child: const Text("Giriş Yap"),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.01,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Theme.of(context).cardColor,
+                                ),
+                                onPressed: () {
+                                  context
+                                      .read<UserControllerBloc>()
+                                      .add(SignInWithGoogle());
+                                },
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/google_icon.png",
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.04,
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.05,
+                                    ),
+                                    const Text("Google ile Giriş Yap"),
+                                  ],
+                                )),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      const Divider(height: 0.1),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const ForgotPasswordScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text("Parolamı Unuttum"),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
