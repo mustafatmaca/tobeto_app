@@ -75,22 +75,6 @@ class _EditPersonalState extends State<EditPersonal> {
     }
   }
 
-  // void _upload() async {
-  //   final user = FirebaseAuth.instance.currentUser;
-  //   final ref = FirebaseStorage.instance
-  //       .ref()
-  //       .child("images")
-  //       .child("${user!.uid}.jpg");
-
-  //   await ref.putFile(_pickedFile!);
-  //   final url = await ref.getDownloadURL();
-
-  //   final document =
-  //       FirebaseFirestore.instance.collection("users").doc(user.uid);
-
-  //   await document.update({'photoUrl': url});
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -236,6 +220,8 @@ class _EditPersonalState extends State<EditPersonal> {
                     ),
                   ),
                   TextFormField(
+                    enabled: false,
+                    readOnly: true,
                     controller: _emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -311,7 +297,7 @@ class _EditPersonalState extends State<EditPersonal> {
                               userModel: UserModel(
                                   name: _nameController.text,
                                   surname: _surnameController.text,
-                                  email: _emailController.text,
+                                  email: widget.userModel.email,
                                   gsm: _gsmController.text,
                                   birthdate: Timestamp.fromDate(birthDate!),
                                   adress: _adressController.text,
@@ -327,7 +313,7 @@ class _EditPersonalState extends State<EditPersonal> {
                               userModel: UserModel(
                                   name: _nameController.text,
                                   surname: _surnameController.text,
-                                  email: _emailController.text,
+                                  email: widget.userModel.email,
                                   gsm: _gsmController.text,
                                   birthdate: Timestamp.fromDate(birthDate!),
                                   adress: _adressController.text,

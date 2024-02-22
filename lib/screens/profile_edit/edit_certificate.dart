@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_event.dart';
 import 'package:tobeto_app/models/user.dart';
@@ -29,34 +30,6 @@ class _EditCertificateState extends State<EditCertificate> {
       });
     }
   }
-
-  // void _upload(UserModel userModel) async {
-  //   final user = FirebaseAuth.instance.currentUser;
-  //   final ref = FirebaseStorage.instance
-  //       .ref()
-  //       .child("files")
-  //       .child("${_pickedFile!.path.substring(53)}");
-
-  //   await ref.putFile(_pickedFile!);
-  //   final url = await ref.getDownloadURL();
-
-  //   final document =
-  //       FirebaseFirestore.instance.collection("users").doc(user!.uid);
-
-  //   if (userModel.certificates != null) {
-  //     await document.update(UserModel(
-  //         name: userModel.name,
-  //         surname: userModel.surname,
-  //         email: userModel.email,
-  //         certificates: [...userModel.certificates!, url]).toMap());
-  //   } else {
-  //     await document.update(UserModel(
-  //         name: userModel.name,
-  //         surname: userModel.surname,
-  //         email: userModel.email,
-  //         certificates: [url]).toMap());
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -136,12 +109,53 @@ class _EditCertificateState extends State<EditCertificate> {
                         Navigator.pop(context);
                         context.read<UserInfoBloc>().add(ResetEvent());
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           content: Text("Bir Dosya Seçmelisiniz"),
                         ));
                       }
                     },
-                    child: Text("Kaydet")),
+                    child: const Text("Kaydet")),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                widget.userModel.certificates != null
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        itemCount: widget.userModel.certificates!.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: const Icon(FontAwesomeIcons.scroll),
+                            title: Text(
+                              widget.userModel.certificates![index]!,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                            trailing: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    widget.userModel.certificates!.remove(
+                                        widget.userModel.certificates![index]);
+                                  });
+                                  context
+                                      .read<UserInfoBloc>()
+                                      .add(UpdateUserCertificate(
+                                          userModel: UserModel(
+                                        name: widget.userModel.name,
+                                        surname: widget.userModel.surname,
+                                        email: widget.userModel.email,
+                                        certificates:
+                                            widget.userModel.certificates,
+                                      )));
+                                  context
+                                      .read<UserInfoBloc>()
+                                      .add(ResetEvent());
+                                },
+                                icon: const Icon(FontAwesomeIcons.trash)),
+                          );
+                        },
+                      )
+                    : Container(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),

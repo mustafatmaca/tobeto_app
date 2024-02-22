@@ -296,20 +296,28 @@ class FireStoreRepo {
         .toMap());
   }
 
-  void updateUserCertificate(UserModel userModel, File file) async {
+  void updateUserCertificate(UserModel userModel, File? file) async {
     final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
         .doc(firebaseAuthInstance.currentUser!.uid);
-    final ref = FirebaseStorage.instance
-        .ref()
-        .child("files")
-        .child("${file.path.substring(53)}");
-    await ref.putFile(file);
-    final url = await ref.getDownloadURL();
-    user.update(UserModel(
-        name: userModel.name,
-        surname: userModel.surname,
-        email: userModel.email,
-        certificates: [...userModel.certificates!, url]).toMap());
+    if (file != null) {
+      final ref = FirebaseStorage.instance
+          .ref()
+          .child("files")
+          .child("${file.path.substring(53)}");
+      await ref.putFile(file);
+      final url = await ref.getDownloadURL();
+      user.update(UserModel(
+          name: userModel.name,
+          surname: userModel.surname,
+          email: userModel.email,
+          certificates: [...userModel.certificates!, url]).toMap());
+    } else {
+      user.update(UserModel(
+          name: userModel.name,
+          surname: userModel.surname,
+          email: userModel.email,
+          certificates: [...userModel.certificates!]).toMap());
+    }
   }
 
   Future<List<Catalog>> getCatalogByTitle(String title) async {

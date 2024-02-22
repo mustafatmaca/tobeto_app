@@ -453,7 +453,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     )
                                   ],
                                 ),
-                                child: state.userModel.experiences != null
+                                child: state.userModel.experiences != null &&
+                                        state.userModel.experiences!.isNotEmpty
                                     ? ListView.builder(
                                         shrinkWrap: true,
                                         physics: const ClampingScrollPhysics(),
@@ -608,7 +609,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   )
                                 ],
                               ),
-                              child: state.userModel.skills != null
+                              child: state.userModel.skills != null &&
+                                      state.userModel.skills!.isNotEmpty
                                   ? ListView.builder(
                                       shrinkWrap: true,
                                       physics: const ClampingScrollPhysics(),
@@ -727,7 +729,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   )
                                 ],
                               ),
-                              child: state.userModel.certificates != null
+                              child: state.userModel.certificates != null &&
+                                      state.userModel.certificates!.isNotEmpty
                                   ? ListView.builder(
                                       shrinkWrap: true,
                                       physics: const ClampingScrollPhysics(),
@@ -867,7 +870,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   )
                                 ],
                               ),
-                              child: state.userModel.languages != null
+                              child: state.userModel.languages != null &&
+                                      state.userModel.languages!.isNotEmpty
                                   ? ListView.builder(
                                       shrinkWrap: true,
                                       physics: const ClampingScrollPhysics(),
@@ -990,7 +994,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   )
                                 ],
                               ),
-                              child: state.userModel.socials != null
+                              child: state.userModel.socials != null &&
+                                      state.userModel.socials!.isNotEmpty
                                   ? ListView.builder(
                                       shrinkWrap: true,
                                       physics: const ClampingScrollPhysics(),

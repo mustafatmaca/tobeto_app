@@ -15,6 +15,7 @@ class EditLanguage extends StatefulWidget {
 
 class _EditLanguageState extends State<EditLanguage> {
   final TextEditingController _languageController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,33 +27,45 @@ class _EditLanguageState extends State<EditLanguage> {
         padding: EdgeInsets.only(
             left: MediaQuery.of(context).size.width * 0.04,
             right: MediaQuery.of(context).size.width * 0.04),
-        child: ListView(
-          children: [
-            Column(
-              children: [
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Dil Giriniz",
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: [
+              Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Dil Giriniz",
+                    ),
                   ),
-                ),
-                TextField(
-                  controller: _languageController,
-                  decoration: InputDecoration(
-                      hintText: "Örn. İngilizce",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      contentPadding: EdgeInsets.all(
-                          MediaQuery.of(context).size.width * 0.02)),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    widget.userModel.languages != null
-                        ? context.read<UserInfoBloc>().add(UpdateUserLanguage(
+                  TextFormField(
+                    controller: _languageController,
+                    decoration: InputDecoration(
+                        hintText: "Örn. İngilizce ",
+                        hintStyle: Theme.of(context).textTheme.bodyLarge,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        contentPadding: EdgeInsets.all(
+                            MediaQuery.of(context).size.width * 0.02)),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return " Dil Boş Bırakılamaz";
+                      }
+                      return null;
+                    },
+                    onSaved: (newValue) => _languageController.text = newValue!,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate() &&
+                          widget.userModel.languages != null) {
+                        _formKey.currentState!.save();
+                        context.read<UserInfoBloc>().add(UpdateUserLanguage(
                                 userModel: UserModel(
                                     name: widget.userModel.name,
                                     surname: widget.userModel.surname,
@@ -60,71 +73,77 @@ class _EditLanguageState extends State<EditLanguage> {
                                     languages: [
                                   ...widget.userModel.languages!,
                                   _languageController.text
-                                ])))
-                        : context.read<UserInfoBloc>().add(UpdateUserLanguage(
+                                ])));
+                        Navigator.pop(context);
+                        context.read<UserInfoBloc>().add(ResetEvent());
+                      } else if (_formKey.currentState!.validate() &&
+                          widget.userModel.languages == null) {
+                        _formKey.currentState!.save();
+                        context.read<UserInfoBloc>().add(UpdateUserLanguage(
                             userModel: UserModel(
                                 name: widget.userModel.name,
                                 surname: widget.userModel.surname,
                                 email: widget.userModel.email,
                                 languages: [_languageController.text])));
 
-                    Navigator.pop(context);
-                    context.read<UserInfoBloc>().add(ResetEvent());
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF011D42),
-                      minimumSize: Size(
-                        MediaQuery.of(context).size.width * 0.9,
-                        MediaQuery.of(context).size.height * 0.06,
-                      )),
-                  child: const Text("Kaydet"),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                widget.userModel.languages != null
-                    ? ListView.builder(
-                        shrinkWrap: true,
-                        physics: const ClampingScrollPhysics(),
-                        itemCount: widget.userModel.languages!.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            leading: const Icon(FontAwesomeIcons.earthEurope),
-                            title: Text(
-                              widget.userModel.languages![index],
-                              style: Theme.of(context).textTheme.bodyLarge,
-                            ),
-                            trailing: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    widget.userModel.languages!.remove(
-                                        widget.userModel.languages![index]);
-                                    context.read<UserInfoBloc>().add(
-                                        UpdateUserLanguage(
+                        Navigator.pop(context);
+                        context.read<UserInfoBloc>().add(ResetEvent());
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF011D42),
+                        minimumSize: Size(
+                          MediaQuery.of(context).size.width * 0.9,
+                          MediaQuery.of(context).size.height * 0.06,
+                        )),
+                    child: const Text("Kaydet"),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  widget.userModel.languages != null
+                      ? ListView.builder(
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
+                          itemCount: widget.userModel.languages!.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              leading: const Icon(FontAwesomeIcons.earthEurope),
+                              title: Text(
+                                widget.userModel.languages![index]!,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                              trailing: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      widget.userModel.languages!.remove(
+                                          widget.userModel.languages![index]);
+                                    });
+                                    context
+                                        .read<UserInfoBloc>()
+                                        .add(UpdateUserLanguage(
                                             userModel: UserModel(
-                                                name: widget.userModel.name,
-                                                surname:
-                                                    widget.userModel.surname,
-                                                email: widget.userModel.email,
-                                                languages: widget
-                                                    .userModel.languages!)));
-                                  });
-                                  Navigator.pop(context);
-                                  context
-                                      .read<UserInfoBloc>()
-                                      .add(ResetEvent());
-                                },
-                                icon: Icon(FontAwesomeIcons.trash)),
-                          );
-                        },
-                      )
-                    : Container(),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-              ],
-            ),
-          ],
+                                          name: widget.userModel.name,
+                                          surname: widget.userModel.surname,
+                                          email: widget.userModel.email,
+                                          languages: widget.userModel.languages,
+                                        )));
+                                    context
+                                        .read<UserInfoBloc>()
+                                        .add(ResetEvent());
+                                  },
+                                  icon: const Icon(FontAwesomeIcons.trash)),
+                            );
+                          },
+                        )
+                      : Container(),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

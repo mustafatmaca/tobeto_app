@@ -54,9 +54,9 @@ class UpdateUserSocial extends UserInfoEvent {
 
 class UpdateUserCertificate extends UserInfoEvent {
   UserModel userModel;
-  File file;
+  File? file;
   UpdateUserCertificate({
     required this.userModel,
-    required this.file,
+    this.file,
   });
 }

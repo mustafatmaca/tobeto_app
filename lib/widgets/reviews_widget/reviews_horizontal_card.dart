@@ -8,9 +8,9 @@ class ReviewsHorizontalCard extends StatelessWidget {
   final Color color1;
   final Color color2;
   final Color color3;
-  String url;
+  final String url;
 
-  ReviewsHorizontalCard({
+  const ReviewsHorizontalCard({
     required this.headLine,
     required this.color1,
     required this.color2,
@@ -25,7 +25,7 @@ class ReviewsHorizontalCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.85,
       height: MediaQuery.of(context).size.height * 0.10,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topRight: Radius.circular(12),
           bottomRight: Radius.circular(12),
           bottomLeft: Radius.circular(12),
@@ -132,25 +132,25 @@ class ReviewsHorizontalCard extends StatelessWidget {
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
-                                      backgroundColor: Color(
+                                      backgroundColor: const Color(
                                           0xFF011D42), // Z-eğimi sıfır olmalı
                                     ),
-                                    child: Text("Sınava Başla"))
+                                    child: const Text("Sınava Başla"))
                               ],
                             ),
                           );
                         },
                       );
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF011D42),
+                    ),
                     child: Text(
                       "Başla",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Theme.of(context).colorScheme.background,
                             fontWeight: FontWeight.bold,
                           ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF011D42),
                     ),
                   ),
                 ),
