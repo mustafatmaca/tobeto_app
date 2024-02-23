@@ -54,6 +54,10 @@ class _CatalogScreenState extends State<CatalogScreen> {
                                 .read<CatalogBloc>()
                                 .add(LoadCatalogByTitle(title: value));
                           },
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(color: Colors.black),
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
@@ -66,7 +70,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                               ),
                             ),
                             hintText: "Eğitim arayın...",
-                            labelStyle: TextStyle(color: Colors.grey),
+                            labelStyle: const TextStyle(color: Colors.grey),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -86,11 +90,11 @@ class _CatalogScreenState extends State<CatalogScreen> {
                 builder: (context, state) {
                   if (state is CatalogInitial) {
                     context.read<CatalogBloc>().add(LoadCatalog());
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is CatalogLoading) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is CatalogLoaded) {
@@ -116,9 +120,9 @@ class _CatalogScreenState extends State<CatalogScreen> {
                     //   },
                     // );
                   } else if (state is CatalogError) {
-                    return EmptyCard();
+                    return const EmptyCard();
                   } else {
-                    return Text("Error");
+                    return const Text("Error");
                   }
                 },
               )

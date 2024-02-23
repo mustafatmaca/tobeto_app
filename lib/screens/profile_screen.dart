@@ -308,8 +308,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             state.userModel.graduates!.length,
                                         itemBuilder: (context, index) {
                                           return ListTile(
-                                            leading: const Icon(
-                                                FontAwesomeIcons.graduationCap),
+                                            leading: Icon(
+                                              FontAwesomeIcons.graduationCap,
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .color!
+                                                  .withOpacity(0.6),
+                                            ),
                                             title: Text(
                                               state.userModel.graduates![index]
                                                   .name!,
@@ -328,23 +334,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                const Icon(
-                                                    FontAwesomeIcons.calendar),
-                                                Text(state
-                                                            .userModel
-                                                            .graduates![index]
-                                                            .endDate !=
-                                                        null
-                                                    ? DateTime.fromMillisecondsSinceEpoch(
-                                                            state
-                                                                .userModel
-                                                                .graduates![
-                                                                    index]
-                                                                .endDate!
-                                                                .millisecondsSinceEpoch)
-                                                        .year
-                                                        .toString()
-                                                    : "Devam"),
+                                                Icon(
+                                                  FontAwesomeIcons.calendar,
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .color!
+                                                      .withOpacity(0.6),
+                                                ),
+                                                Text(
+                                                  state
+                                                              .userModel
+                                                              .graduates![index]
+                                                              .endDate !=
+                                                          null
+                                                      ? DateTime.fromMillisecondsSinceEpoch(
+                                                              state
+                                                                  .userModel
+                                                                  .graduates![
+                                                                      index]
+                                                                  .endDate!
+                                                                  .millisecondsSinceEpoch)
+                                                          .year
+                                                          .toString()
+                                                      : "Devam",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodySmall!
+                                                                  .color!
+                                                                  .withOpacity(
+                                                                      0.6)),
+                                                ),
                                               ],
                                             ),
                                           );
@@ -356,8 +381,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         itemCount: 1,
                                         itemBuilder: (context, index) {
                                           return ListTile(
-                                            leading: const Icon(
-                                                FontAwesomeIcons.graduationCap),
+                                            leading: Icon(
+                                              FontAwesomeIcons.graduationCap,
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .color!
+                                                  .withOpacity(0.6),
+                                            ),
                                             title: Text(
                                               "Eğitim Ekle",
                                               style: Theme.of(context)
@@ -462,8 +493,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             state.userModel.experiences!.length,
                                         itemBuilder: (context, index) {
                                           return ListTile(
-                                            leading: const Icon(
-                                                FontAwesomeIcons.briefcase),
+                                            leading: Icon(
+                                              FontAwesomeIcons.briefcase,
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .color!
+                                                  .withOpacity(0.6),
+                                            ),
                                             title: Text(
                                               state.userModel
                                                   .experiences![index].name!,
@@ -484,23 +521,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                const Icon(
-                                                    FontAwesomeIcons.calendar),
-                                                Text(state
-                                                            .userModel
-                                                            .experiences![index]
-                                                            .endDate !=
-                                                        null
-                                                    ? DateTime.fromMillisecondsSinceEpoch(
-                                                            state
-                                                                .userModel
-                                                                .experiences![
-                                                                    index]
-                                                                .endDate!
-                                                                .millisecondsSinceEpoch)
-                                                        .year
-                                                        .toString()
-                                                    : "2024"),
+                                                Icon(
+                                                  FontAwesomeIcons.calendar,
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .color!
+                                                      .withOpacity(0.6),
+                                                ),
+                                                Text(
+                                                  state
+                                                              .userModel
+                                                              .experiences![
+                                                                  index]
+                                                              .endDate !=
+                                                          null
+                                                      ? DateTime.fromMillisecondsSinceEpoch(
+                                                              state
+                                                                  .userModel
+                                                                  .experiences![
+                                                                      index]
+                                                                  .endDate!
+                                                                  .millisecondsSinceEpoch)
+                                                          .year
+                                                          .toString()
+                                                      : "Devam",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodySmall!
+                                                                  .color!
+                                                                  .withOpacity(
+                                                                      0.6)),
+                                                ),
                                               ],
                                             ),
                                           );
@@ -512,8 +569,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         itemCount: 1,
                                         itemBuilder: (context, index) {
                                           return ListTile(
-                                            leading: const Icon(
-                                                FontAwesomeIcons.briefcase),
+                                            leading: Icon(
+                                              FontAwesomeIcons.briefcase,
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .color!
+                                                  .withOpacity(0.6),
+                                            ),
                                             title: Text(
                                               "Deneyim Ekle",
                                               style: Theme.of(context)
@@ -617,8 +680,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       itemCount: state.userModel.skills!.length,
                                       itemBuilder: (context, index) {
                                         return ListTile(
-                                            leading: const Icon(
-                                                FontAwesomeIcons.bookBookmark),
+                                            leading: Icon(
+                                              FontAwesomeIcons.bookBookmark,
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .color!
+                                                  .withOpacity(0.6),
+                                            ),
                                             title: Text(
                                               state.userModel.skills![index],
                                               style: Theme.of(context)
@@ -633,8 +702,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       itemCount: 1,
                                       itemBuilder: (context, index) {
                                         return ListTile(
-                                            leading: const Icon(
-                                                FontAwesomeIcons.bookBookmark),
+                                            leading: Icon(
+                                              FontAwesomeIcons.bookBookmark,
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .color!
+                                                  .withOpacity(0.6),
+                                            ),
                                             title: Text(
                                               "Yetkinlik Ekle",
                                               style: Theme.of(context)
@@ -744,8 +819,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     url: state.userModel
                                                         .certificates![index]));
                                           },
-                                          leading: const Icon(
-                                              FontAwesomeIcons.scroll),
+                                          leading: Icon(
+                                            FontAwesomeIcons.scroll,
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .color!
+                                                .withOpacity(0.6),
+                                          ),
                                           title: Text(
                                             "Sertifika ${index + 1}",
                                             overflow: TextOverflow.ellipsis,
@@ -773,8 +854,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       itemCount: 1,
                                       itemBuilder: (context, index) {
                                         return ListTile(
-                                            leading: const Icon(
-                                                FontAwesomeIcons.scroll),
+                                            leading: Icon(
+                                              FontAwesomeIcons.scroll,
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .color!
+                                                  .withOpacity(0.6),
+                                            ),
                                             title: Text(
                                               "Sertifika Ekle",
                                               style: Theme.of(context)
@@ -879,8 +966,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           state.userModel.languages!.length,
                                       itemBuilder: (context, index) {
                                         return ListTile(
-                                          leading: const Icon(
-                                              FontAwesomeIcons.earthEurope),
+                                          leading: Icon(
+                                            FontAwesomeIcons.earthEurope,
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .color!
+                                                .withOpacity(0.6),
+                                          ),
                                           title: Text(
                                             state.userModel.languages![index],
                                             style: Theme.of(context)
@@ -896,8 +989,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       itemCount: 1,
                                       itemBuilder: (context, index) {
                                         return ListTile(
-                                          leading: const Icon(
-                                              FontAwesomeIcons.earthEurope),
+                                          leading: Icon(
+                                            FontAwesomeIcons.earthEurope,
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .color!
+                                                .withOpacity(0.6),
+                                          ),
                                           title: Text(
                                             "Dil Ekle",
                                             style: Theme.of(context)
@@ -1009,8 +1108,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     url: state.userModel
                                                         .socials![index]));
                                           },
-                                          leading: const Icon(
-                                              FontAwesomeIcons.paperclip),
+                                          leading: Icon(
+                                            FontAwesomeIcons.paperclip,
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .color!
+                                                .withOpacity(0.6),
+                                          ),
                                           title: Text(
                                             state.userModel.socials![index],
                                             style: Theme.of(context)
@@ -1026,8 +1131,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       itemCount: 1,
                                       itemBuilder: (context, index) {
                                         return ListTile(
-                                          leading: const Icon(
-                                              FontAwesomeIcons.paperclip),
+                                          leading: Icon(
+                                            FontAwesomeIcons.paperclip,
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .color!
+                                                .withOpacity(0.6),
+                                          ),
                                           title: Text(
                                             "Sosyal Medya Ekle",
                                             style: Theme.of(context)

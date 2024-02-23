@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -268,12 +269,24 @@ class _EditExperienceState extends State<EditExperience> {
                               email: widget.userModel.email,
                               experiences: [
                                 ...widget.userModel.experiences!,
-                                Experience(
-                                    about: _aboutController.text,
-                                    name: _nameController.text,
-                                    position: _positionController.text,
-                                    sector: _sectorController.text,
-                                    isContinue: isWork)
+                                isWork
+                                    ? Experience(
+                                        about: _aboutController.text,
+                                        name: _nameController.text,
+                                        position: _positionController.text,
+                                        sector: _sectorController.text,
+                                        startDate:
+                                            Timestamp.fromDate(startDate!),
+                                        isContinue: isWork)
+                                    : Experience(
+                                        about: _aboutController.text,
+                                        name: _nameController.text,
+                                        position: _positionController.text,
+                                        sector: _sectorController.text,
+                                        startDate:
+                                            Timestamp.fromDate(startDate!),
+                                        endDate: Timestamp.fromDate(endDate!),
+                                        isContinue: isWork)
                               ],
                             )));
                         Navigator.pop(context);
@@ -287,12 +300,24 @@ class _EditExperienceState extends State<EditExperience> {
                                     surname: widget.userModel.surname,
                                     email: widget.userModel.email,
                                     experiences: [
-                                  Experience(
-                                      about: _aboutController.text,
-                                      name: _nameController.text,
-                                      position: _positionController.text,
-                                      sector: _sectorController.text,
-                                      isContinue: isWork)
+                                  isWork
+                                      ? Experience(
+                                          about: _aboutController.text,
+                                          name: _nameController.text,
+                                          position: _positionController.text,
+                                          sector: _sectorController.text,
+                                          startDate:
+                                              Timestamp.fromDate(startDate!),
+                                          isContinue: isWork)
+                                      : Experience(
+                                          about: _aboutController.text,
+                                          name: _nameController.text,
+                                          position: _positionController.text,
+                                          sector: _sectorController.text,
+                                          startDate:
+                                              Timestamp.fromDate(startDate!),
+                                          endDate: Timestamp.fromDate(endDate!),
+                                          isContinue: isWork)
                                 ])));
                         Navigator.pop(context);
                         context.read<UserInfoBloc>().add(ResetEvent());

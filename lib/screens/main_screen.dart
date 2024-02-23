@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tobeto_app/blocs/carousel_bloc/carousel_bloc.dart';
+import 'package:tobeto_app/blocs/carousel_bloc/carousel_event.dart';
 import 'package:tobeto_app/blocs/catalog_bloc/catalog_bloc.dart';
 import 'package:tobeto_app/blocs/catalog_bloc/catalog_event.dart';
 import 'package:tobeto_app/blocs/lesson_bloc/lesson_bloc.dart';
@@ -26,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
       builder: (context, state) {
         if (state is NavigationInitial) {
           context.read<NavigationBloc>().add(ChangeScreen(index: 0));
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
             ),
@@ -46,18 +48,18 @@ class _MainScreenState extends State<MainScreen> {
                     onTap: () {
                       context.read<ServiceBloc>().add(SendMessage());
                     },
-                    child: FaIcon(FontAwesomeIcons.whatsapp),
+                    child: const Icon(FontAwesomeIcons.whatsapp),
                     backgroundColor: Colors.green),
                 SpeedDialChild(
                     onTap: () {
                       context.read<ServiceBloc>().add(SendMail());
                     },
-                    child: FaIcon(FontAwesomeIcons.envelope),
+                    child: const Icon(FontAwesomeIcons.envelope),
                     backgroundColor: const Color.fromARGB(255, 240, 103, 93))
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(
-              items: <BottomNavigationBarItem>[
+              items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                     icon: Icon(Icons.home), label: 'Anasayfa'),
                 BottomNavigationBarItem(
@@ -78,12 +80,13 @@ class _MainScreenState extends State<MainScreen> {
                   context.read<LessonBloc>().add(LoadLessons());
                 }
                 context.read<NavigationBloc>().add(ChangeScreen(index: value));
+                context.read<CarouselBloc>().add(ChangeCard(index: 0));
               },
             ),
             body: SafeArea(child: state.pages[state.currentPage]),
           );
         } else {
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: Text("Something went wrong!"),
             ),

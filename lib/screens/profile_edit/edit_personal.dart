@@ -97,9 +97,16 @@ class _EditPersonalState extends State<EditPersonal> {
                       _pickImage();
                     },
                     child: imagePath != null
-                        ? CircleAvatar(
-                            radius: MediaQuery.of(context).size.height * 0.08,
-                            backgroundImage: NetworkImage(imagePath))
+                        ? _pickedFile != null
+                            ? CircleAvatar(
+                                radius:
+                                    MediaQuery.of(context).size.height * 0.08,
+                                backgroundImage: FileImage(_pickedFile!),
+                              )
+                            : CircleAvatar(
+                                radius:
+                                    MediaQuery.of(context).size.height * 0.08,
+                                backgroundImage: NetworkImage(imagePath))
                         : CircleAvatar(
                             radius: MediaQuery.of(context).size.height * 0.08,
                             backgroundImage:

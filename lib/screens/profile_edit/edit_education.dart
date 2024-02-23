@@ -101,6 +101,8 @@ class _EditEducationState extends State<EditEducation> {
                             left: MediaQuery.of(context).size.width * 0.02,
                             right: MediaQuery.of(context).size.width * 0.02),
                         child: DropdownButton<String>(
+                          dropdownColor:
+                              Theme.of(context).scaffoldBackgroundColor,
                           isExpanded: true,
                           underline: Container(),
                           value: dropdownValue,
@@ -293,19 +295,29 @@ class _EditEducationState extends State<EditEducation> {
                         context.read<UserInfoBloc>().add(ResetEvent());
                       } else if (_formKey.currentState!.validate() &&
                           widget.userModel.graduates == null) {
+                        _formKey.currentState!.save();
                         context.read<UserInfoBloc>().add(UpdateUserGraduate(
                                 userModel: UserModel(
                               name: widget.userModel.name,
                               surname: widget.userModel.surname,
                               email: widget.userModel.email,
                               graduates: [
-                                Graduate(
-                                    type: dropdownValue,
-                                    name: _schoolController.text,
-                                    section: _sectionController.text,
-                                    startDate: Timestamp.fromDate(startDate!),
-                                    endDate: Timestamp.fromDate(endDate!),
-                                    isContinue: isWork)
+                                isWork
+                                    ? Graduate(
+                                        type: dropdownValue,
+                                        name: _schoolController.text,
+                                        section: _sectionController.text,
+                                        startDate:
+                                            Timestamp.fromDate(startDate!),
+                                        isContinue: isWork)
+                                    : Graduate(
+                                        type: dropdownValue,
+                                        name: _schoolController.text,
+                                        section: _sectionController.text,
+                                        startDate:
+                                            Timestamp.fromDate(startDate!),
+                                        endDate: Timestamp.fromDate(endDate!),
+                                        isContinue: isWork)
                               ],
                             )));
                         Navigator.pop(context);

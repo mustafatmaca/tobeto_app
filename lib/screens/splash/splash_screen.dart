@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:tobeto_app/screens/login_screen.dart';
+import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
+import 'package:tobeto_app/blocs/userController_bloc/user_controller_event.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -119,12 +121,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         changeIsOpen();
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
-                          ),
-                        );
+                        context.read<UserControllerBloc>().add(LogoutEvent());
                       },
                       child: const Text("Hadi Başlayalım"),
                     ))
@@ -173,12 +170,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   TextButton(
                       onPressed: () {
                         changeIsOpen();
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
-                          ),
-                        );
+                        context.read<UserControllerBloc>().add(LogoutEvent());
                       },
                       child: Text("Atla",
                           style: Theme.of(context)
