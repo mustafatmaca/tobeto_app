@@ -70,6 +70,7 @@ class ReviewsButtonCard extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
+                context.read<ReportBloc>().add(LoadReport());
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {

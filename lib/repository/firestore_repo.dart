@@ -90,6 +90,11 @@ class FireStoreRepo {
     ).toList();
 
     List<Announcement> resolvedAnnoList = await Future.wait(annoList);
+    resolvedAnnoList.sort(
+      (a, b) {
+        return b.date.compareTo(a.date);
+      },
+    );
 
     return resolvedAnnoList;
   }

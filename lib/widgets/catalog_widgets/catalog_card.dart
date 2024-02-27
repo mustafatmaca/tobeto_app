@@ -77,47 +77,6 @@ class CatalogCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              Text(instructor,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .background,
-                                          fontWeight: FontWeight.bold)),
-                              Icon(
-                                Icons.access_time,
-                                size: 18,
-                                color: Theme.of(context).colorScheme.background,
-                              ),
-                              SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.006,
-                              ),
-                              Text(
-                                (time / 60).toInt().toString() +
-                                    " Saat" +
-                                    " " +
-                                    (time % 60).toString() +
-                                    " Dakika",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .background,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.006,
-                          ),
                           Text(
                             title,
                             style: Theme.of(context)
@@ -129,6 +88,54 @@ class CatalogCard extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                             maxLines: 4,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.006,
+                          ),
+                          Text(
+                            instructor,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .background,
+                                    fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.002,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                (time / 60).toInt().toString() +
+                                    " Saat" +
+                                    " " +
+                                    (time % 60).toString() +
+                                    " Dakika",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .background,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              SizedBox(
+                                width:
+                                    MediaQuery.of(context).size.width * 0.006,
+                              ),
+                              Icon(
+                                Icons.access_time,
+                                size: 18,
+                                color: Theme.of(context).colorScheme.background,
+                              ),
+                            ],
                           ),
                         ],
                       ),

@@ -205,7 +205,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   color: Theme.of(context).iconTheme.color,
                 ),
                 title: Text(
-                  "Settings",
+                  "Ayarlar",
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),

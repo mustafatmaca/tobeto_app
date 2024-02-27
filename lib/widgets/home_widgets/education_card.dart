@@ -88,22 +88,24 @@ class EducationCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .background,
-                                    fontWeight: FontWeight.bold)),
+                        Text(
+                          title,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.background,
+                                  fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         Text("${date.day}/${date.month}/${date.year}",
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyMedium!
+                                .bodySmall!
                                 .copyWith(
                                   color:
                                       Theme.of(context).colorScheme.background,
