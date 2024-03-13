@@ -340,4 +340,21 @@ class FireStoreRepo {
             element.title.toLowerCase().contains(title.toLowerCase()))
         .toList();
   }
+
+  Future<List<Education>> getEducationByTitle(String title) async {
+    final educations =
+        await FirebaseFirestoreInstance.collection(Collections.EDUCATIONS)
+            .get();
+
+    final educationList = educations.docs.map((e) async {
+      return Education.fromMap(e.data());
+    }).toList();
+
+    List<Education> resolvedEducationList = await Future.wait(educationList);
+
+    return resolvedEducationList
+        .where((element) =>
+            element.title.toLowerCase().contains(title.toLowerCase()))
+        .toList();
+  }
 }

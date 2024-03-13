@@ -17,5 +17,16 @@ class EducationBloc extends Bloc<EducationEvent, EducationState> {
         emit(EducationError());
       }
     });
+
+    on<LoadEducationByTitle>((event, emit) async {
+      emit(EducationLoading());
+
+      try {
+        final educations = await fireStoreRepo.getEducationByTitle(event.title);
+        emit(EducationLoaded(educationList: educations));
+      } catch (e) {
+        emit(EducationError());
+      }
+    });
   }
 }
