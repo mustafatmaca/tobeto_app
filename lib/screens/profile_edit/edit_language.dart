@@ -65,17 +65,31 @@ class _EditLanguageState extends State<EditLanguage> {
                       if (_formKey.currentState!.validate() &&
                           widget.userModel.languages != null) {
                         _formKey.currentState!.save();
-                        context.read<UserInfoBloc>().add(UpdateUserLanguage(
-                                userModel: UserModel(
-                                    name: widget.userModel.name,
-                                    surname: widget.userModel.surname,
-                                    email: widget.userModel.email,
-                                    languages: [
-                                  ...widget.userModel.languages!,
-                                  _languageController.text
-                                ])));
-                        Navigator.pop(context);
-                        context.read<UserInfoBloc>().add(ResetEvent());
+                        bool hasDuplicate = false;
+                        for (var e in widget.userModel.languages!) {
+                          if (e.toString().toUpperCase() ==
+                              _languageController.text.toUpperCase()) {
+                            hasDuplicate = true;
+                            break;
+                          }
+                        }
+                        if (hasDuplicate) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text("Aynı içeriği giremezsiniz!")));
+                        } else {
+                          context.read<UserInfoBloc>().add(UpdateUserLanguage(
+                                  userModel: UserModel(
+                                      name: widget.userModel.name,
+                                      surname: widget.userModel.surname,
+                                      email: widget.userModel.email,
+                                      languages: [
+                                    ...widget.userModel.languages!,
+                                    _languageController.text
+                                  ])));
+                          Navigator.pop(context);
+                          context.read<UserInfoBloc>().add(ResetEvent());
+                        }
                       } else if (_formKey.currentState!.validate() &&
                           widget.userModel.languages == null) {
                         _formKey.currentState!.save();
@@ -115,22 +129,92 @@ class _EditLanguageState extends State<EditLanguage> {
                               ),
                               trailing: IconButton(
                                   onPressed: () {
-                                    setState(() {
-                                      widget.userModel.languages!.remove(
-                                          widget.userModel.languages![index]);
-                                    });
-                                    context
-                                        .read<UserInfoBloc>()
-                                        .add(UpdateUserLanguage(
-                                            userModel: UserModel(
-                                          name: widget.userModel.name,
-                                          surname: widget.userModel.surname,
-                                          email: widget.userModel.email,
-                                          languages: widget.userModel.languages,
-                                        )));
-                                    context
-                                        .read<UserInfoBloc>()
-                                        .add(ResetEvent());
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          elevation: 0,
+                                          backgroundColor: Theme.of(context)
+                                              .scaffoldBackgroundColor,
+                                          title: Text("UYARI!",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge!
+                                                  .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                          content: Text(
+                                              "Silmek istediğinize emin misiniz?",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    widget.userModel.languages!
+                                                        .remove(widget.userModel
+                                                            .languages![index]);
+                                                  });
+                                                  context
+                                                      .read<UserInfoBloc>()
+                                                      .add(UpdateUserLanguage(
+                                                          userModel: UserModel(
+                                                        name: widget
+                                                            .userModel.name,
+                                                        surname: widget
+                                                            .userModel.surname,
+                                                        email: widget
+                                                            .userModel.email,
+                                                        languages: widget
+                                                            .userModel
+                                                            .languages,
+                                                      )));
+                                                  context
+                                                      .read<UserInfoBloc>()
+                                                      .add(ResetEvent());
+                                                  Navigator.pop(context);
+                                                },
+                                                style: TextButton.styleFrom(
+                                                    backgroundColor:
+                                                        Colors.red),
+                                                child: Text("Evet",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .copyWith(
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .colorScheme
+                                                                .background))),
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                style: TextButton.styleFrom(
+                                                  backgroundColor:
+                                                      Color(0xFF011D42),
+                                                ),
+                                                child: Text("Hayır",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .copyWith(
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .colorScheme
+                                                                .background))),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   },
                                   icon: const Icon(FontAwesomeIcons.trash)),
                             );
