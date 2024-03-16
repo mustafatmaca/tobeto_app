@@ -109,8 +109,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ReviewsHorizontalCard(
-              url: "https://form.jotform.com/240522867805965",
+            const ReviewsHorizontalCard(
               headLine: "Front End",
               color1: Color(0xFF004D79),
               color2: Color(0xFF011D42),
@@ -119,8 +118,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            ReviewsHorizontalCard(
-              url: "https://form.jotform.com/240521790817053",
+            const ReviewsHorizontalCard(
               headLine: "Full Stack",
               color1: Color(0xFF004D79),
               color2: Color(0xFF011D42),
@@ -129,8 +127,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            ReviewsHorizontalCard(
-              url: "https://form.jotform.com/240523061866959",
+            const ReviewsHorizontalCard(
               headLine: "Back End",
               color1: Color(0xFF004D79),
               color2: Color(0xFF011D42),
@@ -139,8 +136,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            ReviewsHorizontalCard(
-              url: "https://form.jotform.com/240522787749973",
+            const ReviewsHorizontalCard(
               headLine: "Microsoft SQL Server",
               color1: Color(0xFF004D79),
               color2: Color(0xFF011D42),
@@ -149,8 +145,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            ReviewsHorizontalCard(
-              url: "https://form.jotform.com/240522307410946",
+            const ReviewsHorizontalCard(
               headLine: "Masaüstü Programlama",
               color1: Color(0xFF004D79),
               color2: Color(0xFF011D42),

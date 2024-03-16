@@ -14,6 +14,17 @@ class VideoPlayerPage extends StatefulWidget {
 
 class _VideoPlayerPageState extends State<VideoPlayerPage> {
   bool fullscreen = false;
+  // VideoPlayerController videoPlayerController =
+  //     VideoPlayerController.networkUrl(Uri());
+  // String durationTime = "";
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   videoPlayerController =
+  //       VideoPlayerController.networkUrl(Uri(path: widget.videoUrl));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +39,21 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                   Navigator.pop(context);
                 },
               ),
+              // actions: [
+              //   ValueListenableBuilder(
+              //     valueListenable: videoPlayerController,
+              //     builder: (context, VideoPlayerValue value, child) {
+              //       //Do Something with the value.
+              //       var duration = Duration(
+              //           milliseconds: value.position.inMilliseconds.round());
+
+              //       return Text([duration.inMinutes, duration.inSeconds]
+              //           .map((seg) =>
+              //               seg.remainder(60).toString().padLeft(2, '0'))
+              //           .join(':'));
+              //     },
+              //   )
+              // ],
             )
           : null,
       body: Padding(
@@ -38,6 +64,11 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
           autoPlayVideoAfterInit: false,
           aspectRatio: 16 / 9,
           url: widget.videoUrl,
+          // onVideoInitCompleted: (controller) {
+          //   setState(() {
+          //     videoPlayerController = controller;
+          //   });
+          // },
           videoStyle: VideoStyle(
             progressIndicatorColors: VideoProgressColors(
                 playedColor: Colors.purple,

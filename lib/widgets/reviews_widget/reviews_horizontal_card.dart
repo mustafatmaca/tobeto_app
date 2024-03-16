@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tobeto_app/blocs/service_bloc/service_bloc.dart';
-import 'package:tobeto_app/blocs/service_bloc/service_event.dart';
+import 'package:tobeto_app/blocs/question_bloc/question_bloc.dart';
+import 'package:tobeto_app/blocs/question_bloc/question_event.dart';
+import 'package:tobeto_app/questions_screen.dart';
 
 class ReviewsHorizontalCard extends StatelessWidget {
   final String headLine;
   final Color color1;
   final Color color2;
   final Color color3;
-  final String url;
 
   const ReviewsHorizontalCard({
     required this.headLine,
     required this.color1,
     required this.color2,
     required this.color3,
-    required this.url,
     Key? key,
   }) : super(key: key);
 
@@ -123,8 +122,16 @@ class ReviewsHorizontalCard extends StatelessWidget {
                                 ElevatedButton(
                                     onPressed: () {
                                       context
-                                          .read<ServiceBloc>()
-                                          .add(LaunchSocialUrl(url: url));
+                                          .read<QuestionBloc>()
+                                          .add(ResetQuestion());
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                QuestionsScreen(
+                                              examName: headLine,
+                                            ),
+                                          ));
                                       // Butona tıklandığında yapılacak işlemler
                                     },
                                     style: ElevatedButton.styleFrom(
