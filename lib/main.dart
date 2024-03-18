@@ -13,6 +13,7 @@ import 'package:tobeto_app/blocs/lesson_bloc/lesson_bloc.dart';
 import 'package:tobeto_app/blocs/navigation_bloc/navigation_bloc.dart';
 import 'package:tobeto_app/blocs/question_bloc/question_bloc.dart';
 import 'package:tobeto_app/blocs/report_bloc/report_bloc.dart';
+import 'package:tobeto_app/blocs/result_bloc/result_bloc.dart';
 import 'package:tobeto_app/blocs/service_bloc/service_bloc.dart';
 import 'package:tobeto_app/blocs/userController_bloc/user_controller_bloc.dart';
 import 'package:tobeto_app/blocs/userInfo_bloc/userInfo_bloc.dart';
@@ -75,6 +76,9 @@ void main() async {
         ),
         BlocProvider<QuestionBloc>(
           create: (context) => QuestionBloc(fireStoreRepo: FireStoreRepo()),
+        ),
+        BlocProvider<ResultBloc>(
+          create: (context) => ResultBloc(fireStoreRepo: FireStoreRepo()),
         ),
       ],
       child: MaterialApp(

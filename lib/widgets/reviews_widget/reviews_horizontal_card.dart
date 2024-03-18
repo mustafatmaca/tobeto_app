@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/question_bloc/question_bloc.dart';
 import 'package:tobeto_app/blocs/question_bloc/question_event.dart';
+import 'package:tobeto_app/blocs/result_bloc/result_bloc.dart';
+import 'package:tobeto_app/blocs/result_bloc/result_event.dart';
+import 'package:tobeto_app/blocs/result_bloc/result_state.dart';
 import 'package:tobeto_app/screens/questions_screen.dart';
 
 class ReviewsHorizontalCard extends StatelessWidget {
@@ -77,6 +81,7 @@ class ReviewsHorizontalCard extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 5),
                   child: ElevatedButton(
                     onPressed: () {
+                      context.read<ResultBloc>().add(ResetEvent());
                       showModalBottomSheet(
                         context: context,
                         builder: (context) {
@@ -119,30 +124,56 @@ class ReviewsHorizontalCard extends StatelessWidget {
                                   height:
                                       MediaQuery.of(context).size.height * 0.02,
                                 ),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      context
-                                          .read<QuestionBloc>()
-                                          .add(ResetQuestion());
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                QuestionsScreen(
-                                              examName: headLine,
+                                BlocBuilder<ResultBloc, ResultState>(
+                                  builder: (context, state) {
+                                    if (state is ResultInitial) {
+                                      context.read<ResultBloc>().add(LoadResult(
+                                          userId: FirebaseAuth
+                                              .instance.currentUser!.uid));
+                                      return Container();
+                                    } else if (state is ResultLoading) {
+                                      return Container();
+                                    } else if (state is ResultLoaded) {
+                                      Widget widget = ElevatedButton(
+                                          onPressed: () {
+                                            context
+                                                .read<QuestionBloc>()
+                                                .add(ResetQuestion());
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      QuestionsScreen(
+                                                    examName: headLine,
+                                                  ),
+                                                ));
+                                            // Butona tıklandığında yapılacak işlemler
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0),
                                             ),
-                                          ));
-                                      // Butona tıklandığında yapılacak işlemler
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20.0),
-                                      ),
-                                      backgroundColor: const Color(
-                                          0xFF011D42), // Z-eğimi sıfır olmalı
-                                    ),
-                                    child: const Text("Sınava Başla"))
+                                            backgroundColor: const Color(
+                                                0xFF011D42), // Z-eğimi sıfır olmalı
+                                          ),
+                                          child: const Text("Sınava Başla"));
+                                      for (var element in state.results) {
+                                        if (element.examName == headLine) {
+                                          widget = ElevatedButton(
+                                              onPressed: () {},
+                                              child: Text("Raporu Görüntüle"));
+                                          break;
+                                        }
+                                      }
+                                      return widget;
+                                    } else if (state is ResultError) {
+                                      return Text("Something went wrong!");
+                                    } else {
+                                      return Text("Error");
+                                    }
+                                  },
+                                )
                               ],
                             ),
                           );

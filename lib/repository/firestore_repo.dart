@@ -12,6 +12,7 @@ import 'package:tobeto_app/models/exam.dart';
 import 'package:tobeto_app/models/lesson.dart';
 import 'package:tobeto_app/models/question.dart';
 import 'package:tobeto_app/models/report.dart';
+import 'package:tobeto_app/models/result.dart';
 import 'package:tobeto_app/models/user.dart';
 
 class FireStoreRepo {
@@ -219,6 +220,20 @@ class FireStoreRepo {
       final questionList =
           snapshot.docs.map((e) => Question.fromMap(e.data())).toList();
       return questionList;
+    } catch (e) {
+      print("Bir hata oluştu");
+      return [];
+    }
+  }
+
+  Future<List<Result>> getResults(String userId) async {
+    try {
+      final snapshot = await FirebaseFirestoreInstance.collection("results")
+          .where("userId", isEqualTo: userId)
+          .get();
+      final resultList =
+          snapshot.docs.map((e) => Result.fromMap(e.data())).toList();
+      return resultList;
     } catch (e) {
       print("Bir hata oluştu");
       return [];
