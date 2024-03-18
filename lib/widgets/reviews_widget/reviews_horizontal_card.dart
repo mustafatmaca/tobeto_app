@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/question_bloc/question_bloc.dart';
 import 'package:tobeto_app/blocs/question_bloc/question_event.dart';
-import 'package:tobeto_app/questions_screen.dart';
+import 'package:tobeto_app/screens/questions_screen.dart';
 
 class ReviewsHorizontalCard extends StatelessWidget {
   final String headLine;

@@ -8,6 +8,7 @@ List answers = ["a", "b", "c", "d"];
 
 class QuestionsScreen extends StatefulWidget {
   final String examName;
+
   const QuestionsScreen({Key? key, required this.examName}) : super(key: key);
 
   @override
@@ -16,12 +17,15 @@ class QuestionsScreen extends StatefulWidget {
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
   String? _answers = answers.first;
+  int correctCount = 0;
+  int wrongCount = 0;
   int questionIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.examName),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         children: [
@@ -72,25 +76,29 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              questionIndex > 0
-                                  ? ElevatedButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          questionIndex--;
-                                        });
-                                      },
-                                      child: Text("Önceki Soru"))
-                                  : Container(),
                               questionIndex == state.question.length - 1
                                   ? ElevatedButton(
                                       onPressed: () {
+                                        state.question[questionIndex]
+                                                    .correctAnswer ==
+                                                _answers
+                                            ? correctCount++
+                                            : wrongCount++;
                                         Navigator.pop(context);
+                                        print("Doğru $correctCount");
+                                        print("Yanlış $wrongCount");
                                       },
                                       child: Text("Sınavı Bitir"))
                                   : ElevatedButton(
                                       onPressed: () {
                                         setState(() {
+                                          state.question[questionIndex]
+                                                      .correctAnswer ==
+                                                  _answers
+                                              ? correctCount++
+                                              : wrongCount++;
                                           questionIndex++;
+                                          _answers = answers.first;
                                         });
                                       },
                                       child: Text("Sonraki Soru"))

@@ -4,11 +4,13 @@ import 'dart:convert';
 class Question {
   String examName;
   String question;
+  String correctAnswer;
   Map<String, dynamic> answers;
 
   Question({
     required this.examName,
     required this.question,
+    required this.correctAnswer,
     required this.answers,
   });
 
@@ -24,6 +26,7 @@ class Question {
     return Question(
       examName: map['examName'] as String,
       question: map['question'] as String,
+      correctAnswer: map['correctAnswer'] as String,
       answers: map['answers'],
     );
   }
