@@ -161,7 +161,111 @@ class ReviewsHorizontalCard extends StatelessWidget {
                                       for (var element in state.results) {
                                         if (element.examName == headLine) {
                                           widget = ElevatedButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                showModalBottomSheet(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return Container(
+                                                      decoration: BoxDecoration(
+                                                        color: Theme.of(context)
+                                                            .scaffoldBackgroundColor,
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                .only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  30),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  30),
+                                                        ),
+                                                      ),
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.6,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              16.0),
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                "Sınav İsmi: ",
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .headlineSmall!
+                                                                    .copyWith(
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                              ),
+                                                              Text(
+                                                                "${element.examName}",
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .titleLarge,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                "Doğru Sayısı: ",
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .headlineSmall!
+                                                                    .copyWith(
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                              ),
+                                                              Text(
+                                                                "${element.correct}",
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .titleLarge,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                "Yanlış Sayısı: ",
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .headlineSmall!
+                                                                    .copyWith(
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                              ),
+                                                              Text(
+                                                                "${element.wrong}",
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .titleLarge,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
                                               child: Text("Raporu Görüntüle"));
                                           break;
                                         }
