@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobeto_app/blocs/question_bloc/question_bloc.dart';
 import 'package:tobeto_app/blocs/question_bloc/question_event.dart';
 import 'package:tobeto_app/blocs/question_bloc/question_state.dart';
+import 'package:tobeto_app/blocs/result_bloc/result_bloc.dart';
+import 'package:tobeto_app/blocs/result_bloc/result_event.dart';
+import 'package:tobeto_app/models/result.dart';
 
 List answers = ["a", "b", "c", "d"];
 
@@ -84,6 +88,19 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                                 _answers
                                             ? correctCount++
                                             : wrongCount++;
+                                        context.read<ResultBloc>().add(
+                                            AddResult(
+                                                result: Result(
+                                                    userId: FirebaseAuth
+                                                        .instance
+                                                        .currentUser!
+                                                        .uid,
+                                                    examName: widget.examName,
+                                                    correct: correctCount,
+                                                    wrong: wrongCount)));
+                                        context
+                                            .read<ResultBloc>()
+                                            .add(ResetEvent());
                                         Navigator.pop(context);
                                         print("Doğru $correctCount");
                                         print("Yanlış $wrongCount");

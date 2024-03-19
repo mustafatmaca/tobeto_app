@@ -16,6 +16,10 @@ class ResultBloc extends Bloc<ResultEvent, ResultState> {
       }
     });
 
+    on<AddResult>((event, emit) {
+      fireStoreRepo.setResult(event.result);
+    });
+
     on<ResetEvent>((event, emit) async {
       emit(ResultInitial());
     });

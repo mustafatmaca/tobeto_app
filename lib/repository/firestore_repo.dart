@@ -216,6 +216,7 @@ class FireStoreRepo {
     try {
       final snapshot = await FirebaseFirestoreInstance.collection("questions")
           .where("examName", isEqualTo: examName)
+          .limit(25)
           .get();
       final questionList =
           snapshot.docs.map((e) => Question.fromMap(e.data())).toList();
@@ -237,6 +238,17 @@ class FireStoreRepo {
     } catch (e) {
       print("Bir hata oluştu");
       return [];
+    }
+  }
+
+  void setResult(Result result) async {
+    try {
+      await FirebaseFirestoreInstance.collection("results")
+          .doc()
+          .set(result.toMap());
+      print("Sonuç Kaydı Başarılı!");
+    } catch (e) {
+      print("Bir hata oluştu");
     }
   }
 
