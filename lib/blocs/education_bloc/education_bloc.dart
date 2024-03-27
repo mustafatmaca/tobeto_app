@@ -28,5 +28,17 @@ class EducationBloc extends Bloc<EducationEvent, EducationState> {
         emit(EducationError());
       }
     });
+
+    on<UpdateEduStatus>((event, emit) async {
+      try {
+        fireStoreRepo.updateEduStatus(event.id, event.state);
+      } catch (e) {
+        print("Hata");
+      }
+    });
+
+    on<ResetEvent>((event, emit) async {
+      emit(EducationInitial());
+    });
   }
 }

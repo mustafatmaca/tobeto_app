@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lecle_yoyo_player/lecle_yoyo_player.dart';
+import 'package:tobeto_app/blocs/education_bloc/education_bloc.dart';
+import 'package:tobeto_app/blocs/education_bloc/education_event.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerPage extends StatefulWidget {
+  final String? videoId;
   final String videoUrl;
   final String title;
 
-  VideoPlayerPage({required this.videoUrl, required this.title});
+  VideoPlayerPage({this.videoId, required this.videoUrl, required this.title});
 
   @override
   _VideoPlayerPageState createState() => _VideoPlayerPageState();
@@ -42,6 +46,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   Navigator.pop(context);
+                  context.read<EducationBloc>().add(ResetEvent());
                 },
               ),
               actions: [
@@ -53,6 +58,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                         milliseconds: value.position.inMilliseconds.round());
 
                     if (videoPlayerController.value.isCompleted) {
+                      context
+                          .read<EducationBloc>()
+                          .add(UpdateEduStatus(id: widget.videoId!, state: 1));
                       return Text("Tamamlandı");
                     }
 

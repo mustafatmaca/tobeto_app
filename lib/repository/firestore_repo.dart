@@ -150,7 +150,7 @@ class FireStoreRepo {
           FirebaseFirestoreInstance.collection(Collections.EDUCATIONS)
               .doc(e['id']);
       final eduSnapshot = await docRef.get();
-      return Education.fromMap(eduSnapshot.data()!, e['state']);
+      return Education.fromMap(eduSnapshot.id, eduSnapshot.data()!, e['state']);
     }).toList();
 
     List<Education> resolvedEduList = await Future.wait(eduList);
@@ -403,7 +403,7 @@ class FireStoreRepo {
           FirebaseFirestoreInstance.collection(Collections.EDUCATIONS)
               .doc(e['id']);
       final eduSnapshot = await docRef.get();
-      return Education.fromMap(eduSnapshot.data()!, e['state']);
+      return Education.fromMap(eduSnapshot.id, eduSnapshot.data()!, e['state']);
     }).toList();
 
     List<Education> resolvedEducationList = await Future.wait(eduList);
@@ -412,5 +412,38 @@ class FireStoreRepo {
         .where((element) =>
             element.title.toLowerCase().contains(title.toLowerCase()))
         .toList();
+  }
+
+  void updateEduStatus(String eduId, int state) async {
+    final userDoc = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid);
+
+    DocumentSnapshot userSnapshot = await userDoc.get();
+    if (!userSnapshot.exists) {
+      print('Kullanıcı belgesi bulunamadı.');
+      return;
+    }
+
+    dynamic userData = userSnapshot.data();
+    if (userData == null || !userData.containsKey('educations')) {
+      print('Kullanıcı verileri eksik veya hatalı.');
+      return;
+    }
+
+    List<dynamic> educations = userData['educations'];
+
+    print(educations);
+
+    List<dynamic> changedEducations = educations.map((e) {
+      if (e['id'] == eduId) {
+        e['state'] = state;
+      }
+      return e;
+    }).toList();
+
+    print(changedEducations);
+
+    await userDoc.update({'educations': changedEducations});
   }
 }

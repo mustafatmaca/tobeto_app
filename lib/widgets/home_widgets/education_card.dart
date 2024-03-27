@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tobeto_app/widgets/video_player_page.dart';
 
 class EducationCard extends StatelessWidget {
+  final String id;
   final String title;
   final DateTime date;
   final String? image;
@@ -9,6 +10,7 @@ class EducationCard extends StatelessWidget {
   final int state;
 
   const EducationCard({
+    required this.id,
     required this.title,
     required this.date,
     required this.image,
@@ -32,6 +34,7 @@ class EducationCard extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => VideoPlayerPage(
+                  videoId: id,
                   videoUrl: video,
                   title: title,
                 ),

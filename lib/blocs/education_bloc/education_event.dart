@@ -10,3 +10,15 @@ class LoadEducationByTitle extends EducationEvent {
     required this.title,
   });
 }
+
+class UpdateEduStatus extends EducationEvent {
+  String id;
+  int state;
+
+  UpdateEduStatus({
+    required this.id,
+    required this.state,
+  });
+}
+
+class ResetEvent extends EducationEvent {}

@@ -122,6 +122,7 @@ class _HomeEducationScreenState extends State<HomeEducationScreen> {
                         ),
                         ...state.educationList
                             .map((e) => EducationCard(
+                                id: e.id,
                                 title: e.title,
                                 date: DateTime.fromMillisecondsSinceEpoch(
                                     e.date.millisecondsSinceEpoch),
