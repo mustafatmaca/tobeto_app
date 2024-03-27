@@ -6,6 +6,7 @@ class EducationCard extends StatelessWidget {
   final DateTime date;
   final String? image;
   final String video;
+  final int state;
 
   const EducationCard({
     required this.title,
@@ -13,6 +14,7 @@ class EducationCard extends StatelessWidget {
     required this.image,
     required this.context,
     required this.video,
+    required this.state,
   });
 
   final BuildContext context;
@@ -117,15 +119,25 @@ class EducationCard extends StatelessWidget {
                 ),
               ],
             ),
-            const Positioned(
-              bottom: 3,
-              right: 3,
-              child: Icon(
-                Icons.play_circle_filled,
-                size: 30,
-                color: Colors.white,
-              ),
-            ),
+            state == 0
+                ? const Positioned(
+                    bottom: 3,
+                    right: 3,
+                    child: Icon(
+                      Icons.play_circle_filled,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                  )
+                : const Positioned(
+                    bottom: 3,
+                    right: 3,
+                    child: Icon(
+                      Icons.check_circle,
+                      size: 30,
+                      color: Colors.green,
+                    ),
+                  ),
           ]),
         ),
       ),

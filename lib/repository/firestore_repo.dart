@@ -147,9 +147,10 @@ class FireStoreRepo {
 
     final eduList = eduId.map((e) async {
       final docRef =
-          FirebaseFirestoreInstance.collection(Collections.EDUCATIONS).doc(e);
+          FirebaseFirestoreInstance.collection(Collections.EDUCATIONS)
+              .doc(e['id']);
       final eduSnapshot = await docRef.get();
-      return Education.fromMap(eduSnapshot.data()!);
+      return Education.fromMap(eduSnapshot.data()!, e['state']);
     }).toList();
 
     List<Education> resolvedEduList = await Future.wait(eduList);
@@ -384,15 +385,28 @@ class FireStoreRepo {
   }
 
   Future<List<Education>> getEducationByTitle(String title) async {
-    final educations =
-        await FirebaseFirestoreInstance.collection(Collections.EDUCATIONS)
-            .get();
+    final user = await FirebaseFirestoreInstance.collection(Collections.USERS)
+        .doc(firebaseAuthInstance.currentUser!.uid);
+    final docSnapShot = await user.get();
 
-    final educationList = educations.docs.map((e) async {
-      return Education.fromMap(e.data());
+    // Hata durumunu kontrol et (kullanıcı var ve educations yoksa)
+    if (docSnapShot.exists &&
+        !docSnapShot.data()!.containsKey(Collections.EDUCATIONS)) {
+      //'educations' alanı yok
+      return []; // Boş bir liste döndür
+    }
+
+    List eduId = await docSnapShot.get(Collections.EDUCATIONS);
+
+    final eduList = eduId.map((e) async {
+      final docRef =
+          FirebaseFirestoreInstance.collection(Collections.EDUCATIONS)
+              .doc(e['id']);
+      final eduSnapshot = await docRef.get();
+      return Education.fromMap(eduSnapshot.data()!, e['state']);
     }).toList();
 
-    List<Education> resolvedEducationList = await Future.wait(educationList);
+    List<Education> resolvedEducationList = await Future.wait(eduList);
 
     return resolvedEducationList
         .where((element) =>

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:tobeto_app/blocs/education_bloc/education_bloc.dart';
 import 'package:tobeto_app/blocs/education_bloc/education_event.dart';
 import 'package:tobeto_app/blocs/education_bloc/education_state.dart';
@@ -90,22 +92,45 @@ class _HomeEducationScreenState extends State<HomeEducationScreen> {
                     if (state.educationList.isEmpty) {
                       return const EmptyCard();
                     } else {
-                      return Expanded(
-                        child: ListView.builder(
-                          itemCount: state.educationList.length,
-                          itemBuilder: (context, index) {
-                            return EducationCard(
-                                title: state.educationList[index].title,
-                                date: DateTime.fromMillisecondsSinceEpoch(state
-                                    .educationList[index]
-                                    .date
-                                    .millisecondsSinceEpoch),
-                                image: state.educationList[index].image,
-                                video: state.educationList[index].videoUrl,
-                                context: context);
-                          },
+                      var completed = 0;
+                      for (var i in state.educationList) {
+                        i.state == 1 ? completed++ : null;
+                      }
+                      return Column(children: [
+                        Padding(
+                          padding: EdgeInsets.all(15.0),
+                          child: LinearPercentIndicator(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            lineHeight:
+                                MediaQuery.of(context).size.height * 0.03,
+                            percent: completed / state.educationList.length,
+                            center: Text(
+                              ((completed / state.educationList.length) * 100)
+                                      .toInt()
+                                      .toString() +
+                                  "%",
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                            trailing:
+                                completed / state.educationList.length == 1.0
+                                    ? Icon(FontAwesomeIcons.lock)
+                                    : Icon(FontAwesomeIcons.lockOpen),
+                            barRadius: Radius.circular(15),
+                            backgroundColor: Colors.grey,
+                            progressColor: Colors.green,
+                          ),
                         ),
-                      );
+                        ...state.educationList
+                            .map((e) => EducationCard(
+                                title: e.title,
+                                date: DateTime.fromMillisecondsSinceEpoch(
+                                    e.date.millisecondsSinceEpoch),
+                                image: e.image,
+                                video: e.videoUrl,
+                                state: e.state,
+                                context: context))
+                            .toList(),
+                      ]);
                     }
                   } else if (state is EducationError) {
                     return const Center(
